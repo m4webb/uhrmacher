@@ -78,10 +78,22 @@
 2. **Cuckoo's Landing** — Final boss fight (see Act III)
 
 ### Act III — Cuckoo's Landing (~20-25% of session)
-- Major confrontation with the giant cuckoo (dragon statblock, reskinned as a large cuckoo mechanism)
-- Cuckoo is attached to a mechanical rod that pulls it in and out of Mechanus every other turn
-- The cuckoo must complete 3 cycles to fulfill the contract — players have 3 "on" turns (with off turns in between) to defeat it
-- Modrons emerge from the planar door each round as reinforcements
+- Cuckoo is a custom statblock — mechanical construct on a rod, not a reskinned dragon
+- Cuckoo comes from Mechanus through the planar aperture at the apex of the tower
+- Restrained on the rod (advantage on attacks against it, its attacks at disadvantage)
+- Cuckoo must complete 3 cycles (out and back) — players have 3 "on" turns (with off turns in between) to destroy it
+- **Cuckoo design:** Primarily an objective/HP sponge, but should feel boss-like with tough or unexpected defensive mechanisms; risky to attack head-on. AC 16, HP ~110.
+- **Bellows Blast:** 30 ft cone, DC 14 CON save. On fail: 3d8 thunder damage + poisoned until end of their next turn (flavored as ringing ears/disorientation — cancels restrained advantage). Half damage on save, no poisoned. Fires once per cycle when the cuckoo calls.
+- **Emergency Venting:** Triggers once when the cuckoo drops below half HP. 10 ft radius burst, DC 14 DEX save. On fail: 3d6 fire damage. Half on save. Surprise punishment for melee cluster.
+- **Defensive Lockdown (optional, DM discretion):** Plating shifts, AC increases by 2. Use if the cuckoo is going down too fast and the fight needs more tension.
+- **Initiative:** Roll for cuckoo, modrons (one group), and PCs. Cuckoo and modrons burst out together on cycle 1, then everything resolves in initiative order. New modron waves join at the existing modron initiative.
+- **Modron Reinforcements (escalating, one wave per cycle):**
+  - Wave 1 (cycle 1): 4 monodrones — one-shot fodder, pulls 1-2 PCs off cuckoo, cleaned up on off-turn
+  - Wave 2 (cycle 2): 3 duodrones + 1 tridrone — multi-attack makes them sticky, ~25 DPR, 2-3 PCs to handle
+  - Wave 3 (cycle 3): 2 tridrones + 2 quadrones — quadrone shortbows threaten backline, ~38 DPR, major threat plus any wave 2 survivors
+- **Riding the Cuckoo into Mechanus (optional player action):** Players in melee range can attempt to hold onto the cuckoo as it retracts. DC 12 STR (Athletics) to grab on. Door is blocked while the cuckoo is extended, so this is the only way through. On Mechanus: DC 14 WIS save at the start of each turn or lose your action (move and bonus action still available) as the plane tries to subsume your will. Ride the cuckoo back out on the next cycle. If the cuckoo dies while they're in Mechanus — the door closes and the party has to figure out how to get them back.
+- Modrons immediately retreat once the contract is nullified
+- **Modron reinforcements:** Escalating waves each round, getting heavier as the fight progresses; modrons immediately retreat once the contract is nullified (cuckoo destroyed before 3 cycles complete)
 - **Desired path:** Players fight to defeat the cuckoo before it completes the contract
 - **Alternate ending:** Players protect the modron/cuckoo from the hag coven (3 green hags) + fey minions (blights, wolves, etc.) trying to break in, allowing the contract to complete
 - **Balance note:** Hag coven is hard-to-deadly for 8 level 3 PCs on paper, but action economy favors players 8:3. Fey minions needed to fill the gap. Coven spells (Hold Person etc.) are the real threat at level 3 HP pools.
