@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuckoo's Landing — Battlefield Grid</title>
+<style>
+  body {
+    background: #1a1a2e;
+    color: #e0d8c0;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+  }
+  h1 {
+    font-variant: small-caps;
+    letter-spacing: 2px;
+    color: #c8a86e;
+    margin-bottom: 4px;
+    font-size: 24px;
+  }
+  .subtitle { color: #888; font-size: 14px; margin-bottom: 25px; }
+  .legend {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 40px;
+    margin-top: 25px;
+    font-size: 13px;
+    max-width: 620px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 10px; }
+  .legend-swatch {
+    width: 20px; height: 20px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    border: 1px solid rgba(200, 168, 110, 0.3);
+  }
+</style>
+</head>
+<body>
+
+<h1>Cuckoo's Landing</h1>
+<p class="subtitle">Battlefield Grid &mdash; 25ft radius gear, 5ft squares &mdash; all partial edge squares included</p>
+
+<canvas id="map" width="620" height="700"></canvas>
+
+<div class="legend">
+  <div class="legend-item">
+    <div class="legend-swatch" style="background: rgba(42,42,62,0.9);"></div>
+    Gear Floor (5ft square)
+  </div>
+  <div class="legend-item">
+    <div class="legend-swatch" style="background: rgba(139,69,20,0.8);"></div>
+    Cuckoo (10&times;10ft, Large, restrained)
+  </div>
+  <div class="legend-item">
+    <div class="legend-swatch" style="background: rgba(255,80,80,0.25); border-color: rgba(255,80,80,0.5);"></div>
+    Rod Impact Path (DEX save on emerge/retract)
+  </div>
+  <div class="legend-item">
+    <div class="legend-swatch" style="background: rgba(100,180,255,0.22); border-color: rgba(100,180,255,0.5);"></div>
+    Bellows Cone (DC 14 CON, on-rounds)
+  </div>
+  <div class="legend-item">
+    <div class="legend-swatch" style="background: linear-gradient(#999,#bbb); border-color: #777;"></div>
+    Rod (on grid line, indestructible)
+  </div>
+  <div class="legend-item">
+    <div class="legend-swatch" style="background: #4a1a6e; border-color: #9b59b6;"></div>
+    Planar Aperture (blocked while cuckoo out)
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('map');
+const ctx = canvas.getContext('2d');
+
+const CELL = 50;
+const COLS = 10, ROWS = 10;
+const OX = 60, OY = 100;
+const W = COLS * CELL, H = ROWS * CELL;
+const CX = OX + W / 2, CY = OY + H / 2;
+const R = W / 2;
+
+// Any part of cell overlaps the gear circle
+function inGear(col, row) {
+  const cL = col * 5, cT = row * 5, cR = cL + 5, cB = cT + 5;
+  const px = Math.max(cL, Math.min(25, cR));
+  const py = Math.max(cT, Math.min(25, cB));
+  return Math.hypot(px - 25, py - 25) <= 25;
+}
+
+// Cone: includes edge cells where the cone angle clips through
+function inCone(col, row) {
+  if (row <= 5) return false;
+  const dist = row - 5;
+  if (dist > 6) return false;
+  const left = 4 - dist;
+  const right = 5 + dist;
+  return col >= left && col <= right;
+}
+
+function cellType(col, row) {
+  if (row >= 4 && row <= 5 && col >= 4 && col <= 5) return 'cuckoo';
+  if (row <= 3 && col >= 4 && col <= 5 && inGear(col, row)) return 'impact';
+  if (inCone(col, row) && inGear(col, row)) return 'cone';
+  if (inGear(col, row)) return 'floor';
+  return 'off';
+}
+
+const COLORS = {
+  floor:  'rgba(42, 42, 62, 0.9)',
+  cuckoo: 'rgba(139, 69, 20, 0.8)',
+  impact: 'rgba(255, 80, 80, 0.22)',
+  cone:   'rgba(100, 180, 255, 0.20)',
+};
+
+// Background
+ctx.fillStyle = '#1a1a2e';
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+// Draw cells clipped to gear circle
+ctx.save();
+ctx.beginPath();
+ctx.arc(CX, CY, R, 0, Math.PI * 2);
+ctx.clip();
+
+for (let row = 0; row < ROWS; row++) {
+  for (let col = 0; col < COLS; col++) {
+    const type = cellType(col, row);
+    if (type === 'off') continue;
+    ctx.fillStyle = COLORS[type];
+    ctx.fillRect(OX + col * CELL, OY + row * CELL, CELL, CELL);
+  }
+}
+
+// Grid lines
+ctx.strokeStyle = 'rgba(200, 168, 110, 0.18)';
+ctx.lineWidth = 1;
+for (let i = 0; i <= COLS; i++) {
+  ctx.beginPath();
+  ctx.moveTo(OX + i * CELL, OY);
+  ctx.lineTo(OX + i * CELL, OY + H);
+  ctx.stroke();
+}
+for (let i = 0; i <= ROWS; i++) {
+  ctx.beginPath();
+  ctx.moveTo(OX, OY + i * CELL);
+  ctx.lineTo(OX + W, OY + i * CELL);
+  ctx.stroke();
+}
+
+// Rod grid line highlight
+ctx.strokeStyle = 'rgba(200, 168, 110, 0.35)';
+ctx.lineWidth = 2;
+ctx.beginPath();
+ctx.moveTo(OX + 5 * CELL, OY);
+ctx.lineTo(OX + 5 * CELL, OY + H);
+ctx.stroke();
+
+ctx.restore();
+
+// Gear border
+ctx.beginPath();
+ctx.arc(CX, CY, R, 0, Math.PI * 2);
+ctx.strokeStyle = '#c8a86e';
+ctx.lineWidth = 3;
+ctx.stroke();
+
+// Gear teeth
+const numTeeth = 20;
+for (let i = 0; i < numTeeth; i++) {
+  const a = (i / numTeeth) * Math.PI * 2;
+  ctx.save();
+  ctx.translate(CX + Math.cos(a) * R, CY + Math.sin(a) * R);
+  ctx.rotate(a + Math.PI / 2);
+  ctx.fillStyle = '#c8a86e';
+  ctx.beginPath();
+  ctx.moveTo(-8, 0); ctx.lineTo(-5, -14);
+  ctx.lineTo(5, -14); ctx.lineTo(8, 0);
+  ctx.fill();
+  ctx.restore();
+}
+
+// Rod
+const rodX = OX + 5 * CELL;
+const rodTopY = CY - R + 10;
+const rodBotY = OY + 4 * CELL;
+ctx.fillStyle = '#aaa';
+ctx.fillRect(rodX - 3, rodTopY, 6, rodBotY - rodTopY);
+ctx.strokeStyle = '#777';
+ctx.lineWidth = 1;
+ctx.strokeRect(rodX - 3, rodTopY, 6, rodBotY - rodTopY);
+
+// Aperture
+const apW = CELL * 2 + 10;
+const apH = 22;
+const apX = CX - apW / 2;
+const apY = CY - R - apH + 2;
+ctx.fillStyle = '#4a1a6e';
+ctx.fillRect(apX, apY, apW, apH);
+ctx.strokeStyle = '#9b59b6';
+ctx.lineWidth = 2;
+ctx.strokeRect(apX, apY, apW, apH);
+ctx.shadowColor = 'rgba(155, 89, 178, 0.5)';
+ctx.shadowBlur = 12;
+ctx.strokeRect(apX, apY, apW, apH);
+ctx.shadowBlur = 0;
+
+// Faint cone guide lines
+ctx.save();
+ctx.setLineDash([8, 5]);
+ctx.strokeStyle = 'rgba(100, 180, 255, 0.15)';
+ctx.lineWidth = 1;
+const coneOriY = OY + 6 * CELL;
+const coneEndY = coneOriY + 5 * CELL;
+ctx.beginPath();
+ctx.moveTo(OX + 4 * CELL, coneOriY);
+ctx.lineTo(OX + 4 * CELL - 5 * CELL, coneEndY);
+ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(OX + 6 * CELL, coneOriY);
+ctx.lineTo(OX + 6 * CELL + 5 * CELL, coneEndY);
+ctx.stroke();
+ctx.restore();
+
+// Impact path border
+ctx.save();
+ctx.setLineDash([4, 4]);
+ctx.strokeStyle = 'rgba(255, 80, 80, 0.4)';
+ctx.lineWidth = 1.5;
+ctx.beginPath();
+ctx.moveTo(OX + 4 * CELL, OY);
+ctx.lineTo(OX + 4 * CELL, OY + 4 * CELL);
+ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(OX + 6 * CELL, OY);
+ctx.lineTo(OX + 6 * CELL, OY + 4 * CELL);
+ctx.stroke();
+ctx.restore();
+
+// --- Labels ---
+ctx.fillStyle = '#888';
+ctx.font = '13px Segoe UI';
+ctx.textAlign = 'center';
+ctx.fillText('▲ TOWER WALL ▲', CX, apY - 12);
+
+ctx.fillStyle = '#d4aaff';
+ctx.font = 'bold 9px Segoe UI';
+ctx.fillText('PLANAR DOOR', CX, apY + apH / 2 + 3);
+
+ctx.fillStyle = '#c8a86e';
+ctx.font = 'bold 12px Segoe UI';
+ctx.textAlign = 'center';
+ctx.fillText('CUCKOO', CX, CY - 4);
+ctx.font = '10px Segoe UI';
+ctx.fillText('10×10ft', CX, CY + 10);
+
+ctx.fillStyle = 'rgba(255, 80, 80, 0.65)';
+ctx.font = 'bold 10px Segoe UI';
+ctx.fillText('IMPACT', CX, OY + 1.5 * CELL - 3);
+ctx.fillText('PATH', CX, OY + 1.5 * CELL + 10);
+
+ctx.fillStyle = 'rgba(100, 180, 255, 0.7)';
+ctx.font = 'bold 11px Segoe UI';
+ctx.fillText('BELLOWS CONE', CX, OY + 7.3 * CELL);
+ctx.font = '10px Segoe UI';
+ctx.fillText('30ft · fixed direction', CX, OY + 7.3 * CELL + 14);
+
+// Grid coordinates
+ctx.fillStyle = 'rgba(200, 168, 110, 0.35)';
+ctx.font = '10px Segoe UI';
+ctx.textAlign = 'center';
+for (let i = 0; i < COLS; i++) {
+  ctx.fillText((i + 1).toString(), OX + i * CELL + CELL / 2, OY - 8);
+}
+ctx.textAlign = 'right';
+for (let i = 0; i < ROWS; i++) {
+  ctx.fillText(String.fromCharCode(65 + i), OX - 10, OY + i * CELL + CELL / 2 + 4);
+}
+
+// Scale bar
+ctx.strokeStyle = 'rgba(200, 168, 110, 0.5)';
+ctx.lineWidth = 2;
+const sbX = OX + W + 15, sbY = OY + H - 30;
+ctx.beginPath(); ctx.moveTo(sbX, sbY); ctx.lineTo(sbX + CELL, sbY); ctx.stroke();
+ctx.beginPath(); ctx.moveTo(sbX, sbY - 5); ctx.lineTo(sbX, sbY + 5); ctx.stroke();
+ctx.beginPath(); ctx.moveTo(sbX + CELL, sbY - 5); ctx.lineTo(sbX + CELL, sbY + 5); ctx.stroke();
+ctx.fillStyle = 'rgba(200, 168, 110, 0.5)';
+ctx.font = '10px Segoe UI';
+ctx.textAlign = 'center';
+ctx.fillText('5ft', sbX + CELL / 2, sbY + 16);
+
+ctx.fillStyle = 'rgba(200, 168, 110, 0.3)';
+ctx.fillText('← 50ft →', CX, OY - 22);
+
+ctx.fillStyle = '#c8a86e';
+ctx.font = '14px Segoe UI';
+ctx.textAlign = 'center';
+ctx.fillText('↻ Entire gear rotates 90° CW at Initiative 20', CX, CY + R + 40);
+ctx.font = '12px Segoe UI';
+ctx.fillStyle = 'rgba(200, 168, 110, 0.5)';
+ctx.fillText('Cone direction is fixed — rotation moves players into/out of blast zone', CX, CY + R + 60);
+</script>
+
+</body>
+</html>

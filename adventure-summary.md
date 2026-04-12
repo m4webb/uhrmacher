@@ -86,11 +86,17 @@
 - **Bellows Blast:** 30 ft cone, DC 14 CON save. On fail: 3d8 thunder damage + poisoned until end of their next turn (flavored as ringing ears/disorientation — cancels restrained advantage). Half damage on save, no poisoned. Fires once per cycle when the cuckoo calls.
 - **Emergency Venting:** Triggers once when the cuckoo drops below half HP. 10 ft radius burst, DC 14 DEX save. On fail: 3d6 fire damage. Half on save. Surprise punishment for melee cluster.
 - **Defensive Lockdown (optional, DM discretion):** Plating shifts, AC increases by 2. Use if the cuckoo is going down too fast and the fight needs more tension.
-- **Initiative:** Roll for cuckoo, modrons (one group), and PCs. Cuckoo and modrons burst out together on cycle 1, then everything resolves in initiative order. New modron waves join at the existing modron initiative.
+- **Initiative:** Roll for cuckoo, modrons (one group), and PCs.
+- **Round structure (5 rounds: ON/OFF/ON/OFF/ON):**
+  - Init 20 (every round): Gear rotates 90° CW
+  - Cuckoo's turn (on-rounds): Emerges + knockdown in impact path (DEX save) + new modron wave bursts out with it + bellows blast (cone)
+  - Cuckoo's turn (off-rounds): Retracts + knockdown in impact path (DEX save) — hold-on window for players (DC 12 STR Athletics to ride it into Mechanus)
+  - Players who beat the cuckoo's initiative can reposition after gear rotation but before emergence/blast
 - **Modron Reinforcements (escalating, one wave per cycle):**
-  - Wave 1 (cycle 1): 4 monodrones — one-shot fodder, pulls 1-2 PCs off cuckoo, cleaned up on off-turn
-  - Wave 2 (cycle 2): 3 duodrones + 1 tridrone — multi-attack makes them sticky, ~25 DPR, 2-3 PCs to handle
-  - Wave 3 (cycle 3): 2 tridrones + 2 quadrones — quadrone shortbows threaten backline, ~38 DPR, major threat plus any wave 2 survivors
+  - Wave 1 (cycle 1): 4 monodrones — one-shot fodder, pulls 1-2 PCs off cuckoo, cleaned up on off-turn. Fly 30ft (not affected by gear rotation).
+  - Wave 2 (cycle 2): 3 duodrones + 1 tridrone — multi-attack makes them sticky, ~25 DPR, 2-3 PCs to handle. Ground only (rotate with the gear).
+  - Wave 3 (cycle 3): 2 tridrones + 2 quadrones — quadrone shortbows threaten backline, ~38 DPR, major threat plus any wave 2 survivors. Tridrones ground only; quadrones fly 30ft.
+- **Battlefield:** One large gear (25 ft radius) as the entire floor. Aperture is on the tower wall side; the rod extends inward and the cuckoo occupies the center of the gear. Gear rotates 90 degrees clockwise at initiative count 20 (lair action). Cone fires from the cuckoo at center in a fixed direction, so rotation constantly shifts who's in the blast zone. Anyone in the center when the cuckoo emerges gets knocked down (DEX save).
 - **Riding the Cuckoo into Mechanus (optional player action):** Players in melee range can attempt to hold onto the cuckoo as it retracts. DC 12 STR (Athletics) to grab on. Door is blocked while the cuckoo is extended, so this is the only way through. On Mechanus: DC 14 WIS save at the start of each turn or lose your action (move and bonus action still available) as the plane tries to subsume your will. Ride the cuckoo back out on the next cycle. If the cuckoo dies while they're in Mechanus — the door closes and the party has to figure out how to get them back.
 - Modrons immediately retreat once the contract is nullified
 - **Modron reinforcements:** Escalating waves each round, getting heavier as the fight progresses; modrons immediately retreat once the contract is nullified (cuckoo destroyed before 3 cycles complete)
