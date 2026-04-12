@@ -10,11 +10,11 @@
 
 ## Premise
 
-- A clocktower in the middle of the woods has mysteriously started ticking again
+- The Kuckucksuhrturm, a clocktower in the Tiefenwald near the town of Freudenfeld, has mysteriously started ticking again
 - The Uhrmacher (clockmaker) is long since dead
 - He had signed a contract with modrons from the Mechanus plane to open a planar anchor through his clock tower
 - In exchange, a gear from Mechanus was connected to the tower to allow it to keep perfect time
-- The Uhrmacher eventually discovered the consequences of the planar connection: it would seep uniformity and conformance into the neighboring town
+- The Uhrmacher eventually discovered the consequences of the planar connection: it would seep uniformity and conformance into Freudenfeld
 - Effects: stops crime and sickness, BUT slowly turns townsfolk into modrons, removing all human uniqueness and creativity
 - The Uhrmacher decided to call it off and disconnected the tower
 - The modrons have now found a clause in the contract to continue the work despite his death
@@ -30,20 +30,20 @@
 
 ## Three-Act Structure
 
-### Act I — The Town (~15-20% of session)
-- Players arrive in town, interact with townsfolk
+### Act I — Freudenfeld (~15-20% of session)
+- Players arrive in Freudenfeld, interact with townsfolk
 - The mayor originally called them for help, but now wants them to leave — crime is falling, children are well-behaved
 - Some townsfolk are skeptical of the changes, particularly artisans and creatives who feel the effects on uniqueness and expression
 
-### Act II — The Clock Tower (~50-60% of session)
-- Players enter the clock tower
+### Act II — The Kuckucksuhrturm (~50-60% of session)
+- Players enter the Kuckucksuhrturm
 - Exploration of the tower interior
 - Discovery of the Uhrmacher's contract with the modrons
 
 ### Key NPCs
 
 - **Frau Eichenwald (School Teacher)** — Worried about the conformity; admits many townsfolk are happy about the changes, but she sees the cost to individuality
-- **Moosfräulein Linde (Moss Woman, disguised)** — Green hag statblock, reskinned as Black Forest moss women (CN). Appears in the Uhrmacher's study using Illusory Appearance. Opposes modrons because their order is killing the wild forest. If players side with the modrons, she leaves and returns with her coven (3 moss women) + fey minions in Act III
+- **Moosfräulein Linde (Moss Woman, disguised)** — Green hag statblock, reskinned as Tiefenwald moss women (CN). Appears in the Uhrmacher's study using Illusory Appearance. Opposes modrons because their order is killing the wild forest. If players side with the modrons, she leaves and returns with her coven (3 moss women) + fey minions in Act III
 - **Pendel (Quadrone, near-rogue)** — Modron overseer managing the tower. Social encounter, not combat. On the verge of going rogue; players may befriend and push it fully rogue on the desired path.
 - **Fritz (Young Disabled Boy)** — Stowaway living in the tower; his leg started working again due to the tower's influence. Controls a gear golem (flesh golem statblock). Gear room combat ends if players find him.
 
@@ -83,7 +83,7 @@
 - Restrained on the rod (advantage on attacks against it, its attacks at disadvantage)
 - Cuckoo must complete 3 cycles (out and back) — players have 3 "on" turns (with off turns in between) to destroy it
 - **Cuckoo design:** Primarily an objective/HP sponge, but should feel boss-like with tough or unexpected defensive mechanisms; risky to attack head-on. AC 16, HP ~110.
-- **Bellows Blast:** 30 ft cone, DC 14 CON save. On fail: 3d8 thunder damage + poisoned until end of their next turn (flavored as ringing ears/disorientation — cancels restrained advantage). Half damage on save, no poisoned. Fires once per cycle when the cuckoo calls.
+- **The Cuckoo's Call:** 30 ft cone, DC 14 CON save. On fail: 3d8 thunder damage + poisoned until end of their next turn (flavored as ringing ears/disorientation — cancels restrained advantage). Half damage on save, no poisoned. Fires once per cycle when the cuckoo calls.
 - **Emergency Venting:** Triggers once when the cuckoo drops below half HP. 10 ft radius burst, DC 14 DEX save. On fail: 3d6 fire damage. Half on save. Surprise punishment for melee cluster.
 - **Defensive Lockdown (optional, DM discretion):** Plating shifts, AC increases by 2. Use if the cuckoo is going down too fast and the fight needs more tension.
 - **Initiative:** Roll for cuckoo, modrons (one group), and PCs.
@@ -98,7 +98,7 @@
   - Wave 3 (cycle 3): 2 tridrones + 2 quadrones — quadrone shortbows threaten backline, ~38 DPR, major threat plus any wave 2 survivors. Tridrones ground only; quadrones fly 30ft.
 - **Battlefield:** One large gear (25 ft radius) as the entire floor. Aperture is on the tower wall side; the rod extends inward and the cuckoo occupies the center of the gear. Gear rotates 90 degrees clockwise at initiative count 20 (lair action). Cone fires from the cuckoo at center in a fixed direction, so rotation constantly shifts who's in the blast zone. Anyone in the center when the cuckoo emerges gets knocked down (DEX save).
 - **Riding the Cuckoo into Mechanus (optional player action):** Players in melee range can attempt to hold onto the cuckoo as it retracts. DC 12 STR (Athletics) to grab on. Door is blocked while the cuckoo is extended, so this is the only way through. On Mechanus: DC 14 WIS save at the start of each turn or lose your action (move and bonus action still available) as the plane tries to subsume your will. Ride the cuckoo back out on the next cycle. If the cuckoo dies while they're in Mechanus — the door closes and the party has to figure out how to get them back.
-- Modrons immediately retreat once the contract is nullified
+- **Victory condition:** Destroy the cuckoo before it completes 3 full cycles (emerge, call, retract). A destroyed cuckoo can never retract — the third cycle is incomplete, the contract is null and void (Art. IV §4.4, Art. VI §6.4). The planar aperture closes, the broken cuckoo remains in the material plane, and modrons immediately retreat.
 - **Modron reinforcements:** Escalating waves each round, getting heavier as the fight progresses; modrons immediately retreat once the contract is nullified (cuckoo destroyed before 3 cycles complete)
 - **Desired path:** Players fight to defeat the cuckoo before it completes the contract
 - **Alternate ending:** Players protect the modron/cuckoo from the hag coven (3 green hags) + fey minions (blights, wolves, etc.) trying to break in, allowing the contract to complete
