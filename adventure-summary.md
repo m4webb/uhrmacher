@@ -57,6 +57,21 @@
 6. **Puzzle Lock Room** — Leads to Cuckoo's Landing *(optional — cut candidate if Act II runs long)*
 7. **Cuckoo's Landing** — Final confrontation
 
+### Ticking Clock — Escalating Conformity Effects
+
+*Apply as the game progresses to build urgency. All flavor, no mechanical impact.*
+
+| Beat | Sense | Effect |
+|------|-------|--------|
+| 1 | Sight | Colors begin to desaturate — flowers look duller, wood grain fades |
+| 2 | Sound | Ambient sounds start falling into rhythm — birdsong syncs to the clock's tick |
+| 3 | Smell | Scents flatten — food loses its aroma, the forest smells like nothing |
+| 4 | Touch | Textures smooth out — rough bark feels glassy, fabric loses its weave |
+| 5 | Environment | Vegetation grows unnaturally straight and symmetrical — wildflowers in rows, branches at right angles |
+| 6 | Environment | Architecture subtly straightens — crooked timbers become perfectly plumb, cobblestones align into grids |
+| 7 | Temperature | Everything trends toward neutral lukewarm — no warmth from fire, no cool breeze |
+| 8 | Personal | Chaotic-aligned characters feel queasy and uneasy |
+
 ### Combat Encounters
 
 1. **Gear Room** — Gear golem attacks; players can end the encounter by finding the hiding boy instead of killing the golem (non-standard objective)
