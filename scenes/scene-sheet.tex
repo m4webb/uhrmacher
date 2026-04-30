@@ -1,0 +1,1090 @@
+\documentclass[10pt,letterpaper]{article}
+
+% --- Layout ---
+\usepackage[margin=0.6in,top=0.5in,bottom=0.5in,headheight=20pt]{geometry}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{palatino}
+\usepackage{microtype}
+\usepackage[hidelinks, colorlinks=true, linkcolor=accent]{hyperref}
+
+% --- Colors ---
+\definecolor{accent}{RGB}{120, 80, 40}
+\definecolor{lightbg}{RGB}{245, 240, 230}
+\definecolor{rulecol}{RGB}{180, 160, 130}
+
+% --- Compact spacing ---
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+\setlength{\columnsep}{18pt}
+\setlength{\columnseprule}{0.4pt}
+\def\columnseprulecolor{\color{rulecol}}
+
+% --- Section formatting ---
+\titleformat{\section}{\large\bfseries\scshape\color{accent}}{}{0em}{}[\vspace{-6pt}\textcolor{rulecol}{\rule{\columnwidth}{0.6pt}}]
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titlespacing*{\section}{0pt}{12pt}{3pt}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+
+% --- Header/footer ---
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{rulecol}\leaders\hrule height \headrulewidth\hfill}}
+\fancyfoot[C]{\small\textcolor{accent}{\thepage}}
+
+% --- Read-aloud box ---
+\newmdenv[
+  backgroundcolor=lightbg,
+  linecolor=rulecol,
+  linewidth=0.6pt,
+  innertopmargin=6pt,
+  innerbottommargin=6pt,
+  innerleftmargin=8pt,
+  innerrightmargin=8pt,
+  skipabove=4pt,
+  skipbelow=4pt
+]{readaloud}
+
+% --- Compact list ---
+\setlist[itemize]{nosep, left=0pt, labelsep=4pt, topsep=2pt}
+\setlist[enumerate]{nosep, left=0pt, labelsep=4pt, topsep=2pt}
+
+% --- Scene header command ---
+\newcommand{\sceneheader}[4]{%
+  \fancyhead[L]{\small\textcolor{accent}{\scshape #1}}%
+  \fancyhead[R]{\small\textcolor{accent}{#2 \quad \textbullet \quad #3}}%
+  \begin{center}
+  {\LARGE\bfseries\scshape\textcolor{accent}{#1}}\\[2pt]
+  {\small #2 \quad \textbullet \quad #3 \quad \textbullet \quad #4}\\[2pt]
+  \textcolor{rulecol}{\rule{0.5\textwidth}{0.8pt}}
+  \end{center}
+  \vspace{-4pt}
+}
+
+% --- NPC quick-ref command ---
+\newcommand{\npc}[3]{\textbf{#1} \textit{(#2)} --- #3}
+
+\begin{document}
+
+% ============================================================
+%  INDEX
+% ============================================================
+
+\thispagestyle{empty}
+\begin{center}
+{\LARGE\bfseries\scshape\textcolor{accent}{The Uhrmacher's Folly}}\\[2pt]
+{\small Scene Sheets \quad \textbullet \quad DM Reference}\\[2pt]
+\textcolor{rulecol}{\rule{0.5\textwidth}{0.8pt}}
+\end{center}
+\vspace{8pt}
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{@{}lXr@{}}
+\toprule
+\textbf{Scene} & \textbf{Type} & \textbf{Page} \\
+\midrule
+\hyperref[sec:gasthaus]{1. The Gasthaus} & Act I --- Social & \pageref{sec:gasthaus} \\
+\hyperref[sec:clockhall]{2. The Clockhall} & Act II --- Social & \pageref{sec:clockhall} \\
+\hyperref[sec:bellows]{3. The Bellows Chamber} & Act II --- Combat & \pageref{sec:bellows} \\
+\hyperref[sec:enc-bellows]{\quad Encounter: Bellows} & Stirges + Swarms (Hard) & \pageref{sec:enc-bellows} \\
+\hyperref[sec:gearroom]{4. The Gear Room} & Act II --- Combat / Social & \pageref{sec:gearroom} \\
+\hyperref[sec:enc-gearroom]{\quad Encounter: Gear Room} & Gear Golem (CR 5) & \pageref{sec:enc-gearroom} \\
+\hyperref[sec:study]{5. The Uhrmacher's Study} & Act II --- Social / Discovery & \pageref{sec:study} \\
+\hyperref[sec:cuckoo]{6. Cuckoo's Landing} & Act III --- Boss Combat & \pageref{sec:cuckoo} \\
+\hyperref[sec:enc-cuckoo]{\quad Encounter: Cuckoo's Landing} & Cuckoo + Modron Waves (Deadly) & \pageref{sec:enc-cuckoo} \\
+\midrule
+\hyperref[sec:glossary]{Glossary \& Pronunciation Guide} & Reference & \pageref{sec:glossary} \\
+\midrule
+\hyperref[sec:npc-gruber]{NPC: Bürgermeister Gottfried Grüber} & Reference & \pageref{sec:npc-gruber} \\
+\hyperref[sec:npc-eichenwald]{NPC: Frau Eichenwald} & Reference & \pageref{sec:npc-eichenwald} \\
+\hyperref[sec:npc-heinrich]{NPC: Heinrich} & Reference & \pageref{sec:npc-heinrich} \\
+\hyperref[sec:npc-pendel]{NPC: Pendel} & Reference & \pageref{sec:npc-pendel} \\
+\hyperref[sec:npc-fritz]{NPC: Fritz} & Reference & \pageref{sec:npc-fritz} \\
+\hyperref[sec:npc-linde]{NPC: Moosfräulein Linde} & Reference & \pageref{sec:npc-linde} \\
+\bottomrule
+\end{tabularx}
+\renewcommand{\arraystretch}{1.0}
+
+\newpage
+
+% ============================================================
+%  SCENE 1 — THE GASTHAUS
+% ============================================================
+
+\phantomsection\label{sec:gasthaus}\sceneheader{The Gasthaus}{Act I}{Social}{Freudenfeld}
+
+\begin{multicols}{2}
+
+\section*{Read-Aloud}
+\begin{readaloud}
+\itshape
+The Gasthaus is low-ceilinged and wood-paneled, warm from a Kachelofen in the corner. Long communal tables fill the room, and the air smells of bread and beer. A few locals nurse drinks in the late afternoon light. An old man in a woodcutter's coat is holding court in the corner near the stove, mid-story, gesturing with his pipe. A woman sits alone at a side table with an untouched drink, staring at nothing in particular. A well-dressed man wearing a mayoral chain rises from a table at the back and waves you over.
+\end{readaloud}
+
+\section*{NPCs at a Glance}
+
+\npc{Bürgermeister Grüber}{back table}{Welcoming, businesslike. Wants to hire the party.}
+
+\npc{Frau Eichenwald}{alone, side table}{Quiet, troubled. Won't approach the party.}
+
+\npc{Heinrich}{corner, near stove}{Cheerful, rambly. Mid-story.}
+
+\section*{Bürgermeister Gottfried Grüber}
+\subsection*{Will Share}
+\begin{itemize}
+\item Job: clear vermin from a structure in the Tiefenwald
+\item Pay: 25gp per head, on completion
+\item Directions to the tower, lodging for the night
+\item The ``Tickwichtel'' are back and the town is thriving
+\end{itemize}
+\subsection*{Doesn't Know}
+\begin{itemize}
+\item What the modrons actually are
+\item What the tower does long-term
+\item The contract or the Uhrmacher's history
+\end{itemize}
+\subsection*{Key Line}
+\textit{``The town has never been better. We just need someone to clear out the pests so the little folk can finish their work.''}
+
+\columnbreak
+
+\section*{Frau Eichenwald}
+\subsection*{Will Share (if approached)}
+\begin{itemize}
+\item Her students are losing curiosity and creativity
+\item Specific: children who drew now sit still; a boy who loved stories stopped asking questions
+\item The changes feel wrong, but she can't prove why
+\end{itemize}
+\subsection*{Can't Articulate}
+\begin{itemize}
+\item What's actually causing it --- suspects the tower but has no proof
+\end{itemize}
+\subsection*{Key Line}
+\textit{``The children are so well-behaved now. I should be grateful. So why does it frighten me?''}
+
+\section*{Heinrich}
+\subsection*{Will Share (loves to talk)}
+\begin{itemize}
+\item Saw the Tickwichtel as a boy --- small clicking mechanical creatures, brass, little legs
+\item The old stories say they keep the tower running
+\item Delighted they're back --- pure warmth and wonder
+\end{itemize}
+\subsection*{Doesn't Know}
+\begin{itemize}
+\item The contract, the Uhrmacher's motives, any danger
+\end{itemize}
+\subsection*{Key Line}
+\textit{``I was maybe eight years old. They were no bigger than my hand, all brass and little legs, clicking away like tiny clockmakers.''}
+
+\section*{Secrets}
+\begin{itemize}
+\item Back room available for private party discussion
+\item Eichenwald will \textbf{not} approach --- players must go to her
+\item Heinrich's stories are accurate --- matches what they'll see
+\end{itemize}
+
+\section*{Transition}
+Party heads to the Kuckucksuhrturm. Grüber gives directions: a path into the Tiefenwald, about an hour's walk. Tower visible above the treeline.
+
+\end{multicols}
+
+\newpage
+
+% ============================================================
+%  SCENE 2 — THE CLOCKHALL
+% ============================================================
+
+\phantomsection\label{sec:clockhall}\sceneheader{The Clockhall}{Act II}{Social}{Kuckucksuhrturm --- Ground}
+
+\begin{multicols}{2}
+
+\section*{Read-Aloud --- Approach}
+\begin{readaloud}
+\itshape
+The path into the Tiefenwald narrows quickly. The canopy closes overhead and the light goes grey-green. It is quiet --- not silent, but ordered. You notice that the trees along the path stand at strangely even intervals, and the birdsong overhead has a pulse to it, almost a rhythm, as though the forest were keeping time to something you can't quite hear. After an hour's walk, the trees thin and the tower comes into view: tall and narrow, built of dark timber, with a steep shingled roof and carved eaves like an enormous cuckoo clock standing alone in a clearing. You can hear it ticking from here.
+\end{readaloud}
+
+\section*{Read-Aloud --- Entering}
+\begin{readaloud}
+\itshape
+The front door opens into a room that can't decide what it is. A cold hearth and a cot pushed against one wall sit beside a workbench covered in tools and papers. But running through the center of the room, floor to ceiling, is the exposed spine of the clock mechanism: brass gear trains, vertical shafts, all slowly turning. A small cube-shaped creature with wings and too many arms stands among the gears, holding a clipboard. It regards you with recessed eyes and says, in a flat monotone: ``You are the exterminators.''
+\end{readaloud}
+
+\section*{NPCs at a Glance}
+
+\npc{Pendel}{among the gears, working}{Matter-of-fact, slightly uncertain. Directs the party upstairs.}
+
+\section*{Pendel}
+\subsection*{Will Share Freely}
+\begin{itemize}
+\item The job: clear the bellows upstairs, recover the Gear
+\item Directions upstairs, and that the Gear must be installed below
+\end{itemize}
+\subsection*{Will Share if Asked}
+\begin{itemize}
+\item The tower is being restored under a contract
+\item The ``small folk'' are from another place
+\item Basic facts about Mechanus
+\end{itemize}
+\subsection*{Doesn't Think to Share}
+The consequences of activation, or why the Uhrmacher disconnected. Not relevant to Pendel.
+\subsection*{Rogue Tendencies}
+Slight hesitations. A name it chose for itself. A tiny weed growing from a crack in its body. Players who notice and engage get a confused, almost emotional response.
+\subsection*{Key Line}
+\textit{``The bellows are\ldots infested. We are not equipped for biological interference. You are. Please proceed upstairs.''}
+
+\columnbreak
+
+\section*{Secrets}
+\begin{itemize}
+\item Hidden door in the wood paneling leads to the Uhrmacher's Study (DC 14 Investigation, DC 12 if specifically searching the walls)
+\item Trapdoor/stairs down to the Gear Room --- visible, but Pendel directs them upstairs first
+\item Pendel's weed and self-chosen name are signs of going rogue
+\item \textbf{Back window:} Players who scout the exterior before entering can spot a window on the back of the tower --- leads directly into the Uhrmacher's Study, bypassing the Clockhall entirely
+\end{itemize}
+
+\section*{Artifact --- Letter to a Friend}
+On the workbench, partially buried under modron work orders. An optimistic letter from the Uhrmacher, early in the tower's operation. Pride in the tower's precision, excitement about the Gear, warm words about Freudenfeld thriving. No hint of doubt.
+
+\section*{Connections}
+\begin{itemize}
+\item \textbf{Outside:} Front door (Tiefenwald path)
+\item \textbf{Up:} Staircase to the Bellows Chamber
+\item \textbf{Down:} Stairs/trapdoor to the Gear Room
+\item \textbf{Side:} Hidden door to the Uhrmacher's Study
+\end{itemize}
+
+\section*{Transition}
+Pendel directs the party upstairs to clear the bellows. Players may also explore the room, find the letter, discover the hidden door, or go down to the Gear Room on their own.
+
+\end{multicols}
+
+\newpage
+
+% ============================================================
+%  SCENE 3 — BELLOWS CHAMBER
+% ============================================================
+
+\phantomsection\label{sec:bellows}\sceneheader{The Bellows Chamber}{Act II}{Combat}{Kuckucksuhrturm --- Upper}
+
+\begin{multicols}{2}
+
+\section*{Read-Aloud}
+\begin{readaloud}
+\itshape
+The staircase opens into a wide chamber dominated by two enormous wooden bellows, one on each side, like the lungs of some massive creature. Brass pipes run from the tops of the bellows up through the ceiling. The bellows are choked with debris, dried nesting material, and something else --- movement. Small dark shapes cling to the pipes and rafters overhead. Then they notice you.
+\end{readaloud}
+
+\section*{Secrets}
+\begin{itemize}
+\item Each bellows has a swarm of stirges nesting inside --- they burst out when players clear or open the bellows
+\item The Gear (Cross-Planar Regulation Gear, contract \S1.2) is wedged behind one of the bellows --- visible once the area is cleared
+\item A maintenance alcove near one bellows contains the Uhrmacher's journal
+\end{itemize}
+
+\section*{Artifact --- The Uhrmacher's Journal}
+Wedged into a maintenance alcove near one of the bellows. Later entries in a shaking hand. The Uhrmacher has noticed the changes --- conformity, loss of individuality. Regret. Mentions disconnecting the Gear. Opposite tone from the optimistic letter in the Clockhall.
+
+\columnbreak
+
+\section*{Connections}
+\begin{itemize}
+\item \textbf{Down:} Staircase to the Clockhall
+\item \textbf{Up:} Narrow passage alongside the air pipes to Cuckoo's Landing (steep climb)
+\end{itemize}
+
+\section*{Transition}
+Party clears the bellows, recovers the Gear. Return downstairs through the Clockhall to install it in the Gear Room below. Second pass through the Clockhall --- another chance to talk to Pendel, notice the hidden door.
+
+\section*{Encounter}
+See next page.
+
+\end{multicols}
+
+\newpage
+
+% ============================================================
+%  ENCOUNTER 3 — BELLOWS CHAMBER
+% ============================================================
+
+\phantomsection\label{sec:enc-bellows}\sceneheader{Encounter --- Bellows Chamber}{Act II}{Combat}{Hard / {\texttildelow}2,100 adj.\ XP}
+
+\begin{multicols}{2}
+
+\section*{Stirge (x6) --- CR 1/8}
+
+\begin{tabularx}{\columnwidth}{@{}XXXXX@{}}
+\toprule
+AC & HP & Speed & Atk & Dmg \\
+\midrule
+13 & 5 & 10/fly 40 & +5 & 6 (1d6+3) \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+
+\textbf{Attach:} While attached, cannot attack. Target takes 5 (2d4) necrotic at start of stirge's turn. Any creature within 5 ft can use an action to detach it.
+
+\section*{Swarm of Stirges (x2) --- CR 2}
+
+\begin{tabularx}{\columnwidth}{@{}XXXXX@{}}
+\toprule
+AC & HP & Speed & Atk & Dmg \\
+\midrule
+14 & 36 & 10/fly 40 & +5 & 14 (2d10+3) \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+
+\textbf{Resist:} Bludgeoning, Piercing, Slashing\\
+\textbf{Immune:} Charmed, Frightened, Grappled, Paralyzed, Petrified, Prone, Restrained, Stunned\\
+\textbf{Swarm:} Can occupy another creature's space and move through any Tiny opening.\\
+\textbf{Grapple:} Medium or smaller targets in the swarm's space are grappled (escape DC 13). Grappled targets take 7 (2d6) necrotic at end of their turn.
+
+\textit{Bloodied:} Damage drops to 8 (1d10+3).
+
+\section*{Waves}
+
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+\toprule
+\textbf{Trigger} & \textbf{Enemies} \\
+\midrule
+On entry & 6 stirges (scattered on pipes/rafters) \\
+First bellows opened & 1 swarm erupts from inside \\
+Second bellows opened & 1 swarm erupts from inside \\
+\bottomrule
+\end{tabularx}
+
+\columnbreak
+
+\section*{Environment}
+\begin{itemize}
+\item \textbf{Two bellows} (one each side) --- large wooden structures, climbable, half cover behind them
+\item \textbf{Brass pipes} --- run up through ceiling, climbable but narrow
+\item \textbf{Maintenance alcove} --- nook between one bellows and the wall (journal here)
+\item \textbf{Debris/nesting} --- difficult terrain in patches around the bellows
+\end{itemize}
+
+\section*{End Condition}
+All stirges dead or driven off. Both bellows must be cleared to restore the air channels.
+
+\section*{DM Notes}
+\begin{itemize}
+\item Individual stirges go down in one hit --- let players feel effective early
+\item Swarms are the real threat: B/P/S resistance means martial damage is halved, grapple + necrotic drain is dangerous
+\item Casters with AoE or magic damage shine against the swarms
+\item If too easy: a few surviving stirges re-emerge from crevices
+\item If too hard: a swarm at half HP scatters and flees up the pipes
+\end{itemize}
+
+\end{multicols}
+
+\newpage
+
+% ============================================================
+%  SCENE 4 — GEAR ROOM
+% ============================================================
+
+\phantomsection\label{sec:gearroom}\sceneheader{The Gear Room}{Act II}{Combat / Social}{Kuckucksuhrturm --- Below}
+
+\begin{multicols}{2}
+
+\section*{Read-Aloud}
+\begin{readaloud}
+\itshape
+Stone steps descend into a vaulted underground chamber. Heavy iron and brass gear trains line the walls, connected by thick axles and drive chains. In the center of the room, a circular mounting cradle sits conspicuously empty --- a gap in the machinery, like a missing tooth. Near the cradle you notice a thin bedroll, a wooden crate used as a table, and a candle stub. Someone lives here. Then a massive shape steps out from behind the gears --- a hulking figure of interlocking brass cogs and clock springs, its amber eyes glowing. It puts itself between you and the camp.
+\end{readaloud}
+
+\section*{NPCs at a Glance}
+
+\npc{Fritz}{hiding behind machinery}{Scared, defiant, skeptical of everyone.}
+
+\npc{Gear Golem}{blocking the mounting cradle}{Hostile --- attacks on Fritz's standing orders.}
+
+\section*{Fritz}
+\subsection*{Will Share if Calmed}
+\begin{itemize}
+\item He's been living here since his leg started working again
+\item The tower makes him better --- his leg was useless before
+\item The golem protects him
+\item He doesn't want anyone to take the tower from him
+\end{itemize}
+\subsection*{Doesn't Know}
+What the Gear does, what the modrons are planning, the contract, the long-term consequences.
+\subsection*{Key Line}
+\textit{``I could barely walk before. Now I can run. You're not taking that from me.''}
+
+\columnbreak
+
+\section*{Secrets}
+\begin{itemize}
+\item Fritz is hiding --- Perception DC 12 to spot him behind the machinery
+\item Fritz doesn't know the Gear needs to be installed here --- players can persuade him it will help the tower (Persuasion DC 12) or deceive him
+\item If players tell Fritz they want to harm the tower, the golem fights to the death
+\item The gear receipt (packing manifest) is filed near the mounting cradle
+\end{itemize}
+
+\section*{Artifact --- Gear Receipt}
+The original packing manifest from the Modron Collective (contract Art.\ II \S2.1). Modron bureaucratic language, Mechanus serial numbers, planar specifications. First concrete evidence the tower is connected to another plane. References an installation manual.
+
+\section*{Connections}
+\begin{itemize}
+\item \textbf{Up:} Stairs to the Clockhall
+\end{itemize}
+
+\section*{Transition}
+Gear is installed in the mounting cradle. The tower mechanism engages --- a deep vibration, gears meshing, the sound of the clock accelerating. The activation sequence has begun. Players need to get to the apex.
+
+\section*{Encounter}
+See next page.
+
+\end{multicols}
+
+\newpage
+
+% ============================================================
+%  ENCOUNTER 4 — GEAR ROOM
+% ============================================================
+
+\phantomsection\label{sec:enc-gearroom}\sceneheader{Encounter --- Gear Room}{Act II}{Combat / Social}{[TBD] / Flesh Golem CR 5}
+
+\begin{multicols}{2}
+
+\section*{Gear Golem (Flesh Golem) --- CR 5}
+
+\begin{tabularx}{\columnwidth}{@{}XXXXXX@{}}
+\toprule
+AC & HP & Speed & Atk & Dmg & Save \\
+\midrule
+9 & 127 & 30 ft & +7 (x2) & 13 (2d8+4) + 4 (1d8) ltn. & --- \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+
+\textbf{Immune:} Lightning, Poison; Charmed, Exhaustion, Frightened, Paralyzed, Petrified, Poisoned\\
+\textbf{Aversion to Fire:} Fire damage $\rightarrow$ disadvantage on attacks/checks until end of next turn\\
+\textbf{Berserk:} When bloodied, roll 1d6 at start of turn. On 6, attacks nearest creature. [TBD --- Fritz interaction?]\\
+\textbf{Lightning Absorption:} Regains HP equal to lightning damage taken\\
+\textbf{Magic Resistance:} Advantage on saves vs.\ spells\\
+\textbf{Immutable Form:} Can't be shapeshifted
+
+\section*{Social Resolution}
+
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+\toprule
+\textbf{Approach} & \textbf{DC} \\
+\midrule
+Find Fritz & Perception 12 \\
+Persuade Fritz (help the tower) & Persuasion 12 \\
+Deceive Fritz & Deception [TBD] \\
+Intimidate Fritz & [TBD --- works but feels bad] \\
+Calm golem directly & [TBD --- likely impossible] \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+
+\textbf{Fritz calls off golem:} It stops immediately and stands down. Fritz watches warily but lets the party work.
+
+\textbf{Fritz learns they want to harm the tower:} Golem fights to the death. Fritz hides and won't call it off.
+
+\columnbreak
+
+\section*{Environment}
+\begin{itemize}
+\item \textbf{Mounting cradle} --- empty circular frame at center, where the Gear installs
+\item \textbf{Heavy gear trains} --- line the walls, provide cover, climbable
+\item \textbf{Fritz's camp} --- bedroll, crate, candle stub near the cradle
+\item \textbf{Weight chains} --- hang from ceiling [TBD --- swing? drop?]
+\item \textbf{Low ceiling, vaulted} --- underground, echoing
+\end{itemize}
+
+\section*{End Conditions}
+\begin{enumerate}
+\item \textbf{Golem defeated} --- Fritz is terrified, may flee or surrender
+\item \textbf{Fritz calls off golem} --- social resolution, golem stands down
+\item \textbf{Gear installed} --- clicks into the mounting cradle regardless of how Fritz/golem were handled
+\end{enumerate}
+
+\section*{DM Notes}
+\begin{itemize}
+\item Golem hits hard (17 avg per slam, 34 per round) --- can down a level 3 PC in one round
+\item AC 9 means players almost never miss --- encounter is HP attrition
+\item Magic Resistance and immunities shut down some caster strategies
+\item Fire is the key weakness --- disadvantage on everything
+\item The real design intent: multiple valid solutions (fight, talk, sneak). Pure combat is the least interesting path.
+\end{itemize}
+
+\section*{Open Questions}
+\begin{itemize}
+\item Is CR 5 solo vs.\ 8 PCs the right balance, or does it need supplementary enemies?
+\item Berserk mechanic --- does Fritz lose control?
+\item What happens to Fritz after? Stays in tower during Act III?
+\item Does killing the golem have narrative consequences?
+\end{itemize}
+
+\end{multicols}
+
+\newpage
+
+% ============================================================
+%  SCENE 5 — THE UHRMACHER'S STUDY
+% ============================================================
+
+\phantomsection\label{sec:study}\sceneheader{The Uhrmacher's Study}{Act II}{Social / Discovery}{Kuckucksuhrturm --- Ground (hidden)}
+
+\begin{multicols}{2}
+
+\section*{Read-Aloud --- via Hidden Door}
+\begin{readaloud}
+\itshape
+The paneling swings inward to reveal a small room thick with dust. A writing desk cluttered with papers and an inkwell sits beneath bookshelves crammed with leather-bound volumes. Clock diagrams are pinned to the walls. Everything is untouched --- cobwebs connect the chair to the desk. Someone left this room and never came back. And sitting on the desk, cross-legged, is a young woman who absolutely does not belong here. She looks up with sharp, curious eyes. ``And what are you here for?''
+\end{readaloud}
+
+\section*{Read-Aloud --- via Back Window}
+\begin{readaloud}
+\itshape
+You pull yourself through the narrow window into a dusty, forgotten room. A clockmaker's study --- desk, books, diagrams. No one has been here in years. Except for the young woman sitting on the desk, barefoot, with twigs in her hair. She tilts her head at you. ``Well. You're not one of the little metal ones.''
+\end{readaloud}
+
+\section*{NPCs at a Glance}
+
+\npc{Moosfräulein Linde}{sitting on the desk}{Curious, amused, testing the party. Wants to know whose side they're on.}
+
+\section*{Linde}
+\subsection*{Will Share Freely}
+\begin{itemize}
+\item The ``little metal ones'' are dangerous
+\item The forest is dying because of the tower
+\item She has a document she knows is important somehow, but she can't read it --- won't hand it over until she trusts the party
+\end{itemize}
+\subsection*{Will Share if She Trusts the Party}
+She wants the tower destroyed. The clockmaker tried to stop it and failed. Hands over the contract. She'll help if they act against the modrons.
+\subsection*{Won't Share}
+Her true form, her coven, her backup plan (attack with the coven if players side with modrons), that she can't read.
+\subsection*{Key Line}
+\textit{``The old clockmaker understood, eventually. The question is whether you're faster learners than he was.''}
+
+\columnbreak
+
+\section*{Secrets}
+\begin{itemize}
+\item Linde is a green hag using Illusory Appearance --- DC 20 Investigation to see through, or physical touch reveals bark-like skin
+\item If players side with the modrons or refuse to act, Linde leaves through the window. She returns in Act III with her coven.
+\item \textbf{This is the branching point:} desired path (stop the modrons) vs.\ alternate path (protect the modrons from the hag coven)
+\end{itemize}
+
+\section*{Artifact --- The Contract}
+The full Contract of Planar Accord (physical prop --- \texttt{props/contract.tex}). Linde has it and knows it matters, but can't read it. Players must earn her trust to get it. Art.\ VI \S6.3 is the key: a failed activation sequence nullifies the contract entirely.
+
+\section*{Connections}
+\begin{itemize}
+\item \textbf{Interior:} Hidden door to the Clockhall
+\item \textbf{Exterior:} Window on the back of the tower
+\end{itemize}
+
+\section*{Transition}
+Players now understand the full stakes. They must install the Gear (if they haven't already) to begin the activation sequence, then get to Cuckoo's Landing to stop it before 3 cycles complete.
+
+\end{multicols}
+
+\newpage
+
+% ============================================================
+%  SCENE 6 — CUCKOO'S LANDING
+% ============================================================
+
+\phantomsection\label{sec:cuckoo}\sceneheader{Cuckoo's Landing}{Act III}{Boss Combat}{Kuckucksuhrturm --- Apex}
+
+\begin{multicols}{2}
+
+\section*{Read-Aloud}
+\begin{readaloud}
+\itshape
+The narrow passage opens into the top of the tower. The floor is a single massive bronze gear, its teeth meshing with the walls. On one side, a circular aperture --- dark metal rings framing a hole in reality. Through it, cold geometric light. The air hums. The pipes from the bellows below terminate here, angled toward the aperture. Then the aperture flares. Something is coming through.
+\end{readaloud}
+
+\section*{Secrets}
+\begin{itemize}
+\item The gear floor rotates 90\textdegree{} clockwise at initiative count 20 every round --- players standing on it move with it
+\item The cuckoo's cone fires in a fixed direction from center --- rotation shifts who's in the blast zone
+\item Players can attempt to ride the cuckoo back into Mechanus when it retracts (DC 12 STR Athletics)
+\end{itemize}
+
+\section*{Connections}
+\begin{itemize}
+\item \textbf{Down:} Narrow passage to the Bellows Chamber
+\end{itemize}
+
+\section*{Victory}
+Cuckoo destroyed before completing 3 cycles. Contract null and void (Art.\ VI \S6.3). Aperture closes. Modrons immediately retreat. The broken cuckoo remains.
+
+\section*{Defeat}
+Cuckoo completes 3 cycles. Planar anchor established. Connection to Mechanus permanent. Conformity spreads.
+
+\section*{Alternate Path}
+If players sided with modrons, they defend the cuckoo against the hag coven + fey minions trying to break in.
+
+\section*{Encounter}
+See next page.
+
+\end{multicols}
+
+\newpage
+
+% ============================================================
+%  ENCOUNTER 6 — CUCKOO'S LANDING
+% ============================================================
+
+\phantomsection\label{sec:enc-cuckoo}\sceneheader{Encounter --- Cuckoo's Landing}{Act III}{Boss Combat}{Deadly / 5 rounds (ON/OFF/ON/OFF/ON)}
+
+\begin{multicols}{2}
+
+\section*{The Cuckoo --- [TBD CR]}
+
+\begin{tabularx}{\columnwidth}{@{}XXXX@{}}
+\toprule
+AC & HP & Attack & Damage \\
+\midrule
+16 & {\texttildelow}110 & [TBD] & [TBD] \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+
+\textbf{Restrained on the rod:} Attacks against it have advantage. Its attacks have disadvantage.\\
+\textbf{The Cuckoo's Call:} 30 ft cone, DC 14 CON save. Fail: 3d8 thunder + poisoned until end of next turn (cancels restrained advantage). Save: half, no poisoned. Once per cycle.\\
+\textbf{Emergency Venting:} Once, below half HP. 10 ft radius, DC 14 DEX save. Fail: 3d6 fire. Save: half. Melee punishment.\\
+\textbf{Defensive Lockdown (optional):} AC +2 if going down too fast.
+
+\section*{Modron Reinforcements}
+
+\begin{tabularx}{\columnwidth}{@{}clX@{}}
+\toprule
+\textbf{Cycle} & \textbf{DPR} & \textbf{Enemies} \\
+\midrule
+1 & Low & 4 monodrones (fly 30 ft, fodder) \\
+2 & {\texttildelow}25 & 3 duodrones + 1 tridrone (ground) \\
+3 & {\texttildelow}38 & 2 tridrones + 2 quadrones (fly) \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+
+[TBD --- need 2024 MM stat blocks for monodrone, duodrone, tridrone, quadrone]
+
+\section*{Round Structure}
+
+\begin{tabularx}{\columnwidth}{@{}cX@{}}
+\toprule
+\textbf{Rnd} & \textbf{What Happens} \\
+\midrule
+All & Init 20: gear rotates 90\textdegree{} CW. Ground creatures rotate with it. \\
+1 (ON) & Emerges. Knockdown (DEX save [TBD]). Wave 1. Cuckoo's Call. \\
+2 (OFF) & Retracts. Knockdown. Hold-on window: DC 12 STR Athletics to ride into Mechanus. \\
+3 (ON) & Emerges. Knockdown. Wave 2. Cuckoo's Call. \\
+4 (OFF) & Retracts. Knockdown. Hold-on window. \\
+5 (ON) & Emerges. Knockdown. Wave 3. Cuckoo's Call. Last chance. \\
+\bottomrule
+\end{tabularx}
+
+\columnbreak
+
+\section*{Battlefield}
+\begin{itemize}
+\item \textbf{Floor:} Single large gear (25 ft radius). Rotates 90\textdegree{} CW at init 20.
+\item \textbf{Aperture:} On the tower wall side. Rod extends inward; cuckoo occupies the center.
+\item \textbf{Cone direction:} Fixed from center. Rotation shifts who's in the blast zone.
+\item \textbf{Center hazard:} Anyone in center when cuckoo emerges $\rightarrow$ knockdown (DEX save).
+\item \textbf{Air pipes:} Terminate around the edges, feeding into the cuckoo mechanism.
+\end{itemize}
+
+\section*{Riding into Mechanus}
+\begin{itemize}
+\item Players in melee range grab on as cuckoo retracts: DC 12 STR (Athletics)
+\item Door blocked while cuckoo is extended --- this is the only way through
+\item On Mechanus: DC 14 WIS save at start of each turn or lose action (move/bonus still available)
+\item Ride back out on next cycle
+\item If cuckoo dies while inside: door closes, party must figure out retrieval
+\end{itemize}
+
+\section*{DM Notes}
+\begin{itemize}
+\item The cuckoo is primarily an objective/HP sponge --- modron waves are the real combat threat
+\item The rotating floor is the key tactical element: constantly repositions everyone relative to the cone
+\item Players who figure out the rotation pattern can predict and avoid the blast zone
+\item The fight should feel frantic and mechanical --- a machine to be dismantled, not a monster to be slain
+\end{itemize}
+
+\section*{Open Questions}
+\begin{itemize}
+\item Full cuckoo statblock --- attacks besides the Call?
+\item Knockdown DEX save DC?
+\item 2024 modron stat blocks needed
+\item How do players learn the 3-cycle rule?
+\item What happens to Pendel during Act III?
+\item Alternate path (hag coven) needs full design
+\end{itemize}
+
+\end{multicols}
+
+\newpage
+
+% ============================================================
+%  GLOSSARY & PRONUNCIATION GUIDE
+% ============================================================
+
+\phantomsection\label{sec:glossary}\sceneheader{Glossary \& Pronunciation Guide}{Reference}{All Acts}{---}
+
+\begin{multicols}{2}
+
+\section*{Places}
+
+\textbf{Freudenfeld} \textit{(FROY-den-felt)} --- ``Field of joy.'' The village where the adventure begins.
+
+\textbf{Tiefenwald} \textit{(TEE-fen-vahlt)} --- ``Deep forest.'' The woods surrounding the tower.
+
+\textbf{Kuckucksuhrturm} \textit{(KOO-kooks-oor-toorm)} --- ``Cuckoo clock tower.'' The tower itself.
+
+\textbf{Gasthaus} \textit{(GAHST-house)} --- Inn or tavern. The Act I meeting place.
+
+\textbf{Stammtisch} \textit{(SHTAHM-tish)} --- ``Regulars' table.'' The Bürgermeister's usual seat.
+
+\section*{People}
+
+\textbf{Bürgermeister} \textit{(BUR-ger-my-ster)} --- Mayor. Gottfried Grüber's title.
+
+\textbf{Gottfried Grüber} \textit{(GOT-freed GROO-ber)} --- The Bürgermeister of Freudenfeld.
+
+\textbf{Frau Eichenwald} \textit{(frow EYE-khen-vahlt)} --- ``Mrs. Oak-forest.'' The schoolteacher.
+
+\textbf{Heinrich} \textit{(HINE-rikh)} --- The old woodcutter. No surname.
+
+\textbf{Wilhelm Zeiger} \textit{(VIL-helm TSAI-ger)} --- ``Pointer/hand (of a clock).'' The Uhrmacher's full name.
+
+\textbf{Uhrmacher} \textit{(OOR-mahkh-er)} --- ``Clockmaker.'' What everyone calls him. Long dead.
+
+\textbf{Fritz} --- The boy living in the tower. No surname.
+
+\textbf{Pendel} \textit{(PEN-del)} --- ``Pendulum.'' The quadrone overseer. Chose his own name.
+
+\textbf{Linde} \textit{(LIN-deh)} --- ``Linden tree.'' The lead Moosfräulein.
+
+\textbf{Moosfräulein} \textit{(MOHS-froy-line)} --- ``Moss maiden.'' What the hags call themselves. Folklore term: \textit{Moosweibchen} (MOHS-vybe-khen).
+
+\textbf{Elke} \textit{(EL-keh)} --- Second moss woman. Appears only in alternate path (Act III).
+
+\textbf{Briar} --- Third moss woman. Appears only in alternate path (Act III).
+
+\columnbreak
+
+\section*{Things}
+
+\textbf{Tickwichtel} \textit{(TICK-vikh-tel)} --- What the townsfolk call the modrons. Folksy, affectionate. From \textit{Wichtel} (small wood-sprite) + \textit{tick} (clockwork sound).
+
+\textbf{Kachelofen} \textit{(KAKH-el-oh-fen)} --- Ceramic tile stove. Traditional Black Forest heating.
+
+\textbf{Bekanntmachung} \textit{(beh-KAHNT-mahkh-oong)} --- Public notice. The pest control advertisement.
+
+\section*{Concepts}
+
+\textbf{Contract of Planar Accord} --- The binding agreement between the Uhrmacher and the modrons of Mechanus. Physical prop.
+
+\textbf{Art.\ VI \S6.3} --- The critical contract clause: a failed activation sequence nullifies the entire contract. The party's path to victory.
+
+\textbf{Activation Sequence} --- The process of establishing the planar anchor. Three cuckoo cycles. Must be started \textit{then stopped} to trigger \S6.3.
+
+\textbf{Cross-Planar Regulation Gear} --- The Mechanus gear that connects the tower to the plane of law. Players must install it to begin the sequence.
+
+\textbf{Planar Aperture} --- The portal at the tower's apex, where the cuckoo emerges from Mechanus.
+
+\textbf{Mechanus} --- The modrons' home plane. Pure law and order. Geometric, cold, mechanical.
+
+\end{multicols}
+
+\newpage
+
+% ============================================================
+%  NPC REFERENCE SHEETS
+% ============================================================
+
+\phantomsection\label{sec:npc-gruber}\sceneheader{NPC --- Bürgermeister Gottfried Grüber}{Reference}{Act I}{Freudenfeld}
+
+\begin{multicols}{2}
+
+\section*{Identity}
+Male, 50s. Inherited the Bürgermeister's seat from his father. Landed gentry --- his family's wealth comes from owning land and collecting rents, not from trade or craft. He was a modestly successful businessman before taking over, but has never had to struggle for anything. Has a wife and several children.
+
+\section*{Appearance}
+Large and stout, overweight, an imposing physical presence. But the face saves him --- bright, beaming, charismatic. He wears fine clothing and the large mayoral chain of office. Not a man you overlook when he's in a room.
+
+\section*{Mannerisms}
+Stays seated at his Stammtisch and calls people over to him. Claps you on the back, invites you to sit, makes you feel welcome immediately --- but won't stand up for you. Loud baritone voice that fills the room; he likes to talk and it shows, though he knows how to get to the point when he needs to. His eyes are always working --- scanning the room, noting who's there, observing more than he lets on. The jovial exterior masks a man who is paying quiet attention.
+
+\section*{Psychology}
+Grüber cares about Freudenfeld, genuinely. But his identity is so entangled with the town's fortunes that he can't separate the two. He'd tell you it's about the people, and he might even believe it, but if the town's prosperity and his own well-being ever diverged, he wouldn't know which to choose.
+
+His weaknesses: arrogance and a disregard for details. He's confident enough to think he understands a situation and careless enough to miss what would prove him wrong. When caught off guard or asked something uncomfortable --- say, Eichenwald's concerns about the children --- he laughs it off and changes the subject. He doesn't argue with the concern. He makes it disappear.
+
+\section*{Relationship to the Tower}
+Grüber has never visited the Kuckucksuhrturm. He sent an agent who spoke briefly with Pendel and reported back. That was enough for him. He views the Tickwichtel as small mystical creatures, a good omen, and doesn't care to know more. Crime is down. The children behave. Why investigate what's working?
+
+He believes the Uhrmacher was an eccentric recluse who drove himself mad and ruined his own tower. The reactivation, in Grüber's mind, is that mistake being corrected. The Tickwichtel are fixing what the clockmaker broke. This makes him especially dismissive of anyone raising doubts.
+
+\section*{Relationships}
+Knows Frau Eichenwald but doesn't concern himself with her affairs. She has not brought her concerns to him directly. Familiar with Heinrich but not close --- there's a class divide between the landowner and the woodcutter. Generally tolerated by the townsfolk; not a bad man or a bad politician, but people grumble about his arrogance when he's not in the room.
+
+\section*{Playing Grüber}
+\begin{itemize}
+\item Loud, warm, commanding. He runs the room without standing up.
+\item Gets to the point on business --- the job, the pay, the directions.
+\item Deflects discomfort with laughter and subject changes, never confrontation.
+\item His eyes are always scanning. Players who notice may wonder if he's sharper than he seems.
+\item He genuinely believes the tower's effects are good for the town. He's not hiding anything --- he just hasn't looked closely enough to see a problem.
+\end{itemize}
+
+\end{multicols}
+
+\newpage
+
+% ============================================================
+%  NPC — FRAU EICHENWALD
+% ============================================================
+
+\phantomsection\label{sec:npc-eichenwald}\sceneheader{NPC --- Frau Eichenwald}{Reference}{Act I}{Freudenfeld}
+
+\begin{multicols}{2}
+
+\section*{Identity}
+Margarethe Eichenwald, mid-40s, though everyone calls her Frau Eichenwald --- as the children do. Unmarried. She moved to Freudenfeld as a young teacher when the position was available, and has been here ever since. The students are her life.
+
+\section*{Appearance}
+Proud and a bit gaunt. She carries herself with the straight-backed composure of someone accustomed to commanding a room of children, but in social settings outside the classroom she becomes more distant, less certain of her footing.
+
+\section*{Mannerisms}
+Speaks with a measured, intentional pace --- precise but not clipped. Articulate. She chooses her words the way she'd expect her students to. When anxious or troubled, she turns inward, goes quiet, tries to reason her way through the problem. At the Gasthaus tonight she is sitting alone, staring at the table with an untouched drink, lost in thought. A player approaching might think she's just tired until they engage and realize she's been wrestling with something she can't solve.
+
+\section*{Psychology}
+Eichenwald has stayed later at the Gasthaus than she normally would. She keeps a precise schedule --- always has. Which is odd, given what's happening in the rest of the town. It's as though she's the one person resisting the ticking.
+
+She is troubled because she can see what no one else seems to notice. Her students have lost their curiosity. Their imagination is fading. There are no more silly outbursts --- and even though she always scolded them for it, she now realizes those disruptions were part of being a child, and their absence frightens her. The children's stories are becoming bland. Their pictures are becoming prosaic. The very things that made her job difficult were the things that made it meaningful.
+
+She has tried talking to parents, but they don't understand why she's concerned about ``good behaviour.'' She respects Grüber's authority but is frustrated that the people who should be asking questions aren't. She respects the office more than the man.
+
+\section*{Fritz}
+She has noticed that Fritz is no longer attending class. She doesn't know where he's gone --- just that he stopped showing up. This is a concrete worry sitting on top of her abstract unease.
+
+\section*{The Uhrmacher}
+She didn't grow up with the village stories --- she learned them after moving here and always dismissed them as local legend. But now she's wondering if there's more to them. Of all the myths, the one that rings in her mind is that the Uhrmacher learned something dangerous through his studies of precision and time.
+
+\section*{Playing Eichenwald}
+\begin{itemize}
+\item Measured, articulate, composed on the surface. Visibly troubled underneath.
+\item She won't volunteer her concerns to strangers unprompted --- but if the players approach her and she senses good intentions, she is relieved to finally talk about it.
+\item She doesn't have answers. She has the right instincts and the wrong audience.
+\item If the players mention heading to the tower, she asks them to be careful --- the Uhrmacher may have learned something dangerous.
+\item She can mention Fritz's absence, giving the party an early thread to the Gear Room.
+\end{itemize}
+
+\end{multicols}
+
+\newpage
+
+% ============================================================
+%  NPC — HEINRICH
+% ============================================================
+
+\phantomsection\label{sec:npc-heinrich}\sceneheader{NPC --- Heinrich}{Reference}{Act I}{Freudenfeld}
+
+\begin{multicols}{2}
+
+\section*{Identity}
+Late 70s. Woodcutter his entire life, still working though he's slowed down in his later years. Born and raised in Freudenfeld, never left. Had a wife who died years ago and a daughter who left the village long ago --- he misses her but is happy she's living her own life. He occasionally took on apprentices, but it's been many years since the last one. The Gasthaus is his main social outlet.
+
+\section*{Appearance}
+Sinewy but tough --- a body shaped by decades of physical labour in the Tiefenwald. Hunched from years of chopping, but with the kindest old smile. The sort of face that makes strangers trust him immediately.
+
+\section*{Mannerisms}
+Always chatty. Loves to tell a story, loves gossip, but doesn't open up about his own feelings. Speaks with a storyteller's cadence and a twinkle in his eye. Gesticulates with wide sweeping gestures when he gets into a tale. Drinks while he talks --- the pipe and the tankard are part of the performance.
+
+\section*{The Tickwichtel Encounter}
+When Heinrich was six or seven, around the time the Uhrmacher first built the tower, he saw a Tickwichtel in the woods. A small clicking creature that barely noticed him. Nothing actually happened --- it didn't interact with him, just went about its business --- but it was a deeply formative experience for a young boy. As the tower's effects escalated and then came to a mysterious end, he knew the Tickwichtel was somehow involved.
+
+He has told the story a hundred times since. He views himself as an expert. The details aren't all right anymore: he believes the Tickwichtel were giving magical powers to the Uhrmacher, and that they could control time itself. His version of events is wrong in the specifics but captures something emotionally true --- the Tickwichtel were involved, and time and precision are at the heart of it. He built a folklore around the gaps in his understanding.
+
+\section*{Psychology}
+Heinrich doesn't quite know what to make of the tower reactivating. He's excited --- he's a bit of a celebrity again, and people are paying attention to his old stories for the first time in years. But he also remembers a deep sense of unease from childhood, that things ``weren't right,'' and that something tragic happened. He believes the Uhrmacher's experiments went too far, and that the clockmaker accidentally froze himself in time when the ticking stopped.
+
+He carries both joy and dread about the Tickwichtel simultaneously. The nostalgia is genuine. The unease is genuine. He hasn't reconciled them.
+
+\section*{Relationships}
+No special relationship with Grüber or Eichenwald. The village folk listen to his stories --- some think he's crazy, some are intrigued. He doesn't know anything about Fritz's disappearance.
+
+\section*{Playing Heinrich}
+\begin{itemize}
+\item Warm, rambling, performative. A natural storyteller who holds court near the Kachelofen.
+\item The Tickwichtel story is his showpiece --- he'll tell it to anyone who sits down. Wide gestures, twinkle in the eye, practised cadence.
+\item His information is colourful but unreliable. The emotional truth is there; the facts are not.
+\item If asked, he'd confidently offer to take the party into the woods in the morning to show them where he saw the creature --- unclear how well he actually remembers the spot.
+\item He provides the folkloric lens on the tower: charming, wondrous, but with something dark underneath that he can feel but can't articulate.
+\end{itemize}
+
+\end{multicols}
+
+\newpage
+
+% ============================================================
+%  NPC — PENDEL
+% ============================================================
+
+\phantomsection\label{sec:npc-pendel}\sceneheader{NPC --- Pendel}{Reference}{Act II}{Kuckucksuhrturm}
+
+\begin{multicols}{2}
+
+\section*{Identity}
+Quadrone. The highest-ranking modron at the tower, responsible for executing the Contract of Planar Accord on site. Answers to higher modrons in Mechanus, but here he is the authority. He worked alongside the Uhrmacher during the tower's original construction and operation. When the Uhrmacher disappeared and the work stopped, Pendel stayed. He sat motionless in the dormant tower for decades, alone, with no orders and no hierarchy --- just waiting.
+
+\section*{Appearance}
+Standard quadrone form: a bronze and brass cube with recessed eyes, two short legs, two arms, and a pair of fan-like mechanical wings. His defining features are a hairline crack in one side of his body and a tiny weed growing from it --- not recent. The plant has been growing in him for years, possibly decades, a physical manifestation of the forest slowly getting into him while he sat motionless.
+
+\section*{Mannerisms}
+Moves more frenetically than the other modrons. His voice is not quite monotone anymore --- there are inflections where there shouldn't be. He hedges: ``Well, that's exactly right, isn't it?'' He rapidly shifts focus between tasks. He is very quick to agree with suggestions. A modron who hedges and people-pleases is deeply wrong by modron standards --- they should be decisive, precise, binary. Pendel is none of those things.
+
+\section*{Psychology}
+Pendel spent decades in isolation from Mechanus, sitting in silence in the Uhrmacher's tower. During that time, the crack formed. The weed started growing. He began noticing things --- seasons changing, the forest growing outside, the craftsmanship of the tower around him. He doesn't have the word for it, but he loves the tower. The Uhrmacher was a master whose work inspired even a modron.
+
+When orders finally came to reactivate the contract, it hit him like a wave. Too much, too fast --- the full weight of the hierarchy snapping back into place after decades of nothing. He went into a frenzy. By the time the party arrives, he is still overwhelmed. Lesser-ranking modrons fill the tower, looking to him for direction, and he is barely holding it together. He is technically in charge but privately reeling.
+
+He doesn't know why the Uhrmacher stopped the work. He doesn't know it was a deliberate choice. He thinks the clockmaker simply disappeared. He hasn't thought about the consequences of the activation --- he's just following orders because that's what modrons do.
+
+\section*{The Rogue Arc}
+Pendel doesn't know he's acting strangely. He hasn't gotten there on his own. But the players can be the catalyst.
+
+The crack opens in stages. First, the players must engage with his oddities --- ask about the name he chose, point out the weed, notice his hesitations. These questions make him aware of himself. Only then can they make him understand what the activation means. You can't skip to ``this is bad'' without first establishing ``you're not like the others.''
+
+The deepest cut: telling Pendel that the Uhrmacher shut the tower down on purpose. That the man he admired didn't abandon the work by accident --- he rejected it. Pendel has been faithfully waiting to resume something his partner deliberately ended.
+
+If he goes fully rogue, Pendel will no longer work on executing the contract. What he does beyond that depends on the roleplaying context --- he could actively help the party, or simply step aside. What happens to a rogue modron cut off from Mechanus permanently is an unresolved question for him, not something he has an answer to.
+
+\section*{Playing Pendel}
+\begin{itemize}
+\item Not quite monotone. Inflections slip in. He hedges, agrees too quickly, shifts between tasks frenetically.
+\item He is trying to be the authority he's supposed to be. He is not succeeding.
+\item His love for the tower comes through in how he talks about the mechanism, the craftsmanship. He doesn't recognise it as love.
+\item The weed and the name are the entry points. Players who engage with these can start cracking him open.
+\item The Uhrmacher revelation --- that the clockmaker chose to stop --- is the deepest lever. Use it when the moment is right.
+\item Don't rush the arc. Let the players drive it.
+\end{itemize}
+
+\end{multicols}
+
+\newpage
+
+% ============================================================
+%  NPC — FRITZ
+% ============================================================
+
+\phantomsection\label{sec:npc-fritz}\sceneheader{NPC --- Fritz}{Reference}{Act II}{Kuckucksuhrturm --- Below}
+
+\begin{multicols}{2}
+
+\section*{Identity}
+Eleven years old. From Freudenfeld. His mother raised him alone --- his father left when he was little and is no longer in his life. Born with a congenital leg condition; he's never known anything different. He walked with a crude brace --- wood and leather, village craftsmanship, something his mother or the local carpenter fashioned for him. He's been living in the tower's basement for a few days, drawn by the ticking.
+
+\section*{Appearance}
+Scrappy, thin, dirty from living rough. Messy dark hair, bright defiant eyes. Patched-up peasant clothes that are too big for him. A wild passion behind his eyes and a look like he's hiding something --- not lying, but waiting for mutual respect before he opens up. His leg brace lies discarded on the floor near his bedroll.
+
+\section*{The Leg}
+The tower's ticking has been ``regulating'' his leg --- he doesn't understand why, but it works now. For the first time in his life. He didn't lose something and get it back --- he gained something he never had. The discarded brace near the bedroll tells the whole story before the players even meet him. He believes the tower is responsible and doesn't think the ticking will stop. If he thought it would, he'd be afraid.
+
+\section*{Psychology}
+Fritz is fiercely independent, deeply creative, a lover of books, quick to engage and challenge, a deep thinker, and a lover of adventure. The tower has given the most adventurous kid in the village working legs for the first time, and now he's camped out in an underground gear room living out the adventure he's always dreamed of. He's not hiding. He's thriving.
+
+He snuck into the basement and found a large brass winding key on the floor near the golem. He tried it in the keyhole on the golem's back, and a giant came to life. It startled him at first, then thrilled him. He's been avoiding the modrons --- they don't know he's here.
+
+He doesn't feel particularly guilty about disappearing from home. He's eleven. But if someone spelled out clearly what his mother is going through, it would register.
+
+\section*{The Dilemma}
+Fritz is the emotional heart of the adventure's moral question. Stopping the tower means his leg stops working. If the players try to lie about this, sugar-coat it, or talk around it, he'll resist. If they tell him the clear truth --- both what will happen to the town and what will happen to him --- he can take it. An eleven-year-old being braver about this than most of the adults in the story.
+
+The key to winning Fritz over is honesty and respect. Treat him as an equal with a say in what happens, rather than telling him what to do. Adults giving orders is the fastest way to make him dig in.
+
+\section*{Relationships}
+His mother is worried and doesn't know where he is. Frau Eichenwald has noticed he's no longer attending class --- she doesn't know where he's gone either. He has no relationship with the other NPCs in the tower; the modrons don't know he exists.
+
+\section*{Playing Fritz}
+\begin{itemize}
+\item When the party enters the Gear Room, Fritz sends the golem to chase them away and hides. He stays silent until found.
+\item When found: defiance first. Not fear, not negotiation. Defiance.
+\item He opens up to players who talk to him straight, kneel down, treat him as a person with agency. He shuts down if patronised or ordered around.
+\item The brace on the floor is the first thing to notice. Let the players see it and figure out what it means before they meet him.
+\item The winding key is his power --- taking it from him is possible but would feel like a betrayal. Earning his trust is the right path.
+\item Don't shortcut the moral weight. Let the players sit with the fact that saving the village costs this kid his legs.
+\end{itemize}
+
+\end{multicols}
+
+\newpage
+
+% ============================================================
+%  NPC — LINDE
+% ============================================================
+
+\phantomsection\label{sec:npc-linde}\sceneheader{NPC --- Moosfräulein Linde}{Reference}{Act II / III}{Kuckucksuhrturm --- Study}
+
+\begin{multicols}{2}
+
+\section*{Identity}
+Green hag, several hundred years old. Medium-aged for a fey creature. Old enough that the tower 70 years ago is a recent memory, not ancient history. She watched the Uhrmacher build it, watched the effects on the forest, watched it go dormant. Now it's happening again. She is one of three sisters --- a coven. Elke and Briar are biding their time in the deep forest. Linde is acting on her own initiative but has kept them informed.
+
+\section*{Appearance --- Disguised}
+A quirky young woman with an unmistakably wild quality. Tangled hair with twigs and wildflowers. A dress that looks grown rather than sewn. Barefoot, dirt on her feet. Sharp, curious eyes. When the party finds her, she is squatting on the desk --- ignoring the chair entirely. No human sits like that. Everything about her posture says \textit{animal perched on a rock}, not \textit{woman sitting in a study}.
+
+\section*{Appearance --- True Form}
+An ancient creature of the deep forest. Rough bark for skin, draped in living moss and lichen. Long tangled hair of hanging moss and dead leaves. Eyes glowing faintly green from deep sockets. Fingers like twisted roots. Small mushrooms and ferns sprouting from her shoulders. Unsettling but not monstrous --- ancient and wild rather than evil.
+
+\section*{Mannerisms}
+In disguise: lighter, more playful, performing the curious young woman. But the cracks show. She squats instead of sitting. She can't read and tries to hide it. She watches the players the way a predator watches movement. If she loses her temper --- particularly if someone suggests the modrons are here to help --- the disguise slips. A flash of bark-skin, her voice dropping into something older and rougher. The primal hag showing through.
+
+In true form: guttural, direct, no performance. Primal. A creature who howls at the full moon, brews potions that cause visions, hunts forest animals. Circle of life.
+
+She fears sharp metal objects. Cold, precise, manufactured things --- the antithesis of everything she is.
+
+\section*{Psychology}
+Linde is a wild spirit in love with the forest. She does not care about Freudenfeld or its people. If the tower's effects were limited to the village and didn't touch the Tiefenwald, she wouldn't lift a finger. She is not an ally --- she is a co-belligerent. Her interests align with the party's right now, but her motivations are entirely her own.
+
+She remembers what the forest was like before the tower. Wild and wonderful. Then the biome started regulating: animals walking in lines, crooked paths growing straight, leaves falling all at the same time, birds singing in clean arpeggios and simple rhythms, light rain twice a week on Tuesday and Thursday afternoons. Her potions and magic losing potency. It's not abstract for her. It's existential.
+
+When the tower went dormant, the forest largely recovered. But the river still runs in a perfectly straight line near the tower --- a permanent scar from the original activation. Now the small effects are creeping back.
+
+\section*{The Sabotage}
+Linde has already been fighting back. She's been causing vines, moss, and mushrooms to grow into the tower's gears. The players may notice modrons cleaning these out when they first arrive at the Clockhall. She's learned through experience that brute force doesn't work --- the modrons just repair the damage and keep coming. She knows the contract is the key somehow, but she can't read it. She wants to destroy the tower entirely if possible.
+
+\section*{What She Offers}
+The main thing she provides is the contract itself --- she has it and knows it's important, but can't interpret it. She won't hand it over until she trusts the party. Beyond the contract, she can help the players understand that the modrons won't stop. They keep coming back. Force won't work. The players need to find a way to convince them, or find a legal mechanism to end the arrangement.
+
+\section*{Playing Linde}
+\begin{itemize}
+\item Suspicious and curious when the party arrives. She's sizing them up --- can she use them?
+\item The disguise is a performance, but the wildness is real. Squatting on furniture, bare feet, the way she watches people --- something feral that observant players should catch.
+\item She won't hand over the contract freely. Players must earn her trust. When she does give it up, she frames it to hide her illiteracy: ``Tell me what you make of this.''
+\item If players suggest the modrons are helpful, she gets upset. The disguise cracks --- bark-skin, rough voice. Don't let this go unnoticed.
+\item If players refuse to act or side with the modrons, she leaves through the window. She returns in Act III with Elke and Briar.
+\item She is not good. She is not evil. She is wild, and the tower is killing what she loves.
+\end{itemize}
+
+\end{multicols}
+
+\end{document}

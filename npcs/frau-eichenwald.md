@@ -4,7 +4,7 @@
 - Has noticed her students are losing curiosity and creativity
 - Admits the children are better behaved, but feels something is deeply wrong
 - Many townsfolk are happy about the changes; she is not
-- Tries to attack Bürgermeister Grüber in the town square (Act I scuffle)
+- **Found in:** The Gasthaus (Act I) — sitting alone, looking perplexed. Not confrontational, just troubled. Players who approach her hear the first seeds of doubt about the tower's effects
 
 ## Portrait Prompt
 

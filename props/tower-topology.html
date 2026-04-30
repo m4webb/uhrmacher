@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuckucksuhrturm — Movement Topology</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1a1a1a;
+    color: #e0d6c8;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  .tower {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    max-width: 750px;
+    width: 100%;
+  }
+  .tower-title {
+    font-size: 1.4em;
+    font-variant: small-caps;
+    letter-spacing: 0.1em;
+    color: #c4a46c;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .tower-subtitle {
+    font-size: 0.75em;
+    color: #888;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-top: 4px;
+    font-variant: normal;
+  }
+
+  /* --- Rows --- */
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+  }
+
+  /* --- Rooms --- */
+  .room {
+    border: 2px solid #555;
+    border-radius: 6px;
+    padding: 14px 20px;
+    text-align: center;
+    min-width: 180px;
+    background: #252525;
+    position: relative;
+  }
+  .room-name {
+    font-weight: 600;
+    font-size: 0.95em;
+    margin-bottom: 4px;
+  }
+  .room-sub {
+    font-size: 0.75em;
+    color: #999;
+    line-height: 1.4;
+  }
+  .room-clock-part {
+    font-size: 0.65em;
+    color: #c4a46c;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+
+  /* --- Room variants --- */
+  .room.combat {
+    border-color: #8b4444;
+    background: #2a1f1f;
+  }
+  .room.social {
+    border-color: #4a7a4a;
+    background: #1f2a1f;
+  }
+  .room.boss {
+    border-color: #b8860b;
+    background: #2a2510;
+    border-width: 3px;
+  }
+  .room.hidden {
+    border-color: #666;
+    border-style: dashed;
+    background: #222;
+  }
+
+  /* --- Connectors --- */
+  .connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 0;
+    color: #666;
+  }
+  .connector .line {
+    width: 2px;
+    height: 28px;
+    background: #555;
+  }
+  .connector .arrow {
+    font-size: 0.8em;
+    color: #888;
+  }
+  .connector .label {
+    font-size: 0.65em;
+    color: #777;
+    letter-spacing: 0.05em;
+  }
+
+  /* --- Horizontal connector --- */
+  .h-connector {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 0 16px;
+  }
+  .h-connector .h-line {
+    width: 40px;
+    height: 0;
+    border-top: 2px dashed #666;
+  }
+  .h-connector .h-label {
+    font-size: 0.6em;
+    color: #999;
+    padding: 0 6px;
+    white-space: nowrap;
+    font-style: italic;
+  }
+
+  /* --- Exterior connector --- */
+  .ext-connector {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-top: 8px;
+  }
+  .ext-connector .ext-line {
+    width: 30px;
+    height: 0;
+    border-top: 2px dotted #5a7a9a;
+  }
+  .ext-connector .ext-label {
+    font-size: 0.6em;
+    color: #5a7a9a;
+    padding: 0 6px;
+    white-space: nowrap;
+    font-style: italic;
+  }
+  .ext-badge {
+    border: 2px dotted #5a7a9a;
+    border-radius: 6px;
+    padding: 8px 14px;
+    text-align: center;
+    background: #1f2228;
+    font-size: 0.75em;
+    color: #8ab;
+  }
+
+  /* --- Legend --- */
+  .legend {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7em;
+    color: #999;
+  }
+  .legend-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 2px solid;
+  }
+  .legend-swatch.s-combat { border-color: #8b4444; background: #2a1f1f; }
+  .legend-swatch.s-social { border-color: #4a7a4a; background: #1f2a1f; }
+  .legend-swatch.s-boss { border-color: #b8860b; background: #2a2510; }
+  .legend-swatch.s-hidden { border-color: #666; background: #222; border-style: dashed; }
+
+  /* --- Quest path --- */
+  .quest-path {
+    margin-top: 36px;
+    max-width: 560px;
+    width: 100%;
+  }
+  .quest-path h3 {
+    font-size: 0.8em;
+    font-variant: small-caps;
+    letter-spacing: 0.1em;
+    color: #c4a46c;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .quest-step {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 4px 0;
+    font-size: 0.78em;
+    color: #bbb;
+  }
+  .quest-step .num {
+    color: #777;
+    font-size: 0.85em;
+    min-width: 18px;
+    text-align: right;
+  }
+  .quest-step .alt {
+    color: #8b8b44;
+    font-style: italic;
+  }
+  .quest-step .alt-exterior {
+    color: #5a7a9a;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<div class="tower">
+  <div class="tower-title">
+    Kuckucksuhrturm — Movement Topology
+    <span class="tower-subtitle">Room connections and quest flow</span>
+  </div>
+
+  <!-- APEX: Cuckoo's Landing -->
+  <div class="row">
+    <div class="room boss">
+      <div class="room-clock-part">Apex — Cuckoo Door</div>
+      <div class="room-name">Cuckoo's Landing</div>
+      <div class="room-sub">Final boss — planar aperture<br>Cuckoo emerges from Mechanus</div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="arrow">▲</div>
+    <div class="line"></div>
+    <div class="label">up</div>
+  </div>
+
+  <!-- UPPER: Bellows Chamber -->
+  <div class="row">
+    <div class="room combat">
+      <div class="room-clock-part">Upper — Bellows</div>
+      <div class="room-name">Bellows Chamber</div>
+      <div class="room-sub">Combat: clear pests [TBD], recover the Gear<br>Air channels feed up to power cuckoo's call</div>
+    </div>
+  </div>
+
+  <div class="connector">
+    <div class="arrow">▲</div>
+    <div class="line"></div>
+    <div class="label">up</div>
+  </div>
+
+  <!-- GROUND: Clockhall + Study -->
+  <div class="row">
+    <div class="room social">
+      <div class="room-clock-part">Ground — Movement / Front Door</div>
+      <div class="room-name">Clockhall</div>
+      <div class="room-sub">Entry point — living quarters + mechanical heart<br>Meet Pendel, receive quest</div>
+    </div>
+
+    <div class="h-connector">
+      <div class="h-line"></div>
+      <div class="h-label">hidden</div>
+      <div class="h-line"></div>
+    </div>
+
+    <div class="room hidden" style="display: flex; flex-direction: column; align-items: center;">
+      <div style="flex: 1;">
+        <div class="room-clock-part">&nbsp;</div>
+        <div class="room-name">Uhrmacher's Study</div>
+        <div class="room-sub">Contract, moss woman<br>Modrons never investigated —<br>not mechanically relevant to them</div>
+      </div>
+      <div class="ext-connector">
+        <div class="ext-line"></div>
+        <div class="ext-label">window</div>
+        <div class="ext-line"></div>
+      </div>
+      <div class="ext-badge">Back exterior<br>alternate entry</div>
+    </div>
+  </div>
+
+  <div class="connector" style="transform: rotate(180deg);">
+    <div class="arrow">▲</div>
+    <div class="line"></div>
+    <div class="label" style="transform: rotate(180deg);">down</div>
+  </div>
+
+  <!-- BELOW: Gear Room -->
+  <div class="row">
+    <div class="room combat">
+      <div class="room-clock-part">Below — Regulation Gear</div>
+      <div class="room-name">Gear Room</div>
+      <div class="room-sub">Combat/social: Fritz + gear golem<br>Install the Gear here</div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-swatch s-social"></div> Social / Entry
+    </div>
+    <div class="legend-item">
+      <div class="legend-swatch s-combat"></div> Combat
+    </div>
+    <div class="legend-item">
+      <div class="legend-swatch s-boss"></div> Boss
+    </div>
+    <div class="legend-item">
+      <div class="legend-swatch s-hidden"></div> Hidden
+    </div>
+  </div>
+
+  <!-- Quest Flow -->
+  <div class="quest-path">
+    <h3>Natural Quest Flow</h3>
+    <div class="quest-step"><span class="num">1.</span> Front door → Clockhall (social, meet Pendel, receive quest)</div>
+    <div class="quest-step"><span class="num">2.</span> Up → Bellows Chamber (combat, clear pests, recover Gear)</div>
+    <div class="quest-step"><span class="num">3.</span> Back down → Gear Room (combat/social, Fritz, install Gear)</div>
+    <div class="quest-step"><span class="num">4.</span> Back up → Bellows → Cuckoo's Landing (boss)</div>
+    <div class="quest-step"><span class="num"></span><span class="alt">Study findable any time via hidden door in Clockhall</span></div>
+    <div class="quest-step"><span class="num"></span><span class="alt-exterior">Players who scout the exterior find the study window — enter the study before meeting Pendel, read the contract first</span></div>
+  </div>
+
+</div>
+
+</body>
+</html>

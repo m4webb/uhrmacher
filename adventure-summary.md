@@ -22,18 +22,34 @@
 
 ## Player Arc
 
-- Players learn about the contract
-- Players decide whether to allow it to execute or try to stop the modrons
-- Hopefully the players decide to try and stop the modrons
+- Players arrive as hired pest control, working WITH the modrons initially
+- Gradual doubt builds: schoolteacher skepticism → Fritz's "too good to be true" situation → clues throughout the tower → contract + moss woman revelation
+- Players realize the full consequences of what they've been helping with
+- Players must start the Activation Sequence (install the Gear) and then stop it mid-completion to break the contract — the only viable termination method (Art. VI §6.3)
+- The pests slowed the modrons but wouldn't ultimately stop them; walking away isn't an option
 
 ---
 
 ## Three-Act Structure
 
-### Act I — Freudenfeld (~15-20% of session)
-- Players arrive in Freudenfeld, interact with townsfolk
-- The mayor originally called them for help, but now wants them to leave — crime is falling, children are well-behaved
-- Some townsfolk are skeptical of the changes, particularly artisans and creatives who feel the effects on uniqueness and expression
+### Act I — The Gasthaus at Freudenfeld (~15-20% of session)
+
+Players arrive at the village Gasthaus, responding to the Bürgermeister's pest control advertisement.
+
+**The room:**
+- **Bürgermeister Gottfried Grüber** — at his Stammtisch or greeting the party at the door. Takes them to a back room to discuss the job: vermin in the tower, clear them out, 25gp per head. Cheerful about the tower's effects (crime falling, children well-behaved). Gives directions to the Kuckucksuhrturm.
+- **Frau Eichenwald** — sitting alone at a table, looking perplexed. Not confrontational — just troubled. If players approach: her students are better behaved but losing curiosity, the town is safer but something feels wrong. Seeds of doubt.
+- **Heinrich** — old woodcutter in a corner, happy to tell stories. As a boy he saw the Tickwichtel working in the tower — small mechanical creatures, clicking and whirring. Delighted they're back. Treats it as charming folklore, not a threat. Nostalgic, warm, rambly.
+
+**Scene beats:**
+1. Party arrives, meets Bürgermeister, gets the job (business)
+2. Free time in the Gasthaus — talk to Eichenwald, Heinrich, or other locals
+3. Party heads to the tower
+
+**Design notes:**
+- Keep Act I brisk — the Gasthaus is one location, three NPCs, then move
+- The three NPCs give three lenses on the tower: official (Grüber), uneasy (Eichenwald), folkloric (Heinrich)
+- Players who skip the side conversations miss early context but nothing critical — the tower itself provides all necessary information
 
 ### Act II — The Kuckucksuhrturm (~50-60% of session)
 - Players enter the Kuckucksuhrturm
@@ -44,18 +60,20 @@
 
 - **Frau Eichenwald (School Teacher)** — Worried about the conformity; admits many townsfolk are happy about the changes, but she sees the cost to individuality
 - **Moosfräulein Linde (Moss Woman, disguised)** — Green hag statblock, reskinned as Tiefenwald moss women (CN). Appears in the Uhrmacher's study using Illusory Appearance. Opposes modrons because their order is killing the wild forest. If players side with the modrons, she leaves and returns with her coven (3 moss women) + fey minions in Act III
-- **Pendel (Quadrone, near-rogue)** — Modron overseer managing the tower. Social encounter, not combat. On the verge of going rogue; players may befriend and push it fully rogue on the desired path.
-- **Fritz (Young Disabled Boy)** — Stowaway living in the tower; his leg started working again due to the tower's influence. Controls a gear golem (flesh golem statblock). Gear room combat ends if players find him.
+- **Pendel (Quadrone, near-rogue)** — Modron overseer managing the tower, working to fulfill the contract. Directs the party to clear the pest room and recover the Gear, then to install it in the gear room below. Social encounter, not combat. On the verge of going rogue; players may befriend and push it fully rogue on the desired path.
+- **Fritz (Young Disabled Boy)** — Stowaway living in the tower; his leg started working again due to the tower's influence. Camped near the Gear installation point in the gear room. Controls a gear golem (flesh golem statblock) that protects him. Skeptical of everyone — doesn't know the Gear is needed for the tower to continue, but wouldn't let anyone harm the tower. Players can persuade, deceive, or fight past the golem. Multiple roleplay approaches possible.
 
 ### Key Locations
 
-1. **Town Square** — Scuffle as Frau Eichenwald tries to attack Bürgermeister Grüber (Act I)
-2. **Clock Tower Arrival** — Exterior/entrance
-3. **Clock Tower First Room** — Meet the modron overseer, begin learning about the Uhrmacher
-4. **Gear Room (Below)** — Meet the boy and his gear golem
-5. **Uhrmacher's Study** — Find the fey; branching point for desired vs. alternate path
-6. **Puzzle Lock Room** — Leads to Cuckoo's Landing *(optional — cut candidate if Act II runs long)*
-7. **Cuckoo's Landing** — Final confrontation
+1. **The Gasthaus** — Meet Bürgermeister (back room), Frau Eichenwald (alone, troubled), Heinrich (corner, folklore). Act I.
+
+**Tower Rooms** *(see `props/tower-topology.html` for movement graph)*
+
+2. **Clockhall** (ground, front door) — Living quarters + mechanical heart of the tower. Entry point; meet Pendel, receive quest to clear bellows and recover the Gear
+3. **Bellows Chamber** (upper) — Combat encounter; creatures [TBD] that infested the tower's bellows while it lay dormant (per Art. III §3.2 — fauna nesting in the mechanism). The bellows feed air up through pipes to the cuckoo at the apex, powering its call. Clearing the pests directly enables the cuckoo's breath weapon in Act III. Recover the Gear (the Cross-Planar Regulation Gear, contract §1.2, disconnected by the Uhrmacher)
+4. **Gear Room** (below) — Install the Gear. Fritz is camped near the installation point with his gear golem protecting him
+5. **Uhrmacher's Study** (ground, hidden) — Find the contract, meet the moss woman; branching point for desired vs. alternate path. Accessible via hidden door in Clockhall (modrons ignored it — not mechanically relevant) OR via window on the back exterior of the tower (alternate entry for players who scout outside before going in the front door)
+6. **Cuckoo's Landing** (apex) — Final confrontation; planar aperture
 
 ### Ticking Clock — Escalating Conformity Effects
 
@@ -74,8 +92,9 @@
 
 ### Combat Encounters
 
-1. **Gear Room** — Gear golem attacks; players can end the encounter by finding the hiding boy instead of killing the golem (non-standard objective)
-2. **Cuckoo's Landing** — Final boss fight (see Act III)
+1. **Bellows Chamber** — 6 stirges + 2 swarms of stirges (Hard, ~2,100 adjusted XP). Individuals scattered on entry; one swarm erupts from each bellows when cleared. Players must clear both to restore air channels. Enables the cuckoo's breath weapon in Act III (bellows are the lungs, cuckoo is the mouth)
+2. **Gear Room** — Gear golem protects Fritz, who is camped near the Gear installation point. Players can fight the golem, persuade Fritz, or deceive him (multiple solutions)
+3. **Cuckoo's Landing** — Final boss fight (see Act III)
 
 ### Act III — Cuckoo's Landing (~20-25% of session)
 - Cuckoo is a custom statblock — mechanical construct on a rod, not a reskinned dragon
@@ -98,7 +117,7 @@
   - Wave 3 (cycle 3): 2 tridrones + 2 quadrones — quadrone shortbows threaten backline, ~38 DPR, major threat plus any wave 2 survivors. Tridrones ground only; quadrones fly 30ft.
 - **Battlefield:** One large gear (25 ft radius) as the entire floor. Aperture is on the tower wall side; the rod extends inward and the cuckoo occupies the center of the gear. Gear rotates 90 degrees clockwise at initiative count 20 (lair action). Cone fires from the cuckoo at center in a fixed direction, so rotation constantly shifts who's in the blast zone. Anyone in the center when the cuckoo emerges gets knocked down (DEX save).
 - **Riding the Cuckoo into Mechanus (optional player action):** Players in melee range can attempt to hold onto the cuckoo as it retracts. DC 12 STR (Athletics) to grab on. Door is blocked while the cuckoo is extended, so this is the only way through. On Mechanus: DC 14 WIS save at the start of each turn or lose your action (move and bonus action still available) as the plane tries to subsume your will. Ride the cuckoo back out on the next cycle. If the cuckoo dies while they're in Mechanus — the door closes and the party has to figure out how to get them back.
-- **Victory condition:** Destroy the cuckoo before it completes 3 full cycles (emerge, call, retract). A destroyed cuckoo can never retract — the third cycle is incomplete, the contract is null and void (Art. IV §4.4, Art. VI §6.4). The planar aperture closes, the broken cuckoo remains in the material plane, and modrons immediately retreat.
+- **Victory condition:** Destroy the cuckoo before it completes 3 full cycles (emerge, call, retract). A destroyed cuckoo can never retract — the third cycle is incomplete, the contract is null and void (Art. VI §6.3). The planar aperture closes, the broken cuckoo remains in the material plane, and modrons immediately retreat.
 - **Modron reinforcements:** Escalating waves each round, getting heavier as the fight progresses; modrons immediately retreat once the contract is nullified (cuckoo destroyed before 3 cycles complete)
 - **Desired path:** Players fight to defeat the cuckoo before it completes the contract
 - **Alternate ending:** Players protect the modron/cuckoo from the hag coven (3 green hags) + fey minions (blights, wolves, etc.) trying to break in, allowing the contract to complete

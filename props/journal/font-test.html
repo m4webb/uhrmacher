@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Journal Font Comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Kalam:wght@400;700&family=Shadows+Into+Light&family=Sacramento&family=Niconne&display=swap" rel="stylesheet">
+<style>
+  body {
+    background: #3a3a3a;
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+  }
+  .page {
+    width: 148mm;
+    min-height: 180mm;
+    background: #f4e8c1;
+    background-image:
+      radial-gradient(ellipse at 20% 80%, rgba(139,90,43,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(139,90,43,0.05) 0%, transparent 50%);
+    padding: 20mm 18mm 18mm 22mm;
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.4);
+  }
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 40px rgba(139,90,43,0.25);
+    pointer-events: none;
+  }
+  .font-label {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 11px;
+    color: #fff;
+    background: rgba(0,0,0,0.6);
+    padding: 4px 10px;
+    border-radius: 3px;
+    position: absolute;
+    top: -14px;
+    left: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .date {
+    font-size: 18px;
+    color: #4a3520;
+    text-align: right;
+    margin-bottom: 12px;
+    opacity: 0.8;
+  }
+  .body {
+    font-size: 22px;
+    line-height: 32px;
+    color: #2a1a0a;
+  }
+  .body p {
+    margin: 0 0 24px 0;
+    text-indent: 2em;
+  }
+  .body p:first-child {
+    text-indent: 0;
+  }
+  .signature {
+    font-size: 20px;
+    color: #4a3520;
+    margin-top: 32px;
+    text-align: right;
+  }
+  .f-caveat .date, .f-caveat .body, .f-caveat .signature { font-family: 'Caveat', cursive; }
+  .f-kalam .date, .f-kalam .body, .f-kalam .signature { font-family: 'Kalam', cursive; }
+  .f-shadows .date, .f-shadows .body, .f-shadows .signature { font-family: 'Shadows Into Light', cursive; }
+  .f-sacramento .date, .f-sacramento .body, .f-sacramento .signature { font-family: 'Sacramento', cursive; font-size: 26px; }
+  .f-sacramento .body { font-size: 26px; line-height: 36px; }
+  .f-niconne .date, .f-niconne .body, .f-niconne .signature { font-family: 'Niconne', cursive; }
+  .f-niconne .body { font-size: 24px; line-height: 34px; }
+</style>
+</head>
+<body>
+
+<div class="page f-caveat">
+  <div class="font-label">Caveat</div>
+  <div class="date">14. Oktobris, 1742</div>
+  <div class="body">
+    <p>Something is wrong with the children.</p>
+    <p>They do not quarrel. They do not laugh. At the schoolhouse they sit in perfect rows and recite their lessons without error, without pause, without joy.</p>
+    <p>I built this tower to keep perfect time. I did not mean to keep it at such a cost.</p>
+  </div>
+  <div class="signature">&mdash; W.Z.</div>
+</div>
+
+<div class="page f-kalam">
+  <div class="font-label">Kalam</div>
+  <div class="date">14. Oktobris, 1742</div>
+  <div class="body">
+    <p>Something is wrong with the children.</p>
+    <p>They do not quarrel. They do not laugh. At the schoolhouse they sit in perfect rows and recite their lessons without error, without pause, without joy.</p>
+    <p>I built this tower to keep perfect time. I did not mean to keep it at such a cost.</p>
+  </div>
+  <div class="signature">&mdash; W.Z.</div>
+</div>
+
+<div class="page f-shadows">
+  <div class="font-label">Shadows Into Light</div>
+  <div class="date">14. Oktobris, 1742</div>
+  <div class="body">
+    <p>Something is wrong with the children.</p>
+    <p>They do not quarrel. They do not laugh. At the schoolhouse they sit in perfect rows and recite their lessons without error, without pause, without joy.</p>
+    <p>I built this tower to keep perfect time. I did not mean to keep it at such a cost.</p>
+  </div>
+  <div class="signature">&mdash; W.Z.</div>
+</div>
+
+<div class="page f-sacramento">
+  <div class="font-label">Sacramento</div>
+  <div class="date">14. Oktobris, 1742</div>
+  <div class="body">
+    <p>Something is wrong with the children.</p>
+    <p>They do not quarrel. They do not laugh. At the schoolhouse they sit in perfect rows and recite their lessons without error, without pause, without joy.</p>
+    <p>I built this tower to keep perfect time. I did not mean to keep it at such a cost.</p>
+  </div>
+  <div class="signature">&mdash; W.Z.</div>
+</div>
+
+<div class="page f-niconne">
+  <div class="font-label">Niconne</div>
+  <div class="date">14. Oktobris, 1742</div>
+  <div class="body">
+    <p>Something is wrong with the children.</p>
+    <p>They do not quarrel. They do not laugh. At the schoolhouse they sit in perfect rows and recite their lessons without error, without pause, without joy.</p>
+    <p>I built this tower to keep perfect time. I did not mean to keep it at such a cost.</p>
+  </div>
+  <div class="signature">&mdash; W.Z.</div>
+</div>
+
+</body>
+</html>

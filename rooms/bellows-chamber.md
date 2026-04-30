@@ -1,0 +1,35 @@
+# The Bellows Chamber
+
+- **Position:** Upper floor
+- **Clock anatomy:** The Bellows — air system powering the cuckoo's call
+- **Encounter:** Combat — 6 stirges + 2 swarms of stirges (Hard, ~2,100 adjusted XP)
+- **Artifact:** Dusty old journal (pessimistic view of the tower)
+
+## Description
+
+A large chamber dominated by two massive wooden bellows, one on each side of the room. Thick air pipes run upward from the bellows through the ceiling toward the apex. The bellows are built like enormous lungs — hinged wooden frames with leather membranes, connected to whistles and resonating pipes. In a functioning tower, these would force air up to power the cuckoo's call. Currently clogged and occupied by stirges that nested here during the tower's dormancy. Nests, debris, and droppings choke the air channels.
+
+## Encounter — Stirges
+
+**Enemies:** 6 individual stirges (CR 1/8, 25 XP each) + 2 swarms of stirges (CR 2, 450 XP each)
+
+**Wave 1 — On entry:** 6 stirges scattered throughout the chamber, fluttering among the pipes and rafters. Straightforward, easy to pick off — lets every player take a turn and find their rhythm.
+
+**Wave 2 — Bellows burst:** When players clear or activate the first bellows, a swarm of stirges erupts from inside.
+
+**Wave 3 — Second bellows:** When players open the second bellows, another swarm bursts out. Players know it's coming but have to clear both bellows to restore the air channels.
+
+**Swarm notes:** Swarms have B/P/S resistance (36 HP effective ~72 against martial damage), grapple targets in their space, and deal 7 (2d6) necrotic at end of grappled creature's turn. The real threat of the encounter — individuals are the warm-up.
+
+## Traversal
+
+- **Down:** Staircase to the Clockhall
+- **Up:** Narrow passage alongside the air pipes, leading to Cuckoo's Landing. A vertical climb with the pipes running beside you — you can feel (and later hear) air rushing through them.
+
+## Artifact — The Uhrmacher's Journal
+
+A dusty journal wedged into a maintenance alcove near one of the bellows. The Uhrmacher used this spot for repairs and calibration. Later entries, written in a shaking hand. He's noticed the changes in Freudenfeld — the conformity, the loss of individuality. Regret. Mentions disconnecting the Gear to stop it.
+
+## Image Prompt
+
+> The upper chamber of a clock tower, dominated by two enormous wooden bellows the size of wagons, one on each side. Built like giant lungs — hinged wooden frames with cracked leather membranes, connected to brass whistles and thick pipes that run upward through the ceiling. The bellows are choked with years of neglect — cobwebs thick as curtains, debris, dried organic matter clogging the air channels. A narrow maintenance alcove is tucked between one bellows and the wall. Above, a narrow passage leads further up alongside the pipes. The room feels organic and mechanical at once — a ribcage of wood and brass. [Append meta-prompt from room-style-guide.md]

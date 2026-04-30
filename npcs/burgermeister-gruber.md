@@ -1,8 +1,9 @@
-# Bürgermeister Grüber — Village Leader
+# Bürgermeister Gottfried Grüber — Village Leader
 
-- Originally called the players for help
-- Now wants them to leave — crime is falling, children are well-behaved, the town is prospering
+- Posted an advertisement for "pest control" — the tower is ticking again and the Tickwichtel are back per the old legends, but creatures have infested the tower and are slowing their work
+- Wants the party to clear the pests so the Tickwichtel can continue — he's happy about the tower's effects (crime falling, children well-behaved, town prospering)
 - Represents the pro-contract side of the moral dilemma
+- Doesn't understand (or doesn't care about) the full consequences of the tower's influence
 
 ## Portrait Prompt
 

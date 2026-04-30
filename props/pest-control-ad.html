@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bekanntmachung — Pest Control Advertisement</title>
+<style>
+  @font-face {
+    font-family: 'UnifrakturMaguntia';
+    font-style: normal;
+    font-weight: 400;
+    src: url('unifraktur.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'EB Garamond';
+    font-style: normal;
+    font-weight: 400;
+    src: url('ebgaramond-regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'EB Garamond';
+    font-style: italic;
+    font-weight: 400;
+    src: url('ebgaramond-italic.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'EB Garamond';
+    font-style: normal;
+    font-weight: 700;
+    src: url('ebgaramond-bold.ttf') format('truetype');
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #f4e8c1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .poster {
+    background: #f4e8c1;
+    color: #2c1e0e;
+    width: 520px;
+    padding: 48px 44px;
+    position: relative;
+    background-color: #f4e8c1;
+  }
+
+  .fraktur {
+    font-family: 'UnifrakturMaguntia', cursive;
+  }
+  .serif {
+    font-family: 'EB Garamond', 'Palatino', 'Georgia', serif;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .header-title {
+    font-size: 2.8em;
+    line-height: 1.1;
+    color: #1a0e04;
+    margin-bottom: 2px;
+  }
+  .header-subtitle {
+    font-size: 1.05em;
+    font-style: italic;
+    color: #5a3e1e;
+    letter-spacing: 0.04em;
+  }
+
+  .rule {
+    border: none;
+    height: 0;
+    border-top: 1.5px solid #2c1e0e;
+    margin: 16px 0;
+  }
+  .rule-double {
+    border: none;
+    height: 0;
+    border-top: 2.5px double #2c1e0e;
+    margin: 18px 0;
+  }
+
+  .body {
+    font-size: 1.05em;
+    line-height: 1.65;
+    text-align: justify;
+    hyphens: auto;
+    color: #2c1e0e;
+  }
+  .body p {
+    margin-bottom: 12px;
+  }
+  .body p:last-child {
+    margin-bottom: 0;
+  }
+  .body strong {
+    font-weight: 700;
+  }
+  .smallcaps {
+    font-variant: small-caps;
+    letter-spacing: 0.03em;
+  }
+
+  .section-head {
+    font-size: 1.6em;
+    text-align: center;
+    color: #1a0e04;
+    margin: 18px 0 10px;
+  }
+
+  .signature {
+    margin-top: 24px;
+    text-align: center;
+  }
+  .signature .name {
+    font-size: 1.5em;
+    color: #1a0e04;
+  }
+  .signature .title-line {
+    font-size: 0.95em;
+    font-style: italic;
+    color: #5a3e1e;
+    margin-top: 2px;
+  }
+  .seal {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 0.8em;
+    color: #8a6a3a;
+    letter-spacing: 0.08em;
+    font-variant: small-caps;
+  }
+
+  .reward {
+    border: 1.5px solid #2c1e0e;
+    padding: 12px 18px;
+    margin: 18px 0;
+    text-align: center;
+  }
+  .reward-amount {
+    font-size: 1.5em;
+    color: #1a0e04;
+  }
+  .reward-note {
+    font-size: 0.9em;
+    color: #5a3e1e;
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="poster">
+
+  <div class="header">
+    <div class="header-title fraktur">Bekanntmachung</div>
+    <div class="header-subtitle serif">Public Notice — Township of Freudenfeld</div>
+  </div>
+
+  <hr class="rule-double">
+
+  <div class="section-head fraktur">Pest Control Wanted</div>
+
+  <hr class="rule">
+
+  <div class="body serif">
+
+    <p>
+      The township of <span class="smallcaps">Freudenfeld</span> has
+      need of a company of arms for the clearance of
+      vermin from a structure in the Tiefenwald. Lodging and provisions
+      for the evening prior furnished at the township's expense.
+      Particulars upon presentation to the Bürgermeister.
+    </p>
+
+  </div>
+
+  <div class="reward">
+    <div class="reward-amount fraktur">25 Gold Pieces</div>
+    <div class="reward-note serif">per head, payable upon completion</div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="signature">
+    <div class="name fraktur">Gottfried Grüber</div>
+    <div class="title-line serif">Bürgermeister of Freudenfeld</div>
+  </div>
+
+
+</div>
+
+</body>
+</html>
