@@ -8,7 +8,7 @@
 
 ## Read-Aloud
 
-A low-ceilinged, wood-paneled room, warm from a Kachelofen in the corner. Communal tables, the smell of bread and beer. A few locals nurse drinks in the late afternoon light. A well-dressed man in a mayoral chain rises from a table at the back and waves you over.
+The Gasthaus is low-ceilinged and wood-paneled, warm from a Kachelofen in the corner. Long communal tables fill the room, and the air smells of bread and beer. A few locals nurse drinks in the late afternoon light. An old man in a woodcutter's coat is holding court in the corner near the stove, mid-story, gesturing with his pipe. A woman sits alone at a side table with an untouched drink, staring at nothing in particular. A well-dressed man wearing a mayoral chain sits at a table at the back and waves you over with a broad smile.
 
 ---
 
@@ -16,9 +16,9 @@ A low-ceilinged, wood-paneled room, warm from a Kachelofen in the corner. Commun
 
 | NPC | Where | Disposition |
 |-----|-------|-------------|
-| **Bürgermeister Gottfried Grüber** | Back table / Stammtisch | Welcoming, businesslike. Wants to hire the party and get them moving. |
-| **Frau Eichenwald** | Alone at a side table | Quiet, troubled. Staring into a drink. Won't approach the party herself. |
-| **Heinrich** | Corner, near the stove | Cheerful, rambly. Already mid-story to anyone nearby. |
+| **Bürgermeister Gottfried Grüber** | Stammtisch, stays seated | Loud, warm, charismatic. Calls you over, claps your back. |
+| **Frau Eichenwald** | Alone at a side table | Composed but visibly troubled. Stayed later than usual. Won't approach. |
+| **Heinrich** | Corner, near the stove | Chatty, storyteller's cadence, pipe and tankard. Mid-story. |
 
 ### Grüber — Knows / Will Share / Won't Share
 
@@ -29,25 +29,24 @@ A low-ceilinged, wood-paneled room, warm from a Kachelofen in the corner. Commun
 
 ### Eichenwald — Knows / Will Share / Won't Share
 
-- **Knows:** Her students are losing curiosity and creativity, the changes feel wrong, other townsfolk dismiss her concerns
-- **Will share if approached:** Her unease, specific examples (children who used to draw now sit still, a boy who loved stories has stopped asking questions)
+- **Will share if approached:** Her students are losing curiosity and imagination — stories bland, pictures prosaic, no silly outbursts. She blames the Tickwichtel — believes the legend that they murdered the Uhrmacher, and now they're "poisoning" the children. Fritz has stopped attending class — she doesn't know where he's gone. She's tried talking to parents but they see nothing wrong with "good behaviour."
 - **Won't share (can't articulate):** What's actually causing it — she suspects the tower but has no proof
 - **Key line:** *"The children are so well-behaved now. I should be grateful. So why does it frighten me?"*
 
 ### Heinrich — Knows / Will Share / Won't Share
 
-- **Knows:** Tickwichtel folklore from his childhood — he saw them in the tower as a boy, small clicking mechanical creatures. The old stories say they keep things running.
-- **Will share freely:** Everything — he loves to talk. Describes the Tickwichtel with warmth and wonder. Happy they're back.
-- **Won't share (doesn't know):** Anything about the contract, the Uhrmacher's motives, or the danger. To him it's a charming story.
-- **Key line:** *"I was maybe eight years old. They were no bigger than my hand, all brass and little legs, clicking away like tiny clockmakers."*
+- **Will share freely (loves to talk):** Saw a Tickwichtel in the woods as a boy of six or seven — it barely noticed him, but the memory shaped his life. Excited they're back — he's a celebrity again, people care about his stories. But also carries unease from childhood: things "weren't right" back then, and something tragic happened. Believes the Uhrmacher froze himself in time when the ticking stopped.
+- **Unreliable details:** Thinks the Tickwichtel gave the Uhrmacher magical powers and could control time. Emotional truth is there; facts are not.
+- **Key line:** *"I was six, maybe seven. It was no bigger than my hand, all brass and little legs, clicking away. It didn't even look at me."*
 
 ---
 
 ## Secrets
 
-- The back room where Grüber takes the party is available for private discussion if players want to talk amongst themselves
-- Eichenwald will not approach the party — they must go to her
-- Heinrich's stories are accurate — the Tickwichtel are real and match what the party will see in the tower
+- The back room where Grüber takes the party is available for private discussion
+- Eichenwald will **not** approach — players must go to her
+- Heinrich's stories are colourful but unreliable — the emotional truth is real, the details are wrong
+- Grüber's eyes are always scanning the room — he observes more than he lets on
 
 ---
 
