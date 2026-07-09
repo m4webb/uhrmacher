@@ -1,6 +1,6 @@
 # Encounter — Gear Room
 
-**Difficulty:** [TBD — flesh golem is CR 5 (1,800 XP). Solo monster vs. 8 level 3 PCs. Adjusted XP with x0.5 multiplier (1 monster, 6+ PCs) = 900. This is below Easy threshold (600 × 8 = 4,800... wait, that's Easy). Need to evaluate: the golem is tanky (127 HP, magic resistance, immunities) but action economy heavily favors 8 PCs. May need additional enemies or environmental hazards to make this feel like a real fight — OR the point is that combat is optional and the "encounter" is really about Fritz.]
+**Difficulty:** Hard by geometry, not by numbers. On paper the golem is Easy for 8 level 3 PCs (900 adjusted XP) — action economy would demolish it in an open room. The map is the difficulty: chokepoint lanes limit engagement to 1-2 PCs at a time, making the golem's ~34 avg DPR a real threat to whoever is exposed. No additional enemies needed.
 
 **Target duration:** 2-3 rounds (if combat), shorter if resolved socially
 
@@ -42,10 +42,21 @@ Players can end this encounter without killing the golem:
 
 ---
 
+## The Map — Chokepoint Lanes (decided)
+
+Puzzle-map approach: the room itself limits how many PCs can face the golem.
+
+- Gear trains fill the room wall to wall; the only routes toward the mounting cradle are narrow single-file gaps between machinery
+- The golem holds the one lane wide enough to fight in — only 1-2 PCs can engage it on a given round
+- Dense machinery blocks ranged sightlines except along open lanes — no plinking from the entrance
+- **Environmental triggers:** stepping in certain spots changes the maze (e.g., step here → that path closes). Specific triggers/effects [TBD]
+- **No round-based timing effects** — that gimmick is reserved for Act III's rotating gear floor
+- Players not facing the golem work the maze: climbing/squeezing through the works (Athletics/Acrobatics), scouting flanking routes, searching for Fritz
+
 ## Environment
 
 - **Mounting cradle** — empty circular frame at center, where the Gear installs
-- **Heavy gear trains** — line the walls, provide cover, climbable
+- **Heavy gear trains** — fill the room, provide cover, climbable
 - **Fritz's camp** — bedroll, crate, candle stub near the cradle
 - **Weight chains** — hang from ceiling, could be interacted with [TBD — swing on them? Drop something?]
 - **Low ceiling, vaulted** — underground, echoing
@@ -62,8 +73,10 @@ Players can end this encounter without killing the golem:
 
 ## Open Questions
 
-- [ ] Is the flesh golem statblock the right CR for this encounter, or does it need adjusting? It's tanky but slow (AC 9) and solo vs. 8 PCs
-- [ ] Should there be minor enemies (monodrones? mechanical hazards?) to supplement the golem
+- [x] ~~Is the flesh golem statblock the right CR?~~ Resolved: keep the statblock as-is; difficulty comes from map geometry
+- [x] ~~Should there be minor enemies to supplement the golem?~~ Resolved: no — chokepoint terrain replaces minions
+- [ ] Lane layout — how many lanes, where they run, where the golem's wide lane sits
+- [ ] Environmental triggers — which spots trigger what (paths closing, opening, other effects)
 - [ ] What happens to Fritz after the encounter? Does he stay in the tower during Act III? Does he follow the party?
 - [ ] Berserk mechanic — how does it interact with Fritz's control?
 - [ ] Does killing the golem have narrative consequences (Fritz's only protector, the party just destroyed a child's companion)?

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cuckoo's Landing — Print Battle Map (12×12 in, 1 in = 5 ft)</title>
+<style>
+  @page { size: 12in 12in; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  svg { display: block; width: 12in; height: 12in; }
+  text { font-family: 'Liberation Mono', monospace; }
+</style>
+</head>
+<body>
+
+<svg id="map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1152 1152"></svg>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('map');
+
+function el(name, attrs = {}, parent = svg) {
+  const n = document.createElementNS(NS, name);
+  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  parent.appendChild(n);
+  return n;
+}
+function txt(x, y, str, attrs = {}, parent = svg) {
+  const t = el('text', Object.assign({ x, y, 'text-anchor': 'middle' }, attrs), parent);
+  t.textContent = str;
+  return t;
+}
+
+// 1 in = 5 ft = 96 SVG units. Page: 12×12 in = 1152×1152.
+// Physical floor only — planar door and rod are overlaid at the table (fixed, don't rotate with the map).
+const CELL = 96;
+const COLS = 10, ROWS = 10;
+const PAGE = 1152;
+const W = COLS * CELL, H = ROWS * CELL;
+const OX = (PAGE - W) / 2, OY = (PAGE - H) / 2;
+const CX = PAGE / 2, CY = PAGE / 2, R = W / 2;
+const R_INNER = R - 10;
+const INK = '#000';
+
+// --- Defs: grid clips to the inner ring ---
+const defs = el('defs');
+const clip = el('clipPath', { id: 'gridClip' }, defs);
+el('circle', { cx: CX, cy: CY, r: R_INNER }, clip);
+
+el('rect', { x: 0, y: 0, width: PAGE, height: PAGE, fill: '#fff' });
+
+// --- Grid lines, ending at the inner circle ---
+const gClipped = el('g', { 'clip-path': 'url(#gridClip)' });
+for (let i = 0; i <= COLS; i++) {
+  el('line', { x1: OX + i * CELL, y1: OY, x2: OX + i * CELL, y2: OY + H, stroke: INK, 'stroke-width': 1 }, gClipped);
+}
+for (let i = 0; i <= ROWS; i++) {
+  el('line', { x1: OX, y1: OY + i * CELL, x2: OX + W, y2: OY + i * CELL, stroke: INK, 'stroke-width': 1 }, gClipped);
+}
+
+// --- Gear silhouette: one continuous outline (rim arcs joined to tooth flanks) ---
+const numTeeth = 32;
+const stepDeg = 360 / numTeeth;
+function toothPts(aDeg) {
+  const a = aDeg * Math.PI / 180;
+  const px = CX + Math.cos(a) * R, py = CY + Math.sin(a) * R;
+  const rot = (aDeg + 90) * Math.PI / 180;
+  const c = Math.cos(rot), s = Math.sin(rot);
+  return [[-23.5, 0], [-15, -45], [15, -45], [23.5, 0]]
+    .map(([x, y]) => [px + x * c - y * s, py + x * s + y * c].map(v => v.toFixed(2)));
+}
+let d = '';
+for (let i = 0; i < numTeeth; i++) {
+  const [bl, tl, tr, br] = toothPts(i * stepDeg);
+  d += (i === 0 ? `M ${bl}` : ` A ${R} ${R} 0 0 1 ${bl}`);
+  d += ` L ${tl} L ${tr} L ${br}`;
+}
+d += ` A ${R} ${R} 0 0 1 ${toothPts(0)[0]} Z`;
+el('path', { d, fill: 'none', stroke: INK, 'stroke-width': 4 });
+
+// --- Inner ring ---
+el('circle', { cx: CX, cy: CY, r: R_INNER, fill: 'none', stroke: INK, 'stroke-width': 1.5 });
+
+// --- Hub: white-filled to blank the grid inside it; square edges remain outside.
+//     Bold outline to match the gear silhouette. ---
+el('circle', { cx: CX, cy: CY, r: 48, fill: '#fff', stroke: INK, 'stroke-width': 4 });
+el('circle', { cx: CX, cy: CY, r: 38, fill: 'none', stroke: INK, 'stroke-width': 1.5 });
+el('circle', { cx: CX, cy: CY, r: 10, fill: 'none', stroke: INK, 'stroke-width': 1.5 });
+
+// --- Coordinates in the margin ---
+for (let i = 0; i < COLS; i++) {
+  txt(OX + i * CELL + CELL / 2, PAGE - 18, String(i + 1), { fill: INK, 'font-size': 18 });
+}
+for (let i = 0; i < ROWS; i++) {
+  txt(26, OY + i * CELL + CELL / 2 + 6, String.fromCharCode(65 + i), { fill: INK, 'font-size': 18 });
+}
+</script>
+
+</body>
+</html>

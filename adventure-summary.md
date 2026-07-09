@@ -70,7 +70,7 @@ Players arrive at the village Gasthaus, responding to the Bürgermeister's pest 
 **Tower Rooms** *(see `props/tower-topology.html` for movement graph)*
 
 2. **Clockhall** (ground, front door) — Living quarters + mechanical heart of the tower. Entry point; meet Pendel, receive quest to clear bellows and recover the Gear
-3. **Bellows Chamber** (upper) — Combat encounter; creatures [TBD] that infested the tower's bellows while it lay dormant (per Art. III §3.2 — fauna nesting in the mechanism). The bellows feed air up through pipes to the cuckoo at the apex, powering its call. Clearing the pests directly enables the cuckoo's breath weapon in Act III. Recover the Gear (the Cross-Planar Regulation Gear, contract §1.2, disconnected by the Uhrmacher)
+3. **Bellows Chamber** (upper) — Combat encounter; stirges that infested the tower's bellows while it lay dormant (per Art. III §3.2 — fauna nesting in the mechanism). The bellows feed air up through pipes to the cuckoo at the apex, powering its call. Clearing the pests directly enables the cuckoo's breath weapon in Act III. Recover the Gear (the Cross-Planar Regulation Gear, contract §1.2, disconnected by the Uhrmacher)
 4. **Gear Room** (below) — Install the Gear. Fritz is camped near the installation point with his gear golem protecting him
 5. **Uhrmacher's Study** (ground, hidden) — Find the contract, meet the moss woman; branching point for desired vs. alternate path. Accessible via hidden door in Clockhall (modrons ignored it — not mechanically relevant) OR via window on the back exterior of the tower (alternate entry for players who scout outside before going in the front door)
 6. **Cuckoo's Landing** (apex) — Final confrontation; planar aperture
