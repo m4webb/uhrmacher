@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Cuckoo's Landing — Print Battle Map (12×12 in, 1 in = 5 ft)</title>
+<title>Cuckoo's Landing — Print Battle Map (12×12 in, 1 in = 5 ft, 50 ft gear)</title>
 <style>
   @page { size: 12in 12in; margin: 0; }
   html, body { margin: 0; padding: 0; background: #fff; }
@@ -30,14 +30,15 @@ function txt(x, y, str, attrs = {}, parent = svg) {
   return t;
 }
 
-// 1 in = 5 ft = 96 SVG units. Page: 12×12 in = 1152×1152.
+// 1 in = 5 ft = 96 SVG units. Page: 12×12 in = 1152×1152, tight to content. Gear: 50 ft = 10 squares.
+// Print shop: run at 100% / actual size on larger stock — do not fit to page.
 // Physical floor only — planar door and rod are overlaid at the table (fixed, don't rotate with the map).
 const CELL = 96;
 const COLS = 10, ROWS = 10;
-const PAGE = 1152;
+const PAGE_W = 1152, PAGE_H = 1152;
 const W = COLS * CELL, H = ROWS * CELL;
-const OX = (PAGE - W) / 2, OY = (PAGE - H) / 2;
-const CX = PAGE / 2, CY = PAGE / 2, R = W / 2;
+const OX = (PAGE_W - W) / 2, OY = (PAGE_H - H) / 2;
+const CX = PAGE_W / 2, CY = PAGE_H / 2, R = W / 2;
 const R_INNER = R - 10;
 const INK = '#000';
 
@@ -46,7 +47,7 @@ const defs = el('defs');
 const clip = el('clipPath', { id: 'gridClip' }, defs);
 el('circle', { cx: CX, cy: CY, r: R_INNER }, clip);
 
-el('rect', { x: 0, y: 0, width: PAGE, height: PAGE, fill: '#fff' });
+el('rect', { x: 0, y: 0, width: PAGE_W, height: PAGE_H, fill: '#fff' });
 
 // --- Grid lines, ending at the inner circle ---
 const gClipped = el('g', { 'clip-path': 'url(#gridClip)' });
@@ -88,10 +89,10 @@ el('circle', { cx: CX, cy: CY, r: 10, fill: 'none', stroke: INK, 'stroke-width':
 
 // --- Coordinates in the margin ---
 for (let i = 0; i < COLS; i++) {
-  txt(OX + i * CELL + CELL / 2, PAGE - 18, String(i + 1), { fill: INK, 'font-size': 18 });
+  txt(OX + i * CELL + CELL / 2, OY + H + 78, String(i + 1), { fill: INK, 'font-size': 18 });
 }
 for (let i = 0; i < ROWS; i++) {
-  txt(26, OY + i * CELL + CELL / 2 + 6, String.fromCharCode(65 + i), { fill: INK, 'font-size': 18 });
+  txt(OX - 70, OY + i * CELL + CELL / 2 + 6, String.fromCharCode(65 + i), { fill: INK, 'font-size': 18 });
 }
 </script>
 

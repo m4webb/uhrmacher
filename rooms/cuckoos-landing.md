@@ -15,7 +15,7 @@ The top of the tower, open and exposed. The floor is a single massive gear (25 f
 
 ## Battlefield Details
 
-See `adventure-summary.md` Act III and `props/battlefield.html` for full combat mechanics and battlefield layout.
+See `adventure-summary.md` Act III and `props/cuckoos_landing_guide.html` for full combat mechanics and battlefield layout (`props/cuckoos_landing_map.html` is the print battle map).
 
 ## Image Prompt
 

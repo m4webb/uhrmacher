@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cuckoo's Landing — DM Reference (letter)</title>
+<style>
+  @page { size: letter; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  svg { display: block; width: 8.5in; height: 10.84in; margin: 0 auto; }
+  text { font-family: 'Liberation Mono', monospace; }
+</style>
+</head>
+<body>
+
+<svg id="map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1152 1470"></svg>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('map');
+
+function el(name, attrs = {}, parent = svg) {
+  const n = document.createElementNS(NS, name);
+  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  parent.appendChild(n);
+  return n;
+}
+function txt(x, y, str, attrs = {}, parent = svg) {
+  const t = el('text', Object.assign({ x, y, 'text-anchor': 'middle' }, attrs), parent);
+  t.textContent = str;
+  return t;
+}
+
+// Same map geometry as battlefield-map.html (the print map), plus DM effect-zone overlays.
+const CELL = 96;
+const COLS = 10, ROWS = 10;
+const PAGE_W = 1152;
+const W = COLS * CELL, H = ROWS * CELL;
+const OX = (PAGE_W - W) / 2, OY = 96;
+const CX = OX + W / 2, CY = OY + H / 2, R = W / 2;
+const R_INNER = R - 10;
+const INK = '#000';
+
+// --- Zone geometry (in 5 ft units) ---
+function inGear(col, row) {
+  const cL = col * 5, cT = row * 5, cR = cL + 5, cB = cT + 5;
+  const px = Math.max(cL, Math.min(25, cR));
+  const py = Math.max(cT, Math.min(25, cB));
+  return Math.hypot(px - 25, py - 25) <= 25;
+}
+function inCone(col, row) {
+  if (row <= 5) return false;
+  const dist = row - 5;
+  if (dist > 6) return false;
+  return col >= 4 - dist && col <= 5 + dist;
+}
+function isImpact(col, row) { return row <= 3 && col >= 4 && col <= 5 && inGear(col, row); }
+function isCuckoo(col, row) { return row >= 4 && row <= 5 && col >= 4 && col <= 5; }
+
+// --- Defs: hatch patterns + grid clip ---
+const defs = el('defs');
+function hatchPattern(id, size, paths, strokeWidth) {
+  const p = el('pattern', { id, width: size, height: size, patternUnits: 'userSpaceOnUse' }, defs);
+  for (const d of paths) el('path', { d, stroke: INK, 'stroke-width': strokeWidth, fill: 'none' }, p);
+}
+hatchPattern('impact', 12, ['M12 0 L0 12', 'M14 10 L10 14', 'M2 -2 L-2 2'], 1.2);   // 135°
+hatchPattern('cone', 12, ['M0 0 L12 12', 'M-2 10 L2 14', 'M10 -2 L14 2'], 1.2);     // 45°
+hatchPattern('cuckoo', 7, ['M0 0 L7 7', 'M7 0 L0 7'], 1);                            // crosshatch
+const clip = el('clipPath', { id: 'gridClip' }, defs);
+el('circle', { cx: CX, cy: CY, r: R_INNER }, clip);
+
+el('rect', { x: 0, y: 0, width: PAGE_W, height: 1470, fill: '#fff' });
+
+// --- Zone fills + grid, clipped to the inner ring ---
+const gClipped = el('g', { 'clip-path': 'url(#gridClip)' });
+for (let row = 0; row < ROWS; row++) {
+  for (let col = 0; col < COLS; col++) {
+    if (!inGear(col, row)) continue;
+    let fill = null;
+    if (isCuckoo(col, row)) fill = 'url(#cuckoo)';
+    else if (isImpact(col, row)) fill = 'url(#impact)';
+    else if (inCone(col, row)) fill = 'url(#cone)';
+    if (fill) el('rect', { x: OX + col * CELL, y: OY + row * CELL, width: CELL, height: CELL, fill }, gClipped);
+  }
+}
+for (let i = 0; i <= COLS; i++) {
+  el('line', { x1: OX + i * CELL, y1: OY, x2: OX + i * CELL, y2: OY + H, stroke: INK, 'stroke-width': 1 }, gClipped);
+}
+for (let i = 0; i <= ROWS; i++) {
+  el('line', { x1: OX, y1: OY + i * CELL, x2: OX + W, y2: OY + i * CELL, stroke: INK, 'stroke-width': 1 }, gClipped);
+}
+
+// --- Zone boundaries ---
+for (const c of [4, 6]) {
+  el('line', { x1: OX + c * CELL, y1: OY + 8, x2: OX + c * CELL, y2: OY + 4 * CELL,
+    stroke: INK, 'stroke-width': 3, 'stroke-dasharray': '14 8' }, gClipped);
+}
+for (const dir of [-1, 1]) {
+  el('line', {
+    x1: OX + (5 + dir) * CELL, y1: OY + 6 * CELL,
+    x2: OX + (5 + 5 * dir) * CELL, y2: OY + 10 * CELL,
+    stroke: INK, 'stroke-width': 3, 'stroke-dasharray': '14 8' }, gClipped);
+}
+el('rect', { x: OX + 4 * CELL, y: OY + 4 * CELL, width: 2 * CELL, height: 2 * CELL,
+  fill: 'none', stroke: INK, 'stroke-width': 5 });
+
+// --- Gear silhouette: continuous outline, identical to print map ---
+const numTeeth = 32;
+const stepDeg = 360 / numTeeth;
+function toothPts(aDeg) {
+  const a = aDeg * Math.PI / 180;
+  const px = CX + Math.cos(a) * R, py = CY + Math.sin(a) * R;
+  const rot = (aDeg + 90) * Math.PI / 180;
+  const c = Math.cos(rot), s = Math.sin(rot);
+  return [[-23.5, 0], [-15, -45], [15, -45], [23.5, 0]]
+    .map(([x, y]) => [px + x * c - y * s, py + x * s + y * c].map(v => v.toFixed(2)));
+}
+let d = '';
+for (let i = 0; i < numTeeth; i++) {
+  const [bl, tl, tr, br] = toothPts(i * stepDeg);
+  d += (i === 0 ? `M ${bl}` : ` A ${R} ${R} 0 0 1 ${bl}`);
+  d += ` L ${tl} L ${tr} L ${br}`;
+}
+d += ` A ${R} ${R} 0 0 1 ${toothPts(0)[0]} Z`;
+el('path', { d, fill: 'none', stroke: INK, 'stroke-width': 4 });
+el('circle', { cx: CX, cy: CY, r: R_INNER, fill: 'none', stroke: INK, 'stroke-width': 1.5 });
+
+// --- Rod: double line from rim to cuckoo footprint ---
+const rodX = OX + 5 * CELL;
+for (const dx of [-5, 5]) {
+  el('line', { x1: rodX + dx, y1: CY - R + 6, x2: rodX + dx, y2: OY + 4 * CELL, stroke: INK, 'stroke-width': 2.5 });
+}
+
+// --- Planar aperture: black block on the rim ---
+const apW = 2 * CELL + 20, apH = 40;
+const apX = CX - apW / 2, apY = CY - R - apH + 6;
+el('rect', { x: apX, y: apY, width: apW, height: apH, fill: INK });
+txt(CX, apY + apH / 2 + 6, 'PLANAR DOOR', { fill: '#fff', 'font-size': 19, 'letter-spacing': 3, 'font-weight': 700 });
+
+// --- Zone labels on white plates ---
+function plate(x, y, w, h, lines, fontSize) {
+  el('rect', { x: x - w / 2, y: y - h / 2, width: w, height: h, fill: '#fff', stroke: INK, 'stroke-width': 1.5 });
+  const lh = fontSize + 6;
+  const y0 = y - ((lines.length - 1) * lh) / 2 + fontSize * 0.35;
+  lines.forEach((s, i) => txt(x, y0 + i * lh, s, { fill: INK, 'font-size': fontSize, 'letter-spacing': 2, 'font-weight': 700 }));
+}
+plate(CX, OY + 2 * CELL, 150, 62, ['IMPACT', 'PATH'], 20);
+plate(CX, CY, 158, 62, ['CUCKOO', '10×10 FT'], 20);
+plate(CX, OY + 7.5 * CELL, 210, 62, ['BELLOWS CONE', '30 FT'], 20);
+
+// --- Coordinates ---
+for (let i = 0; i < COLS; i++) {
+  txt(OX + i * CELL + CELL / 2, OY + H + 78, String(i + 1), { fill: INK, 'font-size': 18 });
+}
+for (let i = 0; i < ROWS; i++) {
+  txt(OX - 70, OY + i * CELL + CELL / 2 + 6, String.fromCharCode(65 + i), { fill: INK, 'font-size': 18 });
+}
+
+// --- Legend + rules ---
+txt(PAGE_W / 2, 1204, "CUCKOO'S LANDING — DM REFERENCE", { fill: INK, 'font-size': 26, 'font-weight': 700, 'letter-spacing': 3 });
+
+const LEGEND = [
+  { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: '#fff', stroke: INK, 'stroke-width': 1.5 }, g),
+    label: 'Gear floor (5 ft square)' },
+  { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: 'url(#cuckoo)', stroke: INK, 'stroke-width': 3 }, g),
+    label: 'Cuckoo (10×10 ft, Large, restrained)' },
+  { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: 'url(#impact)', stroke: INK, 'stroke-width': 1.5, 'stroke-dasharray': '6 4' }, g),
+    label: 'Rod impact path (DEX save, emerge/retract)' },
+  { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: 'url(#cone)', stroke: INK, 'stroke-width': 1.5, 'stroke-dasharray': '6 4' }, g),
+    label: 'Bellows cone (DC 14 CON, on-rounds)' },
+  { swatch: g => { el('rect', { x: 0, y: 0, width: 38, height: 38, fill: '#fff', stroke: INK, 'stroke-width': 1 }, g);
+      for (const dx of [14, 24]) el('line', { x1: dx, y1: 2, x2: dx, y2: 36, stroke: INK, 'stroke-width': 2.5 }, g); },
+    label: 'Rod (on grid line, indestructible)' },
+  { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: INK }, g),
+    label: 'Planar aperture (blocked while cuckoo out)' },
+];
+const LY = 1240;
+const legColX = [64, 616];
+LEGEND.forEach((item, i) => {
+  const x = legColX[i % 2], y = LY + Math.floor(i / 2) * 58;
+  const g = el('g', { transform: `translate(${x} ${y})` });
+  item.swatch(g);
+  txt(x + 50, y + 26, item.label, { fill: INK, 'font-size': 18, 'text-anchor': 'start' });
+});
+
+txt(PAGE_W / 2, LY + 3 * 58 + 24, 'Gear rotates 90° clockwise at Initiative 20 (lair action)',
+  { fill: INK, 'font-size': 21, 'font-weight': 700 });
+txt(PAGE_W / 2, LY + 3 * 58 + 54, 'Cone direction is fixed — rotation moves players into and out of the blast zone',
+  { fill: INK, 'font-size': 19 });
+</script>
+
+</body>
+</html>
