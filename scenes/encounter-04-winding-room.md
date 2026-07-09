@@ -1,4 +1,4 @@
-# Encounter — Gear Room
+# Encounter — Winding Room
 
 **Difficulty:** Hard by geometry, not by numbers. On paper the golem is Easy for 8 level 3 PCs (900 adjusted XP) — action economy would demolish it in an open room. The map is the difficulty: chokepoint lanes limit engagement to 1-2 PCs at a time, making the golem's ~34 avg DPR a real threat to whoever is exposed. No additional enemies needed.
 
@@ -13,7 +13,7 @@
 |----|-----|-------|--------|--------|---------|
 | 9 | 127 | 30 ft | +7 to hit (x2) | 13 (2d8+4) bludgeoning + 4 (1d8) lightning per slam | — |
 
-**Start position:** G8 (east mid-band) — caged behind the gears at encounter start, released by the first effective chain pull.
+**Start position:** G8 (east mid-band) — caged behind the counterweights at encounter start, released by the first effective chain pull.
 
 **Immunities:** Lightning, Poison; Charmed, Exhaustion, Frightened, Paralyzed, Petrified, Poisoned
 **Aversion to Fire:** Fire damage → disadvantage on attacks/checks until end of next turn
@@ -51,22 +51,23 @@ Puzzle-map approach: the room itself limits how many PCs can face the golem.
 - **Long rectangular room, 9 × 14 squares (45 × 70 ft)**; entrance at one end; back splits in two: west+center lanes feed the **4×3 backroom** (cols 2-5; the mounting cradle is a circular frame centered on the A/B–3/4 grid intersection), the east lane dead-ends in a **deserted corner where Fritz lives** — the two are walled off from each other, keeping the two-column machinery rhythm between lanes
 - **Three main lanes** run the length of the room through the machinery, with two static crossings (J3-J4 west↔center, G6-G7 center↔east)
 - Lanes are 1 square wide (single file); the golem is Medium and fits in the lanes — it can chase, and only the front PC can engage it in a lane
-- **Main mechanic: sliding gears + pull-chains (decided, v2).**
-  - **Four 3-wide sliding gears** on tracks at two levels (rows E and I). Each always blocks its outer lane or the shared middle — sliding one square swaps which. The middle slot is shared per level: if one gear occupies it, the other physically **jams** and cannot slide in
+- **Main mechanic: sliding counterweights + pull-chains (decided, v2 — reskinned from gears).**
+  - **Four massive drive counterweights** — wardrobe-sized iron blocks, 3 squares wide — sit in floor-level rail bays at two levels (rows E and I). Each always blocks its outer lane or the shared middle bay — one square of travel swaps which. The middle bay is shared per level: if one weight occupies it, the other physically **jams** and cannot slide in
+  - **Why weights, not gears:** keeps THE Gear (and its empty cradle) the only gear that matters in this room; counterweights are what chains actually move in a clock
   - **Invariant:** each level always has exactly one lane open. "Sealing" the maze means mismatching the levels, not closing everything
-  - **Eight pull-chains** hang from the ceiling, scattered (never beside their own gear): one chain per gear per direction — no chain does double duty. Pulling costs an **action**; chains are reusable (they grind or jam with audible flavor when the move is impossible)
-  - **Tracing:** a chain's linkage runs up into the works; action + easy Investigation follows it to its gear and direction (back-rank job)
-  - **Caught in a sliding gear's path:** DEX save, dive to an adjacent open square; fail = 1d6 bludgeoning + prone
+  - **Eight pull-chains** hang from the ceiling, scattered (never beside their own weight): one chain per weight per direction — no chain does double duty. Pulling costs an **action**; chains are reusable (they grind or jam with audible flavor when the move is impossible)
+  - **Tracing:** a chain's rigging runs up into the works; action + easy Investigation follows it to its weight and direction (back-rank job)
+  - **Caught in a sliding weight's path:** DEX save, dive to an adjacent open square; fail = 1d6 bludgeoning + prone
   - **Golem:** never damages machinery, so blocked lanes genuinely stop it — it reroutes or waits
-  - **Only chains move gears, and anyone can pull them** — players, Fritz, the golem. Fritz and the golem are ordinary actors: they walk and they pull. No special traversal for anybody
+  - **Only chains move the weights, and anyone can pull them** — players, Fritz, the golem. Fritz and the golem are ordinary actors: they walk and they pull. No special traversal for anybody
   - **The pair can leave AND fully re-arm (sim-verified, P7/P7b):** from the starting configuration, Fritz and the golem acting in tandem can walk out using only chain pulls (C8, B4, G2, C3, L2 — Fritz self-seals, the golem loops the maze and frees him), and on returning home the golem's final pull of **G6 — the chain at the crossing beside its post — restores the exact starting configuration around them.** The room is found sealed because the golem seals itself into its cage, every time they come home
   - **Fritz has no control panel.** His one lever is the C8 chain hanging beside his corner: he can pull it himself — sealing himself in and revealing the way to the cradle. The social path's payoff is Fritz choosing to do this
-  - **Flavor:** the lanes are service galleries (the Tickwichtel's runs), never meant for people; the chains are the tower's own maintenance rigging
+  - **Flavor:** the lanes are service galleries (the Tickwichtel's runs), never meant for people; the chains are the tower's winding rigging, and the weights they shunt are the clock's own drive weights parked in their bays
 - Dense machinery blocks ranged sightlines except along open lanes — no plinking from the entrance
 - **No round-based timing effects** — that gimmick is reserved for Act III's rotating gear floor
 - Players not facing the golem work the maze: tracing chains, relaying positions, climbing/squeezing through the works (Athletics/Acrobatics)
 
-## Layout v2 (sim-verified — `tools/gear_room_sim.py`, interactive: `tools/gear_room_sim.html`)
+## Layout v2 (sim-verified — `tools/winding_room_sim.py`, interactive: `tools/winding_room_sim.html`)
 
 ```
       1  2  3  4  5  6  7  8  9
@@ -74,11 +75,11 @@ Puzzle-map approach: the room itself limits how many PCs can face the golem.
   B   ▓  .  .  ⛓  .  ▓  .  .  ▓     B4: UW→mid · f Fritz's camp (2×2 home, A7–B8, walled off at col 6)
   C   ▓  .  ⛓  .  .  ▓  ▓  ⛓  ▓     C3: UW→west · C8: UE→east (Fritz's chain)
   D   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
-  E   ▓  ═  ═  ═  ═  ═  ═  ═  ▓     UPPER TRACK — UW blocks E2 or E5 · UE blocks E8 or E5
+  E   ▓  ═  ═  ═  ═  ═  ═  ═  ▓     UPPER RAIL — weight UW blocks E2 or E5 · weight UE blocks E8 or E5
   F   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
   G   ▓  ⛓  ▓  ▓  |  ⛓  .  Ⓖ  ▓     G2: LW→west · G6: LW→mid (re-arm) · G7 crossing · Ⓖ golem start (G8)
   H   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
-  I   ▓  ═  ═  ═  ═  ═  ═  ═  ▓     LOWER TRACK — LW blocks I2 or I5 · LE blocks I8 or I5
+  I   ▓  ═  ═  ═  ═  ═  ═  ═  ▓     LOWER RAIL — weight LW blocks I2 or I5 · weight LE blocks I8 or I5
   J   ▓  |  .  .  |  ▓  ▓  |  ▓     J3-J4 crossing
   K   ▓  ⛓  ▓  ▓  |  ▓  ▓  |  ▓     K2: LE→east
   L   ▓  ⛓  ▓  ▓  |  ▓  ▓  |  ▓     L2: UE→mid
@@ -99,14 +100,14 @@ Puzzle-map approach: the room itself limits how many PCs can face the golem.
 | L2 | west low | UE → middle | opens upper east, closes upper middle |
 | C8 | east approach, Fritz's corner | UE → east | opens upper middle, **seals E8 behind the puller** — critical path; Fritz can pull it himself |
 
-**Verified properties** (all machine-checked in `tools/gear_room_sim.py`):
+**Verified properties** (all machine-checked in `tools/winding_room_sim.py`):
 - Sealed at start; minimum 2 pulls to any route (`G2` → `C8`)
 - Teaching funnel: exactly one effective first pull (`G2`); the rest grind or jam informatively
 - Golem starts caged in the mid-band at G8 — a chain-less monster zone whose territory guards the critical C8 chain
 - First pull traps its puller AND releases the golem, simultaneously
 - Tolls: the critical-path pulls cost their pullers position (G2 → the gallery, C8 → Fritz's corner)
 - Golem re-seal exists — the "west parade" victory: both levels open west, party walks past the caged golem
-- Paired-chain separation: no gear's two chains can be pocketed by a single seal — no unrecoverable states (0 doomed; 32 recoverable pocket events)
+- Paired-chain separation: no weight's two chains can be pocketed by a single seal — no unrecoverable states (0 doomed; 32 recoverable pocket events)
 - **P7/P7b tandem commute with full re-arm:** Fritz + the golem can walk out using only chain pulls (5 pulls: C8, B4, G2, C3, L2) and return home, with the golem's final pull of G6 restoring the exact starting configuration — it seals itself into its cage; no special powers, fully self-consistent fiction
 
 ## Environment

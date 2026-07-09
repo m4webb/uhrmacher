@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""State-space verification for the gear room sliding-gear puzzle (v2, pull-chains).
+"""State-space verification for the winding room counterweight puzzle (v2, pull-chains).
 
-Model: four 3-wide gears at two levels (rows E and I); each pokes into its outer
-lane ('out') or the shared middle ('mid'); both gears of a level cannot be 'mid'
-(jam). Chains are reusable, one per gear per direction, pulling costs an action.
+Model: four 3-wide counterweights at two levels (rows E and I); each pokes into its outer
+lane ('out') or the shared middle ('mid'); both weights of a level cannot be 'mid'
+(jam). Chains are reusable, one per weight per direction, pulling costs an action.
 
 Party analysis uses an occupancy abstraction (8 players ~ unlimited tokens).
 Pair analysis (P7) is an exact two-actor search: Fritz and the golem are two
@@ -159,7 +159,7 @@ def _pair_search(chains, goal_fn, want_path=False):
                 if nc is not None:
                     nw, _ = wm(nc)
                     oth = other
-                    if oth not in nw:  # gear slid onto the other actor: step aside
+                    if oth not in nw:  # weight slid onto the other actor: step aside
                         opts = sorted(neighbors(oth, nw))
                         oth = opts[0] if opts else None
                     if oth is not None:

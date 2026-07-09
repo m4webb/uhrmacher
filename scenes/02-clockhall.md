@@ -36,7 +36,7 @@ The front door opens into a room that can't decide what it is. A cold hearth and
 ## Secrets
 
 - Hidden door in the wood paneling leads to the Uhrmacher's Study (DC 14 Investigation, or DC 12 if specifically searching the walls)
-- Trapdoor/stairs down to the Gear Room — visible but Pendel directs them upstairs first
+- Trapdoor/stairs down to the Winding Room — visible but Pendel directs them upstairs first
 - Pendel's weed and self-chosen name are signs of going rogue
 - The moss and fungus the monodrones are cleaning out is Linde's sabotage — players won't know this until they meet her
 - **Back window:** Players who scout the exterior before entering can spot a window on the back of the tower — leads directly into the Uhrmacher's Study, bypassing the Clockhall entirely
@@ -53,11 +53,11 @@ On the workbench, partially buried under modron work orders. An optimistic lette
 
 - **Outside:** Front door (back to the Tiefenwald path)
 - **Up:** Staircase to the Bellows Chamber
-- **Down:** Stairs/trapdoor to the Gear Room
+- **Down:** Stairs/trapdoor to the Winding Room
 - **Side:** Hidden door to the Uhrmacher's Study
 
 ---
 
 ## Transition
 
-Pendel directs the party upstairs to clear the bellows. Players may also explore the room, find the letter, discover the hidden door, or go down to the Gear Room on their own.
+Pendel directs the party upstairs to clear the bellows. Players may also explore the room, find the letter, discover the hidden door, or go down to the Winding Room on their own.

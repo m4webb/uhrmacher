@@ -60,8 +60,8 @@ Players arrive at the village Gasthaus, responding to the Bürgermeister's pest 
 
 - **Frau Eichenwald (School Teacher)** — Worried about the conformity; admits many townsfolk are happy about the changes, but she sees the cost to individuality
 - **Moosfräulein Linde (Moss Woman, disguised)** — Green hag statblock, reskinned as Tiefenwald moss women (CN). Appears in the Uhrmacher's study using Illusory Appearance. Opposes modrons because their order is killing the wild forest. If players side with the modrons, she leaves and returns with her coven (3 moss women) + fey minions in Act III
-- **Pendel (Quadrone, near-rogue)** — Modron overseer managing the tower, working to fulfill the contract. Directs the party to clear the pest room and recover the Gear, then to install it in the gear room below. Social encounter, not combat. On the verge of going rogue; players may befriend and push it fully rogue on the desired path.
-- **Fritz (Young Disabled Boy)** — Stowaway living in the tower; his leg started working again due to the tower's influence. Camped near the Gear installation point in the gear room. Controls a gear golem (flesh golem statblock) that protects him. Skeptical of everyone — doesn't know the Gear is needed for the tower to continue, but wouldn't let anyone harm the tower. Players can persuade, deceive, or fight past the golem. Multiple roleplay approaches possible.
+- **Pendel (Quadrone, near-rogue)** — Modron overseer managing the tower, working to fulfill the contract. Directs the party to clear the pest room and recover the Gear, then to install it in the winding room below. Social encounter, not combat. On the verge of going rogue; players may befriend and push it fully rogue on the desired path.
+- **Fritz (Young Disabled Boy)** — Stowaway living in the tower; his leg started working again due to the tower's influence. Camped near the Gear installation point in the winding room. Controls a gear golem (flesh golem statblock) that protects him. Skeptical of everyone — doesn't know the Gear is needed for the tower to continue, but wouldn't let anyone harm the tower. Players can persuade, deceive, or fight past the golem. Multiple roleplay approaches possible.
 
 ### Key Locations
 
@@ -71,7 +71,7 @@ Players arrive at the village Gasthaus, responding to the Bürgermeister's pest 
 
 2. **Clockhall** (ground, front door) — Living quarters + mechanical heart of the tower. Entry point; meet Pendel, receive quest to clear bellows and recover the Gear
 3. **Bellows Chamber** (upper) — Combat encounter; stirges that infested the tower's bellows while it lay dormant (per Art. III §3.2 — fauna nesting in the mechanism). The bellows feed air up through pipes to the cuckoo at the apex, powering its call. Clearing the pests directly enables the cuckoo's breath weapon in Act III. Recover the Gear (the Cross-Planar Regulation Gear, contract §1.2, disconnected by the Uhrmacher)
-4. **Gear Room** (below) — Install the Gear. Fritz is camped near the installation point with his gear golem protecting him
+4. **Winding Room** (below) — Install the Gear. Fritz is camped near the installation point with his gear golem protecting him
 5. **Uhrmacher's Study** (ground, hidden) — Find the contract, meet the moss woman; branching point for desired vs. alternate path. Accessible via hidden door in Clockhall (modrons ignored it — not mechanically relevant) OR via window on the back exterior of the tower (alternate entry for players who scout outside before going in the front door)
 6. **Cuckoo's Landing** (apex) — Final confrontation; planar aperture
 
@@ -93,7 +93,7 @@ Players arrive at the village Gasthaus, responding to the Bürgermeister's pest 
 ### Combat Encounters
 
 1. **Bellows Chamber** — 6 stirges + 2 swarms of stirges (Hard, ~2,100 adjusted XP). Individuals scattered on entry; one swarm erupts from each bellows when cleared. Players must clear both to restore air channels. Enables the cuckoo's breath weapon in Act III (bellows are the lungs, cuckoo is the mouth)
-2. **Gear Room** — Gear golem protects Fritz, who is camped near the Gear installation point. Players can fight the golem, persuade Fritz, or deceive him (multiple solutions)
+2. **Winding Room** — Gear golem protects Fritz, who is camped near the Gear installation point. Players can fight the golem, persuade Fritz, or deceive him (multiple solutions)
 3. **Cuckoo's Landing** — Final boss fight (see Act III)
 
 ### Act III — Cuckoo's Landing (~20-25% of session)

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Gear Room — Sliding Gear Simulator (v2)</title>
+<title>Winding Room — Counterweight Simulator (v2)</title>
 <style>
   body { font-family: 'Liberation Mono', monospace; background: #f4f4f4; margin: 0; padding: 20px;
          display: flex; gap: 28px; align-items: flex-start; }
@@ -27,15 +27,16 @@
 <div id="mapwrap"><svg id="map" xmlns="http://www.w3.org/2000/svg" width="430" height="640" viewBox="0 0 430 640"></svg></div>
 
 <div id="panel">
-  <h1>GEAR ROOM — SLIDING GEARS (v2)</h1>
-  <div class="hint">Four sliding gears at two levels. Each sits between lanes and always blocks one lane
-    or the middle. The middle slot is shared — if it's occupied, the other gear cannot slide in.
-    Eight pull-chains hang from the ceiling, scattered around the room (never beside their own gear).
-    Each chain moves ONE gear ONE direction; the reverse is another chain. Pulling costs an action.</div>
+  <h1>WINDING ROOM — COUNTERWEIGHTS (v2)</h1>
+  <div class="hint">Four massive drive counterweights slide in rail bays at two levels. Each always
+    blocks its outer lane or the middle bay. The middle bay is shared — if it's occupied, the other
+    weight cannot slide in. Eight pull-chains hang from the ceiling, scattered around the room (never
+    beside their own weight). Each chain moves ONE weight ONE direction; the reverse is another chain.
+    Pulling costs an action.</div>
 
   <h2>PULL-CHAINS (party — 1 action each)</h2>
   <div id="plates"></div>
-  <div class="hint">Chain labels: gear + direction, e.g. "LW→" slides the lower-west gear toward the
+  <div class="hint">Chain labels: weight + direction, e.g. "LW→" slides the lower-west weight toward the
     middle. Blue shading = squares reachable from the entrance; a chain someone can't reach can't be pulled.</div>
 
   <div class="hint">Fritz has no control panel — but the C8 chain hangs beside his corner.
@@ -70,9 +71,9 @@ for (let c = 2; c <= 5; c++) { base.add("A" + c); base.add("B" + c); }  // backr
 const MARKS = { A7: "f", N5: "▲", G8: "Ⓖ" };  // Ⓖ = golem start · f = Fritz's camp
 const START = "N5", GOAL = "A4";
 
-// --- Gears: two per level, sharing the middle slot ---
-// west gear: position 'west' (covers lane col 2) or 'mid' (covers lane col 5)
-// east gear: position 'east' (covers lane col 8) or 'mid' (covers lane col 5)
+// --- Counterweights: two per level, sharing the middle bay ---
+// west weight: position 'west' (covers lane col 2) or 'mid' (covers lane col 5)
+// east weight: position 'east' (covers lane col 8) or 'mid' (covers lane col 5)
 const LEVELS = { U: { row: "E", plateRow: "F" }, L: { row: "I", plateRow: "J" } };
 let gears;
 function resetState() {
@@ -107,34 +108,34 @@ function reachable() {
   return seen;
 }
 
-// --- Gear movement (shared-middle jam enforced) ---
+// --- Weight movement (shared-middle jam enforced) ---
 const GNAME = { Uw: "upper-west", Ue: "upper-east", Lw: "lower-west", Le: "lower-east" };
 function slideTo(lv, side, target, who) {
   const g = gears[lv], name = GNAME[lv + side];
   const own = side === "w" ? "west" : "east";
   const cur = g[side], partner = side === "w" ? g.e : g.w;
   if (target === "mid") {
-    if (cur === "mid") { log(`${who}: grinds — ${name} gear is already in the middle`); return; }
-    if (partner === "mid") { log(`${who}: ${name} gear JAMS — middle slot occupied`); return; }
+    if (cur === "mid") { log(`${who}: grinds — ${name} weight is already in the middle`); return; }
+    if (partner === "mid") { log(`${who}: ${name} weight JAMS — middle bay occupied`); return; }
     g[side] = "mid";
-    log(`${who}: ${name} gear slides ${own.toUpperCase()} → MIDDLE (${own} lane clears, center blocks)`);
+    log(`${who}: ${name} weight slides ${own.toUpperCase()} → MIDDLE (${own} lane clears, center blocks)`);
   } else {
-    if (cur !== "mid") { log(`${who}: grinds — ${name} gear is already at ${own.toUpperCase()}`); return; }
+    if (cur !== "mid") { log(`${who}: grinds — ${name} weight is already at ${own.toUpperCase()}`); return; }
     g[side] = own;
-    log(`${who}: ${name} gear slides MIDDLE → ${own.toUpperCase()} (center clears, ${own} lane blocks)`);
+    log(`${who}: ${name} weight slides MIDDLE → ${own.toUpperCase()} (center clears, ${own} lane blocks)`);
   }
 }
 
-// --- Pull-chains: one per gear per direction, scattered (never beside their own gear) ---
+// --- Pull-chains: one per weight per direction, scattered (never beside their own weight) ---
 const CHAINS = {
-  G2: { lv: "L", side: "w", to: "out", desc: "lower-west gear → WEST (clears lower middle)" },
-  G6: { lv: "L", side: "w", to: "mid", desc: "lower-west gear → MIDDLE (clears lower west lane) — cage crossing, re-arm chain" },
-  M3: { lv: "L", side: "e", to: "mid", desc: "lower-east gear → MIDDLE (clears lower east lane)" },
-  K2: { lv: "L", side: "e", to: "out", desc: "lower-east gear → EAST (clears lower middle)" },
-  B4: { lv: "U", side: "w", to: "mid", desc: "upper-west gear → MIDDLE (clears upper west lane) — backroom" },
-  C3: { lv: "U", side: "w", to: "out", desc: "upper-west gear → WEST (clears upper middle) — backroom" },
-  L2: { lv: "U", side: "e", to: "mid", desc: "upper-east gear → MIDDLE (clears upper east lane)" },
-  C8: { lv: "U", side: "e", to: "out", desc: "upper-east gear → EAST (clears upper middle; seals E8 behind you)" },
+  G2: { lv: "L", side: "w", to: "out", desc: "lower-west weight → WEST (clears lower middle)" },
+  G6: { lv: "L", side: "w", to: "mid", desc: "lower-west weight → MIDDLE (clears lower west lane) — cage crossing, re-arm chain" },
+  M3: { lv: "L", side: "e", to: "mid", desc: "lower-east weight → MIDDLE (clears lower east lane)" },
+  K2: { lv: "L", side: "e", to: "out", desc: "lower-east weight → EAST (clears lower middle)" },
+  B4: { lv: "U", side: "w", to: "mid", desc: "upper-west weight → MIDDLE (clears upper west lane) — backroom" },
+  C3: { lv: "U", side: "w", to: "out", desc: "upper-west weight → WEST (clears upper middle) — backroom" },
+  L2: { lv: "U", side: "e", to: "mid", desc: "upper-east weight → MIDDLE (clears upper east lane)" },
+  C8: { lv: "U", side: "e", to: "out", desc: "upper-east weight → EAST (clears upper middle; seals E8 behind you)" },
 };
 function chainLabel(sq) {
   const c = CHAINS[sq];
@@ -142,7 +143,7 @@ function chainLabel(sq) {
   const arrow = c.side === "w" ? (c.to === "mid" ? "→" : "←") : (c.to === "mid" ? "←" : "→");
   return gear + arrow;
 }
-function chainStatus(sq) {   // ok = pull moves the gear; jam = middle occupied; noop = already there
+function chainStatus(sq) {   // ok = pull moves the weight; jam = middle occupied; noop = already there
   const c = CHAINS[sq], g = gears[c.lv];
   const cur = g[c.side], partner = c.side === "w" ? g.e : g.w;
   if (c.to === "mid") {
@@ -204,10 +205,10 @@ function render() {
       if (MARKS[cell]) el("text", { x: x + CELL/2, y: y + CELL/2 + 5, "text-anchor": "middle", "font-size": 15 }).textContent = MARKS[cell];
     }
   }
-  // gears on top of tracks
+  // counterweights on their rails
   for (const [lv, g] of Object.entries(gears)) {
     const r = ROWS.indexOf(LEVELS[lv].row), y = OY + r * CELL;
-    const blocks = [  // 3-wide gears: bank + one square poking into a lane or the middle
+    const blocks = [  // 3-wide counterweights: bank + one square poking into a lane or the middle
       { c0: g.w === "west" ? 2 : 3, label: lv + "W" },
       { c0: g.e === "east" ? 6 : 5, label: lv + "E" },
     ];
@@ -216,7 +217,7 @@ function render() {
       el("rect", { x: x + 2, y: y + 2, width: 3 * CELL - 4, height: CELL - 4, rx: 8,
                    fill: "#6a6a6a", stroke: "#000", "stroke-width": 2 });
       el("text", { x: x + 1.5 * CELL, y: y + CELL/2 + 5, "text-anchor": "middle", "font-size": 13, fill: "#fff", "font-weight": 700 })
-        .textContent = "⚙ " + b.label;
+        .textContent = b.label;
     }
   }
   // cradle: circular frame centered on the A/B - 3/4 grid intersection

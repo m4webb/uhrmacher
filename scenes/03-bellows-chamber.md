@@ -35,7 +35,7 @@ Wedged into a maintenance alcove near one of the bellows. Later entries in a sha
 
 ## Transition
 
-Party clears the bellows, recovers the Gear. Return downstairs through the Clockhall to install it in the Gear Room below. Second pass through the Clockhall — another chance to talk to Pendel, notice the hidden door.
+Party clears the bellows, recovers the Gear. Return downstairs through the Clockhall to install it in the Winding Room below. Second pass through the Clockhall — another chance to talk to Pendel, notice the hidden door.
 
 ---
 

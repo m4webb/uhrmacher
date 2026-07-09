@@ -13,7 +13,7 @@ The front door opens directly into the main room of the tower. A living space an
 
 - **In:** Front door (main entry)
 - **Up:** Staircase to the Bellows Chamber
-- **Down:** Trapdoor/stairs to the Gear Room
+- **Down:** Trapdoor/stairs to the Winding Room
 - **Side:** Hidden door to the Uhrmacher's Study (concealed in the wood paneling — the modrons have never investigated it, not mechanically relevant to them)
 
 ## Artifact — Letter to a Friend

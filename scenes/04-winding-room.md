@@ -1,8 +1,8 @@
-# Scene 4 — The Gear Room
+# Scene 4 — The Winding Room
 
 **Act:** II
 **Type:** Combat / Social
-**Location:** Gear Room (below ground)
+**Location:** Winding Room (below ground)
 
 ---
 
@@ -59,4 +59,4 @@ Gear is installed in the mounting cradle. The tower mechanism engages — a deep
 
 ## Encounter Sheet
 
-See `scenes/encounter-04-gear-room.md`
+See `scenes/encounter-04-winding-room.md`
