@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Winding Room — Print Battle Map (12×18 in, 1 in = 5 ft)</title>
+<style>
+  @page { size: 12in 18in; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  svg { display: block; width: 12in; height: 18in; }
+  text { font-family: 'Liberation Mono', monospace; }
+</style>
+</head>
+<body>
+
+<svg id="map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1152 1728"></svg>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('map');
+function el(name, attrs = {}, parent = svg) {
+  const n = document.createElementNS(NS, name);
+  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  parent.appendChild(n);
+  return n;
+}
+function txt(x, y, str, attrs = {}, parent = svg) {
+  const t = el('text', Object.assign({ x, y, 'text-anchor': 'middle' }, attrs), parent);
+  t.textContent = str;
+  return t;
+}
+
+// 1 in = 5 ft = 96 units. Page 12×18 in. Room 9×14 squares.
+// Physical features only: floor, machinery, rail channels, chains, cradle,
+// camp, stairs. Counterweights are the CUT-OUT TOKENS below the map (they move).
+// Chain pairings are NOT printed — players learn them by tracing (DM guide has them).
+const CELL = 96, COLSN = 9;
+const ROWS = "ABCDEFGHIJKLMN";
+const PAGE_W = 1152, PAGE_H = 1728;
+const W = COLSN * CELL, H = ROWS.length * CELL;
+const OX = (PAGE_W - W) / 2, OY = 60;
+const INK = '#000';
+
+// --- Walkable floor (same layout as tools/winding_room_sim.*) ---
+const base = new Set();
+for (let c = 3; c <= 7; c++) base.add("N" + c);
+for (let c = 2; c <= 8; c++) base.add("M" + c);
+for (const r of "DEFGHIJKL") for (const c of [2, 5, 8]) base.add(r + c);
+["J3", "J4", "G6", "G7"].forEach(s => base.add(s));
+for (let c = 2; c <= 5; c++) base.add("C" + c);
+base.add("C8");
+for (let c = 2; c <= 5; c++) { base.add("A" + c); base.add("B" + c); }
+["A7", "B7", "A8", "B8"].forEach(s => base.add(s));
+const CHAIN_SQ = ["G2", "G6", "M3", "K2", "B4", "C3", "L2", "C8"];
+const RAIL_ROWS = ["E", "I"];
+
+function xy(cell) {
+  return [OX + (parseInt(cell[1]) - 1) * CELL, OY + ROWS.indexOf(cell[0]) * CELL];
+}
+
+// --- Defs: machinery hatch ---
+const defs = el('defs');
+const pat = el('pattern', { id: 'mach', width: 9, height: 9, patternUnits: 'userSpaceOnUse' }, defs);
+el('path', { d: 'M0 9 L9 0', stroke: INK, 'stroke-width': 0.7, fill: 'none' }, pat);
+
+el('rect', { x: 0, y: 0, width: PAGE_W, height: PAGE_H, fill: '#fff' });
+
+// --- Cells ---
+for (let r = 0; r < ROWS.length; r++) {
+  for (let c = 1; c <= COLSN; c++) {
+    const cell = ROWS[r] + c;
+    const x = OX + (c - 1) * CELL, y = OY + r * CELL;
+    if (RAIL_ROWS.includes(cell[0]) && c >= 2 && c <= 8) continue;  // rail channel drawn as a unit
+    if (base.has(cell)) {
+      el('rect', { x, y, width: CELL, height: CELL, fill: '#fff', stroke: INK, 'stroke-width': 0.9 });
+    } else {
+      el('rect', { x, y, width: CELL, height: CELL, fill: 'url(#mach)', stroke: INK, 'stroke-width': 0.6 });
+    }
+  }
+}
+
+// --- Rail channels (rows E and I, cols 2-8): recessed tracks with sleepers and end stops.
+//     The channel housing has openings where the lanes (cols 2, 5, 8) pass through. ---
+for (const rr of RAIL_ROWS) {
+  const y = OY + ROWS.indexOf(rr) * CELL;
+  const x0 = OX + 1 * CELL, x1 = OX + 8 * CELL;
+  el('rect', { x: x0, y, width: x1 - x0, height: CELL, fill: '#fff', stroke: INK, 'stroke-width': 2 });
+  for (const lane of [2, 5, 8]) {  // lane pass-through openings in the housing
+    const lx = OX + (lane - 1) * CELL;
+    for (const ey of [y, y + CELL]) {
+      el('line', { x1: lx + 10, y1: ey, x2: lx + CELL - 10, y2: ey, stroke: '#fff', 'stroke-width': 4 });
+      el('line', { x1: lx + 10, y1: ey, x2: lx + CELL - 10, y2: ey, stroke: INK, 'stroke-width': 0.8, 'stroke-dasharray': '5 4' });
+    }
+  }
+  for (const off of [30, CELL - 30]) {  // twin rails
+    el('line', { x1: x0 + 6, y1: y + off, x2: x1 - 6, y2: y + off, stroke: INK, 'stroke-width': 1.2 });
+  }
+  for (let c = 2; c <= 8; c++) {        // sleeper ticks at square boundaries
+    const tx = OX + (c - 1) * CELL;
+    if (c > 2) el('line', { x1: tx, y1: y + 22, x2: tx, y2: y + CELL - 22, stroke: INK, 'stroke-width': 0.8, 'stroke-dasharray': '4 4' });
+  }
+  for (const ex of [x0, x1]) {          // end stops
+    el('rect', { x: ex - 6, y: y + 12, width: 12, height: CELL - 24, fill: INK });
+  }
+}
+
+// --- Pull-chains: hanging fixture symbol (no pairing labels on the print map) ---
+for (const sq of CHAIN_SQ) {
+  const [x, y] = xy(sq);
+  el('line', { x1: x + CELL/2, y1: y + 8, x2: x + CELL/2, y2: y + CELL/2 - 14, stroke: INK, 'stroke-width': 1.5, 'stroke-dasharray': '3 3' });
+  el('circle', { cx: x + CELL/2, cy: y + CELL/2, r: 13, fill: '#fff', stroke: INK, 'stroke-width': 2 });
+  el('circle', { cx: x + CELL/2, cy: y + CELL/2 + 6, r: 5, fill: 'none', stroke: INK, 'stroke-width': 1.2 });
+  el('circle', { cx: x + CELL/2, cy: y + CELL/2 - 4, r: 5, fill: 'none', stroke: INK, 'stroke-width': 1.2 });
+}
+
+// --- Cradle: circular frame centered on the A/B - 3/4 intersection ---
+const crX = OX + 3 * CELL, crY = OY + 1 * CELL;
+el('circle', { cx: crX, cy: crY, r: 42, fill: 'none', stroke: INK, 'stroke-width': 4 });
+el('circle', { cx: crX, cy: crY, r: 34, fill: 'none', stroke: INK, 'stroke-width': 1.2 });
+el('circle', { cx: crX, cy: crY, r: 10, fill: 'none', stroke: INK, 'stroke-width': 2 });
+
+// --- Fritz's camp: bedroll + crate at A7 (physical scenery) ---
+const [cpx, cpy] = xy("A7");
+el('rect', { x: cpx + 14, y: cpy + 22, width: 44, height: 24, rx: 10, fill: 'none', stroke: INK, 'stroke-width': 1.5 });
+el('rect', { x: cpx + 62, y: cpy + 56, width: 20, height: 20, fill: 'none', stroke: INK, 'stroke-width': 1.5 });
+
+// --- Stairs up at N5 ---
+const [stx, sty] = xy("N5");
+for (let i = 1; i <= 4; i++) {
+  el('line', { x1: stx + 12, y1: sty + i * (CELL / 5), x2: stx + CELL - 12, y2: sty + i * (CELL / 5), stroke: INK, 'stroke-width': 1.5 });
+}
+
+// --- Outer wall ---
+el('rect', { x: OX, y: OY, width: W, height: H, fill: 'none', stroke: INK, 'stroke-width': 5 });
+
+// --- Coordinates ---
+for (let c = 1; c <= COLSN; c++) {
+  txt(OX + (c - 1) * CELL + CELL / 2, OY + H + 36, String(c), { fill: INK, 'font-size': 18 });
+}
+for (let r = 0; r < ROWS.length; r++) {
+  txt(OX - 30, OY + r * CELL + CELL / 2 + 6, ROWS[r], { fill: INK, 'font-size': 18 });
+}
+
+// --- Counterweight tokens: cut out, place on the rails (they slide in play) ---
+txt(PAGE_W / 2, OY + H + 86, 'COUNTERWEIGHTS — CUT OUT · PLACE ON THE RAILS (3 × 1 SQUARES EACH)',
+  { fill: INK, 'font-size': 16, 'letter-spacing': 2 });
+const TOK_W = 3 * CELL, TOK_H = CELL;
+const tx0 = (PAGE_W - (2 * TOK_W + 48)) / 2, ty0 = OY + H + 108;
+for (let i = 0; i < 4; i++) {
+  const x = tx0 + (i % 2) * (TOK_W + 48), y = ty0 + Math.floor(i / 2) * (TOK_H + 22);
+  el('rect', { x: x - 6, y: y - 6, width: TOK_W + 12, height: TOK_H + 12, fill: 'none', stroke: INK, 'stroke-width': 0.8, 'stroke-dasharray': '6 5' });
+  el('rect', { x, y, width: TOK_W, height: TOK_H, rx: 10, fill: 'url(#mach)', stroke: INK, 'stroke-width': 3 });
+  el('rect', { x: x + 8, y: y + 8, width: TOK_W - 16, height: TOK_H - 16, rx: 6, fill: 'none', stroke: INK, 'stroke-width': 1.2 });
+  el('circle', { cx: x + TOK_W / 2, cy: y + TOK_H / 2, r: 9, fill: '#fff', stroke: INK, 'stroke-width': 1.5 });
+}
+</script>
+
+</body>
+</html>

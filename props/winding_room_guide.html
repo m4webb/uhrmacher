@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Winding Room — DM Reference (letter landscape)</title>
+<style>
+  @page { size: 11in 8.5in; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  svg { display: block; width: 11in; height: 8.5in; }
+  text { font-family: 'Liberation Mono', monospace; }
+</style>
+</head>
+<body>
+
+<svg id="map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1056 816"></svg>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('map');
+function el(name, attrs = {}, parent = svg) {
+  const n = document.createElementNS(NS, name);
+  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  parent.appendChild(n);
+  return n;
+}
+function txt(x, y, str, attrs = {}, parent = svg) {
+  const t = el('text', Object.assign({ x, y, 'text-anchor': 'middle' }, attrs), parent);
+  t.textContent = str;
+  return t;
+}
+
+// Same layout as the print map, half scale, plus DM overlays:
+// weight start positions, chain pairings, golem + Fritz markers.
+const CELL = 46, COLSN = 9;
+const ROWS = "ABCDEFGHIJKLMN";
+const OX = 56, OY = 64;
+const W = COLSN * CELL, H = ROWS.length * CELL;
+const INK = '#000';
+
+const base = new Set();
+for (let c = 3; c <= 7; c++) base.add("N" + c);
+for (let c = 2; c <= 8; c++) base.add("M" + c);
+for (const r of "DEFGHIJKL") for (const c of [2, 5, 8]) base.add(r + c);
+["J3", "J4", "G6", "G7"].forEach(s => base.add(s));
+for (let c = 2; c <= 5; c++) base.add("C" + c);
+base.add("C8");
+for (let c = 2; c <= 5; c++) { base.add("A" + c); base.add("B" + c); }
+["A7", "B7", "A8", "B8"].forEach(s => base.add(s));
+const RAIL_ROWS = ["E", "I"];
+// chains: square -> [pairing label, effect summary]
+const CHAINS = {
+  G2: "LW←", G6: "LW→", M3: "LE←", K2: "LE→",
+  B4: "UW→", C3: "UW←", L2: "UE←", C8: "UE→",
+};
+function xy(cell) {
+  return [OX + (parseInt(cell[1]) - 1) * CELL, OY + ROWS.indexOf(cell[0]) * CELL];
+}
+
+const defs = el('defs');
+const pat = el('pattern', { id: 'mach', width: 5, height: 5, patternUnits: 'userSpaceOnUse' }, defs);
+el('path', { d: 'M0 5 L5 0', stroke: INK, 'stroke-width': 0.5, fill: 'none' }, pat);
+
+el('rect', { x: 0, y: 0, width: 1056, height: 816, fill: '#fff' });
+
+// --- Cells ---
+for (let r = 0; r < ROWS.length; r++) {
+  for (let c = 1; c <= COLSN; c++) {
+    const cell = ROWS[r] + c;
+    const x = OX + (c - 1) * CELL, y = OY + r * CELL;
+    if (RAIL_ROWS.includes(cell[0]) && c >= 2 && c <= 8) continue;
+    if (base.has(cell)) {
+      el('rect', { x, y, width: CELL, height: CELL, fill: '#fff', stroke: INK, 'stroke-width': 0.6 });
+    } else {
+      el('rect', { x, y, width: CELL, height: CELL, fill: 'url(#mach)', stroke: INK, 'stroke-width': 0.4 });
+    }
+  }
+}
+// --- Rails ---
+for (const rr of RAIL_ROWS) {
+  const y = OY + ROWS.indexOf(rr) * CELL;
+  const x0 = OX + 1 * CELL, x1 = OX + 8 * CELL;
+  el('rect', { x: x0, y, width: x1 - x0, height: CELL, fill: '#fff', stroke: INK, 'stroke-width': 1.2 });
+  for (const lane of [2, 5, 8]) {
+    const lx = OX + (lane - 1) * CELL;
+    for (const ey of [y, y + CELL]) {
+      el('line', { x1: lx + 5, y1: ey, x2: lx + CELL - 5, y2: ey, stroke: '#fff', 'stroke-width': 2.5 });
+      el('line', { x1: lx + 5, y1: ey, x2: lx + CELL - 5, y2: ey, stroke: INK, 'stroke-width': 0.5, 'stroke-dasharray': '3 2' });
+    }
+  }
+}
+// --- Weight START positions (DM overlay): UW west, UE mid / LW mid, LE east ---
+const WSTART = [
+  { row: "E", c0: 2, label: "UW" },  // covers E2 (west)
+  { row: "E", c0: 5, label: "UE" },  // covers E5 (mid)... block spans 3 cells from its lane edge
+  { row: "I", c0: 3, label: "LW" },  // covers I5 (mid)
+  { row: "I", c0: 6, label: "LE" },  // covers I8 (east)
+];
+for (const wgt of WSTART) {
+  const y = OY + ROWS.indexOf(wgt.row) * CELL;
+  const x = OX + (wgt.c0 - 1) * CELL;
+  el('rect', { x: x + 2, y: y + 4, width: 3 * CELL - 4, height: CELL - 8, rx: 6, fill: '#8a8a8a', stroke: INK, 'stroke-width': 1.5 });
+  txt(x + 1.5 * CELL, y + CELL / 2 + 5, wgt.label, { fill: '#fff', 'font-size': 14, 'font-weight': 700 });
+}
+// --- Chains with pairing labels ---
+for (const [sq, label] of Object.entries(CHAINS)) {
+  const [x, y] = xy(sq);
+  el('circle', { cx: x + CELL/2, cy: y + CELL/2 - 4, r: 10, fill: '#fff', stroke: INK, 'stroke-width': 1.4 });
+  txt(x + CELL/2, y + CELL/2, label, { fill: INK, 'font-size': 8.5, 'font-weight': 700 });
+  txt(x + CELL/2, y + CELL - 3, sq, { fill: INK, 'font-size': 8 });
+}
+// --- Cradle, camp, golem, stairs ---
+const crX = OX + 3 * CELL, crY = OY + 1 * CELL;
+el('circle', { cx: crX, cy: crY, r: 19, fill: 'none', stroke: INK, 'stroke-width': 2 });
+el('circle', { cx: crX, cy: crY, r: 5, fill: 'none', stroke: INK, 'stroke-width': 1 });
+const [gx, gy] = xy("G8");
+el('circle', { cx: gx + CELL/2, cy: gy + CELL/2, r: 13, fill: 'none', stroke: INK, 'stroke-width': 2, 'stroke-dasharray': '4 3' });
+txt(gx + CELL/2, gy + CELL/2 + 5, "G", { fill: INK, 'font-size': 14, 'font-weight': 700 });
+const [fx, fy] = xy("A7");
+txt(fx + CELL/2, fy + CELL/2 + 5, "f", { fill: INK, 'font-size': 15, 'font-weight': 700 });
+const [stx, sty] = xy("N5");
+for (let i = 1; i <= 3; i++) {
+  el('line', { x1: stx + 8, y1: sty + i * (CELL/4), x2: stx + CELL - 8, y2: sty + i * (CELL/4), stroke: INK, 'stroke-width': 1 });
+}
+el('rect', { x: OX, y: OY, width: W, height: H, fill: 'none', stroke: INK, 'stroke-width': 2.5 });
+// coordinates
+for (let c = 1; c <= COLSN; c++) txt(OX + (c-1)*CELL + CELL/2, OY + H + 18, String(c), { fill: INK, 'font-size': 10 });
+for (let r = 0; r < ROWS.length; r++) txt(OX - 16, OY + r*CELL + CELL/2 + 3, ROWS[r], { fill: INK, 'font-size': 10 });
+
+// ============ RIGHT PANEL ============
+const PX = 540;
+txt((PX + 1020) / 2, 52, "WINDING ROOM — DM REFERENCE", { fill: INK, 'font-size': 21, 'font-weight': 700, 'letter-spacing': 2 });
+txt((PX + 1020) / 2, 78, "START: UW west · UE mid · LW mid · LE east — sealed (upper open E, lower open W)",
+  { fill: INK, 'font-size': 11.5 });
+
+// Chain table
+const TABLE = [
+  ["G2", "LW←", "opens I5 · closes I2 — FIRST PULL: traps puller in gallery, frees golem"],
+  ["G6", "LW→", "opens I2 · closes I5 — re-arm chain; pulled inside = sealed in cage"],
+  ["M3", "LE←", "opens I8 · closes I5"],
+  ["K2", "LE→", "opens I5 · closes I8"],
+  ["B4", "UW→", "opens E2 · closes E5 — backroom"],
+  ["C3", "UW←", "opens E5 · closes E2 — backroom, endgame control"],
+  ["L2", "UE←", "opens E8 · closes E5"],
+  ["C8", "UE→", "opens E5 · closes E8 — Fritz's chain: seals the puller in his corner"],
+];
+let ty = 108;
+txt(PX, ty, "CHAIN", { fill: INK, 'font-size': 11, 'font-weight': 700, 'text-anchor': 'start' });
+txt(PX + 68, ty, "WEIGHT", { fill: INK, 'font-size': 11, 'font-weight': 700, 'text-anchor': 'start' });
+txt(PX + 148, ty, "EFFECT", { fill: INK, 'font-size': 11, 'font-weight': 700, 'text-anchor': 'start' });
+el('line', { x1: PX, y1: ty + 6, x2: 1020, y2: ty + 6, stroke: INK, 'stroke-width': 1 });
+ty += 24;
+for (const [sq, label, eff] of TABLE) {
+  txt(PX, ty, sq, { fill: INK, 'font-size': 11, 'font-weight': 700, 'text-anchor': 'start' });
+  txt(PX + 68, ty, label, { fill: INK, 'font-size': 11, 'text-anchor': 'start' });
+  const words = eff.split(' — ');
+  txt(PX + 148, ty, words[0], { fill: INK, 'font-size': 10.5, 'text-anchor': 'start' });
+  if (words[1]) { ty += 15; txt(PX + 148, ty, words[1], { fill: INK, 'font-size': 10, 'font-style': 'italic', 'text-anchor': 'start' }); }
+  ty += 20;
+}
+
+// Rules
+ty += 8;
+txt(PX, ty, "RULES", { fill: INK, 'font-size': 12, 'font-weight': 700, 'text-anchor': 'start', 'letter-spacing': 1 });
+el('line', { x1: PX, y1: ty + 6, x2: 1020, y2: ty + 6, stroke: INK, 'stroke-width': 1 });
+ty += 22;
+const RULES = [
+  "Pulling a chain = 1 action. Chains are reusable; they grind or jam audibly.",
+  "Each weight blocks its outer lane OR the middle. Middle bay is shared —",
+  "  one weight per rail may hold it; the other JAMS.",
+  "Each rail always leaves exactly one lane open.",
+  "Caught in a sliding weight's path: DEX save, dive adjacent; fail 1d6 + prone.",
+  "Trace a chain (action + easy Investigation) to learn its weight + direction.",
+  "Golem: starts caged at G8; freed by the first effective pull (G2).",
+  "  It never damages machinery — blocked lanes stop it. Anyone may pull chains.",
+  "Fritz: home at A7-B8 (door via C8 square). C8 chain = his self-seal reveal.",
+  "Sightlines: machinery blocks ranged fire except along open lanes.",
+];
+for (const line of RULES) {
+  txt(PX, ty, line, { fill: INK, 'font-size': 11, 'text-anchor': 'start' });
+  ty += 18;
+}
+</script>
+
+</body>
+</html>
