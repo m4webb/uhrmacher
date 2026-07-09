@@ -13,6 +13,8 @@
 |----|-----|-------|--------|--------|---------|
 | 9 | 127 | 30 ft | +7 to hit (x2) | 13 (2d8+4) bludgeoning + 4 (1d8) lightning per slam | — |
 
+**Start position:** G8 (east mid-band) — caged behind the gears at encounter start, released by the first effective chain pull.
+
 **Immunities:** Lightning, Poison; Charmed, Exhaustion, Frightened, Paralyzed, Petrified, Poisoned
 **Aversion to Fire:** Fire damage → disadvantage on attacks/checks until end of next turn
 **Berserk:** When bloodied, roll 1d6 at start of turn. On 6, attacks nearest creature. [TBD — does Fritz calm it? Does berserk change the social dynamic?]
@@ -46,62 +48,73 @@ Players can end this encounter without killing the golem:
 
 Puzzle-map approach: the room itself limits how many PCs can face the golem.
 
-- **Long rectangular room, 9 × 14 squares (45 × 70 ft)**; entrance at one end, mounting cradle at the far end (back)
-- **Three main lanes** run the length of the room through the machinery, with a few cross-connections between them
+- **Long rectangular room, 9 × 14 squares (45 × 70 ft)**; entrance at one end; back splits in two: west+center lanes feed the **4×3 backroom** (cols 2-5; the mounting cradle is a circular frame centered on the A/B–3/4 grid intersection), the east lane dead-ends in a **deserted corner where Fritz lives** — the two are walled off from each other, keeping the two-column machinery rhythm between lanes
+- **Three main lanes** run the length of the room through the machinery, with two static crossings (J3-J4 west↔center, G6-G7 center↔east)
 - Lanes are 1 square wide (single file); the golem is Medium and fits in the lanes — it can chase, and only the front PC can engage it in a lane
-- **Main mechanic: shunting carriages (decided).** Machinery never disappears — it shunts. Sections of gear train sit on sliding carriages; every trigger closes one gap and opens another (the metal has to go somewhere)
-  - **Pressure plates** fire instantly when a creature enters the square; visible brass panels
-  - **One-way:** each plate fires once, then locks (spent). The "undo" is a different plate elsewhere — teamwork by construction
-  - **Tracing:** overhead drive chains link each plate to its carriage; action + easy Investigation to learn a plate's pairing before stepping on it (back-rank job)
-  - **Caught in a closing gap:** DEX save, dive to adjacent open square; fail = 1d6 bludgeoning + prone
-  - **Golem:** keyed to the tower — chooses whether stepping on a plate triggers it. Never damages machinery, so closed paths genuinely stop it (it can be cut off or trapped)
-  - **Fritz's control panel:** rigged at the back of the room — he can fire any carriage remotely. Friendly Fritz = the maze opens; hostile Fritz = the maze fights you; also the DM fail-safe if the party spends all plates and wedges themselves (soft-lock pushes toward the social path, by design)
-  - **Flavor:** maintenance interlocks — weight on a plate makes the tower reconfigure for "service access." The lanes are service galleries (the Tickwichtel's runs), never meant for people
+- **Main mechanic: sliding gears + pull-chains (decided, v2).**
+  - **Four 3-wide sliding gears** on tracks at two levels (rows E and I). Each always blocks its outer lane or the shared middle — sliding one square swaps which. The middle slot is shared per level: if one gear occupies it, the other physically **jams** and cannot slide in
+  - **Invariant:** each level always has exactly one lane open. "Sealing" the maze means mismatching the levels, not closing everything
+  - **Eight pull-chains** hang from the ceiling, scattered (never beside their own gear): one chain per gear per direction — no chain does double duty. Pulling costs an **action**; chains are reusable (they grind or jam with audible flavor when the move is impossible)
+  - **Tracing:** a chain's linkage runs up into the works; action + easy Investigation follows it to its gear and direction (back-rank job)
+  - **Caught in a sliding gear's path:** DEX save, dive to an adjacent open square; fail = 1d6 bludgeoning + prone
+  - **Golem:** never damages machinery, so blocked lanes genuinely stop it — it reroutes or waits
+  - **Only chains move gears, and anyone can pull them** — players, Fritz, the golem. Fritz and the golem are ordinary actors: they walk and they pull. No special traversal for anybody
+  - **The pair can leave AND fully re-arm (sim-verified, P7/P7b):** from the starting configuration, Fritz and the golem acting in tandem can walk out using only chain pulls (C8, B4, G2, C3, L2 — Fritz self-seals, the golem loops the maze and frees him), and on returning home the golem's final pull of **G6 — the chain at the crossing beside its post — restores the exact starting configuration around them.** The room is found sealed because the golem seals itself into its cage, every time they come home
+  - **Fritz has no control panel.** His one lever is the C8 chain hanging beside his corner: he can pull it himself — sealing himself in and revealing the way to the cradle. The social path's payoff is Fritz choosing to do this
+  - **Flavor:** the lanes are service galleries (the Tickwichtel's runs), never meant for people; the chains are the tower's own maintenance rigging
 - Dense machinery blocks ranged sightlines except along open lanes — no plinking from the entrance
 - **No round-based timing effects** — that gimmick is reserved for Act III's rotating gear floor
-- Players not facing the golem work the maze: climbing/squeezing through the works (Athletics/Acrobatics), scouting flanking routes, searching for Fritz
+- Players not facing the golem work the maze: tracing chains, relaying positions, climbing/squeezing through the works (Athletics/Acrobatics)
 
-## Layout v1 (sim-verified — `tools/gear_room_sim.py`)
+## Layout v2 (sim-verified — `tools/gear_room_sim.py`, interactive: `tools/gear_room_sim.html`)
 
 ```
       1  2  3  4  5  6  7  8  9
-  A   ▓  ▓  .  .  ◎  .  .  ▓  ▓     ◎ cradle (A5)
-  B   ▓  ▓  .  .  .  f  ⌨  ▓  ▓     f Fritz camp · ⌨ control panel (B7)
-  C   ▓  .  .  .  .  .  .  .  ▓     open cross-corridor
-  D   ▓  P4 ▓  ▓  |  ▓  ▓  P5 ▓     lockout plates (close-only)
-  E   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
-  F   ▓  G1 ▓  ▓  G2 ▓  ▓  G3 ▓     shunt gaps — ALL START CLOSED
-  G   ▓  |  ▓  ▓  |  .  .  |  ▓     G6-G7: center↔east crossing
+  A   ▓  .  .◎ .  .  ▓  f  .  ▓     backroom 4×3 (cols 2-5) · ◎ cradle on the A/B–3/4 intersection
+  B   ▓  .  .  ⛓  .  ▓  .  .  ▓     B4: UW→mid · f Fritz's camp (2×2 home, A7–B8, walled off at col 6)
+  C   ▓  .  ⛓  .  .  ▓  ▓  ⛓  ▓     C3: UW→west · C8: UE→east (Fritz's chain)
+  D   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
+  E   ▓  ═  ═  ═  ═  ═  ═  ═  ▓     UPPER TRACK — UW blocks E2 or E5 · UE blocks E8 or E5
+  F   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
+  G   ▓  ⛓  ▓  ▓  |  ⛓  .  Ⓖ  ▓     G2: LW→west · G6: LW→mid (re-arm) · G7 crossing · Ⓖ golem start (G8)
   H   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
-  I   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
-  J   ▓  P1 .  .  P2 ▓  ▓  P3 ▓     J3-J4: west↔center crossing · entry plates
-  K   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
-  L   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
-  M   ▓  .  .  .  .  .  .  .  ▓     staging (spans cols 2-8, touches all lanes)
+  I   ▓  ═  ═  ═  ═  ═  ═  ═  ▓     LOWER TRACK — LW blocks I2 or I5 · LE blocks I8 or I5
+  J   ▓  |  .  .  |  ▓  ▓  |  ▓     J3-J4 crossing
+  K   ▓  ⛓  ▓  ▓  |  ▓  ▓  |  ▓     K2: LE→east
+  L   ▓  ⛓  ▓  ▓  |  ▓  ▓  |  ▓     L2: UE→mid
+  M   ▓  .  ⛓  .  .  .  .  .  ▓     M3: LE→mid · staging (spans cols 2-8)
   N   ▓  ▓  .  .  ▲  .  .  ▓  ▓     ▲ stairs from Clockhall
 ```
 
-| Plate | Where | Opens | Closes | Note |
-|---|---|---|---|---|
-| P1 | J2 (west) | G3 (east) | G2 (center) | round-robin: serves another lane |
-| P2 | J5 (center) | G1 (west) | G3 (east) | |
-| P3 | J8 (east) | G2 (center) | G1 (west) | |
-| P4 | D2 (west, deep) | — | G3 (east) | lockout (close-only), flavor: maintenance lockout |
-| P5 | D8 (east, deep) | — | G1 (west) | lockout (close-only) |
+**Start:** UW west (E2 blocked), UE middle (E5 blocked, E8 open), LW middle (I5 blocked, I2 open), LE east (I8 blocked). Upper level open = east; lower open = west; no route — sealed.
 
-**Sim findings:**
-- No route exists before the first press (forced engagement); any single entry plate opens a route (progress guaranteed)
-- No party member can ever be pocketed (all squares stay connected to staging or chamber)
-- Full-party deadlock impossible; **stranded-rear wedges exist** (all gaps closed, part of party stuck below) — but lockout plates are only reachable from above, so any wedge means a vanguard is already at the back *with Fritz*. The Fritz moment happens by construction
-- **Golem seal achievable in 2 presses** (e.g. P1 then P4: open east, run up, cross the C corridor, lock east behind you) — 11 distinct seal states
-- Golem guard coverage is asymmetric: center↔east reposition = 5 squares (one turn at speed 30), west is 9-12 (two turns) — **west is the slow flank**, learnable by observant players
+| Chain | Hangs at | Pulls | Effect when it fires |
+|---|---|---|---|
+| G2 | west gallery | LW → west | opens lower middle, closes lower west — **first effective pull: traps the puller in the gallery and releases the golem** |
+| G6 | cage crossing, beside the golem's post | LW → middle | opens lower west, closes lower middle — the re-arm chain; pulling it from inside seals you into the cage |
+| M3 | staging | LE → middle | opens lower east, closes lower middle |
+| K2 | west low | LE → east | opens lower middle, closes lower east |
+| B4 | backroom | UW → middle | opens upper west, closes upper middle — endgame control, part of the pair's exit route |
+| C3 | backroom | UW → west | opens upper middle, closes upper west — endgame control |
+| L2 | west low | UE → middle | opens upper east, closes upper middle |
+| C8 | east approach, Fritz's corner | UE → east | opens upper middle, **seals E8 behind the puller** — critical path; Fritz can pull it himself |
+
+**Verified properties** (all machine-checked in `tools/gear_room_sim.py`):
+- Sealed at start; minimum 2 pulls to any route (`G2` → `C8`)
+- Teaching funnel: exactly one effective first pull (`G2`); the rest grind or jam informatively
+- Golem starts caged in the mid-band at G8 — a chain-less monster zone whose territory guards the critical C8 chain
+- First pull traps its puller AND releases the golem, simultaneously
+- Tolls: the critical-path pulls cost their pullers position (G2 → the gallery, C8 → Fritz's corner)
+- Golem re-seal exists — the "west parade" victory: both levels open west, party walks past the caged golem
+- Paired-chain separation: no gear's two chains can be pocketed by a single seal — no unrecoverable states (0 doomed; 32 recoverable pocket events)
+- **P7/P7b tandem commute with full re-arm:** Fritz + the golem can walk out using only chain pulls (5 pulls: C8, B4, G2, C3, L2) and return home, with the golem's final pull of G6 restoring the exact starting configuration — it seals itself into its cage; no special powers, fully self-consistent fiction
 
 ## Environment
 
-- **Mounting cradle** — empty circular frame at the back of the room, where the Gear installs
+- **Mounting cradle** — empty circular frame in the 4×3 backroom, centered on the A/B–3/4 grid intersection, where the Gear installs
 - **Heavy gear trains** — fill the room, provide cover, climbable
-- **Fritz's camp** — bedroll, crate, candle stub near the cradle
-- **Weight chains** — hang from ceiling, could be interacted with [TBD — swing on them? Drop something?]
+- **Fritz's camp** — bedroll, crate, candle stub in the deserted east corner; his home is the 2×2 nook at A7–B8, walled off from the backroom by the col-6 machinery
+- **Pull-chains** — the tower's maintenance rigging, hanging from the ceiling at the eight marked squares
 - **Low ceiling, vaulted** — underground, echoing
 
 ---
@@ -118,8 +131,9 @@ Puzzle-map approach: the room itself limits how many PCs can face the golem.
 
 - [x] ~~Is the flesh golem statblock the right CR?~~ Resolved: keep the statblock as-is; difficulty comes from map geometry
 - [x] ~~Should there be minor enemies to supplement the golem?~~ Resolved: no — chokepoint terrain replaces minions
-- [ ] Lane layout — how many lanes, where they run, where the golem's wide lane sits
-- [ ] Environmental triggers — which spots trigger what (paths closing, opening, other effects)
+- [x] ~~Lane layout~~ Resolved: Layout v2 above (three lanes, two gear tracks, split back)
+- [x] ~~Environmental triggers~~ Resolved: sliding gears + eight pull-chains (v2)
+- [x] ~~Can the golem pull chains?~~ Resolved: yes — chains are ordinary mechanisms and anyone can pull them, golem included. In practice the golem acts with/for Fritz; a hostile Fritz directing golem chain-pulls is the DM's "maze fights back" dial
 - [ ] What happens to Fritz after the encounter? Does he stay in the tower during Act III? Does he follow the party?
 - [ ] Berserk mechanic — how does it interact with Fritz's control?
 - [ ] Does killing the golem have narrative consequences (Fritz's only protector, the party just destroyed a child's companion)?

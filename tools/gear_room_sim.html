@@ -2,22 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Gear Room — Shunt Puzzle Simulator</title>
+<title>Gear Room — Sliding Gear Simulator (v2)</title>
 <style>
   body { font-family: 'Liberation Mono', monospace; background: #f4f4f4; margin: 0; padding: 20px;
          display: flex; gap: 28px; align-items: flex-start; }
   #mapwrap { background: #fff; border: 2px solid #000; padding: 14px; }
-  #panel { max-width: 420px; }
+  #panel { max-width: 460px; }
   h1 { font-size: 18px; letter-spacing: 2px; margin: 0 0 12px; }
   h2 { font-size: 14px; letter-spacing: 1px; margin: 18px 0 6px; border-bottom: 1px solid #000; padding-bottom: 3px; }
   button { font-family: inherit; font-size: 13px; margin: 3px 4px 3px 0; padding: 6px 10px;
            background: #fff; border: 1.5px solid #000; cursor: pointer; }
-  button:hover:not(:disabled) { background: #eee; }
-  button:disabled { opacity: 0.35; cursor: default; text-decoration: line-through; }
+  button:hover { background: #eee; }
   #status { font-size: 15px; font-weight: bold; padding: 8px 10px; border: 2px solid #000; margin-top: 12px; }
   #status.open { background: #d7f0d7; }
   #status.sealed { background: #f3d2d2; }
-  #log { font-size: 12px; margin-top: 8px; max-height: 220px; overflow-y: auto;
+  #log { font-size: 12px; margin-top: 8px; max-height: 240px; overflow-y: auto;
          background: #fff; border: 1px solid #999; padding: 6px 10px; }
   #log div { margin: 2px 0; }
   .hint { font-size: 12px; color: #444; margin: 4px 0; }
@@ -28,15 +27,23 @@
 <div id="mapwrap"><svg id="map" xmlns="http://www.w3.org/2000/svg" width="430" height="640" viewBox="0 0 430 640"></svg></div>
 
 <div id="panel">
-  <h1>GEAR ROOM — SHUNT SIMULATOR</h1>
-  <div class="hint">Pressure plates are one-way: each fires once, then locks. Fritz's panel can fire any carriage at will. Shaded squares are reachable from the entrance.</div>
+  <h1>GEAR ROOM — SLIDING GEARS (v2)</h1>
+  <div class="hint">Four sliding gears at two levels. Each sits between lanes and always blocks one lane
+    or the middle. The middle slot is shared — if it's occupied, the other gear cannot slide in.
+    Eight pull-chains hang from the ceiling, scattered around the room (never beside their own gear).
+    Each chain moves ONE gear ONE direction; the reverse is another chain. Pulling costs an action.</div>
 
-  <h2>PRESSURE PLATES (party)</h2>
+  <h2>PULL-CHAINS (party — 1 action each)</h2>
   <div id="plates"></div>
+  <div class="hint">Chain labels: gear + direction, e.g. "LW→" slides the lower-west gear toward the
+    middle. Blue shading = squares reachable from the entrance; a chain someone can't reach can't be pulled.</div>
 
-  <h2>FRITZ'S CONTROL PANEL</h2>
-  <div id="fritz"></div>
-  <div class="hint">Fritz toggles carriages freely — the DM dial.</div>
+  <div class="hint">Fritz has no control panel — but the C8 chain hangs beside his corner.
+    He can pull it himself: sealing himself in, and revealing the way to the cradle.</div>
+
+  <div class="hint">Fritz and the golem are ordinary actors: both walk, both pull chains — nothing
+    special. Verified tandem commute: escape via C8, B4, G2, C3, L2; on returning home, the golem's
+    final pull of G6 (the crossing by its post) re-arms the maze — it seals itself into its cage.</div>
 
   <h2>STATE</h2>
   <div id="status"></div>
@@ -47,35 +54,46 @@
 </div>
 
 <script>
-// --- Layout (mirrors tools/gear_room_sim.py) ---
+// --- Static layout (9 cols x rows A..N) ---
 const ROWS = "ABCDEFGHIJKLMN", COLSN = 9, CELL = 40, OX = 35, OY = 30;
 const base = new Set();
 for (let c = 3; c <= 7; c++) base.add("N" + c);
 for (let c = 2; c <= 8; c++) base.add("M" + c);
 for (const r of "DEFGHIJKL") for (const c of [2, 5, 8]) base.add(r + c);
 ["J3", "J4", "G6", "G7"].forEach(s => base.add(s));
-for (let c = 2; c <= 8; c++) base.add("C" + c);
-for (let c = 3; c <= 7; c++) { base.add("A" + c); base.add("B" + c); }
+// Back topology: west+center lanes feed the backroom (cradle); the east lane
+// dead-ends in Fritz's deserted corner. Machinery at col 7 keeps them separate.
+for (let c = 2; c <= 5; c++) base.add("C" + c);            // backroom, bottom row
+base.add("C8");                                             // east approach
+for (let c = 2; c <= 5; c++) { base.add("A" + c); base.add("B" + c); }  // backroom 4x3
+["A7", "B7", "A8", "B8"].forEach(s => base.add(s));         // Fritz's corner (2x2 home)
+const MARKS = { A7: "f", N5: "▲", G8: "Ⓖ" };  // Ⓖ = golem start · f = Fritz's camp
+const START = "N5", GOAL = "A4";
 
-const GAPS = { G1: "F2", G2: "F5", G3: "F8" };
-const GAP_LANE = { G1: "WEST", G2: "CENTER", G3: "EAST" };
-const PLATES = {
-  P1: { sq: "J2", opens: "G3", closes: "G2", desc: "west entry — opens EAST, closes CENTER" },
-  P2: { sq: "J5", opens: "G1", closes: "G3", desc: "center entry — opens WEST, closes EAST" },
-  P3: { sq: "J8", opens: "G2", closes: "G1", desc: "east entry — opens CENTER, closes WEST" },
-  P4: { sq: "D2", opens: null, closes: "G3", desc: "west lockout — closes EAST (opens nothing)" },
-  P5: { sq: "D8", opens: null, closes: "G1", desc: "east lockout — closes WEST (opens nothing)" },
-};
-const MARKS = { A5: "◎", B6: "f", B7: "⌸", N5: "▲" };
-const START = "N5", GOAL = "A5";
+// --- Gears: two per level, sharing the middle slot ---
+// west gear: position 'west' (covers lane col 2) or 'mid' (covers lane col 5)
+// east gear: position 'east' (covers lane col 8) or 'mid' (covers lane col 5)
+const LEVELS = { U: { row: "E", plateRow: "F" }, L: { row: "I", plateRow: "J" } };
+let gears;
+function resetState() {
+  gears = { U: { w: "west", e: "mid" },    // upper: east lane open
+            L: { w: "mid",  e: "east" } }; // lower: west lane open
+  log("— reset: upper level open = EAST, lower level open = WEST (sealed overall) —");
+  render();
+}
 
-// --- State ---
-let open_, spent;
-function resetState() { open_ = new Set(); spent = new Set(); log("— encounter reset: all carriages closed, plates armed —"); render(); }
-
+function coveredCells() {
+  const cov = new Set();
+  for (const [lv, g] of Object.entries(gears)) {
+    const row = LEVELS[lv].row;
+    cov.add(row + (g.w === "west" ? 2 : 5));
+    cov.add(row + (g.e === "east" ? 8 : 5));
+  }
+  return cov;
+}
 function walkable() {
-  const w = new Set(base);
-  for (const [g, cell] of Object.entries(GAPS)) if (!open_.has(g)) w.delete(cell);
+  const w = new Set(base), cov = coveredCells();
+  for (const c of cov) w.delete(c);
   return w;
 }
 function reachable() {
@@ -89,21 +107,58 @@ function reachable() {
   return seen;
 }
 
-function fire(gap, openIt, who) {
-  if (openIt && !open_.has(gap)) { open_.add(gap); log(`${who}: ${gap} (${GAP_LANE[gap]}) carriage shunts — lane OPENS`); }
-  else if (!openIt && open_.has(gap)) { open_.delete(gap); log(`${who}: ${gap} (${GAP_LANE[gap]}) carriage slams — lane CLOSES`); }
-  else log(`${who}: ${gap} carriage grinds — no change (already ${openIt ? "open" : "closed"})`);
+// --- Gear movement (shared-middle jam enforced) ---
+const GNAME = { Uw: "upper-west", Ue: "upper-east", Lw: "lower-west", Le: "lower-east" };
+function slideTo(lv, side, target, who) {
+  const g = gears[lv], name = GNAME[lv + side];
+  const own = side === "w" ? "west" : "east";
+  const cur = g[side], partner = side === "w" ? g.e : g.w;
+  if (target === "mid") {
+    if (cur === "mid") { log(`${who}: grinds — ${name} gear is already in the middle`); return; }
+    if (partner === "mid") { log(`${who}: ${name} gear JAMS — middle slot occupied`); return; }
+    g[side] = "mid";
+    log(`${who}: ${name} gear slides ${own.toUpperCase()} → MIDDLE (${own} lane clears, center blocks)`);
+  } else {
+    if (cur !== "mid") { log(`${who}: grinds — ${name} gear is already at ${own.toUpperCase()}`); return; }
+    g[side] = own;
+    log(`${who}: ${name} gear slides MIDDLE → ${own.toUpperCase()} (center clears, ${own} lane blocks)`);
+  }
 }
-function press(p) {
-  if (spent.has(p)) return;
-  spent.add(p);
-  const pl = PLATES[p];
-  log(`plate ${p} pressed (${pl.sq}) — SPENT`);
-  if (pl.opens) fire(pl.opens, true, p);
-  fire(pl.closes, false, p);
+
+// --- Pull-chains: one per gear per direction, scattered (never beside their own gear) ---
+const CHAINS = {
+  G2: { lv: "L", side: "w", to: "out", desc: "lower-west gear → WEST (clears lower middle)" },
+  G6: { lv: "L", side: "w", to: "mid", desc: "lower-west gear → MIDDLE (clears lower west lane) — cage crossing, re-arm chain" },
+  M3: { lv: "L", side: "e", to: "mid", desc: "lower-east gear → MIDDLE (clears lower east lane)" },
+  K2: { lv: "L", side: "e", to: "out", desc: "lower-east gear → EAST (clears lower middle)" },
+  B4: { lv: "U", side: "w", to: "mid", desc: "upper-west gear → MIDDLE (clears upper west lane) — backroom" },
+  C3: { lv: "U", side: "w", to: "out", desc: "upper-west gear → WEST (clears upper middle) — backroom" },
+  L2: { lv: "U", side: "e", to: "mid", desc: "upper-east gear → MIDDLE (clears upper east lane)" },
+  C8: { lv: "U", side: "e", to: "out", desc: "upper-east gear → EAST (clears upper middle; seals E8 behind you)" },
+};
+function chainLabel(sq) {
+  const c = CHAINS[sq];
+  const gear = (c.lv === "U" ? "U" : "L") + (c.side === "w" ? "W" : "E");
+  const arrow = c.side === "w" ? (c.to === "mid" ? "→" : "←") : (c.to === "mid" ? "←" : "→");
+  return gear + arrow;
+}
+function chainStatus(sq) {   // ok = pull moves the gear; jam = middle occupied; noop = already there
+  const c = CHAINS[sq], g = gears[c.lv];
+  const cur = g[c.side], partner = c.side === "w" ? g.e : g.w;
+  if (c.to === "mid") {
+    if (cur === "mid") return "noop";
+    if (partner === "mid") return "jam";
+    return "ok";
+  }
+  return cur === "mid" ? "ok" : "noop";
+}
+const STATUS_FILL = { ok: "#b9e2b0", jam: "#f0b4b4", noop: "#e2e2e2" };
+const STATUS_TEXT = { ok: "", jam: " — JAMMED (middle occupied)", noop: " — no effect (already there)" };
+function pull(sq) {
+  const c = CHAINS[sq];
+  slideTo(c.lv, c.side, c.to, `chain ${sq} (action)`);
   render();
 }
-function fritzToggle(g) { fire(g, !open_.has(g), "Fritz"); render(); }
 
 // --- Log ---
 const logEl = document.getElementById("log");
@@ -120,69 +175,86 @@ function el(name, attrs, parent) {
 }
 function render() {
   svg.innerHTML = "";
-  const reach = reachable();
-  const plateBySq = Object.fromEntries(Object.entries(PLATES).map(([p, v]) => [v.sq, p]));
+  const reach = reachable(), cov = coveredCells();
+  const gearRows = new Set(Object.values(LEVELS).map(l => l.row));
   for (let r = 0; r < ROWS.length; r++) {
     for (let c = 1; c <= COLSN; c++) {
       const cell = ROWS[r] + c, x = OX + (c - 1) * CELL, y = OY + r * CELL;
-      const isGap = Object.values(GAPS).includes(cell);
-      const gapName = isGap ? Object.keys(GAPS).find(g => GAPS[g] === cell) : null;
-      const inBase = base.has(cell);
-      if (!inBase && !isGap) { // fixed machinery
+      const isGearRow = gearRows.has(ROWS[r]) && c >= 2 && c <= 8;
+      if (isGearRow) { // slide track
+        el("rect", { x, y, width: CELL, height: CELL, fill: "#eee", stroke: "#bbb", "stroke-width": 0.5 });
+        el("line", { x1: x, y1: y + CELL/2, x2: x + CELL, y2: y + CELL/2, stroke: "#bbb", "stroke-width": 1, "stroke-dasharray": "3 3" });
+        if ([2, 5, 8].includes(c) && !cov.has(cell)) // open lane square on the track
+          el("rect", { x, y, width: CELL, height: CELL, fill: reach.has(cell) ? "#dcE9f7" : "#fff", stroke: "#000", "stroke-width": 0.75 });
+        continue; // gears drawn after the grid pass
+      }
+      if (!base.has(cell)) {
         el("rect", { x, y, width: CELL, height: CELL, fill: "#c9c9c9", stroke: "#aaa", "stroke-width": 0.5 });
         continue;
       }
-      if (isGap && !open_.has(gapName)) { // closed carriage
-        el("rect", { x, y, width: CELL, height: CELL, fill: "#8a8a8a", stroke: "#000", "stroke-width": 2 });
-        el("text", { x: x + CELL/2, y: y + CELL/2 + 4, "text-anchor": "middle", "font-size": 11, fill: "#fff", "font-weight": 700 }).textContent = gapName;
-        continue;
-      }
-      // open floor / lane / open gap
       el("rect", { x, y, width: CELL, height: CELL, fill: reach.has(cell) ? "#dcE9f7" : "#fff", stroke: "#000", "stroke-width": 0.75 });
-      if (isGap) {
-        el("rect", { x: x + 3, y: y + 3, width: CELL - 6, height: CELL - 6, fill: "none", stroke: "#000", "stroke-width": 1, "stroke-dasharray": "4 3" });
-        el("text", { x: x + CELL/2, y: y + CELL/2 + 4, "text-anchor": "middle", "font-size": 10, fill: "#666" }).textContent = gapName;
-      }
-      const p = plateBySq[cell];
-      if (p) {
+      if (CHAINS[cell]) {
         const g = el("g", { cursor: "pointer" });
-        el("rect", { x: x + 5, y: y + 5, width: CELL - 10, height: CELL - 10, fill: spent.has(p) ? "#eee" : "#f7e8b0", stroke: "#000", "stroke-width": 1.5 }, g);
-        el("text", { x: x + CELL/2, y: y + CELL/2 + 4, "text-anchor": "middle", "font-size": 11, "font-weight": 700,
-                     fill: spent.has(p) ? "#999" : "#000" }, g).textContent = p;
-        if (spent.has(p)) el("line", { x1: x + 7, y1: y + 7, x2: x + CELL - 7, y2: y + CELL - 7, stroke: "#999", "stroke-width": 1.5 }, g);
-        g.addEventListener("click", () => press(p));
+        el("circle", { cx: x + CELL/2, cy: y + CELL/2, r: 15, fill: STATUS_FILL[chainStatus(cell)], stroke: "#000", "stroke-width": 1.5 }, g);
+        el("line", { x1: x + CELL/2, y1: y + 2, x2: x + CELL/2, y2: y + CELL/2 - 14, stroke: "#000", "stroke-width": 1.5, "stroke-dasharray": "2 2" }, g);
+        el("text", { x: x + CELL/2, y: y + CELL/2 + 4, "text-anchor": "middle", "font-size": 10, "font-weight": 700 }, g)
+          .textContent = chainLabel(cell);
+        g.addEventListener("click", () => pull(cell));
       }
       if (MARKS[cell]) el("text", { x: x + CELL/2, y: y + CELL/2 + 5, "text-anchor": "middle", "font-size": 15 }).textContent = MARKS[cell];
     }
   }
+  // gears on top of tracks
+  for (const [lv, g] of Object.entries(gears)) {
+    const r = ROWS.indexOf(LEVELS[lv].row), y = OY + r * CELL;
+    const blocks = [  // 3-wide gears: bank + one square poking into a lane or the middle
+      { c0: g.w === "west" ? 2 : 3, label: lv + "W" },
+      { c0: g.e === "east" ? 6 : 5, label: lv + "E" },
+    ];
+    for (const b of blocks) {
+      const x = OX + (b.c0 - 1) * CELL;
+      el("rect", { x: x + 2, y: y + 2, width: 3 * CELL - 4, height: CELL - 4, rx: 8,
+                   fill: "#6a6a6a", stroke: "#000", "stroke-width": 2 });
+      el("text", { x: x + 1.5 * CELL, y: y + CELL/2 + 5, "text-anchor": "middle", "font-size": 13, fill: "#fff", "font-weight": 700 })
+        .textContent = "⚙ " + b.label;
+    }
+  }
+  // cradle: circular frame centered on the A/B - 3/4 grid intersection
+  const crX = OX + 3 * CELL, crY = OY + 1 * CELL;
+  el("circle", { cx: crX, cy: crY, r: 14, fill: "none", stroke: "#000", "stroke-width": 2.5 });
+  el("circle", { cx: crX, cy: crY, r: 6, fill: "none", stroke: "#000", "stroke-width": 1.5 });
   // coordinates
   for (let r = 0; r < ROWS.length; r++)
     el("text", { x: OX - 14, y: OY + r * CELL + CELL/2 + 4, "text-anchor": "middle", "font-size": 11 }).textContent = ROWS[r];
   for (let c = 1; c <= COLSN; c++)
     el("text", { x: OX + (c - 1) * CELL + CELL/2, y: OY + ROWS.length * CELL + 16, "text-anchor": "middle", "font-size": 11 }).textContent = c;
 
-  // controls
+  // control panel
   const platesEl = document.getElementById("plates");
   platesEl.innerHTML = "";
-  for (const [p, v] of Object.entries(PLATES)) {
+  for (const sq of Object.keys(CHAINS)) {
     const b = document.createElement("button");
-    b.textContent = `${p} — ${v.desc}`;
-    b.disabled = spent.has(p);
+    const st = chainStatus(sq);
+    b.textContent = `${sq} [${chainLabel(sq)}] — ${CHAINS[sq].desc}${STATUS_TEXT[st]}`;
     b.style.display = "block"; b.style.width = "100%"; b.style.textAlign = "left";
-    b.addEventListener("click", () => press(p));
+    b.style.background = STATUS_FILL[st];
+    b.addEventListener("click", () => pull(sq));
     platesEl.appendChild(b);
   }
-  const fritzEl = document.getElementById("fritz");
-  fritzEl.innerHTML = "";
-  for (const g of Object.keys(GAPS)) {
-    const b = document.createElement("button");
-    b.textContent = `${g} ${GAP_LANE[g]}: ${open_.has(g) ? "OPEN → close it" : "CLOSED → open it"}`;
-    b.addEventListener("click", () => fritzToggle(g));
-    fritzEl.appendChild(b);
+  const golemEl = document.getElementById("golem");
+  golemEl.innerHTML = "";
+  for (const [lv, g] of Object.entries(gears)) {
+    for (const side of ["w", "e"]) {
+      const b = document.createElement("button");
+      const pos = side === "w" ? g.w : g.e;
+      const target = pos === "mid" ? "out" : "mid";
+      b.textContent = `shove ${GNAME[lv + side]} gear (at ${pos.toUpperCase()})`;
+      b.addEventListener("click", () => { slideTo(lv, side, target, "golem (Fritz directs)"); render(); });
+      golemEl.appendChild(b);
+    }
   }
-  const reach2 = reach;
   const st = document.getElementById("status");
-  const routeOpen = reach2.has(GOAL);
+  const routeOpen = reach.has(GOAL);
   st.textContent = routeOpen ? "ROUTE OPEN — cradle reachable from entrance" : "SEALED — no route to the cradle";
   st.className = routeOpen ? "open" : "sealed";
 }

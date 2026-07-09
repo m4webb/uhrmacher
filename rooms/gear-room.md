@@ -7,7 +7,7 @@
 
 ## Description
 
-A vaulted underground chamber housing the tower's foundational mechanism — the heavy gear trains, the weight chains, and the empty mounting point where the Cross-Planar Regulation Gear once sat. The Uhrmacher disconnected it here. The mounting cradle is conspicuously vacant, a gap in the otherwise dense machinery. Fritz has made a small camp near the mounting point — a bedroll, scraps of food, a candle stub. His gear golem stands guard.
+A vaulted underground chamber housing the tower's foundational mechanism — the heavy gear trains, the weight chains, and the empty mounting point where the Cross-Planar Regulation Gear once sat. The Uhrmacher disconnected it here. The mounting cradle is conspicuously vacant, a gap in the otherwise dense machinery. Fritz has made a small camp in a deserted corner at the back of the chamber, walled off from the mounting cradle by machinery — a bedroll, scraps of food, a candle stub. His gear golem roams the service galleries.
 
 ## Traversal
 
@@ -19,4 +19,4 @@ The original packing manifest from the Modron Collective, delivered with the Gea
 
 ## Image Prompt
 
-> An underground vaulted chamber beneath a clock tower, the foundation of the mechanism. Heavy iron and brass gear trains line the walls, connected by thick axles and drive chains. At the far end of the long chamber, a prominent empty mounting cradle — a circular frame with locking clamps, clearly designed to hold a large gear that is now absent. The gap in the machinery is conspicuous, like a missing tooth. Weight chains hang from the ceiling into the mechanical works. A small, makeshift camp is tucked near the mounting point — a thin bedroll, a wooden crate used as a table, a candle stub. The chamber is cold, damp, and echoing. [Append meta-prompt from room-style-guide.md]
+> An underground vaulted chamber beneath a clock tower, the foundation of the mechanism. Heavy iron and brass gear trains line the walls, connected by thick axles and drive chains. At the far end of the long chamber, a prominent empty mounting cradle — a circular frame with locking clamps, clearly designed to hold a large gear that is now absent. The gap in the machinery is conspicuous, like a missing tooth. Weight chains hang from the ceiling into the mechanical works. A small, makeshift camp is tucked into a deserted corner, separated from the mounting cradle by dense machinery — a thin bedroll, a wooden crate used as a table, a candle stub. The chamber is cold, damp, and echoing. [Append meta-prompt from room-style-guide.md]
