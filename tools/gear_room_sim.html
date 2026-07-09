@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gear Room — Shunt Puzzle Simulator</title>
+<style>
+  body { font-family: 'Liberation Mono', monospace; background: #f4f4f4; margin: 0; padding: 20px;
+         display: flex; gap: 28px; align-items: flex-start; }
+  #mapwrap { background: #fff; border: 2px solid #000; padding: 14px; }
+  #panel { max-width: 420px; }
+  h1 { font-size: 18px; letter-spacing: 2px; margin: 0 0 12px; }
+  h2 { font-size: 14px; letter-spacing: 1px; margin: 18px 0 6px; border-bottom: 1px solid #000; padding-bottom: 3px; }
+  button { font-family: inherit; font-size: 13px; margin: 3px 4px 3px 0; padding: 6px 10px;
+           background: #fff; border: 1.5px solid #000; cursor: pointer; }
+  button:hover:not(:disabled) { background: #eee; }
+  button:disabled { opacity: 0.35; cursor: default; text-decoration: line-through; }
+  #status { font-size: 15px; font-weight: bold; padding: 8px 10px; border: 2px solid #000; margin-top: 12px; }
+  #status.open { background: #d7f0d7; }
+  #status.sealed { background: #f3d2d2; }
+  #log { font-size: 12px; margin-top: 8px; max-height: 220px; overflow-y: auto;
+         background: #fff; border: 1px solid #999; padding: 6px 10px; }
+  #log div { margin: 2px 0; }
+  .hint { font-size: 12px; color: #444; margin: 4px 0; }
+</style>
+</head>
+<body>
+
+<div id="mapwrap"><svg id="map" xmlns="http://www.w3.org/2000/svg" width="430" height="640" viewBox="0 0 430 640"></svg></div>
+
+<div id="panel">
+  <h1>GEAR ROOM — SHUNT SIMULATOR</h1>
+  <div class="hint">Pressure plates are one-way: each fires once, then locks. Fritz's panel can fire any carriage at will. Shaded squares are reachable from the entrance.</div>
+
+  <h2>PRESSURE PLATES (party)</h2>
+  <div id="plates"></div>
+
+  <h2>FRITZ'S CONTROL PANEL</h2>
+  <div id="fritz"></div>
+  <div class="hint">Fritz toggles carriages freely — the DM dial.</div>
+
+  <h2>STATE</h2>
+  <div id="status"></div>
+  <button id="reset" style="margin-top:10px">RESET ENCOUNTER</button>
+
+  <h2>LOG</h2>
+  <div id="log"></div>
+</div>
+
+<script>
+// --- Layout (mirrors tools/gear_room_sim.py) ---
+const ROWS = "ABCDEFGHIJKLMN", COLSN = 9, CELL = 40, OX = 35, OY = 30;
+const base = new Set();
+for (let c = 3; c <= 7; c++) base.add("N" + c);
+for (let c = 2; c <= 8; c++) base.add("M" + c);
+for (const r of "DEFGHIJKL") for (const c of [2, 5, 8]) base.add(r + c);
+["J3", "J4", "G6", "G7"].forEach(s => base.add(s));
+for (let c = 2; c <= 8; c++) base.add("C" + c);
+for (let c = 3; c <= 7; c++) { base.add("A" + c); base.add("B" + c); }
+
+const GAPS = { G1: "F2", G2: "F5", G3: "F8" };
+const GAP_LANE = { G1: "WEST", G2: "CENTER", G3: "EAST" };
+const PLATES = {
+  P1: { sq: "J2", opens: "G3", closes: "G2", desc: "west entry — opens EAST, closes CENTER" },
+  P2: { sq: "J5", opens: "G1", closes: "G3", desc: "center entry — opens WEST, closes EAST" },
+  P3: { sq: "J8", opens: "G2", closes: "G1", desc: "east entry — opens CENTER, closes WEST" },
+  P4: { sq: "D2", opens: null, closes: "G3", desc: "west lockout — closes EAST (opens nothing)" },
+  P5: { sq: "D8", opens: null, closes: "G1", desc: "east lockout — closes WEST (opens nothing)" },
+};
+const MARKS = { A5: "◎", B6: "f", B7: "⌸", N5: "▲" };
+const START = "N5", GOAL = "A5";
+
+// --- State ---
+let open_, spent;
+function resetState() { open_ = new Set(); spent = new Set(); log("— encounter reset: all carriages closed, plates armed —"); render(); }
+
+function walkable() {
+  const w = new Set(base);
+  for (const [g, cell] of Object.entries(GAPS)) if (!open_.has(g)) w.delete(cell);
+  return w;
+}
+function reachable() {
+  const w = walkable(), seen = new Set(), q = [];
+  if (w.has(START)) { seen.add(START); q.push(START); }
+  while (q.length) {
+    const cell = q.pop(), r = ROWS.indexOf(cell[0]), c = +cell[1];
+    for (const n of [ROWS[r+1] + c, ROWS[r-1] + c, cell[0] + (c+1), cell[0] + (c-1)])
+      if (w.has(n) && !seen.has(n)) { seen.add(n); q.push(n); }
+  }
+  return seen;
+}
+
+function fire(gap, openIt, who) {
+  if (openIt && !open_.has(gap)) { open_.add(gap); log(`${who}: ${gap} (${GAP_LANE[gap]}) carriage shunts — lane OPENS`); }
+  else if (!openIt && open_.has(gap)) { open_.delete(gap); log(`${who}: ${gap} (${GAP_LANE[gap]}) carriage slams — lane CLOSES`); }
+  else log(`${who}: ${gap} carriage grinds — no change (already ${openIt ? "open" : "closed"})`);
+}
+function press(p) {
+  if (spent.has(p)) return;
+  spent.add(p);
+  const pl = PLATES[p];
+  log(`plate ${p} pressed (${pl.sq}) — SPENT`);
+  if (pl.opens) fire(pl.opens, true, p);
+  fire(pl.closes, false, p);
+  render();
+}
+function fritzToggle(g) { fire(g, !open_.has(g), "Fritz"); render(); }
+
+// --- Log ---
+const logEl = document.getElementById("log");
+function log(msg) { const d = document.createElement("div"); d.textContent = msg; logEl.prepend(d); }
+
+// --- Render ---
+const svg = document.getElementById("map");
+const NS = "http://www.w3.org/2000/svg";
+function el(name, attrs, parent) {
+  const n = document.createElementNS(NS, name);
+  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  (parent || svg).appendChild(n);
+  return n;
+}
+function render() {
+  svg.innerHTML = "";
+  const reach = reachable();
+  const plateBySq = Object.fromEntries(Object.entries(PLATES).map(([p, v]) => [v.sq, p]));
+  for (let r = 0; r < ROWS.length; r++) {
+    for (let c = 1; c <= COLSN; c++) {
+      const cell = ROWS[r] + c, x = OX + (c - 1) * CELL, y = OY + r * CELL;
+      const isGap = Object.values(GAPS).includes(cell);
+      const gapName = isGap ? Object.keys(GAPS).find(g => GAPS[g] === cell) : null;
+      const inBase = base.has(cell);
+      if (!inBase && !isGap) { // fixed machinery
+        el("rect", { x, y, width: CELL, height: CELL, fill: "#c9c9c9", stroke: "#aaa", "stroke-width": 0.5 });
+        continue;
+      }
+      if (isGap && !open_.has(gapName)) { // closed carriage
+        el("rect", { x, y, width: CELL, height: CELL, fill: "#8a8a8a", stroke: "#000", "stroke-width": 2 });
+        el("text", { x: x + CELL/2, y: y + CELL/2 + 4, "text-anchor": "middle", "font-size": 11, fill: "#fff", "font-weight": 700 }).textContent = gapName;
+        continue;
+      }
+      // open floor / lane / open gap
+      el("rect", { x, y, width: CELL, height: CELL, fill: reach.has(cell) ? "#dcE9f7" : "#fff", stroke: "#000", "stroke-width": 0.75 });
+      if (isGap) {
+        el("rect", { x: x + 3, y: y + 3, width: CELL - 6, height: CELL - 6, fill: "none", stroke: "#000", "stroke-width": 1, "stroke-dasharray": "4 3" });
+        el("text", { x: x + CELL/2, y: y + CELL/2 + 4, "text-anchor": "middle", "font-size": 10, fill: "#666" }).textContent = gapName;
+      }
+      const p = plateBySq[cell];
+      if (p) {
+        const g = el("g", { cursor: "pointer" });
+        el("rect", { x: x + 5, y: y + 5, width: CELL - 10, height: CELL - 10, fill: spent.has(p) ? "#eee" : "#f7e8b0", stroke: "#000", "stroke-width": 1.5 }, g);
+        el("text", { x: x + CELL/2, y: y + CELL/2 + 4, "text-anchor": "middle", "font-size": 11, "font-weight": 700,
+                     fill: spent.has(p) ? "#999" : "#000" }, g).textContent = p;
+        if (spent.has(p)) el("line", { x1: x + 7, y1: y + 7, x2: x + CELL - 7, y2: y + CELL - 7, stroke: "#999", "stroke-width": 1.5 }, g);
+        g.addEventListener("click", () => press(p));
+      }
+      if (MARKS[cell]) el("text", { x: x + CELL/2, y: y + CELL/2 + 5, "text-anchor": "middle", "font-size": 15 }).textContent = MARKS[cell];
+    }
+  }
+  // coordinates
+  for (let r = 0; r < ROWS.length; r++)
+    el("text", { x: OX - 14, y: OY + r * CELL + CELL/2 + 4, "text-anchor": "middle", "font-size": 11 }).textContent = ROWS[r];
+  for (let c = 1; c <= COLSN; c++)
+    el("text", { x: OX + (c - 1) * CELL + CELL/2, y: OY + ROWS.length * CELL + 16, "text-anchor": "middle", "font-size": 11 }).textContent = c;
+
+  // controls
+  const platesEl = document.getElementById("plates");
+  platesEl.innerHTML = "";
+  for (const [p, v] of Object.entries(PLATES)) {
+    const b = document.createElement("button");
+    b.textContent = `${p} — ${v.desc}`;
+    b.disabled = spent.has(p);
+    b.style.display = "block"; b.style.width = "100%"; b.style.textAlign = "left";
+    b.addEventListener("click", () => press(p));
+    platesEl.appendChild(b);
+  }
+  const fritzEl = document.getElementById("fritz");
+  fritzEl.innerHTML = "";
+  for (const g of Object.keys(GAPS)) {
+    const b = document.createElement("button");
+    b.textContent = `${g} ${GAP_LANE[g]}: ${open_.has(g) ? "OPEN → close it" : "CLOSED → open it"}`;
+    b.addEventListener("click", () => fritzToggle(g));
+    fritzEl.appendChild(b);
+  }
+  const reach2 = reach;
+  const st = document.getElementById("status");
+  const routeOpen = reach2.has(GOAL);
+  st.textContent = routeOpen ? "ROUTE OPEN — cradle reachable from entrance" : "SEALED — no route to the cradle";
+  st.className = routeOpen ? "open" : "sealed";
+}
+
+document.getElementById("reset").addEventListener("click", resetState);
+resetState();
+</script>
+
+</body>
+</html>
