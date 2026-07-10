@@ -82,14 +82,33 @@ for (let r = 0; r < ROWS.length; r++) {
 }
 
 // --- Berth shadows: the pinecones hang somewhere above each drop point;
-//     a soft shadow on the floor marks the spot ---
-const shGrad = el('radialGradient', { id: 'shadow' }, defs);
-el('stop', { offset: '0%', 'stop-color': '#000', 'stop-opacity': 0.30 }, shGrad);
-el('stop', { offset: '65%', 'stop-color': '#000', 'stop-opacity': 0.17 }, shGrad);
-el('stop', { offset: '100%', 'stop-color': '#000', 'stop-opacity': 0 }, shGrad);
-for (const b of BERTHS) {
-  const [x, y] = xy(b);
-  el('circle', { cx: x + CELL / 2, cy: y + CELL / 2, r: 88, fill: 'url(#shadow)' });
+//     a soft shadow on the floor marks the spot.
+//     Two renderings: 'gradient' (smooth, browser-pretty) and 'stipple'
+//     (deterministic vector dots — prints identically on any RIP) ---
+const SHADOW_STYLE = 'gradient';
+if (SHADOW_STYLE === 'gradient') {
+  const shGrad = el('radialGradient', { id: 'shadow' }, defs);
+  el('stop', { offset: '0%', 'stop-color': '#000', 'stop-opacity': 0.30 }, shGrad);
+  el('stop', { offset: '65%', 'stop-color': '#000', 'stop-opacity': 0.17 }, shGrad);
+  el('stop', { offset: '100%', 'stop-color': '#000', 'stop-opacity': 0 }, shGrad);
+  for (const b of BERTHS) {
+    const [x, y] = xy(b);
+    el('circle', { cx: x + CELL / 2, cy: y + CELL / 2, r: 88, fill: 'url(#shadow)' });
+  }
+} else {
+  for (const b of BERTHS) {
+    const [x, y] = xy(b);
+    const cx = x + CELL / 2, cy = y + CELL / 2;
+    const N = 110, R = 86, GA = 137.508;
+    for (let k = 1; k <= N; k++) {
+      const jr = Math.abs(Math.sin(k * 12.9898) * 43758.5453 % 1);  // deterministic jitter
+      const ja = Math.abs(Math.sin(k * 78.233) * 12543.123 % 1);
+      const r = R * Math.pow(k / N, 0.8) * (0.92 + 0.16 * jr);
+      const a = (k * GA + ja * 9) * Math.PI / 180;
+      const dr = 2.3 - 1.2 * (r / R);                               // dots shrink outward
+      el('circle', { cx: cx + Math.cos(a) * r, cy: cy + Math.sin(a) * r, r: dr, fill: INK });
+    }
+  }
 }
 
 // --- Pull-chains: hanging chain of double-outlined links, upper corner of the square ---
