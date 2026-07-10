@@ -14,22 +14,23 @@ The staircase opens into a wide chamber dominated by two enormous wooden bellows
 
 ## Secrets
 
-- Each bellows has a swarm of stirges nesting inside — they burst out when players clear or open the bellows
+- Both ducts have uncapped service stubs (west D3, east D10; Perception DC 15, or spot the fallen caps on the floor nearby) — the stirges moved into the duct system through them
+- The two swarms nest IN THE PIPES: working a bellows blasts its duct and flushes a swarm out of that side's stub. Restoring the air channels = work both bellows + re-cap both stubs
 - The Gear (Cross-Planar Regulation Gear, contract §1.2) is wedged behind/beneath one of the bellows — visible once the area is cleared
-- A maintenance alcove near one bellows contains the Uhrmacher's journal
+- The Uhrmacher's journal lies on the workbench against the north wall (A4-A5), among his abandoned tools
 
 ---
 
 ## Artifact — The Uhrmacher's Journal
 
-Wedged into a maintenance alcove near one of the bellows. Later entries in a shaking hand. The Uhrmacher has noticed the changes — conformity, loss of individuality. Regret. Mentions disconnecting the Gear. Opposite tone from the optimistic letter in the Clockhall.
+On the workbench (A4-A5), among the tools. Typeset prop: `props/journal/entry-3.html` ("The Disconnection"). Later entries in a shaking hand. The Uhrmacher has noticed the changes — conformity, loss of individuality. Regret. Mentions disconnecting the Gear. Opposite tone from the optimistic letter in the Clockhall.
 
 ---
 
 ## Connections
 
 - **Down:** Staircase to the Clockhall
-- **Up:** Narrow passage alongside the air pipes to Cuckoo's Landing (steep climb, pipes running beside you)
+- **Up:** Central ladder beside the main air riser to Cuckoo's Landing (the air rushes past you once the bellows are cleared)
 
 ---
 
@@ -42,3 +43,10 @@ Party clears the bellows, recovers the Gear. Return downstairs through the Clock
 ## Encounter Sheet
 
 See `scenes/encounter-03-bellows.md`
+
+---
+
+## Map Pair
+
+- Print battle map: `props/bellows_chamber_map.html` (17×11 in, 1 in = 5 ft)
+- DM reference: `props/bellows_chamber_guide.html` (letter landscape)

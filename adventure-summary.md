@@ -93,7 +93,7 @@ Players arrive at the village Gasthaus, responding to the Bürgermeister's pest 
 
 ### Combat Encounters
 
-1. **Bellows Chamber** — 6 stirges + 2 swarms of stirges (Hard, ~2,100 adjusted XP). Individuals scattered on entry; one swarm erupts from each bellows when cleared. Players must clear both to restore air channels. Enables the cuckoo's breath weapon in Act III (bellows are the lungs, cuckoo is the mouth)
+1. **Bellows Chamber** — 6 stirges + 2 swarms of stirges (Hard, ~2,100 adjusted XP). Individuals perched on the overhead ducts on entry; the swarms nest in the pipes and are flushed out an uncapped service stub each time a bellows is worked. To restore the air channels: work both bellows and re-cap both stubs. Enables the cuckoo's breath weapon in Act III (bellows are the lungs, cuckoo is the mouth)
 2. **Winding Room** — Gear golem protects Fritz, who is camped near the Gear installation point. Players can fight the golem, persuade Fritz, or deceive him (multiple solutions)
 3. **Cuckoo's Landing** — Final boss fight (see Act III)
 

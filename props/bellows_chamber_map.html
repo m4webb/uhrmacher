@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bellows Chamber — Print Battle Map (17×11 in, 1 in = 5 ft)</title>
+<style>
+  @page { size: 17in 11in; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  svg { display: block; width: 17in; height: 11in; }
+  text { font-family: 'Liberation Mono', monospace; }
+</style>
+</head>
+<body>
+
+<svg id="map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1632 1056"></svg>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+const svg = document.getElementById('map');
+function el(name, attrs = {}, parent = svg) {
+  const n = document.createElementNS(NS, name);
+  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  parent.appendChild(n);
+  return n;
+}
+
+// 1 in = 5 ft = 96 units. Room 12×9 squares on a 17×11 tabloid sheet.
+// Physical features only: bellows, pipe risers + overhead runs (dashed),
+// debris patches (difficult terrain), alcove, stairs, climb exit.
+// The Gear's hiding place is NOT printed — DM guide only.
+const CELL = 96, COLSN = 12;
+const ROWS = "ABCDEFGHI";
+const PAGE_W = 1632, PAGE_H = 1056;
+const W = COLSN * CELL, H = ROWS.length * CELL;
+const OX = (PAGE_W - W) / 2, OY = (PAGE_H - H) / 2;
+const INK = '#000';
+
+function cxy(col, row) {  // col 1-12, row letter
+  return [OX + (col - 1) * CELL, OY + ROWS.indexOf(row) * CELL];
+}
+
+// --- Defs: machinery/wall hatch ---
+const defs = el('defs');
+const pat = el('pattern', { id: 'mach', width: 9, height: 9, patternUnits: 'userSpaceOnUse' }, defs);
+el('path', { d: 'M0 9 L9 0', stroke: INK, 'stroke-width': 0.7, fill: 'none' }, pat);
+
+el('rect', { x: 0, y: 0, width: PAGE_W, height: PAGE_H, fill: '#fff' });
+
+// --- Blocked corner cells (structure) ---
+const blocked = new Set(["A1", "A2", "A11", "A12", "I1", "I2", "I11", "I12"]);
+
+// --- Cells (uniform grid weight; the bellows art masks its own footprint) ---
+for (let r = 0; r < ROWS.length; r++) {
+  for (let c = 1; c <= COLSN; c++) {
+    const cell = ROWS[r] + c;
+    const x = OX + (c - 1) * CELL, y = OY + r * CELL;
+    if (blocked.has(cell)) {
+      el('rect', { x, y, width: CELL, height: CELL, fill: 'url(#mach)', stroke: INK, 'stroke-width': 0.6 });
+    } else {
+      el('rect', { x, y, width: CELL, height: CELL, fill: '#fff', stroke: INK, 'stroke-width': 0.9 });
+    }
+  }
+}
+
+// --- Junk field (all difficult terrain): the Uhrmacher's salvage, workshop
+//     clutter, and stirge nesting, strewn through rows D-F with some spill ---
+function jhash(k) { return Math.abs(Math.sin(k * 12.9898) * 43758.5453 % 1); }
+function junkGear(cx, cy, r, n, a0) {
+  const h = Math.max(5, r * 0.4), hb = r * 0.32, ht = r * 0.2, step = 360 / n;
+  function tp(aDeg) {
+    const a = aDeg * Math.PI / 180;
+    const px = cx + Math.cos(a) * r, py = cy + Math.sin(a) * r;
+    const rot = (aDeg + 90) * Math.PI / 180, c = Math.cos(rot), s = Math.sin(rot);
+    return [[-hb, 0], [-ht, -h], [ht, -h], [hb, 0]].map(([x, y]) => [px + x * c - y * s, py + x * s + y * c].map(v => v.toFixed(1)));
+  }
+  let d = '';
+  for (let i = 0; i < n; i++) {
+    const [bl, tl, tr, br] = tp(a0 + i * step);
+    d += (i === 0 ? `M ${bl}` : ` A ${r} ${r} 0 0 1 ${bl}`) + ` L ${tl} L ${tr} L ${br}`;
+  }
+  d += ` A ${r} ${r} 0 0 1 ${tp(a0)[0]} Z`;
+  el('path', { d, fill: '#fff', stroke: INK, 'stroke-width': 1.6 });
+  if (r > 14) el('circle', { cx, cy, r: r - 5, fill: 'none', stroke: INK, 'stroke-width': 0.8 });
+  el('circle', { cx, cy, r: 3, fill: 'none', stroke: INK, 'stroke-width': 1.2 });
+}
+function plank(cx, cy, len, ang) {
+  const g = `rotate(${ang} ${cx} ${cy})`;
+  el('rect', { x: cx - len / 2, y: cy - 8, width: len, height: 16, rx: 2, fill: '#fff', stroke: INK, 'stroke-width': 1.4, transform: g });
+  el('line', { x1: cx - len * 0.36, y1: cy - 3, x2: cx + len * 0.42, y2: cy - 3, stroke: INK, 'stroke-width': 0.6, transform: g });
+  el('line', { x1: cx - len * 0.3, y1: cy + 3.5, x2: cx + len * 0.24, y2: cy + 3.5, stroke: INK, 'stroke-width': 0.6, transform: g });
+  el('ellipse', { cx: cx + len * 0.3, cy: cy + 1, rx: 2.4, ry: 1.5, fill: 'none', stroke: INK, 'stroke-width': 0.6, transform: g });
+}
+function crate(cx, cy, s, ang = 0) {
+  const g = ang ? `rotate(${ang} ${cx} ${cy})` : undefined;
+  el('rect', { x: cx - s / 2, y: cy - s / 2, width: s, height: s, fill: '#fff', stroke: INK, 'stroke-width': 1.7, transform: g });
+  for (let i = 1; i <= 3; i++) {   // lid planks
+    const px = cx - s / 2 + (s * i) / 4;
+    el('line', { x1: px, y1: cy - s / 2 + 3, x2: px, y2: cy + s / 2 - 3, stroke: INK, 'stroke-width': 0.8, transform: g });
+  }
+  el('line', { x1: cx - s / 2 + 4, y1: cy, x2: cx + s / 2 - 4, y2: cy, stroke: INK, 'stroke-width': 1.1, transform: g });  // batten
+}
+function modronCrate(cx, cy) {
+  el('rect', { x: cx - 44, y: cy - 44, width: 88, height: 88, fill: '#fff', stroke: INK, 'stroke-width': 2.2 });
+  el('rect', { x: cx - 36, y: cy - 36, width: 72, height: 72, fill: 'none', stroke: INK, 'stroke-width': 0.9 });
+  for (const [dx, dy] of [[-40, -40], [40, -40], [-40, 40], [40, 40]]) el('circle', { cx: cx + dx, cy: cy + dy, r: 1.8, fill: INK });
+  el('circle', { cx, cy, r: 11, fill: 'none', stroke: INK, 'stroke-width': 1.2 });
+  el('circle', { cx, cy, r: 4.5, fill: 'none', stroke: INK, 'stroke-width': 1 });
+}
+function barrel(cx, cy, r) {
+  el('circle', { cx, cy, r, fill: '#fff', stroke: INK, 'stroke-width': 1.8 });
+  el('circle', { cx, cy, r: r - 5, fill: 'none', stroke: INK, 'stroke-width': 0.8 });
+  const c = Math.sqrt(1 - 0.45 * 0.45) * (r - 5);
+  for (const s of [-1, 1]) {
+    el('line', { x1: cx - c, y1: cy + s * 0.45 * (r - 5), x2: cx + c, y2: cy + s * 0.45 * (r - 5), stroke: INK, 'stroke-width': 0.7 });
+  }
+  el('circle', { cx, cy, r: 3.5, fill: 'none', stroke: INK, 'stroke-width': 1 });
+}
+function chainHeap(cx, cy, seed, n = 9) {
+  // same construction as the hanging chains: double-outlined face rings with
+  // slim cross links laid over them, along an S-curve on the floor
+  const span = n * 9;
+  const pts = [];
+  for (let k = 0; k < n; k++) {
+    const t = k / (n - 1);
+    const x = cx + span * (t - 0.5);
+    const y = cy + 14 * Math.sin(t * 4 + seed);
+    const dydx = 14 * 4 / span * Math.cos(t * 4 + seed);
+    pts.push([x, y, Math.atan2(dydx, 1) * 180 / Math.PI + 90]);
+  }
+  for (let k = 0; k < n; k += 2) {          // face rings first
+    const [x, y, a] = pts[k];
+    const g = `rotate(${a.toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})`;
+    el('rect', { x: x - 4.5, y: y - 7, width: 9, height: 14, rx: 4.5, fill: '#fff', stroke: INK, 'stroke-width': 1.3, transform: g });
+    el('rect', { x: x - 2.2, y: y - 4, width: 4.4, height: 8, rx: 2.2, fill: 'none', stroke: INK, 'stroke-width': 0.9, transform: g });
+  }
+  for (let k = 1; k < n; k += 2) {          // cross links on top
+    const [x, y, a] = pts[k];
+    const g = `rotate(${a.toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})`;
+    el('rect', { x: x - 2, y: y - 6.5, width: 4, height: 13, rx: 2, fill: '#fff', stroke: INK, 'stroke-width': 1.1, transform: g });
+  }
+}
+function springCoil(cx, cy, rmax) {
+  let d = '';
+  for (let k = 0; k <= 40; k++) {
+    const a = k * 0.42, r = 4 + (rmax - 4) * k / 40;
+    const px = cx + Math.cos(a) * r, py = cy + Math.sin(a) * r;
+    d += (k === 0 ? `M ${px.toFixed(1)} ${py.toFixed(1)}` : ` L ${px.toFixed(1)} ${py.toFixed(1)}`);
+  }
+  el('path', { d, fill: 'none', stroke: INK, 'stroke-width': 1.6 });
+}
+function pipeOffcut(cx, cy, len, ang) {
+  const g = `rotate(${ang} ${cx} ${cy})`;
+  el('rect', { x: cx - len / 2, y: cy - 6, width: len, height: 12, fill: '#fff', stroke: INK, 'stroke-width': 1.4, transform: g });
+  for (const ex of [cx - len / 2, cx + len / 2]) {
+    el('ellipse', { cx: ex, cy, rx: 2.6, ry: 6, fill: 'none', stroke: INK, 'stroke-width': 1, transform: g });
+  }
+}
+function nestHeap(cx, cy, r, seed) {
+  for (let k = 0; k < 16; k++) {
+    const a1 = jhash(seed + k) * Math.PI * 2, rr = Math.sqrt(jhash(seed + k + 40)) * r;
+    const px = cx + Math.cos(a1) * rr, py = cy + Math.sin(a1) * rr;
+    const a2 = jhash(seed + k + 80) * Math.PI * 2, L = 10 + jhash(seed + k + 120) * 14;
+    el('line', { x1: px.toFixed(1), y1: py.toFixed(1),
+                 x2: (px + Math.cos(a2) * L).toFixed(1), y2: (py + Math.sin(a2) * L).toFixed(1),
+                 stroke: INK, 'stroke-width': 1.1 });
+  }
+}
+function dial(cx, cy, r) {
+  el('circle', { cx, cy, r, fill: '#fff', stroke: INK, 'stroke-width': 2 });
+  el('circle', { cx, cy, r: r - 6, fill: 'none', stroke: INK, 'stroke-width': 0.8 });
+  for (let k = 0; k < 12; k++) {
+    const a = k * Math.PI / 6;
+    el('line', { x1: (cx + Math.cos(a) * (r - 6)).toFixed(1), y1: (cy + Math.sin(a) * (r - 6)).toFixed(1),
+                 x2: (cx + Math.cos(a) * (r - 12)).toFixed(1), y2: (cy + Math.sin(a) * (r - 12)).toFixed(1),
+                 stroke: INK, 'stroke-width': 1.2 });
+  }
+  el('line', { x1: cx, y1: cy, x2: cx + r * 0.45, y2: cy - r * 0.25, stroke: INK, 'stroke-width': 1.6 });
+  el('line', { x1: cx, y1: cy, x2: cx - r * 0.15, y2: cy - r * 0.62, stroke: INK, 'stroke-width': 1.3 });
+  el('path', { d: `M ${cx - r} ${cy - 6} l 14 8 l 10 -12 l 12 10 l 9 -6`, fill: 'none', stroke: INK, 'stroke-width': 1 });
+}
+
+function jugs(cx, cy) {
+  // spilled oil stain
+  el('path', { d: `M ${cx - 26} ${cy + 4} q -8 14 4 20 q 16 8 30 2 q 18 -6 10 -18 q -6 -10 -20 -8 q -16 2 -24 4 Z`,
+               fill: 'none', stroke: INK, 'stroke-width': 0.9 });
+  // upright jug seen from above: body ring, mouth ring, small handle nub
+  el('circle', { cx: cx - 8, cy: cy - 12, r: 9, fill: '#fff', stroke: INK, 'stroke-width': 1.5 });
+  el('circle', { cx: cx - 8, cy: cy - 12, r: 4, fill: 'none', stroke: INK, 'stroke-width': 1 });
+  el('circle', { cx: cx - 8, cy: cy - 12, r: 1.2, fill: INK });
+  el('path', { d: `M ${cx + 1} ${cy - 16} q 6 4 0 8`, fill: 'none', stroke: INK, 'stroke-width': 1.3 });
+  // toppled jug: body with neck and open mouth, lying toward the stain
+  const jg = `rotate(112 ${cx + 14} ${cy - 4})`;
+  el('rect', { x: cx + 6, y: cy - 12, width: 16, height: 16, rx: 7, fill: '#fff', stroke: INK, 'stroke-width': 1.4, transform: jg });
+  el('rect', { x: cx + 20, y: cy - 7, width: 7, height: 6, rx: 1.5, fill: '#fff', stroke: INK, 'stroke-width': 1.2, transform: jg });
+  el('ellipse', { cx: cx + 28, cy: cy - 4, rx: 1.6, ry: 3, fill: 'none', stroke: INK, 'stroke-width': 1, transform: jg });
+}
+
+// west flank: plank pile burying a gear, oil spill (F1-F3)
+plank(316, 612, 115, 14); plank(320, 632, 104, -9); plank(330, 598, 100, 4);
+junkGear(370, 610, 20, 8, 10);
+jugs(468, 628);
+// stub corner: nest below the open stub, near the fallen cap (D3)
+nestHeap(506, 448, 26, 3);
+// broken crate + spilled plank (D4)
+crate(576, 430, 54, -7); plank(614, 462, 70, 38);   // broken crate, lid plank slid off
+// center-south: leaning clock dial, snapped mainspring, chain heap (E5-E7)
+dial(660, 540, 40);
+springCoil(688, 626, 30);
+chainHeap(858, 528, 1.7);
+// the modron delivery crate, unnaturally square (D7), workshop crate + barrel (D8/E8)
+modronCrate(960, 144);   // the Gear's delivery crate, stowed against the north wall (A8)
+// work table along the north wall (A4-A5), the Uhrmacher's old bench
+el('rect', { x: 536, y: 110, width: 176, height: 68, rx: 3, fill: '#fff', stroke: INK, 'stroke-width': 1.8 });
+el('rect', { x: 541, y: 115, width: 166, height: 58, rx: 2, fill: 'none', stroke: INK, 'stroke-width': 0.8 });
+el('line', { x1: 541, y1: 134, x2: 707, y2: 134, stroke: INK, 'stroke-width': 0.7 });
+el('line', { x1: 541, y1: 154, x2: 707, y2: 154, stroke: INK, 'stroke-width': 0.7 });
+el('rect', { x: 704, y: 136, width: 11, height: 16, fill: '#fff', stroke: INK, 'stroke-width': 1.3 });  // vise
+el('line', { x1: 715, y1: 144, x2: 722, y2: 144, stroke: INK, 'stroke-width': 1.6 });
+junkGear(596, 138, 9, 7, 20);                                                            // a cog left on the bench
+el('rect', { x: 664, y: 119, width: 22, height: 30, rx: 1, fill: '#fff', stroke: INK, 'stroke-width': 1.1, transform: 'rotate(9 675 134)' });  // a written page: the journal
+for (let i = 0; i < 4; i++) {
+  el('line', { x1: 668, y1: 125 + i * 6, x2: 682, y2: 125 + i * 6, stroke: INK, 'stroke-width': 0.6, transform: 'rotate(9 675 134)' });
+}
+el('rect', { x: 634, y: 156, width: 34, height: 6, rx: 2, fill: '#fff', stroke: INK, 'stroke-width': 1, transform: 'rotate(-12 651 159)' });  // a file
+crate(958, 428, 50);
+barrel(962, 532, 23);
+// east midfield: pipe offcuts, nest under the duct descent (E9/D10)
+pipeOffcut(1046, 526, 70, 24); pipeOffcut(1062, 550, 56, -50);
+dashedPipe([[1152, 372], [1152, 396]]);                            // east service stub, also uncapped
+el('ellipse', { cx: 1152, cy: 400, rx: 6.5, ry: 2.6, fill: 'none', stroke: INK, 'stroke-width': 1.2 });
+el('circle', { cx: 1178, cy: 462, r: 9, fill: '#fff', stroke: INK, 'stroke-width': 1.6 });   // its fallen cap
+el('circle', { cx: 1178, cy: 462, r: 5, fill: 'none', stroke: INK, 'stroke-width': 0.9 });
+nestHeap(1148, 442, 24, 7);
+// east flank: gear pair, chain heap, overturned trestle, planks + gear (F9-F12)
+junkGear(1028, 618, 17, 8, 0); junkGear(1058, 636, 11, 7, 22);
+chainHeap(1150, 618, 4.2, 5);
+plank(1244, 618, 96, -8);
+plank(1322, 626, 110, -16); plank(1330, 648, 90, 6);
+junkGear(1306, 604, 13, 7, 30);
+// second pass: filling the band out (all inside the walls)
+pipeOffcut(676, 424, 58, 12);                     // D5: offcut near the broken crate
+chainHeap(560, 515, 8.8, 11);                         // E4: more spilled chain
+junkGear(770, 556, 12, 7, 15);                    // E6: stray cog under the manifold
+// F6: barrel lying on its side — cylinder body with hoops and an end ring
+const tbg = 'rotate(-14 760 634)';
+el('rect', { x: 736, y: 618, width: 48, height: 32, rx: 6, fill: '#fff', stroke: INK, 'stroke-width': 1.7, transform: tbg });
+el('ellipse', { cx: 740, cy: 634, rx: 5, ry: 16, fill: '#fff', stroke: INK, 'stroke-width': 1.2, transform: tbg });
+for (const hx of [754, 768]) {
+  el('line', { x1: hx, y1: 619, x2: hx, y2: 649, stroke: INK, 'stroke-width': 0.8, transform: tbg });
+}
+crate(866, 622, 46, 12); plank(900, 645, 62, 25);  // F7: tilted crate with a slid plank
+junkGear(560, 648, 11, 7, 33);                    // F4: small cog
+junkGear(1158, 814, 11, 7, 60);                   // H10: one stray cog, far afield
+
+// north rows (A-B): storage along the back wall
+plank(474, 140, 78, 84); plank(492, 142, 70, 88);  // A3: planks leaning on the wall
+springCoil(768, 146, 17);                          // A6: coiled rope by the bench
+jugs(1048, 148);                                   // A9: jugs beside the modron crate
+crate(1128, 130, 36, -6);                          // A10: small crate clear of the duct
+pipeOffcut(668, 236, 54, -20);                     // B5: offcut under the bench
+junkGear(1120, 252, 11, 7, 40);                    // B10: cog beneath the duct descent
+
+// back rows (H-I): the junk thins but never quite stops
+chainHeap(356, 812, 12.3, 7);                        // H2
+barrel(478, 818, 19);                             // H3
+plank(556, 902, 88, -18); junkGear(590, 928, 10, 7, 50);  // I4: plank + cog by the south wall
+springCoil(960, 818, 20);                         // H8, centered in its square
+pipeOffcut(1058, 908, 60, 14);                    // I9
+junkGear(1150, 900, 12, 7, 75);                   // I10
+plank(1244, 812, 72, 20);                         // H11
+crate(1336, 812, 42, 9);                          // H12
+
+// spill: strays wandering out of the band (G3, G8, B9)
+junkGear(474, 706, 14, 7, 45);
+pipeOffcut(958, 716, 62, -18);
+
+// --- Bellows: top-down pleated lungs against east and west walls ---
+function bellows(x, y, w, h) {   // footprint rect; body inset with pleats
+  const bx = x + 8, by = y + 10, bw = w - 16, bh = h - 20;
+  el('rect', { x: bx, y: by, width: bw, height: bh, rx: 34, fill: '#fff', stroke: INK, 'stroke-width': 3 });
+  el('rect', { x: bx + 7, y: by + 7, width: bw - 14, height: bh - 14, rx: 27, fill: 'none', stroke: INK, 'stroke-width': 1 });
+  for (let i = 1; i <= 6; i++) {                       // leather pleats
+    const py = by + (bh * i) / 7;
+    el('path', { d: `M ${bx + 10} ${py} Q ${bx + bw / 2} ${py + 9} ${bx + bw - 10} ${py}`,
+                 fill: 'none', stroke: INK, 'stroke-width': 1.3 });
+  }
+  el('line', { x1: bx + bw / 2, y1: by + 8, x2: bx + bw / 2, y2: by + bh - 8, stroke: INK, 'stroke-width': 0.9 });
+  // pipe risers seated on the bellows body (air runs up from here)
+  for (const px of [bx + bw * 0.3, bx + bw * 0.7]) {
+    el('circle', { cx: px, cy: by + 30, r: 17, fill: '#fff', stroke: INK, 'stroke-width': 2.2 });
+    el('circle', { cx: px, cy: by + 30, r: 9, fill: 'none', stroke: INK, 'stroke-width': 1.1 });
+  }
+}
+const [wbx, wby] = cxy(1, "B");
+bellows(wbx, wby, 2 * CELL, 4 * CELL);
+const [ebx, eby] = cxy(11, "B");
+bellows(ebx, eby, 2 * CELL, 4 * CELL);
+
+// --- Overhead pipework (dashed = above head height): orthogonal runs with
+//     rounded L-bends, drawn as parallel dashed edge lines, converging on the
+//     riser bundle at the A10 climb ---
+const [clx, cly] = cxy(10, "A");
+const cX = clx + CELL / 2, cY = cly + CELL / 2;
+function dashedPipe(pts, w = 13, r = 12) {
+  const half = w / 2;
+  for (const side of [-1, 1]) {
+    let d = '';
+    for (let i = 0; i < pts.length - 1; i++) {
+      const [x1, y1] = pts[i], [x2, y2] = pts[i + 1];
+      const dx = Math.sign(x2 - x1), dy = Math.sign(y2 - y1);
+      const nx = -dy * side * half, ny = dx * side * half;
+      const t1 = (i === 0) ? 0 : r;
+      const t2 = (i === pts.length - 2) ? 0 : r;
+      const sx = x1 + dx * t1 + nx, sy = y1 + dy * t1 + ny;
+      const ex = x2 - dx * t2 + nx, ey = y2 - dy * t2 + ny;
+      if (i === 0) {
+        d += `M ${sx} ${sy}`;
+      } else {
+        const [px, py] = pts[i - 1];
+        const pdx = Math.sign(x1 - px), pdy = Math.sign(y1 - py);
+        const cross = pdx * dy - pdy * dx;
+        const rr = r - side * cross * half;
+        d += ` A ${rr} ${rr} 0 0 ${cross > 0 ? 1 : 0} ${sx} ${sy}`;
+      }
+      d += ` L ${ex} ${ey}`;
+    }
+    el('path', { d, fill: 'none', stroke: INK, 'stroke-width': 1.3, 'stroke-dasharray': '6 5' });
+  }
+}
+// riser pairs linked along each bellows top
+dashedPipe([[wbx + 8 + 176 * 0.3 + 17, wby + 40], [wbx + 8 + 176 * 0.7 - 17, wby + 40]]);
+dashedPipe([[ebx + 8 + 176 * 0.3 + 17, eby + 40], [ebx + 8 + 176 * 0.7 - 17, eby + 40]]);
+// west duct: staircase meander to the central manifold (C6)
+dashedPipe([[wbx + 8 + 176 * 0.7, wby + 40], [wbx + 8 + 176 * 0.7, 264], [480, 264], [480, 312], [786, 312]]);
+// east duct: its own wandering route
+dashedPipe([[ebx + 8 + 176 * 0.3, eby + 40], [ebx + 8 + 176 * 0.3, 168], [1152, 168], [1152, 360], [840, 360], [840, 318]]);
+// service stub dropping off the west duct — its end is OPEN (the cap fell
+// long ago and lies on the floor below; drawn subtly, for careful eyes)
+dashedPipe([[480, 324], [480, 396]]);
+el('ellipse', { cx: 480, cy: 400, rx: 6.5, ry: 2.6, fill: 'none', stroke: INK, 'stroke-width': 1.2 });
+// the fallen cap, lying on the floor of D3
+el('circle', { cx: 462, cy: 430, r: 9, fill: '#fff', stroke: INK, 'stroke-width': 1.6 });
+el('circle', { cx: 462, cy: 430, r: 5, fill: 'none', stroke: INK, 'stroke-width': 0.9 });
+// pressure gauge on the east duct
+el('circle', { cx: 1152, cy: 300, r: 9.5, fill: '#fff', stroke: INK, 'stroke-width': 1.5 });
+el('line', { x1: 1152, y1: 300, x2: 1146, y2: 293, stroke: INK, 'stroke-width': 1.2 });
+// central manifold, centered on the B/C-6/7 grid intersection (816, 288)
+el('rect', { x: 788, y: 260, width: 56, height: 56, rx: 8, fill: '#fff', stroke: INK, 'stroke-width': 2.2 });
+el('circle', { cx: 816, cy: 288, r: 14, fill: '#fff', stroke: INK, 'stroke-width': 2.2 });
+el('circle', { cx: 816, cy: 288, r: 7, fill: 'none', stroke: INK, 'stroke-width': 1.1 });
+
+// --- Climb: ladder on the left side of C6 (cell x 720-816), reading upward toward the manifold ---
+el('rect', { x: 721, y: 290, width: 48, height: 92, fill: '#fff', stroke: 'none' });
+for (const rx of [726, 758]) {
+  el('rect', { x: rx, y: 294, width: 6, height: 84, rx: 3, fill: '#fff', stroke: INK, 'stroke-width': 1.5 });
+}
+for (let i = 0; i < 5; i++) {
+  el('rect', { x: 731, y: 304 + i * 15, width: 28, height: 4.5, rx: 2.2, fill: '#fff', stroke: INK, 'stroke-width': 1.2 });
+}
+
+// --- Stairs down at I6-I7 ---
+const [stx, sty] = cxy(6, "I");
+for (let i = 1; i <= 5; i++) {
+  el('line', { x1: stx + 14, y1: sty + i * (CELL / 6), x2: stx + 2 * CELL - 14, y2: sty + i * (CELL / 6),
+               stroke: INK, 'stroke-width': 1.5 });
+}
+
+// --- Outer wall ---
+el('rect', { x: OX, y: OY, width: W, height: H, fill: 'none', stroke: INK, 'stroke-width': 5 });
+
+// --- Coordinates ---
+for (let c = 1; c <= COLSN; c++) {
+  const t = el('text', { x: OX + (c - 1) * CELL + CELL / 2, y: OY + H + 28, 'text-anchor': 'middle', 'font-size': 18, fill: INK });
+  t.textContent = String(c);
+}
+for (let r = 0; r < ROWS.length; r++) {
+  const t = el('text', { x: OX - 30, y: OY + r * CELL + CELL / 2 + 6, 'text-anchor': 'middle', 'font-size': 18, fill: INK });
+  t.textContent = ROWS[r];
+}
+</script>
+
+</body>
+</html>

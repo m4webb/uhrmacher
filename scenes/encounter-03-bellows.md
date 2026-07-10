@@ -30,24 +30,50 @@
 
 | Wave | Trigger | Enemies |
 |------|---------|---------|
-| 1 — On entry | Party enters the chamber | 6 stirges (scattered on pipes and rafters) |
-| 2 — First bellows | Players clear or open the first bellows | 1 swarm of stirges erupts from inside |
-| 3 — Second bellows | Players clear or open the second bellows | 1 swarm of stirges erupts from inside |
+| 1 — On entry | Party enters the chamber | 6 stirges (hanging from the overhead ducts) |
+| 2 — First bellows worked | A PC works either bellows (action) — air blasts through the ducts | 1 swarm of stirges is **flushed out of that duct's uncapped service stub** (west stub D3 / east stub D10) |
+| 3 — Second bellows worked | The other bellows — players know what's coming now | The second swarm, out the other duct's stub |
+
+**The stubs (key mechanic):** each duct has a service stub that was never re-capped — west stub at D3, east stub at D10, each with its fallen cap lying on the floor nearby. The stirges moved into the duct system through the opening; the swarms nest in the pipes, not the bellows. Noticing a stub is open: Perception DC 15 (or spotting a fallen cap). Working the bellows is how the party flushes the nests — **they control when the swarms come**. To restore the air channels: work BOTH bellows (blasting the ducts clear) and **re-cap both stubs** so pressure reaches the cuckoo. The fallen caps are right there.
 
 ---
 
 ## Environment
 
 - **Two bellows** (one each side) — large wooden structures, climbable, provide half cover behind them
-- **Brass pipes** — run up through ceiling, climbable but narrow
-- **Maintenance alcove** — nook between one bellows and the wall (journal is here)
+- **Brass pipes** — the ducts are wide-bore (~1-1.5 ft; the wagon-sized bellows demand it) — plenty for Tiny stirges crawling with folded wings, and swarms can pass any Tiny-sized opening. The drawn line width is stylized
+- **Main riser** — runs up through the ceiling beside the ladder
+- **Workbench** (A4-A5, north wall) — the Uhrmacher's bench; his journal lies among the tools (`props/journal/entry-3.html`)
+- **Modron delivery crate** (A8) — the Gear's original shipping crate, unnaturally square
+- **Junk field** (rows D-F, spilling into G) — the Uhrmacher's salvage and stirge nesting; all junk-covered squares are difficult terrain
 - **Debris and nesting material** — difficult terrain in patches around the bellows
+
+## Layout (12×9 squares, 60×45 ft — final)
+
+```
+      1  2  3  4  5  6  7  8  9 10 11 12
+  A   ▓  ▓  ░  W  W  ░  .  □  ░  ░  ▓  ▓     W workbench (journal) · □ modron crate
+  B   [B  B] .  .  ░  .  .  .  .  ░ [B  B]   [B] bellows, 2×4 each (impassable, climbable, half cover)
+  C   [B  B] .  .  .  ↑  ◍  .  .  . [B  B]   ◍ manifold (centered on the B/C-6/7 corner) · ↑ ladder up (left side of C6)
+  D   [B  B] ø  ░  ░  .  .  ░  .  ø [B  B]   ø uncapped service stub (D3 west / D10 east), fallen cap nearby
+  E   [B  B] ░  ░  ░  ░  ░  ░  ░  . [B  B]   ░ junk — difficult terrain (all 40 marked squares)
+  F   ░  ░  ░  .  ░  ░  ░  .  ░  ░  ░  g     g the Gear (F12, under junk — DM only)
+  G   .  .  ░  .  .  .  .  ░  .  .  .  .
+  H   .  ░  ░  .  .  .  .  ░  .  .  ░  ░
+  I   ▓  ▓  .  ░  .  ▼  ▼  .  ░  ░  ▓  ▓     ▼ stairs down to Clockhall (I6-I7)
+```
+
+- Overhead pipework (dashed on the map — above head height): a duct runs from each bellows across the room to the **central manifold** on the B/C-6/7 corner, from which the **main riser** climbs to the apex (a pressure gauge dresses the east run)
+- Each duct drops an **uncapped service stub** to head height (D3 west, D10 east) — fallen caps lie on the floor nearby; the swarms nest in the pipes and are flushed out the stubs when the bellows are worked
+- **The ladder to Cuckoo's Landing stands on the left side of C6, beside the manifold** — the party climbs the tower's windpipe
+- **Wave-1 stirges start perched on the overhead ducts** — hanging above the middle of the room, they drop onto the party from directly overhead
+- Map pair: `props/bellows_chamber_map.html` (print) / `props/bellows_chamber_guide.html` (DM)
 
 ---
 
 ## End Condition
 
-All stirges dead or driven off. Both bellows must be cleared to restore the air channels.
+All stirges dead or driven off. Both bellows worked (ducts blasted clear) and both stubs re-capped — the air channels are restored.
 
 ---
 
