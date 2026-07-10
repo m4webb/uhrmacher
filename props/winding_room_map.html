@@ -173,29 +173,30 @@ for (let r = 0; r < ROWS.length; r++) {
 // ================= PAGE 2: pinecone counterweight tokens =================
 el('rect', { x: 0, y: 0, width: PAGE_W, height: PAGE_H, fill: '#fff' }, svg2);
 
-// Top-down pinecone: rings of overlapping scales, outermost drawn first so the
-// inner rings' scales overlap them (the tip of the cone faces up, toward you).
+// Top-down pinecone, built like the real thing: rhombic scales placed by
+// golden-angle phyllotaxis (137.5° per scale), sizes growing outward, so the
+// crossing Fibonacci spirals emerge naturally. Each scale carries a small
+// central umbo mark. Outermost drawn first; inner scales overlap them.
 function pinecone(cx, cy, parent) {
-  const RINGS = [
-    { R: 108, n: 13, ry: 42, rx: 30 },
-    { R: 68,  n: 9,  ry: 38, rx: 28 },
-    { R: 32,  n: 6,  ry: 30, rx: 22 },
-  ];
-  for (const ring of RINGS) {
-    for (let i = 0; i < ring.n; i++) {
-      const a = (i / ring.n) * 360 + ring.R;   // per-ring offset staggers the scales
-      const rad = a * Math.PI / 180;
-      const px = cx + Math.cos(rad) * ring.R, py = cy + Math.sin(rad) * ring.R;
-      const w = ring.rx, L = ring.ry;
-      // pointed scale: sharp tip outward, bulged flanks, rounded base
-      const d = `M 0 ${-L} Q ${w} ${-L * 0.3} ${w * 0.9} ${L * 0.35} Q ${w * 0.5} ${L} 0 ${L} ` +
-                `Q ${-w * 0.5} ${L} ${-w * 0.9} ${L * 0.35} Q ${-w} ${-L * 0.3} 0 ${-L} Z`;
-      el('path', { d, fill: '#fff', stroke: INK, 'stroke-width': 1.5,
-                   transform: `translate(${px} ${py}) rotate(${a + 90})` }, parent);
-    }
+  const N = 55, RMAX = 105, GA = 137.508;
+  const pts = [];
+  for (let k = 1; k <= N; k++) {
+    pts.push({ r: RMAX * Math.sqrt(k / N), a: k * GA });
   }
-  el('circle', { cx, cy, r: 13, fill: '#fff', stroke: INK, 'stroke-width': 1.7 }, parent);
-  el('circle', { cx, cy, r: 4, fill: INK }, parent);
+  pts.sort((p, q) => q.r - p.r);
+  for (const p of pts) {
+    const rad = p.a * Math.PI / 180;
+    const px = cx + Math.cos(rad) * p.r, py = cy + Math.sin(rad) * p.r;
+    const L = 15 + p.r * 0.26, w = 12 + p.r * 0.17;
+    // rhombic scale plate: blunt point outward, bowed flanks
+    const d = `M 0 ${-L} Q ${w * 0.85} ${-L * 0.45} ${w} ${L * 0.05} Q ${w * 0.6} ${L * 0.75} 0 ${L * 0.85} ` +
+              `Q ${-w * 0.6} ${L * 0.75} ${-w} ${L * 0.05} Q ${-w * 0.85} ${-L * 0.45} 0 ${-L} Z`;
+    const tf = `translate(${px.toFixed(1)} ${py.toFixed(1)}) rotate(${(p.a + 90).toFixed(1)})`;
+    el('path', { d, fill: '#fff', stroke: INK, 'stroke-width': 1.3, transform: tf }, parent);
+    el('line', { x1: 0, y1: -L * 0.55, x2: 0, y2: -L * 0.15, stroke: INK, 'stroke-width': 1.3, transform: tf }, parent);
+  }
+  el('circle', { cx, cy, r: 7, fill: '#fff', stroke: INK, 'stroke-width': 1.5 }, parent);
+  el('circle', { cx, cy, r: 2.5, fill: INK }, parent);
 }
 
 const TOKC = [[392, 460], [760, 460], [392, 880], [760, 880]];
