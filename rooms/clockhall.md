@@ -16,9 +16,9 @@ The front door opens directly into the main room of the tower. A living space an
 - **Down:** Trapdoor/stairs to the Winding Room
 - **Side:** Hidden door to the Uhrmacher's Study (concealed in the wood paneling — the modrons have never investigated it, not mechanically relevant to them)
 
-## Artifact — Letter to a Friend
+## Artifact — Letter from Kohler
 
-A letter on the Uhrmacher's workbench to his friend Kohler, partially buried under tools and modron work orders. Written early in the tower's operation, full of pride and optimism. The tower keeps perfect time, the town is thriving, the gear from Mechanus is a marvel. No hint of doubt yet. Typeset prop: `props/documents/letter-to-kohler.html` (2 pages).
+A letter on the Uhrmacher's workbench from his old friend Kohler, partially buried under tools and modron work orders — which is why it's still in Wilhelm's possession. Written early in the tower's operation, replying to Wilhelm's proud reports: the town thriving, the tower keeping perfect time. Kohler teases him warmly and waves away his first small worry (the woodcarver's identical chairs). No hint of doubt yet. Typeset prop: `props/documents/letter-from-kohler.html` (2 pages).
 
 ## Image Prompt
 

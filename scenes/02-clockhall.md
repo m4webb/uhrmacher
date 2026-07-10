@@ -43,9 +43,9 @@ The front door opens into a room that can't decide what it is. A cold hearth and
 
 ---
 
-## Artifact — Letter to a Friend
+## Artifact — Letter from Kohler
 
-On the workbench, partially buried under modron work orders. An optimistic letter from the Uhrmacher to his friend Kohler, early in the tower's operation. Pride in the tower's precision, excitement about the Gear, warm words about Freudenfeld thriving. No hint of doubt. Typeset prop: `props/documents/letter-to-kohler.html` (2 pages).
+On the workbench, partially buried under modron work orders. A warm, teasing letter TO the Uhrmacher from his old friend Kohler, replying to Wilhelm's (unseen) letter early in the tower's operation. Kohler echoes back Wilhelm's proud reports — the repaired road, the honest butcher, the Bürgermeister's handshake — and affectionately dismisses Wilhelm's first flicker of worry (Renner's four identical chairs) as inventing troubles. No doubt anywhere; the players don't hear Wilhelm's own voice until the journal. Typeset prop: `props/documents/letter-from-kohler.html` (2 pages).
 
 ---
 
