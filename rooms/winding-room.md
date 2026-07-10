@@ -15,7 +15,7 @@ A vaulted underground chamber housing the tower's foundational mechanism — the
 
 ## Artifact — The Uhrmacher's Journal
 
-In Fritz's camp. He found the old clockmaker's journal in the works and has tried to read it, but he can't read well and has only understood pieces — its warnings went over his head. Later entries written in a shaking hand: the Uhrmacher has noticed the changes in Freudenfeld — the conformity, the loss of individuality. Regret. Mentions disconnecting the Gear. Opposite tone from the optimistic letter in the Clockhall. A roleplay reward — earn Fritz's trust and he shares it. **Typeset props:** `props/documents/journal-improving.html` ("Things Are Improving"), `props/documents/journal-disconnection.html` ("The Disconnection"); optional DM pocket piece `props/documents/journal-something-wrong.html`.
+In Fritz's camp. He found the old clockmaker's journal in the works and has tried to read it, but he can't read well and has only understood pieces — its warnings went over his head. Later entries written in a shaking hand: the Uhrmacher has noticed the changes in Freudenfeld — the conformity, the loss of individuality. Regret. Mentions disconnecting the Gear. Opposite tone from the optimistic letter in the Clockhall. A roleplay reward — earn Fritz's trust and he shares it. **Typeset props:** `props/documents/journal-disconnection.html` ("The Disconnection"); optional DM pocket piece `props/documents/journal-something-wrong.html`.
 
 ## Image Prompt
 

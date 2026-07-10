@@ -45,7 +45,7 @@ The front door opens into a room that can't decide what it is. A cold hearth and
 
 ## Artifact — Letter to a Friend
 
-On the workbench, partially buried under modron work orders. An optimistic letter from the Uhrmacher, early in the tower's operation. Pride in the tower's precision, excitement about the Gear, warm words about Freudenfeld thriving. No hint of doubt.
+On the workbench, partially buried under modron work orders. An optimistic letter from the Uhrmacher to his friend Kohler, early in the tower's operation. Pride in the tower's precision, excitement about the Gear, warm words about Freudenfeld thriving. No hint of doubt. Typeset prop: `props/documents/letter-to-kohler.html` (2 pages).
 
 ---
 

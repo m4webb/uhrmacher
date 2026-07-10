@@ -18,7 +18,7 @@ The front door opens directly into the main room of the tower. A living space an
 
 ## Artifact — Letter to a Friend
 
-A letter on the Uhrmacher's workbench, partially buried under tools and modron work orders. Written early in the tower's operation, full of pride and optimism. The tower keeps perfect time, the town is thriving, the gear from Mechanus is a marvel. No hint of doubt yet.
+A letter on the Uhrmacher's workbench to his friend Kohler, partially buried under tools and modron work orders. Written early in the tower's operation, full of pride and optimism. The tower keeps perfect time, the town is thriving, the gear from Mechanus is a marvel. No hint of doubt yet. Typeset prop: `props/documents/letter-to-kohler.html` (2 pages).
 
 ## Image Prompt
 
