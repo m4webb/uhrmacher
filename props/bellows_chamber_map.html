@@ -240,7 +240,7 @@ junkGear(1306, 604, 13, 7, 30);
 // second pass: filling the band out (all inside the walls)
 pipeOffcut(676, 424, 58, 12);                     // D5: offcut near the broken crate
 chainHeap(560, 515, 8.8, 11);                         // E4: more spilled chain
-junkGear(770, 556, 12, 7, 15);                    // E6: stray cog under the manifold
+junkGear(770, 556, 12, 7, 15);                    // E6: stray cog
 // F6: barrel lying on its side — cylinder body with hoops and an end ring
 const tbg = 'rotate(-14 760 634)';
 el('rect', { x: 736, y: 618, width: 48, height: 32, rx: 6, fill: '#fff', stroke: INK, 'stroke-width': 1.7, transform: tbg });
@@ -257,7 +257,7 @@ plank(474, 140, 78, 84); plank(492, 142, 70, 88);  // A3: planks leaning on the 
 springCoil(768, 146, 17);                          // A6: coiled rope by the bench
 jugs(1048, 148);                                   // A9: jugs beside the modron crate
 crate(1128, 130, 36, -6);                          // A10: small crate clear of the duct
-pipeOffcut(668, 236, 54, -20);                     // B5: offcut under the bench
+pipeOffcut(634, 232, 54, -20);                     // B5: offcut under the bench
 junkGear(1120, 252, 11, 7, 40);                    // B10: cog beneath the duct descent
 
 // back rows (H-I): the junk thins but never quite stops
@@ -330,10 +330,10 @@ function dashedPipe(pts, w = 13, r = 12) {
 // riser pairs linked along each bellows top
 dashedPipe([[wbx + 8 + 176 * 0.3 + 17, wby + 40], [wbx + 8 + 176 * 0.7 - 17, wby + 40]]);
 dashedPipe([[ebx + 8 + 176 * 0.3 + 17, eby + 40], [ebx + 8 + 176 * 0.7 - 17, eby + 40]]);
-// west duct: staircase meander to the central manifold (C6)
-dashedPipe([[wbx + 8 + 176 * 0.7, wby + 40], [wbx + 8 + 176 * 0.7, 264], [480, 264], [480, 312], [786, 312]]);
+// west duct: staircase meander to the central manifold (C4/C5)
+dashedPipe([[wbx + 8 + 176 * 0.7, wby + 40], [wbx + 8 + 176 * 0.7, 264], [480, 264], [480, 312], [596, 312]]);
 // east duct: its own wandering route
-dashedPipe([[ebx + 8 + 176 * 0.3, eby + 40], [ebx + 8 + 176 * 0.3, 168], [1152, 168], [1152, 360], [840, 360], [840, 318]]);
+dashedPipe([[ebx + 8 + 176 * 0.3, eby + 40], [ebx + 8 + 176 * 0.3, 168], [1152, 168], [1152, 360], [840, 360], [840, 216], [680, 216], [680, 268], [652, 268]]);
 // service stub dropping off the west duct — its end is OPEN (the cap fell
 // long ago and lies on the floor below; drawn subtly, for careful eyes)
 dashedPipe([[480, 324], [480, 396]]);
@@ -344,18 +344,18 @@ el('circle', { cx: 462, cy: 430, r: 5, fill: 'none', stroke: INK, 'stroke-width'
 // pressure gauge on the east duct
 el('circle', { cx: 1152, cy: 300, r: 9.5, fill: '#fff', stroke: INK, 'stroke-width': 1.5 });
 el('line', { x1: 1152, y1: 300, x2: 1146, y2: 293, stroke: INK, 'stroke-width': 1.2 });
-// central manifold, centered on the B/C-6/7 grid intersection (816, 288)
-el('rect', { x: 788, y: 260, width: 56, height: 56, rx: 8, fill: '#fff', stroke: INK, 'stroke-width': 2.2 });
-el('circle', { cx: 816, cy: 288, r: 14, fill: '#fff', stroke: INK, 'stroke-width': 2.2 });
-el('circle', { cx: 816, cy: 288, r: 7, fill: 'none', stroke: INK, 'stroke-width': 1.1 });
+// central manifold, centered on the B/C-4/5 grid intersection (624, 288)
+el('rect', { x: 596, y: 260, width: 56, height: 56, rx: 8, fill: '#fff', stroke: INK, 'stroke-width': 2.2 });
+el('circle', { cx: 624, cy: 288, r: 14, fill: '#fff', stroke: INK, 'stroke-width': 2.2 });
+el('circle', { cx: 624, cy: 288, r: 7, fill: 'none', stroke: INK, 'stroke-width': 1.1 });
 
-// --- Climb: ladder on the left side of C6 (cell x 720-816), reading upward toward the manifold ---
-el('rect', { x: 721, y: 290, width: 48, height: 92, fill: '#fff', stroke: 'none' });
-for (const rx of [726, 758]) {
+// --- Climb: ladder in the right half of C5 (cell x 624-720), east of the manifold, under the duct drop ---
+el('rect', { x: 677, y: 290, width: 48, height: 92, fill: '#fff', stroke: 'none' });
+for (const rx of [682, 714]) {
   el('rect', { x: rx, y: 294, width: 6, height: 84, rx: 3, fill: '#fff', stroke: INK, 'stroke-width': 1.5 });
 }
 for (let i = 0; i < 5; i++) {
-  el('rect', { x: 731, y: 304 + i * 15, width: 28, height: 4.5, rx: 2.2, fill: '#fff', stroke: INK, 'stroke-width': 1.2 });
+  el('rect', { x: 687, y: 304 + i * 15, width: 28, height: 4.5, rx: 2.2, fill: '#fff', stroke: INK, 'stroke-width': 1.2 });
 }
 
 // --- Stairs down at I6-I7 ---

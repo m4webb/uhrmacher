@@ -54,7 +54,7 @@
       1  2  3  4  5  6  7  8  9 10 11 12
   A   ▓  ▓  ░  W  W  ░  .  □  ░  ░  ▓  ▓     W workbench (delivery manifest) · □ modron crate (the Gear inside — DM only)
   B   [B  B] .  .  ░  .  .  .  .  ░ [B  B]   [B] bellows, 2×4 each (impassable, climbable, half cover)
-  C   [B  B] .  .  .  ↑  ◍  .  .  . [B  B]   ◍ manifold (centered on the B/C-6/7 corner) · ↑ ladder up (left side of C6)
+  C   [B  B] .  ◍  ↑  .  .  .  .  . [B  B]   ◍ manifold (centered on the B/C-4/5 corner) · ↑ ladder up (right side of C5)
   D   [B  B] ø  ░  ░  .  .  ░  .  ø [B  B]   ø uncapped service stub (D3 west / D10 east), fallen cap nearby
   E   [B  B] ░  ░  ░  ░  ░  ░  ░  . [B  B]   ░ junk — difficult terrain (all 40 marked squares)
   F   ░  ░  ░  .  ░  ░  ░  .  ░  ░  ░  ░
@@ -63,9 +63,9 @@
   I   ▓  ▓  .  ░  .  ▼  ▼  .  ░  ░  ▓  ▓     ▼ stairs down to Clockhall (I6-I7)
 ```
 
-- Overhead pipework (dashed on the map — above head height): a duct runs from each bellows across the room to the **central manifold** on the B/C-6/7 corner, from which the **main riser** climbs to the apex (a pressure gauge dresses the east run)
+- Overhead pipework (dashed on the map — above head height): a duct runs from each bellows across the room to the **central manifold** on the B/C-4/5 corner, from which the **main riser** climbs to the apex (a pressure gauge dresses the east run)
 - Each duct drops an **uncapped service stub** to head height (D3 west, D10 east) — fallen caps lie on the floor nearby; the swarms nest in the pipes and are flushed out the stubs when the bellows are worked
-- **The ladder to Cuckoo's Landing stands on the left side of C6, beside the manifold** — the party climbs the tower's windpipe
+- **The ladder to Cuckoo's Landing stands on the right side of C5, just east of the manifold** — the party climbs the tower's windpipe (matches the riser-west / hatch-east arrangement on the landing's platform overlay)
 - **Wave-1 stirges start perched on the overhead ducts** — hanging above the middle of the room, they drop onto the party from directly overhead
 - Map pair: `props/bellows_chamber_map.html` (print) / `props/bellows_chamber_guide.html` (DM)
 
