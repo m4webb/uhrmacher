@@ -6,6 +6,7 @@
 - **Born with a congenital leg condition — walked with a crude brace his whole life**
 - **The tower's ticking has "regulated" his leg — it works for the first time. Brace discarded on the floor.**
 - **Controls a gear golem (flesh golem statblock) via a brass winding key he found in the basement**
+- **Has the Uhrmacher's journal** — found it in the works and tried to read it, but he can't read well and has only understood pieces
 - Golem attacks on entry; Fritz hides and stays silent until found
 
 ## Portrait Prompt

@@ -16,14 +16,14 @@ The staircase opens into a wide chamber dominated by two enormous wooden bellows
 
 - Both ducts have uncapped service stubs (west D3, east D10; Perception DC 15, or spot the fallen caps on the floor nearby) — the stirges moved into the duct system through them
 - The two swarms nest IN THE PIPES: working a bellows blasts its duct and flushes a swarm out of that side's stub. Restoring the air channels = work both bellows + re-cap both stubs
-- The Gear (Cross-Planar Regulation Gear, contract §1.2) is wedged behind/beneath one of the bellows — visible once the area is cleared
-- The Uhrmacher's journal lies on the workbench against the north wall (A4-A5), among his abandoned tools
+- The Gear (Cross-Planar Regulation Gear, contract §1.2) is re-packed in its original modron shipping crate (A8) — the Uhrmacher boxed it when he disconnected it
+- The delivery manifest lies on the workbench against the north wall (A4-A5), among his abandoned tools — it matches the crate
 
 ---
 
-## Artifact — The Uhrmacher's Journal
+## Artifact — Delivery Manifest
 
-On the workbench (A4-A5), among the tools. Typeset prop: `props/journal/entry-3.html` ("The Disconnection"). Later entries in a shaking hand. The Uhrmacher has noticed the changes — conformity, loss of individuality. Regret. Mentions disconnecting the Gear. Opposite tone from the optimistic letter in the Clockhall.
+On the workbench (A4-A5), among the tools. The original packing manifest from the Modron Collective, delivered with the Gear (contract Art. II §2.1). Modron bureaucratic language, Mechanus serial numbers, planar specifications — first concrete evidence the tower is connected to another plane. References an installation manual — enough detail for players to attempt installing the Gear themselves without Pendel. Matches the crate at A8. Typeset prop: `props/documents/delivery-manifest.html` (with Wilhelm's handwritten margin notes = journal beat 1, "The Gear Arrives"). Specs verified consistent with the contract (ref M-7742-§, serial Ω-CVX-0091, 2.7 × 0.4 cubits).
 
 ---
 

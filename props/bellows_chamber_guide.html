@@ -131,19 +131,13 @@ for (const [px, py] of [[420, 264], [600, 312], [700, 312], [1152, 240], [1261, 
   txt(g(px), gy(py) + 3.5, "s", { fill: INK, 'font-size': 10, 'font-weight': 700 });
 }
 
-// --- Workbench (journal) and modron crate ---
+// --- Workbench (manifest) and modron crate (the Gear re-packed inside) ---
 el('rect', { x: g(536), y: gy(110), width: 176 * S, height: 68 * S, rx: 2, fill: '#fff', stroke: INK, 'stroke-width': 1.2 });
 txt(g(624), gy(144) + 3, "BENCH", { fill: INK, 'font-size': 7.5 });
-txt(g(686), gy(134) + 3, "J", { fill: INK, 'font-size': 11, 'font-weight': 700 });
+txt(g(686), gy(134) + 3, "M", { fill: INK, 'font-size': 11, 'font-weight': 700 });
 el('rect', { x: g(916), y: gy(100), width: 88 * S, height: 88 * S, fill: '#fff', stroke: INK, 'stroke-width': 1.4 });
 el('circle', { cx: g(960), cy: gy(144), r: 4.5, fill: 'none', stroke: INK, 'stroke-width': 0.8 });
-txt(g(960), gy(188) + 10, "CRATE", { fill: INK, 'font-size': 6.5 });
-
-// --- The Gear (hidden behind the east bellows) ---
-const [gx2, gy2] = cxy(12, "F");
-el('circle', { cx: gx2 + CELL/2, cy: gy2 + CELL/2, r: 11, fill: 'none', stroke: INK, 'stroke-width': 1.8 });
-el('circle', { cx: gx2 + CELL/2, cy: gy2 + CELL/2, r: 4, fill: 'none', stroke: INK, 'stroke-width': 0.9 });
-txt(gx2 + CELL/2, gy2 + CELL - 2, "GEAR", { fill: INK, 'font-size': 7.5, 'font-weight': 700 });
+txt(g(960), gy(188) + 10, "CRATE (GEAR)", { fill: INK, 'font-size': 6.5 });
 
 // --- Stairs ---
 const [sx2, sy2] = cxy(6, "I");
@@ -198,9 +192,9 @@ lines([
   "Working a bellows = an action; blasts its duct, flushing its swarm.",
   "RESTORE THE AIR: work both bellows + re-cap BOTH stubs -> enables",
   "  the cuckoo's call in Act III (bellows are lungs, cuckoo the mouth).",
-  "GEAR: wedged behind the east bellows (F12) — visible once cleared.",
-  "Journal on the workbench (page visible, A5) = entry-3, The",
-  "  Disconnection. Modron crate (A8) matches the delivery manifest.",
+  "GEAR: re-packed inside the modron crate (A8) — the Uhrmacher",
+  "  boxed it when he disconnected it. The MANIFEST on the workbench",
+  "  (page visible, A5) matches the crate; refs the install manual.",
   "Exit up: ladder at C6 beside the main riser. Individuals die in one",
   "  hit; swarms halve martial damage — AoE and magic shine.",
   "Too easy: survivors re-emerge. Too hard: swarm at half HP flees.",

@@ -3,7 +3,7 @@
 - **Position:** Upper floor
 - **Clock anatomy:** The Bellows — air system powering the cuckoo's call
 - **Encounter:** Combat — 6 stirges + 2 swarms of stirges (Hard, ~2,100 adjusted XP)
-- **Artifact:** Dusty old journal (pessimistic view of the tower)
+- **Artifact:** Delivery manifest (packing manifest for the Gear, references installation manual)
 
 ## Description
 
@@ -26,13 +26,13 @@ A large chamber dominated by two massive wooden bellows, one on each side of the
 - **Down:** Staircase to the Clockhall
 - **Up:** A ladder at the room's center, climbing beside the main air riser through the ceiling to Cuckoo's Landing — you can feel (and later hear) the air rushing through the pipe as you climb.
 
-## Artifact — The Uhrmacher's Journal
+## Artifact — Delivery Manifest
 
-A dusty journal on the old workbench against the north wall (A4-A5), lying among abandoned tools. The Uhrmacher worked on the air system from this bench. Later entries, written in a shaking hand. He's noticed the changes in Freudenfeld — the conformity, the loss of individuality. Regret. Mentions disconnecting the Gear to stop it.
+The Gear's original packing manifest on the old workbench against the north wall (A4-A5), lying among abandoned tools. Modron bureaucratic language, Mechanus serial numbers, planar specifications; references an installation manual. Wilhelm's handwritten margin notes in the margins. It matches the unnaturally square shipping crate at A8 — inside which the Uhrmacher re-packed the Gear when he disconnected it. Typeset prop: `props/documents/delivery-manifest.html`.
 
 ## Image Prompt
 
-> The upper chamber of a clock tower, dominated by two enormous wooden bellows the size of wagons, one on each side. Built like giant lungs — hinged wooden frames with cracked leather membranes, connected to brass whistles and thick pipes that run upward through the ceiling. The bellows are choked with years of neglect — cobwebs thick as curtains, debris, dried organic matter clogging the air channels. A sturdy workbench stands against the north wall, scattered with abandoned tools and a dusty journal. Ducts meander overhead from both bellows to a central manifold, from which the main air riser climbs through the ceiling; a wooden ladder stands beside it. Decades of workshop junk lie strewn across the floor. The room feels organic and mechanical at once — a ribcage of wood and brass. [Append meta-prompt from room-style-guide.md]
+> The upper chamber of a clock tower, dominated by two enormous wooden bellows the size of wagons, one on each side. Built like giant lungs — hinged wooden frames with cracked leather membranes, connected to brass whistles and thick pipes that run upward through the ceiling. The bellows are choked with years of neglect — cobwebs thick as curtains, debris, dried organic matter clogging the air channels. A sturdy workbench stands against the north wall, scattered with abandoned tools and a creased paper manifest; nearby sits an unnaturally square wooden shipping crate. Ducts meander overhead from both bellows to a central manifold, from which the main air riser climbs through the ceiling; a wooden ladder stands beside it. Decades of workshop junk lie strewn across the floor. The room feels organic and mechanical at once — a ribcage of wood and brass. [Append meta-prompt from room-style-guide.md]
 
 ## Map Pair
 

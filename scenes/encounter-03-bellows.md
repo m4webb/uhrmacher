@@ -43,8 +43,8 @@
 - **Two bellows** (one each side) — large wooden structures, climbable, provide half cover behind them
 - **Brass pipes** — the ducts are wide-bore (~1-1.5 ft; the wagon-sized bellows demand it) — plenty for Tiny stirges crawling with folded wings, and swarms can pass any Tiny-sized opening. The drawn line width is stylized
 - **Main riser** — runs up through the ceiling beside the ladder
-- **Workbench** (A4-A5, north wall) — the Uhrmacher's bench; his journal lies among the tools (`props/journal/entry-3.html`)
-- **Modron delivery crate** (A8) — the Gear's original shipping crate, unnaturally square
+- **Workbench** (A4-A5, north wall) — the Uhrmacher's bench; the delivery manifest lies among the tools (`props/documents/delivery-manifest.html`)
+- **Modron delivery crate** (A8) — the Gear's original shipping crate, unnaturally square; **the Gear is inside**, re-packed by the Uhrmacher when he disconnected it. The manifest on the bench matches it
 - **Junk field** (rows D-F, spilling into G) — the Uhrmacher's salvage and stirge nesting; all junk-covered squares are difficult terrain
 - **Debris and nesting material** — difficult terrain in patches around the bellows
 
@@ -52,12 +52,12 @@
 
 ```
       1  2  3  4  5  6  7  8  9 10 11 12
-  A   ▓  ▓  ░  W  W  ░  .  □  ░  ░  ▓  ▓     W workbench (journal) · □ modron crate
+  A   ▓  ▓  ░  W  W  ░  .  □  ░  ░  ▓  ▓     W workbench (delivery manifest) · □ modron crate (the Gear inside — DM only)
   B   [B  B] .  .  ░  .  .  .  .  ░ [B  B]   [B] bellows, 2×4 each (impassable, climbable, half cover)
   C   [B  B] .  .  .  ↑  ◍  .  .  . [B  B]   ◍ manifold (centered on the B/C-6/7 corner) · ↑ ladder up (left side of C6)
   D   [B  B] ø  ░  ░  .  .  ░  .  ø [B  B]   ø uncapped service stub (D3 west / D10 east), fallen cap nearby
   E   [B  B] ░  ░  ░  ░  ░  ░  ░  . [B  B]   ░ junk — difficult terrain (all 40 marked squares)
-  F   ░  ░  ░  .  ░  ░  ░  .  ░  ░  ░  g     g the Gear (F12, under junk — DM only)
+  F   ░  ░  ░  .  ░  ░  ░  .  ░  ░  ░  ░
   G   .  .  ░  .  .  .  .  ░  .  .  .  .
   H   .  ░  ░  .  .  .  .  ░  .  .  ░  ░
   I   ▓  ▓  .  ░  .  ▼  ▼  .  ░  ░  ▓  ▓     ▼ stairs down to Clockhall (I6-I7)

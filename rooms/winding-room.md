@@ -3,7 +3,7 @@
 - **Position:** Below ground (basement)
 - **Clock anatomy:** winding mechanism and Regulation Gear cradle — where the drive counterweights power the tower, and where the Mechanus Gear splices into the drive train (like a governor or remontoire, it regulates the raw force of the weights into perfect cadence before it reaches the movement)
 - **Encounter:** Combat/social (Fritz + gear golem)
-- **Artifact:** Gear receipt (packing manifest, references installation manual)
+- **Artifact:** The Uhrmacher's journal (Fritz has it — found and part-read)
 
 ## Description
 
@@ -13,10 +13,10 @@ A vaulted underground chamber housing the tower's foundational mechanism — the
 
 - **Up:** Stairs/trapdoor to the Clockhall
 
-## Artifact — Gear Receipt
+## Artifact — The Uhrmacher's Journal
 
-The original packing manifest from the Modron Collective, delivered with the Gear (contract Art. II §2.1, "packing manifest in triplicate"). Filed near the mounting cradle. Written in modron bureaucratic language with Mechanus serial numbers and planar specifications — possibly the first concrete evidence for the players that this isn't just a local clockmaker's project, but something connected to another plane entirely. Describes the Gear's specifications and references an installation manual. Gives the players enough to attempt installation themselves without Pendel's help. **Typeset prop: `props/journal/entry-1.html`** — the manifest itself, with Wilhelm's handwritten margin notes doubling as journal beat 1 ("The Gear Arrives"). Specs verified consistent with the contract (ref M-7742-§, serial Ω-CVX-0091, 2.7 × 0.4 cubits).
+In Fritz's camp. He found the old clockmaker's journal in the works and has tried to read it, but he can't read well and has only understood pieces — its warnings went over his head. Later entries written in a shaking hand: the Uhrmacher has noticed the changes in Freudenfeld — the conformity, the loss of individuality. Regret. Mentions disconnecting the Gear. Opposite tone from the optimistic letter in the Clockhall. A roleplay reward — earn Fritz's trust and he shares it. **Typeset props:** `props/documents/journal-improving.html` ("Things Are Improving"), `props/documents/journal-disconnection.html` ("The Disconnection"); optional DM pocket piece `props/documents/journal-something-wrong.html`.
 
 ## Image Prompt
 
-> An underground vaulted chamber beneath a clock tower, the foundation of the mechanism. Heavy iron and brass gear trains line the walls, connected by thick axles and drive chains. At the far end of the long chamber, a prominent empty mounting cradle — a circular frame with locking clamps, clearly designed to hold a large gear that is now absent. The gap in the machinery is conspicuous, like a missing tooth. Weight chains hang from the ceiling into the mechanical works, and colossal cast-iron pinecone counterweights hang among the machinery, lowered into circular floor berths. A small, makeshift camp is tucked into a deserted corner, separated from the mounting cradle by dense machinery — a thin bedroll, a wooden crate used as a table, a candle stub. The chamber is cold, damp, and echoing. [Append meta-prompt from room-style-guide.md]
+> An underground vaulted chamber beneath a clock tower, the foundation of the mechanism. Heavy iron and brass gear trains line the walls, connected by thick axles and drive chains. At the far end of the long chamber, a prominent empty mounting cradle — a circular frame with locking clamps, clearly designed to hold a large gear that is now absent. The gap in the machinery is conspicuous, like a missing tooth. Weight chains hang from the ceiling into the mechanical works, and colossal cast-iron pinecone counterweights hang among the machinery, lowered into circular floor berths. A small, makeshift camp is tucked into a deserted corner, separated from the mounting cradle by dense machinery — a thin bedroll, a wooden crate used as a table, a candle stub, a dog-eared journal. The chamber is cold, damp, and echoing. [Append meta-prompt from room-style-guide.md]

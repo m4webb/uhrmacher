@@ -23,9 +23,9 @@ Stone steps descend into a long vaulted chamber, and the tower's heartbeat is su
 
 ### Fritz — Knows / Will Share / Won't Share
 
-- **Knows:** He's been living here since his leg started working again. The tower makes him better. The golem protects him. He controls it with a brass winding key he found.
-- **Will share if calmed:** His leg was useless before — born with it. He doesn't want anyone to take the tower away from him. Treat him as an equal; patronising him makes him dig in.
-- **Won't share (doesn't know):** What the Gear does, what the modrons are planning, the contract, the long-term consequences
+- **Knows:** He's been living here since his leg started working again. The tower makes him better. The golem protects him. He controls it with a brass winding key he found. He found the old clockmaker's journal in the works and has tried to read it — but he can't read well, and has only understood pieces.
+- **Will share if calmed:** His leg was useless before — born with it. He doesn't want anyone to take the tower away from him. Treat him as an equal; patronising him makes him dig in. The journal — he'll show it (or hand it over) once treated with respect.
+- **Won't share (doesn't know):** What the Gear does, what the modrons are planning, the contract, the long-term consequences — the journal's warnings went over his head
 - **Key line:** *"I could barely walk before. Now I can run. You're not taking that from me."*
 
 ---
@@ -37,13 +37,13 @@ Stone steps descend into a long vaulted chamber, and the tower's heartbeat is su
 - Fritz doesn't know the Gear needs to be installed here — players can persuade him it will help the tower (Persuasion DC 12) or deceive him
 - If players tell Fritz they want to harm the tower, he orders the golem to fight to the death
 - The discarded leg brace lies by the east approach (near C8, outside his corner) — tells the story before the players meet Fritz
-- The gear receipt (packing manifest) is filed near the mounting cradle
+- Fritz has the Uhrmacher's journal — he found it in the works and has tried to read it, but he can't read well and hasn't fully understood it
 
 ---
 
-## Artifact — Gear Receipt
+## Artifact — The Uhrmacher's Journal
 
-The original packing manifest from the Modron Collective (contract Art. II §2.1). Modron bureaucratic language, Mechanus serial numbers, planar specifications. First concrete evidence the tower is connected to another plane. References an installation manual — enough detail for players to attempt installing the Gear themselves without Pendel. Typeset prop: `props/journal/entry-1.html` (with Wilhelm's margin notes = journal beat 1).
+In Fritz's camp — a roleplay reward, not a floor pickup: earn his trust and he shares it; fight past him and they may never see it. Later entries in a shaking hand. The Uhrmacher has noticed the changes — conformity, loss of individuality. Regret. Mentions disconnecting the Gear. Opposite tone from the optimistic letter in the Clockhall. Typeset props: `props/documents/journal-improving.html` ("Things Are Improving"), `props/documents/journal-disconnection.html` ("The Disconnection"); optional DM pocket piece `props/documents/journal-something-wrong.html`.
 
 ---
 
