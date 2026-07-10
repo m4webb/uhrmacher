@@ -95,7 +95,7 @@ function duct(pts) {
   el('path', { d, fill: 'none', stroke: INK, 'stroke-width': 0.9, 'stroke-dasharray': '4 3' });
 }
 duct([[371, 232], [371, 264], [480, 264], [480, 312], [596, 312]]);                        // west duct
-duct([[1261, 232], [1261, 168], [1152, 168], [1152, 360], [840, 360], [840, 216], [680, 216], [680, 268], [652, 268]]);  // east duct
+duct([[1261, 232], [1261, 168], [1152, 168], [1152, 360], [840, 360], [840, 216], [768, 216], [768, 304], [652, 304]]);  // east duct
 duct([[480, 324], [480, 396]]);                                                            // west stub
 duct([[1152, 372], [1152, 396]]);                                                          // east stub
 for (const [sx, sy] of [[480, 400], [1152, 400]]) {                                        // open mouths
@@ -126,7 +126,7 @@ for (let i = 0; i < 5; i++) {
 txt(g(698), gy(378) + 11, "ladder up (Cuckoo's Landing)", { fill: INK, 'font-size': 7.5 });
 
 // --- Six stirge perches (wave 1), hanging from the ducts ---
-for (const [px, py] of [[420, 264], [548, 312], [760, 216], [1152, 240], [1261, 200], [1000, 360]]) {
+for (const [px, py] of [[420, 264], [548, 312], [806, 216], [1152, 240], [1261, 200], [1000, 360]]) {
   el('circle', { cx: g(px), cy: gy(py), r: 8, fill: '#fff', stroke: INK, 'stroke-width': 1.1, 'stroke-dasharray': '3 2' });
   txt(g(px), gy(py) + 3.5, "s", { fill: INK, 'font-size': 10, 'font-weight': 700 });
 }
