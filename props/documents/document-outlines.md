@@ -7,7 +7,7 @@ Four beats tracking Wilhelm Zeiger's arc. Beats 1-3 are handed out during Act II
 - Mundane village life in contrast
 - Unintentional reveal: fondness for the modrons that suggests loneliness
 
-## Beat 2 — Things Are Improving (Act II, mid) — REALIZED as the Letter from Kohler (`letter-from-kohler.html`, 2 pages): a friend's reply on the Clockhall workbench
+## Beat 2 — Things Are Improving (Act II, mid) — REALIZED as the Letter from Kohler (`letter-from-kohler.html`): a friend's reply on the Clockhall workbench
 - Positive changes in town, echoed back second-hand from Wilhelm's proud reports
 - One small detail that doesn't sit right (Renner's identical chairs), affectionately dismissed by Kohler
 - Unintentional reveal: Wilhelm noticed early — and his friend talked him out of it

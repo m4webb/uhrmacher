@@ -18,7 +18,7 @@ The front door opens directly into the main room of the tower. A living space an
 
 ## Artifact — Letter from Kohler
 
-A letter on the Uhrmacher's workbench from his old friend Kohler, partially buried under tools and modron work orders — which is why it's still in Wilhelm's possession. Written early in the tower's operation, replying to Wilhelm's proud reports: the town thriving, the tower keeping perfect time. Kohler teases him warmly and waves away his first small worry (the woodcarver's identical chairs). No hint of doubt yet. Typeset prop: `props/documents/letter-from-kohler.html` (2 pages).
+A letter on the Uhrmacher's workbench from his old friend Kohler, partially buried under tools and modron work orders — which is why it's still in Wilhelm's possession. Written early in the tower's operation, replying to Wilhelm's proud reports: the town thriving, the tower keeping perfect time. Kohler teases him warmly and waves away his first small worry (the woodcarver's identical chairs). No hint of doubt yet. Typeset prop: `props/documents/letter-from-kohler.html`.
 
 ## Image Prompt
 
