@@ -10,7 +10,7 @@ He signed the contract with the modrons not out of greed or ambition, but becaus
 
 ## Timeline
 
-Wilhelm lived and died approximately 70 years before the adventure. The oldest townsfolk in Freudenfeld have faint childhood memories of the tower running and the changes it caused, but Wilhelm himself is long gone. The people he mentions in his journal — neighbors, children, the schoolteacher — are not the current NPCs. They are the previous generation, now dead or very old.
+Wilhelm's era is 1742 (canon — all dated documents); the adventure is set in 1804, some sixty years later. The oldest townsfolk in Freudenfeld have faint childhood memories of the tower running and the changes it caused, but Wilhelm himself is long gone. The people he mentions in his journal — neighbors, children, the schoolteacher — are not the current NPCs. They are the previous generation, now dead or very old.
 
 ## His Arc Across the Journal
 
