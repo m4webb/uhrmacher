@@ -51,7 +51,7 @@ Players who beat the cuckoo's initiative can reposition after gear rotation but 
 - **Cone direction:** Fixed from center. Rotation shifts who's in the blast zone.
 - **Center hazard:** Anyone in the center when cuckoo emerges → knockdown (DEX save).
 - **Air pipes:** Terminate around the edges, feeding into the cuckoo mechanism.
-- See `props/cuckoos_landing_guide.html` for visual layout (`props/cuckoos_landing_map.html` is the print battle map).
+- See `props/cuckoos_landing_guide.html` for visual layout (`props/cuckoos_landing_map.html` is the print battle map; `props/cuckoos_landing_overlay.html` is the cut-out platform overlay — 2 sheets, door closed / door open with rod + perch — laid over row A so the gear rotates beneath it).
 
 ---
 
