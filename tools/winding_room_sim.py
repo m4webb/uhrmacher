@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """State-space verification for the winding room counterweight puzzle (v2, pull-chains).
 
-Model: four 3-wide counterweights at two levels (rows E and I); each pokes into its outer
-lane ('out') or the shared middle ('mid'); both weights of a level cannot be 'mid'
-(jam). Chains are reusable, one per weight per direction, pulling costs an action.
+Model: four cast-iron PINECONE counterweights (3x3 footprint) at two levels (rows E
+and I); each hangs dropped at its outer lane berth ('out') or the shared middle berth
+('mid'); a pinecone cannot drop where another sits (jam). Chains are reusable, one
+per pinecone per direction, pulling costs an action.
 
 Party analysis uses an occupancy abstraction (8 players ~ unlimited tokens).
 Pair analysis (P7) is an exact two-actor search: Fritz and the golem are two
@@ -21,7 +22,7 @@ for c in range(3, 8): base.add(f"N{c}")
 for c in range(2, 9): base.add(f"M{c}")
 for r in "DEFGHIJKL":
     for c in (2, 5, 8): base.add(f"{r}{c}")
-base |= {"J3", "J4", "G6", "G7"}
+base |= {"K3", "K4", "G6", "G7"}
 for c in range(2, 6): base.add(f"C{c}")                    # backroom, bottom row
 base.add("C8")                                             # east approach
 for c in range(2, 6): base.add(f"A{c}"); base.add(f"B{c}") # backroom 4x3 (cols 2-5)
@@ -46,7 +47,18 @@ CHAINS = {
 }
 
 def covered(cfg):
-    return {LANE_CELL[g][p] for g, p in zip(ORDER, cfg)}
+    # Pinecone counterweights: each drops as a 3x3 footprint centered on its
+    # position cell (they hang from winding chains and lower into place).
+    cells = set()
+    for g, p in zip(ORDER, cfg):
+        center = LANE_CELL[g][p]
+        r0, c0 = ROWS.index(center[0]), int(center[1])
+        for dr in (-1, 0, 1):
+            for dc in (-1, 0, 1):
+                rr, cc = r0 + dr, c0 + dc
+                if 0 <= rr < len(ROWS) and 1 <= cc <= 9:
+                    cells.add(f"{ROWS[rr]}{cc}")
+    return cells
 
 def walkable(cfg):
     return base - covered(cfg)

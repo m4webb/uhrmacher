@@ -41,7 +41,7 @@ const base = new Set();
 for (let c = 3; c <= 7; c++) base.add("N" + c);
 for (let c = 2; c <= 8; c++) base.add("M" + c);
 for (const r of "DEFGHIJKL") for (const c of [2, 5, 8]) base.add(r + c);
-["J3", "J4", "G6", "G7"].forEach(s => base.add(s));
+["K3", "K4", "G6", "G7"].forEach(s => base.add(s));
 for (let c = 2; c <= 5; c++) base.add("C" + c);
 base.add("C8");
 for (let c = 2; c <= 5; c++) { base.add("A" + c); base.add("B" + c); }
@@ -67,7 +67,6 @@ for (let r = 0; r < ROWS.length; r++) {
   for (let c = 1; c <= COLSN; c++) {
     const cell = ROWS[r] + c;
     const x = OX + (c - 1) * CELL, y = OY + r * CELL;
-    if (RAIL_ROWS.includes(cell[0]) && c >= 2 && c <= 8) continue;
     if (base.has(cell)) {
       el('rect', { x, y, width: CELL, height: CELL, fill: '#fff', stroke: INK, 'stroke-width': 0.6 });
     } else {
@@ -75,31 +74,25 @@ for (let r = 0; r < ROWS.length; r++) {
     }
   }
 }
-// --- Rails ---
+// --- Berths (six drop points) + pinecone START positions (DM overlay) ---
 for (const rr of RAIL_ROWS) {
-  const y = OY + ROWS.indexOf(rr) * CELL;
-  const x0 = OX + 1 * CELL, x1 = OX + 8 * CELL;
-  el('rect', { x: x0, y, width: x1 - x0, height: CELL, fill: '#fff', stroke: INK, 'stroke-width': 1.2 });
-  for (const lane of [2, 5, 8]) {
-    const lx = OX + (lane - 1) * CELL;
-    for (const ey of [y, y + CELL]) {
-      el('line', { x1: lx + 5, y1: ey, x2: lx + CELL - 5, y2: ey, stroke: '#fff', 'stroke-width': 2.5 });
-      el('line', { x1: lx + 5, y1: ey, x2: lx + CELL - 5, y2: ey, stroke: INK, 'stroke-width': 0.5, 'stroke-dasharray': '3 2' });
-    }
+  for (const cc of [2, 5, 8]) {
+    el('circle', { cx: OX + (cc - 1) * CELL + CELL / 2, cy: OY + ROWS.indexOf(rr) * CELL + CELL / 2,
+                   r: 64, fill: 'none', stroke: INK, 'stroke-width': 0.7, 'stroke-dasharray': '5 4' });
   }
 }
-// --- Weight START positions (DM overlay): UW west, UE mid / LW mid, LE east ---
-const WSTART = [
-  { row: "E", c0: 2, label: "UW" },  // covers E2 (west)
-  { row: "E", c0: 5, label: "UE" },  // covers E5 (mid)... block spans 3 cells from its lane edge
-  { row: "I", c0: 3, label: "LW" },  // covers I5 (mid)
-  { row: "I", c0: 6, label: "LE" },  // covers I8 (east)
+const PSTART = [
+  { row: "E", c: 2, label: "UW" },   // dropped west
+  { row: "E", c: 5, label: "UE" },   // dropped middle
+  { row: "I", c: 5, label: "LW" },   // dropped middle
+  { row: "I", c: 8, label: "LE" },   // dropped east
 ];
-for (const wgt of WSTART) {
-  const y = OY + ROWS.indexOf(wgt.row) * CELL;
-  const x = OX + (wgt.c0 - 1) * CELL;
-  el('rect', { x: x + 2, y: y + 4, width: 3 * CELL - 4, height: CELL - 8, rx: 6, fill: '#8a8a8a', stroke: INK, 'stroke-width': 1.5 });
-  txt(x + 1.5 * CELL, y + CELL / 2 + 5, wgt.label, { fill: '#fff', 'font-size': 14, 'font-weight': 700 });
+for (const ps of PSTART) {
+  const cx = OX + (ps.c - 1) * CELL + CELL / 2, cy = OY + ROWS.indexOf(ps.row) * CELL + CELL / 2;
+  el('circle', { cx, cy, r: 62, fill: '#d9d9d9', stroke: INK, 'stroke-width': 1.6 });
+  el('circle', { cx, cy, r: 44, fill: 'none', stroke: INK, 'stroke-width': 0.8, 'stroke-dasharray': '6 4' });
+  el('circle', { cx, cy, r: 26, fill: 'none', stroke: INK, 'stroke-width': 0.8, 'stroke-dasharray': '5 4' });
+  txt(cx, cy + 5, ps.label, { fill: INK, 'font-size': 14, 'font-weight': 700 });
 }
 // --- Chains with pairing labels ---
 for (const [sq, label] of Object.entries(CHAINS)) {
@@ -110,6 +103,7 @@ for (const [sq, label] of Object.entries(CHAINS)) {
 }
 // --- Cradle, camp, golem, stairs ---
 const crX = OX + 3 * CELL, crY = OY + 1 * CELL;
+el('circle', { cx: crX, cy: crY, r: 21, fill: '#fff', stroke: 'none' });  // mask grid
 el('circle', { cx: crX, cy: crY, r: 19, fill: 'none', stroke: INK, 'stroke-width': 2 });
 el('circle', { cx: crX, cy: crY, r: 5, fill: 'none', stroke: INK, 'stroke-width': 1 });
 const [gx, gy] = xy("G8");
@@ -145,7 +139,7 @@ const TABLE = [
 ];
 let ty = 108;
 txt(PX, ty, "CHAIN", { fill: INK, 'font-size': 11, 'font-weight': 700, 'text-anchor': 'start' });
-txt(PX + 68, ty, "WEIGHT", { fill: INK, 'font-size': 11, 'font-weight': 700, 'text-anchor': 'start' });
+txt(PX + 68, ty, "PINECONE", { fill: INK, 'font-size': 11, 'font-weight': 700, 'text-anchor': 'start' });
 txt(PX + 148, ty, "EFFECT", { fill: INK, 'font-size': 11, 'font-weight': 700, 'text-anchor': 'start' });
 el('line', { x1: PX, y1: ty + 6, x2: 1020, y2: ty + 6, stroke: INK, 'stroke-width': 1 });
 ty += 24;
@@ -165,13 +159,13 @@ el('line', { x1: PX, y1: ty + 6, x2: 1020, y2: ty + 6, stroke: INK, 'stroke-widt
 ty += 22;
 const RULES = [
   "Pulling a chain = 1 action. Chains are reusable; they grind or jam audibly.",
-  "Each weight blocks its outer lane OR the middle. Middle bay is shared —",
-  "  one weight per rail may hold it; the other JAMS.",
-  "Each rail always leaves exactly one lane open.",
-  "Caught in a sliding weight's path: DEX save, dive adjacent; fail 1d6 + prone.",
-  "Trace a chain (action + easy Investigation) to learn its weight + direction.",
+  "Each PINECONE (3x3 footprint) hangs dropped at its outer lane or the middle",
+  "  berth. The middle berth is shared - one cannot drop where another sits.",
+  "Each level always leaves exactly one lane open.",
+  "Under a descending pinecone: DEX save, dive adjacent; fail 1d6 + prone.",
+  "Trace a chain (action + easy Investigation) to learn its pinecone + direction.",
   "Golem: starts caged at G8; freed by the first effective pull (G2).",
-  "  It never damages machinery — blocked lanes stop it. Anyone may pull chains.",
+  "  It never damages machinery - blocked lanes stop it. Anyone may pull chains.",
   "Fritz: home at A7-B8 (door via C8 square). C8 chain = his self-seal reveal.",
   "Sightlines: machinery blocks ranged fire except along open lanes.",
 ];

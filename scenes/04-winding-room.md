@@ -41,7 +41,7 @@ Stone steps descend into a vaulted underground chamber. Heavy iron and brass gea
 
 ## Artifact — Gear Receipt
 
-The original packing manifest from the Modron Collective (contract Art. II §2.1). Modron bureaucratic language, Mechanus serial numbers, planar specifications. First concrete evidence the tower is connected to another plane. References an installation manual — enough detail for players to attempt installing the Gear themselves without Pendel.
+The original packing manifest from the Modron Collective (contract Art. II §2.1). Modron bureaucratic language, Mechanus serial numbers, planar specifications. First concrete evidence the tower is connected to another plane. References an installation manual — enough detail for players to attempt installing the Gear themselves without Pendel. Typeset prop: `props/journal/entry-1.html` (with Wilhelm's margin notes = journal beat 1).
 
 ---
 

@@ -2,7 +2,7 @@
 
 Four entries tracking Wilhelm Zeiger's arc. Entries 1-3 are handed out during Act II. Entry 4 is a DM pocket piece.
 
-## Entry 1 — The Gear Arrives (Act II, early)
+## Entry 1 — The Gear Arrives (Act II, early) — REALIZED as the Delivery Manifest (`entry-1.html`): Wilhelm's margin notes on the modron packing manifest, found in the winding room
 - Technical excitement about the gear's perfection and installation
 - Mundane village life in contrast
 - Unintentional reveal: fondness for the modrons that suggests loneliness

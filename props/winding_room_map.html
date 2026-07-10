@@ -2,21 +2,24 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Winding Room — Print Battle Map (12×18 in, 1 in = 5 ft)</title>
+<title>Winding Room — Print Battle Map (12×18 in ×2 pages, 1 in = 5 ft)</title>
 <style>
   @page { size: 12in 18in; margin: 0; }
   html, body { margin: 0; padding: 0; background: #fff; }
-  svg { display: block; width: 12in; height: 18in; }
+  svg { display: block; width: 12in; height: 18in; page-break-after: always; }
+  svg:last-child { page-break-after: auto; }
   text { font-family: 'Liberation Mono', monospace; }
 </style>
 </head>
 <body>
 
 <svg id="map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1152 1728"></svg>
+<svg id="tokens" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1152 1728"></svg>
 
 <script>
 const NS = 'http://www.w3.org/2000/svg';
 const svg = document.getElementById('map');
+const svg2 = document.getElementById('tokens');
 function el(name, attrs = {}, parent = svg) {
   const n = document.createElementNS(NS, name);
   for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
@@ -29,15 +32,15 @@ function txt(x, y, str, attrs = {}, parent = svg) {
   return t;
 }
 
-// 1 in = 5 ft = 96 units. Page 12×18 in. Room 9×14 squares.
-// Physical features only: floor, machinery, rail channels, chains, cradle,
-// camp, stairs. Counterweights are the CUT-OUT TOKENS below the map (they move).
-// Chain pairings are NOT printed — players learn them by tracing (DM guide has them).
+// 1 in = 5 ft = 96 units. Page 1: the room (9×14 squares). Page 2: four cut-out
+// 3×3 pinecone counterweight tokens (they hang from the winding chains and are
+// dropped into the six berths; place per the DM guide's start positions).
+// Chain pairings are NOT printed — players learn them by tracing.
 const CELL = 96, COLSN = 9;
 const ROWS = "ABCDEFGHIJKLMN";
 const PAGE_W = 1152, PAGE_H = 1728;
 const W = COLSN * CELL, H = ROWS.length * CELL;
-const OX = (PAGE_W - W) / 2, OY = 60;
+const OX = (PAGE_W - W) / 2, OY = 190;
 const INK = '#000';
 
 // --- Walkable floor (same layout as tools/winding_room_sim.*) ---
@@ -45,13 +48,14 @@ const base = new Set();
 for (let c = 3; c <= 7; c++) base.add("N" + c);
 for (let c = 2; c <= 8; c++) base.add("M" + c);
 for (const r of "DEFGHIJKL") for (const c of [2, 5, 8]) base.add(r + c);
-["J3", "J4", "G6", "G7"].forEach(s => base.add(s));
+["K3", "K4", "G6", "G7"].forEach(s => base.add(s));
 for (let c = 2; c <= 5; c++) base.add("C" + c);
 base.add("C8");
 for (let c = 2; c <= 5; c++) { base.add("A" + c); base.add("B" + c); }
 ["A7", "B7", "A8", "B8"].forEach(s => base.add(s));
 const CHAIN_SQ = ["G2", "G6", "M3", "K2", "B4", "C3", "L2", "C8"];
-const RAIL_ROWS = ["E", "I"];
+const BERTHS = [];
+for (const rr of ["E", "I"]) for (const cc of [2, 5, 8]) BERTHS.push(rr + cc);
 
 function xy(cell) {
   return [OX + (parseInt(cell[1]) - 1) * CELL, OY + ROWS.indexOf(cell[0]) * CELL];
@@ -69,7 +73,6 @@ for (let r = 0; r < ROWS.length; r++) {
   for (let c = 1; c <= COLSN; c++) {
     const cell = ROWS[r] + c;
     const x = OX + (c - 1) * CELL, y = OY + r * CELL;
-    if (RAIL_ROWS.includes(cell[0]) && c >= 2 && c <= 8) continue;  // rail channel drawn as a unit
     if (base.has(cell)) {
       el('rect', { x, y, width: CELL, height: CELL, fill: '#fff', stroke: INK, 'stroke-width': 0.9 });
     } else {
@@ -78,50 +81,77 @@ for (let r = 0; r < ROWS.length; r++) {
   }
 }
 
-// --- Rail channels (rows E and I, cols 2-8): recessed tracks with sleepers and end stops.
-//     The channel housing has openings where the lanes (cols 2, 5, 8) pass through. ---
-for (const rr of RAIL_ROWS) {
-  const y = OY + ROWS.indexOf(rr) * CELL;
-  const x0 = OX + 1 * CELL, x1 = OX + 8 * CELL;
-  el('rect', { x: x0, y, width: x1 - x0, height: CELL, fill: '#fff', stroke: INK, 'stroke-width': 2 });
-  for (const lane of [2, 5, 8]) {  // lane pass-through openings in the housing
-    const lx = OX + (lane - 1) * CELL;
-    for (const ey of [y, y + CELL]) {
-      el('line', { x1: lx + 10, y1: ey, x2: lx + CELL - 10, y2: ey, stroke: '#fff', 'stroke-width': 4 });
-      el('line', { x1: lx + 10, y1: ey, x2: lx + CELL - 10, y2: ey, stroke: INK, 'stroke-width': 0.8, 'stroke-dasharray': '5 4' });
-    }
-  }
-  for (const off of [30, CELL - 30]) {  // twin rails
-    el('line', { x1: x0 + 6, y1: y + off, x2: x1 - 6, y2: y + off, stroke: INK, 'stroke-width': 1.2 });
-  }
-  for (let c = 2; c <= 8; c++) {        // sleeper ticks at square boundaries
-    const tx = OX + (c - 1) * CELL;
-    if (c > 2) el('line', { x1: tx, y1: y + 22, x2: tx, y2: y + CELL - 22, stroke: INK, 'stroke-width': 0.8, 'stroke-dasharray': '4 4' });
-  }
-  for (const ex of [x0, x1]) {          // end stops
-    el('rect', { x: ex - 6, y: y + 12, width: 12, height: CELL - 24, fill: INK });
-  }
+// --- Berth shadows: the pinecones hang somewhere above each drop point;
+//     a soft shadow on the floor marks the spot ---
+const shGrad = el('radialGradient', { id: 'shadow' }, defs);
+el('stop', { offset: '0%', 'stop-color': '#000', 'stop-opacity': 0.30 }, shGrad);
+el('stop', { offset: '65%', 'stop-color': '#000', 'stop-opacity': 0.17 }, shGrad);
+el('stop', { offset: '100%', 'stop-color': '#000', 'stop-opacity': 0 }, shGrad);
+for (const b of BERTHS) {
+  const [x, y] = xy(b);
+  el('circle', { cx: x + CELL / 2, cy: y + CELL / 2, r: 88, fill: 'url(#shadow)' });
 }
 
-// --- Pull-chains: hanging fixture symbol (no pairing labels on the print map) ---
+// --- Pull-chains: hanging chain of double-outlined links, upper corner of the square ---
 for (const sq of CHAIN_SQ) {
   const [x, y] = xy(sq);
-  el('line', { x1: x + CELL/2, y1: y + 8, x2: x + CELL/2, y2: y + CELL/2 - 14, stroke: INK, 'stroke-width': 1.5, 'stroke-dasharray': '3 3' });
-  el('circle', { cx: x + CELL/2, cy: y + CELL/2, r: 13, fill: '#fff', stroke: INK, 'stroke-width': 2 });
-  el('circle', { cx: x + CELL/2, cy: y + CELL/2 + 6, r: 5, fill: 'none', stroke: INK, 'stroke-width': 1.2 });
-  el('circle', { cx: x + CELL/2, cy: y + CELL/2 - 4, r: 5, fill: 'none', stroke: INK, 'stroke-width': 1.2 });
+  const cx = x + CELL - 18;
+  // face links first: stadium rings outlined with two lines
+  for (const ly of [8, 30, 52]) {
+    el('rect', { x: cx - 6, y: y + ly, width: 12, height: 18, rx: 6, fill: '#fff', stroke: INK, 'stroke-width': 1.4 });
+    el('rect', { x: cx - 3, y: y + ly + 3, width: 6, height: 12, rx: 3, fill: 'none', stroke: INK, 'stroke-width': 1.1 });
+  }
+  // cross links on top: slim double-outlined bars passing over the bands
+  for (const [a, b] of [[1, 13], [22, 34], [44, 56]]) {
+    el('rect', { x: cx - 2.5, y: y + a, width: 5, height: b - a, rx: 2.5, fill: '#fff', stroke: INK, 'stroke-width': 1.3 });
+  }
 }
 
-// --- Cradle: circular frame centered on the A/B - 3/4 intersection ---
+// --- Cradle: circular frame on the A/B - 3/4 intersection, grid masked out,
+//     with a connector gear train running into the works beyond the north wall ---
 const crX = OX + 3 * CELL, crY = OY + 1 * CELL;
+function smallGear(cx, cy, r, n, h, hb, ht, sw, a0 = 0) {
+  const step = 360 / n;
+  function toothPts(aDeg) {
+    const a = aDeg * Math.PI / 180;
+    const px = cx + Math.cos(a) * r, py = cy + Math.sin(a) * r;
+    const rot = (aDeg + 90) * Math.PI / 180;
+    const c = Math.cos(rot), s = Math.sin(rot);
+    return [[-hb, 0], [-ht, -h], [ht, -h], [hb, 0]]
+      .map(([px2, py2]) => [px + px2 * c - py2 * s, py + px2 * s + py2 * c].map(v => v.toFixed(2)));
+  }
+  let d = '';
+  for (let i = 0; i < n; i++) {
+    const [bl, tl, tr, br] = toothPts(a0 + i * step);
+    d += (i === 0 ? `M ${bl}` : ` A ${r} ${r} 0 0 1 ${bl}`);
+    d += ` L ${tl} L ${tr} L ${br}`;
+  }
+  d += ` A ${r} ${r} 0 0 1 ${toothPts(a0)[0]} Z`;
+  el('path', { d, fill: '#fff', stroke: INK, 'stroke-width': sw });
+  el('circle', { cx, cy, r: r - 5, fill: 'none', stroke: INK, 'stroke-width': 0.9 });
+  el('circle', { cx, cy, r: 3, fill: 'none', stroke: INK, 'stroke-width': 1.5 });
+}
+const ux = -0.55, uy = -0.835;                    // up-left, toward the north wall
+const g1 = [crX + ux * 66, crY + uy * 66];        // idles just off the cradle rim, waiting for the Gear
+const g2 = [g1[0] + ux * 33, g1[1] + uy * 33];    // meshes with g1, runs into the wall works
+smallGear(g1[0], g1[1], 15, 8, 6, 4.5, 2.8, 2, -12);  // rotated so its teeth mesh into g2's gaps
+smallGear(g2[0], g2[1], 10, 6, 5, 3.6, 2.2, 1.8);
+el('circle', { cx: crX, cy: crY, r: 45, fill: '#fff', stroke: 'none' }); // mask grid beneath the frame
 el('circle', { cx: crX, cy: crY, r: 42, fill: 'none', stroke: INK, 'stroke-width': 4 });
 el('circle', { cx: crX, cy: crY, r: 34, fill: 'none', stroke: INK, 'stroke-width': 1.2 });
 el('circle', { cx: crX, cy: crY, r: 10, fill: 'none', stroke: INK, 'stroke-width': 2 });
 
-// --- Fritz's camp: bedroll + crate at A7 (physical scenery) ---
+// --- Fritz's camp at A7: child-size bedroll and a plank crate with candle stub ---
 const [cpx, cpy] = xy("A7");
-el('rect', { x: cpx + 14, y: cpy + 22, width: 44, height: 24, rx: 10, fill: 'none', stroke: INK, 'stroke-width': 1.5 });
-el('rect', { x: cpx + 62, y: cpy + 56, width: 20, height: 20, fill: 'none', stroke: INK, 'stroke-width': 1.5 });
+el('rect', { x: cpx + 8, y: cpy + 10, width: 78, height: 30, rx: 14, fill: '#fff', stroke: INK, 'stroke-width': 1.8 });
+el('rect', { x: cpx + 12, y: cpy + 13, width: 16, height: 24, rx: 8, fill: 'none', stroke: INK, 'stroke-width': 1.1 });
+el('path', { d: `M ${cpx + 44} ${cpy + 11} q -4 14 0 28 M ${cpx + 62} ${cpy + 11} q 4 14 0 28`,
+             fill: 'none', stroke: INK, 'stroke-width': 0.9 });
+el('rect', { x: cpx + 14, y: cpy + 50, width: 38, height: 38, fill: '#fff', stroke: INK, 'stroke-width': 1.8 });
+el('line', { x1: cpx + 26.5, y1: cpy + 50, x2: cpx + 26.5, y2: cpy + 88, stroke: INK, 'stroke-width': 0.8 });
+el('line', { x1: cpx + 39.5, y1: cpy + 50, x2: cpx + 39.5, y2: cpy + 88, stroke: INK, 'stroke-width': 0.8 });
+el('circle', { cx: cpx + 33, cy: cpy + 69, r: 4.5, fill: '#fff', stroke: INK, 'stroke-width': 1.4 });
+el('circle', { cx: cpx + 33, cy: cpy + 69, r: 1.3, fill: INK });
 
 // --- Stairs up at N5 ---
 const [stx, sty] = xy("N5");
@@ -134,23 +164,44 @@ el('rect', { x: OX, y: OY, width: W, height: H, fill: 'none', stroke: INK, 'stro
 
 // --- Coordinates ---
 for (let c = 1; c <= COLSN; c++) {
-  txt(OX + (c - 1) * CELL + CELL / 2, OY + H + 36, String(c), { fill: INK, 'font-size': 18 });
+  txt(OX + (c - 1) * CELL + CELL / 2, OY + H + 28, String(c), { fill: INK, 'font-size': 18 });
 }
 for (let r = 0; r < ROWS.length; r++) {
   txt(OX - 30, OY + r * CELL + CELL / 2 + 6, ROWS[r], { fill: INK, 'font-size': 18 });
 }
 
-// --- Counterweight tokens: cut out, place on the rails (they slide in play) ---
-txt(PAGE_W / 2, OY + H + 86, 'COUNTERWEIGHTS — CUT OUT · PLACE ON THE RAILS (3 × 1 SQUARES EACH)',
-  { fill: INK, 'font-size': 16, 'letter-spacing': 2 });
-const TOK_W = 3 * CELL, TOK_H = CELL;
-const tx0 = (PAGE_W - (2 * TOK_W + 48)) / 2, ty0 = OY + H + 108;
-for (let i = 0; i < 4; i++) {
-  const x = tx0 + (i % 2) * (TOK_W + 48), y = ty0 + Math.floor(i / 2) * (TOK_H + 22);
-  el('rect', { x: x - 6, y: y - 6, width: TOK_W + 12, height: TOK_H + 12, fill: 'none', stroke: INK, 'stroke-width': 0.8, 'stroke-dasharray': '6 5' });
-  el('rect', { x, y, width: TOK_W, height: TOK_H, rx: 10, fill: 'url(#mach)', stroke: INK, 'stroke-width': 3 });
-  el('rect', { x: x + 8, y: y + 8, width: TOK_W - 16, height: TOK_H - 16, rx: 6, fill: 'none', stroke: INK, 'stroke-width': 1.2 });
-  el('circle', { cx: x + TOK_W / 2, cy: y + TOK_H / 2, r: 9, fill: '#fff', stroke: INK, 'stroke-width': 1.5 });
+// ================= PAGE 2: pinecone counterweight tokens =================
+el('rect', { x: 0, y: 0, width: PAGE_W, height: PAGE_H, fill: '#fff' }, svg2);
+
+// Top-down pinecone: rings of overlapping scales, outermost drawn first so the
+// inner rings' scales overlap them (the tip of the cone faces up, toward you).
+function pinecone(cx, cy, parent) {
+  const RINGS = [
+    { R: 108, n: 13, ry: 42, rx: 30 },
+    { R: 68,  n: 9,  ry: 38, rx: 28 },
+    { R: 32,  n: 6,  ry: 30, rx: 22 },
+  ];
+  for (const ring of RINGS) {
+    for (let i = 0; i < ring.n; i++) {
+      const a = (i / ring.n) * 360 + ring.R;   // per-ring offset staggers the scales
+      const rad = a * Math.PI / 180;
+      const px = cx + Math.cos(rad) * ring.R, py = cy + Math.sin(rad) * ring.R;
+      const w = ring.rx, L = ring.ry;
+      // pointed scale: sharp tip outward, bulged flanks, rounded base
+      const d = `M 0 ${-L} Q ${w} ${-L * 0.3} ${w * 0.9} ${L * 0.35} Q ${w * 0.5} ${L} 0 ${L} ` +
+                `Q ${-w * 0.5} ${L} ${-w * 0.9} ${L * 0.35} Q ${-w} ${-L * 0.3} 0 ${-L} Z`;
+      el('path', { d, fill: '#fff', stroke: INK, 'stroke-width': 1.5,
+                   transform: `translate(${px} ${py}) rotate(${a + 90})` }, parent);
+    }
+  }
+  el('circle', { cx, cy, r: 13, fill: '#fff', stroke: INK, 'stroke-width': 1.7 }, parent);
+  el('circle', { cx, cy, r: 4, fill: INK }, parent);
+}
+
+const TOKC = [[392, 460], [760, 460], [392, 880], [760, 880]];
+for (const [cx, cy] of TOKC) {
+  el('circle', { cx, cy, r: 154, fill: 'none', stroke: INK, 'stroke-width': 0.8, 'stroke-dasharray': '7 6' }, svg2);  // cut line
+  pinecone(cx, cy, svg2);
 }
 </script>
 
