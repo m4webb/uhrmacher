@@ -19,6 +19,7 @@
 - The Uhrmacher decided to call it off and disconnected the tower
 - The modrons have now found a clause in the contract to continue the work despite his death
 - They are planning to complete the connection
+- **State of the connection (canon):** the modrons rewound the tower — its ordinary clockwork ticks again, though slightly imperfectly without the Regulation Gear (a private, ongoing agony for the modrons). The anchor is half-open: the modrons themselves came through it, and the ticking alone entrains the region, leaking conformity — hence the Act I effects with no Gear installed. Installing the Gear completes and **locks** the connection: the Activation Sequence
 
 ## Player Arc
 
