@@ -41,16 +41,17 @@
 
 ## Round Structure
 
-| Round | Phase | What Happens |
-|-------|-------|--------------|
-| Every | Init 20 | Gear floor rotates 90° CW. Ground creatures rotate with it; flying creatures and the platform do NOT. |
-| 1 (ON) | Cuckoo's turn | Emerges from aperture. Knockdown in impact path (DC 14 DEX). Wave 1 modrons burst out. Cuckoo's Call (cone). |
-| 2 (OFF) | Cuckoo's turn | Retracts. Knockdown in path (DC 14 DEX). Hold-on window: DC 12 STR Athletics to ride into Mechanus. |
-| 3 (ON) | Cuckoo's turn | Emerges again. Knockdown. Wave 2 modrons. Cuckoo's Call. |
-| 4 (OFF) | Cuckoo's turn | Retracts. Knockdown. Hold-on window. |
-| 5 (ON) | Cuckoo's turn | Emerges. Knockdown. Wave 3 modrons. Cuckoo's Call. Last chance. |
+The cuckoo is part of the machine: everything it does happens on **initiative 20**, in this fixed order — **gear rotates 90° CW → cuckoo emerges/retracts (knockdown + door slam) → modron wave releases → the Call fires.** Only the PCs and the modron group roll initiative.
 
-Players who beat the cuckoo's initiative can reposition after gear rotation but before emergence/blast.
+| Round | Initiative 20 — the machine acts |
+|-------|----------------------------------|
+| 1 (ON) | Rotate. Doors slam (DC 14 DEX, 2d6 + prone in swing tiles). Cuckoo emerges — knockdown in impact path (DC 14 DEX). Wave 1 releases. The Call (cone). |
+| 2 (OFF) | Rotate. Cuckoo retracts — knockdown in path (DC 14 DEX). Hold-on window: DC 12 STR (Athletics) to ride into Mechanus. Doors close. |
+| 3 (ON) | Rotate. Doors slam. Cuckoo emerges — knockdown. Wave 2 releases. The Call. |
+| 4 (OFF) | Rotate. Retracts — knockdown. Hold-on window. Doors close. |
+| 5 (ON) | Rotate. Doors slam. Cuckoo emerges — knockdown. Wave 3 releases. The Call. Last chance. |
+
+Rotation is perfectly predictable (90° CW every round) — the counterplay is reading the machine and positioning a round ahead, not winning initiative. Released waves act on the modron group's initiative, so the party gets a beat to react to new arrivals.
 
 ---
 
@@ -110,7 +111,7 @@ Branches on how the party treated him in Act II:
 
 ## DM Notes
 
-- Initiative: Roll for cuckoo, modrons (one group), and PCs; the environment (gear rotation) acts on initiative 20 — the adventure-wide environment slot
+- Initiative: Roll for PCs and the modrons (one group) only; the cuckoo acts with the environment on initiative 20 — the adventure-wide environment slot
 - The cuckoo is primarily an objective/HP sponge — the modron waves are the real combat threat
 - The rotating floor is the key tactical element: it constantly repositions everyone relative to the cone's fixed direction
 - Players who figure out the rotation pattern can predict where the cone will hit and position accordingly

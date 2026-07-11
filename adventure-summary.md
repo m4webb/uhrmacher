@@ -96,7 +96,7 @@ Players arrive at the village Gasthaus, responding to the Bürgermeister's pest 
 
 ### Combat Encounters
 
-**Initiative convention (all encounters):** PCs roll individually; each encounter's creatures roll as one group (stirges / Fritz + golem / cuckoo and modrons separately); the environment acts on initiative 20, lair-style.
+**Initiative convention (all encounters):** PCs roll individually; each encounter's creatures roll as one group (stirges / Fritz + golem / modrons); the environment acts on initiative 20, lair-style — in Act III the cuckoo itself is part of the environment turn.
 
 1. **Bellows Chamber** — 6 stirges + 2 swarms of stirges (Hard, ~2,100 adjusted XP). Individuals perched on the overhead ducts on entry; the swarms nest in the pipes and are flushed out an uncapped service stub each time a bellows is worked. To restore the air channels: work both bellows and re-cap both stubs. Enables the cuckoo's breath weapon in Act III (bellows are the lungs, cuckoo is the mouth)
 2. **Winding Room** — Gear golem protects Fritz, who is camped near the Gear installation point. Players can fight the golem, persuade Fritz, or deceive him (multiple solutions)
@@ -111,12 +111,8 @@ Players arrive at the village Gasthaus, responding to the Bürgermeister's pest 
 - **The Cuckoo's Call:** 30 ft cone, DC 14 CON save. On fail: 3d8 thunder damage + poisoned until end of their next turn (flavored as ringing ears/disorientation — cancels restrained advantage). Half damage on save, no poisoned. Fires once per cycle when the cuckoo calls.
 - **Emergency Venting:** Triggers once when the cuckoo drops below half HP. 10 ft radius burst, DC 14 DEX save. On fail: 3d6 fire damage. Half on save. Surprise punishment for melee cluster.
 - **Defensive Lockdown (optional, DM discretion):** Plating shifts, AC increases by 2. Use if the cuckoo is going down too fast and the fight needs more tension.
-- **Initiative:** Roll for cuckoo, modrons (one group), and PCs.
-- **Round structure (5 rounds: ON/OFF/ON/OFF/ON):**
-  - Init 20 (every round): Gear rotates 90° CW
-  - Cuckoo's turn (on-rounds): Emerges + knockdown in impact path (DEX save) + new modron wave bursts out with it + bellows blast (cone)
-  - Cuckoo's turn (off-rounds): Retracts + knockdown in impact path (DEX save) — hold-on window for players (DC 12 STR Athletics to ride it into Mechanus)
-  - Players who beat the cuckoo's initiative can reposition after gear rotation but before emergence/blast
+- **Initiative:** Roll for PCs and modrons (one group) only; the cuckoo acts with the environment on initiative 20.
+- **Round structure (5 rounds: ON/OFF/ON/OFF/ON):** the machine acts on init 20 in fixed order — gear rotates 90° CW, then the cuckoo emerges/retracts (knockdown DEX save; doors slam on deploy), then the modron wave releases, then the bellows blast (cone) on on-rounds. Off-rounds: retract + knockdown = the hold-on window (DC 12 STR Athletics to ride it into Mechanus). Rotation is predictable — players position a round ahead rather than racing initiative
 - **Modron Reinforcements (escalating, one wave per cycle):**
   - Wave 1 (cycle 1): 4 monodrones — one-shot fodder, pulls 1-2 PCs off cuckoo, cleaned up on off-turn. Fly 30ft (not affected by gear rotation).
   - Wave 2 (cycle 2): 3 duodrones + 1 tridrone — multi-attack makes them sticky, ~25 DPR, 2-3 PCs to handle. Ground only (rotate with the gear).
