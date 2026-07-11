@@ -24,7 +24,7 @@
 
 | Wave | Cycle | Enemies | DPR | Notes |
 |------|-------|---------|-----|-------|
-| 1 | 1 (ON) | 4 monodrones | Low | Fly 30 ft, not affected by gear rotation. One-shot fodder. |
+| 1 | 1 (ON) | 4 monodrones | ~26 | Fly 30 ft, not affected by gear rotation. One-shot fodder (5 HP) — but 2024 Gear attacks bite: real alpha-turn pressure. |
 | 2 | 2 (ON) | 3 duodrones + 1 tridrone | ~25 | Ground only, rotate with gear. Multi-attack makes them sticky. |
 | 3 | 3 (ON) | 2 tridrones + 2 quadrones | ~38 | Tridrones ground; quadrones fly 30 ft. Gears Launchers (320 ft) threaten backline. |
 
