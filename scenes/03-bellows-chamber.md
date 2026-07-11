@@ -23,7 +23,7 @@ The staircase opens into a wide chamber dominated by two enormous wooden bellows
 
 ## Artifact — Delivery Manifest
 
-On the workbench (I8-I9), among the tools. The original packing manifest from the Modron Collective, delivered with the Gear (contract Art. II §2.1). Modron bureaucratic language, Mechanus serial numbers, planar specifications — first concrete evidence the tower is connected to another plane. References an installation manual — enough detail for players to attempt installing the Gear themselves without Pendel. Matches the crate at A8. Typeset prop: `props/documents/delivery-manifest.html` (with Wilhelm's handwritten margin notes = journal beat 1, "The Gear Arrives"). Specs verified consistent with the contract (ref M-7742-§, serial Ω-CVX-0091, 2.7 × 0.4 cubits).
+On the workbench (I8-I9), among the tools. The original packing manifest from the Modron Collective, delivered with the Gear (contract Art. II §2.1). Modron bureaucratic language, Mechanus serial numbers, planar specifications — first concrete evidence the tower is connected to another plane. References an installation manual — enough detail for players to attempt installing the Gear themselves without Pendel. Matches the crate at I4. Typeset prop: `props/documents/delivery-manifest.html` (with Wilhelm's handwritten margin notes = journal beat 1, "The Gear Arrives"). Specs verified consistent with the contract (ref M-7742-§, serial Ω-CVX-0091, 2.7 × 0.4 cubits).
 
 ---
 
