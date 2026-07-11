@@ -30,7 +30,10 @@ function txt(x, y, str, attrs = {}, parent = svg) {
   return t;
 }
 
-// Same map geometry as battlefield-map.html (the print map), plus DM effect-zone overlays.
+// Same map geometry as cuckoos_landing_map.html, shown in the DEPLOYED state:
+// the platform overlay in place, doors slammed open, rod extended, perch on
+// the gear hub. Guide coords == print-map coords (both OX 96, OY 96, CELL 96).
+// Orientation: front of tower = bottom; the cuckoo bursts toward the players.
 const CELL = 96;
 const COLS = 10, ROWS = 10;
 const PAGE_W = 1152;
@@ -39,6 +42,18 @@ const OX = (PAGE_W - W) / 2, OY = 96;
 const CX = OX + W / 2, CY = OY + H / 2, R = W / 2;
 const R_INNER = R - 10;
 const INK = '#000';
+
+// Platform overlay landmarks (map coords; overlay sheet coords + (48, -44))
+const PTOP = 8;                       // structure slab top (trim edge)
+const FACE = 144;                     // wall face — top of the catwalk half-row
+const CAT1 = 192;                     // catwalk bottom = row A/B line
+const CORB = 288;                     // corner block bottom = row B/C line
+const PX0 = 96, PX1 = 1056;           // platform west/east edges
+const WBX = 288, EBX = 864;           // corner block inner edges
+const DX0 = 384, DX1 = 768;           // door aperture, cols 4-7
+const RODX = 576;                     // rod centerline
+const HUBX = 576, HUBY = 576;         // perch center = gear hub
+const LEAF = 192;                     // 10-ft door leaf
 
 // --- Zone geometry (in 5 ft units) ---
 function inGear(col, row) {
@@ -53,7 +68,8 @@ function inCone(col, row) {
   if (dist > 6) return false;
   return col >= 4 - dist && col <= 5 + dist;
 }
-function isImpact(col, row) { return row <= 3 && col >= 4 && col <= 5 && inGear(col, row); }
+// rod corridor on the gear (rows B-D; row A is the catwalk, handled below)
+function isImpact(col, row) { return row >= 1 && row <= 3 && col >= 4 && col <= 5 && inGear(col, row); }
 function isCuckoo(col, row) { return row >= 4 && row <= 5 && col >= 4 && col <= 5; }
 
 // --- Defs: hatch patterns + grid clip ---
@@ -65,12 +81,13 @@ function hatchPattern(id, size, paths, strokeWidth) {
 hatchPattern('impact', 12, ['M12 0 L0 12', 'M14 10 L10 14', 'M2 -2 L-2 2'], 1.2);   // 135°
 hatchPattern('cone', 12, ['M0 0 L12 12', 'M-2 10 L2 14', 'M10 -2 L14 2'], 1.2);     // 45°
 hatchPattern('cuckoo', 7, ['M0 0 L7 7', 'M7 0 L0 7'], 1);                            // crosshatch
+hatchPattern('wall', 7, ['M0 7 L7 0'], 0.5);                                         // tower mass
 const clip = el('clipPath', { id: 'gridClip' }, defs);
 el('circle', { cx: CX, cy: CY, r: R_INNER }, clip);
 
 el('rect', { x: 0, y: 0, width: PAGE_W, height: 1470, fill: '#fff' });
 
-// --- Zone fills + grid, clipped to the inner ring ---
+// --- Gear-level zone fills + grid, clipped to the inner ring ---
 const gClipped = el('g', { 'clip-path': 'url(#gridClip)' });
 for (let row = 0; row < ROWS; row++) {
   for (let col = 0; col < COLS; col++) {
@@ -89,9 +106,9 @@ for (let i = 0; i <= ROWS; i++) {
   el('line', { x1: OX, y1: OY + i * CELL, x2: OX + W, y2: OY + i * CELL, stroke: INK, 'stroke-width': 1 }, gClipped);
 }
 
-// --- Zone boundaries ---
+// --- Zone boundaries (rod corridor sides; cone edges) ---
 for (const c of [4, 6]) {
-  el('line', { x1: OX + c * CELL, y1: OY + 8, x2: OX + c * CELL, y2: OY + 4 * CELL,
+  el('line', { x1: OX + c * CELL, y1: CAT1, x2: OX + c * CELL, y2: OY + 4 * CELL,
     stroke: INK, 'stroke-width': 3, 'stroke-dasharray': '14 8' }, gClipped);
 }
 for (const dir of [-1, 1]) {
@@ -124,17 +141,78 @@ d += ` A ${R} ${R} 0 0 1 ${toothPts(0)[0]} Z`;
 el('path', { d, fill: 'none', stroke: INK, 'stroke-width': 4 });
 el('circle', { cx: CX, cy: CY, r: R_INNER, fill: 'none', stroke: INK, 'stroke-width': 1.5 });
 
-// --- Rod: double line from rim to cuckoo footprint ---
-const rodX = OX + 5 * CELL;
-for (const dx of [-5, 5]) {
-  el('line', { x1: rodX + dx, y1: CY - R + 6, x2: rodX + dx, y2: OY + 4 * CELL, stroke: INK, 'stroke-width': 2.5 });
+// ============ Platform overlay, deployed state ============
+// paper fill (covers the gear where the sheet lies)
+const sheetPath = `M ${PX0} ${PTOP} H ${PX1} V ${CORB} H ${EBX} V ${CAT1} H ${WBX} V ${CORB} H ${PX0} Z`;
+el('path', { d: sheetPath, fill: '#fff', stroke: 'none' });
+
+// catwalk + corner grid
+for (let c = 0; c <= 10; c++) {
+  const x = PX0 + c * CELL;
+  const yEnd = (x <= WBX || x >= EBX) ? CORB : CAT1;
+  el('line', { x1: x, y1: FACE, x2: x, y2: yEnd, stroke: INK, 'stroke-width': 1 });
+}
+el('line', { x1: PX0, y1: CAT1, x2: PX1, y2: CAT1, stroke: INK, 'stroke-width': 1 });
+el('line', { x1: PX0, y1: CORB, x2: WBX, y2: CORB, stroke: INK, 'stroke-width': 1 });
+el('line', { x1: EBX, y1: CORB, x2: PX1, y2: CORB, stroke: INK, 'stroke-width': 1 });
+
+// tower mass, split by the open doorway
+for (const [x0, x1] of [[PX0, DX0], [DX1, PX1]]) {
+  el('rect', { x: x0, y: PTOP, width: x1 - x0, height: FACE - PTOP, fill: 'url(#wall)', stroke: 'none' });
+  el('line', { x1: x0, y1: FACE, x2: x1, y2: FACE, stroke: INK, 'stroke-width': 1.5 });
+}
+txt(RODX, 84, 'PLANAR DOORWAY', { fill: INK, 'font-size': 16, 'letter-spacing': 2, 'font-weight': 700 });
+txt(RODX, 108, '(doors shown slammed open)', { fill: INK, 'font-size': 12 });
+
+// doors: 10-ft leaves swung 180° flat on the wall face, hinge pins at jambs
+for (const [hx, dir] of [[DX0, -1], [DX1, 1]]) {
+  el('rect', { x: hx + (dir > 0 ? 0 : -LEAF), y: FACE, width: LEAF, height: 12, fill: '#fff', stroke: INK, 'stroke-width': 1.6 });
+  el('circle', { cx: hx, cy: FACE, r: 3, fill: '#fff', stroke: INK, 'stroke-width': 1.3 });
 }
 
-// --- Planar aperture: black block on the rim ---
-const apW = 2 * CELL + 20, apH = 40;
-const apX = CX - apW / 2, apY = CY - R - apH + 6;
-el('rect', { x: apX, y: apY, width: apW, height: apH, fill: INK });
-txt(CX, apY + apH / 2 + 6, 'PLANAR DOOR', { fill: '#fff', 'font-size': 19, 'letter-spacing': 3, 'font-weight': 700 });
+// bold sheet outline (sides + front; open across the back — tower continues)
+el('path', { d: `M ${PX0} ${PTOP} L ${PX0} ${CORB} H ${WBX} V ${CAT1} H ${EBX} V ${CORB} H ${PX1} L ${PX1} ${PTOP}`,
+  fill: 'none', stroke: INK, 'stroke-width': 3 });
+
+// hatch up from the Bellows Chamber (B2) + riser (B1) + A1 wall entry
+const hx0 = 200, hy0 = 200, hs = 80;
+el('rect', { x: hx0, y: hy0, width: hs, height: hs, fill: '#fff', stroke: INK, 'stroke-width': 2 });
+for (let i = 1; i <= 4; i++) {
+  el('line', { x1: hx0 + 10, y1: hy0 + i * (hs / 5), x2: hx0 + hs - 10, y2: hy0 + i * (hs / 5), stroke: INK, 'stroke-width': 1.2 });
+}
+txt(hx0 + hs / 2, hy0 + hs + 16, 'hatch (Bellows)', { fill: INK, 'font-size': 12 });
+el('circle', { cx: 144, cy: 240, r: 10, fill: '#fff', stroke: INK, 'stroke-width': 1.6 });
+el('circle', { cx: 144, cy: 240, r: 5, fill: 'none', stroke: INK, 'stroke-width': 0.9 });
+for (const dx of [-6, 6]) {
+  el('line', { x1: 144 + dx, y1: 228, x2: 144 + dx, y2: 156, stroke: INK, 'stroke-width': 1.1, 'stroke-dasharray': '5 4' });
+}
+el('rect', { x: 130, y: 132, width: 28, height: 22, rx: 2.5, fill: '#fff', stroke: INK, 'stroke-width': 1.6 });
+
+// --- Impact path on the catwalk: the 8 door-swing tiles A2-A9 ---
+for (let c = 1; c <= 8; c++) {
+  el('rect', { x: PX0 + c * CELL + 1, y: FACE + 1, width: CELL - 2, height: CAT1 - FACE - 2, fill: 'url(#impact)', stroke: 'none' });
+}
+// door swing sweeps (10-ft half-discs from each hinge)
+el('path', { d: `M ${RODX} ${FACE} A ${LEAF} ${LEAF} 0 0 1 ${DX0 - LEAF} ${FACE}`,
+  fill: 'none', stroke: INK, 'stroke-width': 2, 'stroke-dasharray': '10 7' });
+el('path', { d: `M ${RODX} ${FACE} A ${LEAF} ${LEAF} 0 0 0 ${DX1 + LEAF} ${FACE}`,
+  fill: 'none', stroke: INK, 'stroke-width': 2, 'stroke-dasharray': '10 7' });
+
+// --- Rod (telescoping) + perch on the gear hub ---
+for (const [hw, y0, y1] of [[18, FACE - 10, 336], [13, 336, 480], [9, 480, HUBY - 44]]) {
+  el('rect', { x: RODX - hw, y: y0, width: 2 * hw, height: y1 - y0, fill: '#fff', stroke: INK, 'stroke-width': 2 });
+}
+for (const [hw, yj] of [[13, 336], [18, 480]]) {
+  el('rect', { x: RODX - hw - 4, y: yj - 4, width: 2 * (hw + 4), height: 8, fill: '#fff', stroke: INK, 'stroke-width': 1.2 });
+}
+function octagon(r) {
+  return Array.from({ length: 8 }, (_, i) => {
+    const a = (i * 45 + 22.5) * Math.PI / 180;
+    return `${(HUBX + r * Math.cos(a)).toFixed(1)},${(HUBY + r * Math.sin(a)).toFixed(1)}`;
+  }).join(' ');
+}
+el('polygon', { points: octagon(56), fill: 'none', stroke: INK, 'stroke-width': 3 });
+el('polygon', { points: octagon(43), fill: 'none', stroke: INK, 'stroke-width': 1.2 });
 
 // --- Zone labels on white plates ---
 function plate(x, y, w, h, lines, fontSize) {
@@ -143,7 +221,7 @@ function plate(x, y, w, h, lines, fontSize) {
   const y0 = y - ((lines.length - 1) * lh) / 2 + fontSize * 0.35;
   lines.forEach((s, i) => txt(x, y0 + i * lh, s, { fill: INK, 'font-size': fontSize, 'letter-spacing': 2, 'font-weight': 700 }));
 }
-plate(CX, OY + 2 * CELL, 150, 62, ['IMPACT', 'PATH'], 20);
+plate(CX, OY + 2.5 * CELL, 150, 62, ['IMPACT', 'PATH'], 20);
 plate(CX, CY, 158, 62, ['CUCKOO', '10×10 FT'], 20);
 plate(CX, OY + 7.5 * CELL, 210, 62, ['BELLOWS CONE', '30 FT'], 20);
 
@@ -159,19 +237,15 @@ for (let i = 0; i < ROWS; i++) {
 txt(PAGE_W / 2, 1204, "CUCKOO'S LANDING — DM REFERENCE", { fill: INK, 'font-size': 26, 'font-weight': 700, 'letter-spacing': 3 });
 
 const LEGEND = [
-  { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: '#fff', stroke: INK, 'stroke-width': 1.5 }, g),
-    label: 'Gear floor (5 ft square)' },
   { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: 'url(#cuckoo)', stroke: INK, 'stroke-width': 3 }, g),
-    label: 'Cuckoo (10×10 ft, Large, restrained)' },
+    label: 'Cuckoo (10×10 ft, Large, restrained on the rod)' },
   { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: 'url(#impact)', stroke: INK, 'stroke-width': 1.5, 'stroke-dasharray': '6 4' }, g),
-    label: 'Rod impact path (DEX save, emerge/retract)' },
+    label: 'Impact path: rod corridor + door swing (A2-A9)' },
   { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: 'url(#cone)', stroke: INK, 'stroke-width': 1.5, 'stroke-dasharray': '6 4' }, g),
     label: 'Bellows cone (DC 14 CON, on-rounds)' },
-  { swatch: g => { el('rect', { x: 0, y: 0, width: 38, height: 38, fill: '#fff', stroke: INK, 'stroke-width': 1 }, g);
-      for (const dx of [14, 24]) el('line', { x1: dx, y1: 2, x2: dx, y2: 36, stroke: INK, 'stroke-width': 2.5 }, g); },
-    label: 'Rod (on grid line, indestructible)' },
-  { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: INK }, g),
-    label: 'Planar aperture (blocked while cuckoo out)' },
+  { swatch: g => { el('rect', { x: 0, y: 0, width: 38, height: 19, fill: 'url(#wall)', stroke: INK, 'stroke-width': 1 }, g);
+      el('rect', { x: 0, y: 19, width: 38, height: 19, fill: '#fff', stroke: INK, 'stroke-width': 1 }, g); },
+    label: 'Platform overlay (fixed): row A = squeeze catwalk' },
 ];
 const LY = 1240;
 const legColX = [64, 616];
@@ -179,13 +253,16 @@ LEGEND.forEach((item, i) => {
   const x = legColX[i % 2], y = LY + Math.floor(i / 2) * 58;
   const g = el('g', { transform: `translate(${x} ${y})` });
   item.swatch(g);
-  txt(x + 50, y + 26, item.label, { fill: INK, 'font-size': 18, 'text-anchor': 'start' });
+  txt(x + 50, y + 26, item.label, { fill: INK, 'font-size': 17, 'text-anchor': 'start' });
 });
 
-txt(PAGE_W / 2, LY + 3 * 58 + 24, 'Gear rotates 90° clockwise at Initiative 20 (lair action)',
-  { fill: INK, 'font-size': 21, 'font-weight': 700 });
-txt(PAGE_W / 2, LY + 3 * 58 + 54, 'Cone direction is fixed — rotation moves players into and out of the blast zone',
-  { fill: INK, 'font-size': 19 });
+const RULES = [
+  'Gear rotates 90° CW at Initiative 20 (lair) — the platform, doors, rod, and perch do NOT rotate',
+  'Emerge/retract: DEX save in the impact path or knocked down; the doors slam 180° through A2-A9 on deploy',
+  'Row A catwalk = half squares: squeezing (1/2 speed, disadv. on attacks, attacks against them have adv.)',
+  'Aperture blocked while the cuckoo is out — ride it in: DC 12 STR (Athletics) as it retracts',
+];
+RULES.forEach((s, i) => txt(PAGE_W / 2, 1382 + i * 27, s, { fill: INK, 'font-size': 17.5, 'font-weight': i === 0 ? 700 : 400 }));
 </script>
 
 </body>
