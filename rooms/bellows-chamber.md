@@ -28,7 +28,7 @@ A large chamber dominated by two massive wooden bellows, one on each side of the
 
 ## Artifact — Delivery Manifest
 
-The Gear's original packing manifest on the old workbench against the front wall (I4-I5), at the back of the great clock face, lying among abandoned tools. Modron bureaucratic language, Mechanus serial numbers, planar specifications; references an installation manual. Wilhelm's handwritten margin notes in the margins. It matches the unnaturally square shipping crate at I8 — inside which the Uhrmacher re-packed the Gear when he disconnected it. Typeset prop: `props/documents/delivery-manifest.html`.
+The Gear's original packing manifest on the old workbench against the front wall (I8-I9), at the back of the great clock face, lying among abandoned tools. Modron bureaucratic language, Mechanus serial numbers, planar specifications; references an installation manual. Wilhelm's handwritten margin notes in the margins. It matches the unnaturally square shipping crate at I4 — inside which the Uhrmacher re-packed the Gear when he disconnected it. Typeset prop: `props/documents/delivery-manifest.html`.
 
 ## Image Prompt
 

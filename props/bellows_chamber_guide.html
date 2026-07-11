@@ -113,17 +113,17 @@ txt(g(1152) + 17, gy(400) + 4, "stub", { fill: INK, 'font-size': 7.5, 'font-weig
 txt(g(480) - 5, gy(448), "SW1", { fill: INK, 'font-size': 8, 'font-weight': 700 });
 txt(g(1152) - 14, gy(448), "SW2", { fill: INK, 'font-size': 8, 'font-weight': 700 });
 
-// --- Manifold on the G/H-4/5 intersection + ladder on the right of G5 ---
+// --- Manifold on the G/H-4/5 intersection + ladder on the right of H5 ---
 el('rect', { x: g(596), y: gy(316), width: 56 * S, height: 56 * S, rx: 3.5, fill: '#fff', stroke: INK, 'stroke-width': 1.4 });
 el('circle', { cx: g(624), cy: gy(288), r: 6, fill: '#fff', stroke: INK, 'stroke-width': 1.3 });
 el('circle', { cx: g(624), cy: gy(288), r: 3, fill: 'none', stroke: INK, 'stroke-width': 0.8 });
 for (const rx of [g(682), g(714)]) {
-  el('line', { x1: rx, y1: gy(294), x2: rx, y2: gy(378), stroke: INK, 'stroke-width': 1.3 });
+  el('line', { x1: rx, y1: gy(212), x2: rx, y2: gy(296), stroke: INK, 'stroke-width': 1.3 });
 }
 for (let i = 0; i < 5; i++) {
-  el('line', { x1: g(682), y1: gy(304 + i * 15), x2: g(714), y2: gy(304 + i * 15), stroke: INK, 'stroke-width': 0.9 });
+  el('line', { x1: g(682), y1: gy(222 + i * 15), x2: g(714), y2: gy(222 + i * 15), stroke: INK, 'stroke-width': 0.9 });
 }
-txt(g(698), gy(294) + 11, "ladder up (Cuckoo's Landing)", { fill: INK, 'font-size': 7.5 });
+txt(g(880), gy(240) + 3, "ladder up (Cuckoo's Landing)", { fill: INK, 'font-size': 7.5 });
 
 // --- Six stirge perches (wave 1), hanging from the ducts ---
 for (const [px, py] of [[420, 264], [548, 312], [806, 216], [1152, 240], [1261, 200], [1000, 360]]) {
@@ -132,12 +132,12 @@ for (const [px, py] of [[420, 264], [548, 312], [806, 216], [1152, 240], [1261, 
 }
 
 // --- Workbench (manifest) and modron crate (the Gear re-packed inside) ---
-el('rect', { x: g(536), y: gy(178), width: 176 * S, height: 68 * S, rx: 2, fill: '#fff', stroke: INK, 'stroke-width': 1.2 });
-txt(g(624), gy(144) + 3, "BENCH", { fill: INK, 'font-size': 7.5 });
-txt(g(686), gy(134) + 3, "M", { fill: INK, 'font-size': 11, 'font-weight': 700 });
-el('rect', { x: g(916), y: gy(188), width: 88 * S, height: 88 * S, fill: '#fff', stroke: INK, 'stroke-width': 1.4 });
-el('circle', { cx: g(960), cy: gy(144), r: 4.5, fill: 'none', stroke: INK, 'stroke-width': 0.8 });
-txt(g(960), gy(188) - 5, "CRATE (GEAR)", { fill: INK, 'font-size': 6.5 });
+el('rect', { x: g(920), y: gy(178), width: 176 * S, height: 68 * S, rx: 2, fill: '#fff', stroke: INK, 'stroke-width': 1.2 });
+txt(g(1008), gy(144) + 3, "BENCH", { fill: INK, 'font-size': 7.5 });
+txt(g(1070), gy(134) + 3, "M", { fill: INK, 'font-size': 11, 'font-weight': 700 });
+el('rect', { x: g(532), y: gy(188), width: 88 * S, height: 88 * S, fill: '#fff', stroke: INK, 'stroke-width': 1.4 });
+el('circle', { cx: g(576), cy: gy(144), r: 4.5, fill: 'none', stroke: INK, 'stroke-width': 0.8 });
+txt(g(576), gy(188) - 5, "CRATE (GEAR)", { fill: INK, 'font-size': 6.5 });
 
 // --- Stairs ---
 const [sx2, sy2] = cxy(6, "A");
@@ -192,10 +192,10 @@ lines([
   "Working a bellows = an action; blasts its duct, flushing its swarm.",
   "RESTORE THE AIR: work both bellows + re-cap BOTH stubs -> enables",
   "  the cuckoo's call in Act III (bellows are lungs, cuckoo the mouth).",
-  "GEAR: re-packed inside the modron crate (I8) — the Uhrmacher",
+  "GEAR: re-packed inside the modron crate (I4) — the Uhrmacher",
   "  boxed it when he disconnected it. The MANIFEST on the workbench",
-  "  (page visible, I5) matches the crate; refs the install manual.",
-  "Exit up: ladder at G5 beside the main riser. Individuals die in one",
+  "  (page visible, I9) matches the crate; refs the install manual.",
+  "Exit up: ladder at H5 beside the main riser. Individuals die in one",
   "  hit; swarms halve martial damage — AoE and magic shine.",
   "Too easy: survivors re-emerge. Too hard: swarm at half HP flees.",
 ]);

@@ -43,9 +43,9 @@
 - **Two bellows** (one each side) — large wooden structures, climbable, provide half cover behind them
 - **Brass pipes** — the ducts are wide-bore (~1-1.5 ft; the wagon-sized bellows demand it) — plenty for Tiny stirges crawling with folded wings, and swarms can pass any Tiny-sized opening. The drawn line width is stylized
 - **Main riser** — runs up through the ceiling beside the ladder
-- **Workbench** (I4-I5, front wall) — the Uhrmacher's bench, set against the back of the great clock face; the delivery manifest lies among the tools (`props/documents/delivery-manifest.html`)
+- **Workbench** (I8-I9, front wall) — the Uhrmacher's bench, set against the back of the great clock face; the delivery manifest lies among the tools (`props/documents/delivery-manifest.html`)
 - **Clock-face motion works** (I6-I7, front wall) — the hand arbor comes through the wall with its bracket, bevel gears, and axle: the great dial is on the other side of this wall
-- **Modron delivery crate** (I8) — the Gear's original shipping crate, unnaturally square; **the Gear is inside**, re-packed by the Uhrmacher when he disconnected it. The manifest on the bench matches it
+- **Modron delivery crate** (I4) — the Gear's original shipping crate, unnaturally square; **the Gear is inside**, re-packed by the Uhrmacher when he disconnected it. The manifest on the bench matches it
 - **Junk field** (rows D-F, spilling into G) — the Uhrmacher's salvage and stirge nesting; all junk-covered squares are difficult terrain
 - **Debris and nesting material** — difficult terrain in patches around the bellows
 
@@ -59,15 +59,15 @@
   D   ░  ░  ░  .  ░  ░  ░  .  ░  ░  ░  ░
   E   [B  B] ░  ░  ░  ░  ░  ░  ░  . [B  B]   ░ junk — difficult terrain (all 41 marked squares)
   F   [B  B] ø  ░  ░  .  .  ░  .  ø [B  B]   ø uncapped service stub (F3 west / F10 east), fallen cap nearby
-  G   [B  B] .  ◍  ↑  .  .  .  .  . [B  B]   ◍ manifold (centered on the G/H-4/5 corner) · ↑ ladder up (right side of G5)
-  H   [B  B] .  .  ░  .  .  .  .  ░ [B  B]   [B] bellows, 2×4 each (impassable, climbable, half cover)
-  I   ▓  ▓  ░  W  W  ░  .  □  ░  ░  ▓  ▓     W workbench (manifest) · □ crate (Gear inside — DM only) · clock works on the I6-I7 wall
+  G   [B  B] .  ◍  .  .  .  .  .  . [B  B]   ◍ manifold (centered on the G/H-4/5 corner)
+  H   [B  B] .  .  ↑  .  .  .  .  ░ [B  B]   [B] bellows, 2×4 each (impassable, climbable, half cover) · ↑ ladder up (right side of H5, a junk square)
+  I   ▓  ▓  ░  □  ░  ░  .  W  W  ░  ▓  ▓     W workbench (manifest, I8-I9) · □ crate (Gear inside — DM only, I4) · clock works on the I6-I7 wall
 ```
 
 - **Orientation:** the front of the tower is the bottom of the map — the front (south) wall is the back of the great clock face, with the motion works (arbor, bevel gears, axle) protruding at I6-I7
 - Overhead pipework (dashed on the map — above head height): a duct runs from each bellows across the room to the **central manifold** on the G/H-4/5 corner, from which the **main riser** climbs to the apex just behind the front face (a pressure gauge dresses the east run)
 - Each duct drops an **uncapped service stub** to head height (F3 west, F10 east) — fallen caps lie on the floor nearby; the swarms nest in the pipes and are flushed out the stubs when the bellows are worked
-- **The ladder to Cuckoo's Landing stands on the right side of G5, just east of the manifold** — the party climbs the tower's windpipe right behind the clock face, emerging at the landing hatch beside the aperture (matches the riser-west / hatch-east arrangement on the platform overlay)
+- **The ladder to Cuckoo's Landing stands on the right side of H5, just east of the manifold and tight to the front wall** — the party climbs the tower's windpipe right behind the clock face, emerging at the landing hatch beside the aperture (matches the riser-west / hatch-east arrangement on the platform overlay)
 - **Wave-1 stirges start perched on the overhead ducts** — hanging above the middle of the room, they drop onto the party from directly overhead
 - Map pair: `props/bellows_chamber_map.html` (print) / `props/bellows_chamber_guide.html` (DM)
 
