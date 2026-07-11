@@ -395,15 +395,24 @@ for (let r = 0; r < ROWS.length; r++) {
   for (const dy of [-3.5, 3.5]) {
     el('line', { x1: cx - 78, y1: wy - 18 + dy, x2: cx + 78, y2: wy - 18 + dy, stroke: INK, 'stroke-width': 1.2 }, svg);
   }
-  // bevel gears at each end of the axle (toothed rims against the wall)
-  for (const gx of [cx - 78, cx + 78]) {
-    el('circle', { cx: gx, cy: wy - 18, r: 17, fill: '#fff', stroke: INK, 'stroke-width': 1.8 }, svg);
-    el('circle', { cx: gx, cy: wy - 18, r: 6, fill: 'none', stroke: INK, 'stroke-width': 1 }, svg);
-    for (let i = 0; i < 12; i++) {
-      const a = (i * 30 + 15) * Math.PI / 180;
-      el('line', { x1: gx + 17 * Math.cos(a), y1: wy - 18 + 17 * Math.sin(a),
-                   x2: gx + 22 * Math.cos(a), y2: wy - 18 + 22 * Math.sin(a), stroke: INK, 'stroke-width': 1.6 }, svg);
+  // bevel gears at each end of the axle — house gear silhouette (rim arcs
+  // joined to trapezoid tooth flanks, as everywhere else)
+  for (const [gx, ga] of [[cx - 78, 8], [cx + 78, 23]]) {
+    const r = 17, n = 12, h = 6, hb = 4.4, ht = 2.6, step = 360 / n, gy0 = wy - 18;
+    function tp(aDeg) {
+      const a = aDeg * Math.PI / 180;
+      const px = gx + Math.cos(a) * r, py = gy0 + Math.sin(a) * r;
+      const rot = (aDeg + 90) * Math.PI / 180, c = Math.cos(rot), s = Math.sin(rot);
+      return [[-hb, 0], [-ht, -h], [ht, -h], [hb, 0]].map(([x, y]) => [px + x * c - y * s, py + x * s + y * c].map(v => v.toFixed(1)));
     }
+    let d = '';
+    for (let i = 0; i < n; i++) {
+      const [bl, tl, tr, br] = tp(ga + i * step);
+      d += (i === 0 ? `M ${bl}` : ` A ${r} ${r} 0 0 1 ${bl}`) + ` L ${tl} L ${tr} L ${br}`;
+    }
+    d += ` A ${r} ${r} 0 0 1 ${tp(ga)[0]} Z`;
+    el('path', { d, fill: '#fff', stroke: INK, 'stroke-width': 1.8 }, svg);
+    el('circle', { cx: gx, cy: gy0, r: 6, fill: 'none', stroke: INK, 'stroke-width': 1 }, svg);
   }
   // central arbor boss (the hand shaft passes through the wall here)
   el('rect', { x: cx - 26, y: wy - 12, width: 52, height: 12, fill: '#fff', stroke: INK, 'stroke-width': 1.8 }, svg);
