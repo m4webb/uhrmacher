@@ -393,12 +393,12 @@ for (let r = 0; r < ROWS.length; r++) {
   const cx = OX + 6 * CELL;                // wall center (x 816)
   // axle between the bevel gears, twin lines
   for (const dy of [-3.5, 3.5]) {
-    el('line', { x1: cx - 78, y1: wy - 18 + dy, x2: cx + 78, y2: wy - 18 + dy, stroke: INK, 'stroke-width': 1.2 }, svg);
+    el('line', { x1: cx - 78, y1: wy - 22 + dy, x2: cx + 78, y2: wy - 22 + dy, stroke: INK, 'stroke-width': 1.2 }, svg);
   }
   // bevel gears at each end of the axle — house gear silhouette (rim arcs
   // joined to trapezoid tooth flanks, as everywhere else)
   for (const [gx, ga] of [[cx - 78, 8], [cx + 78, 23]]) {
-    const r = 17, n = 12, h = 6, hb = 4.4, ht = 2.6, step = 360 / n, gy0 = wy - 18;
+    const r = 14, n = 12, h = 5, hb = 3.8, ht = 2.2, step = 360 / n, gy0 = wy - 22;
     function tp(aDeg) {
       const a = aDeg * Math.PI / 180;
       const px = gx + Math.cos(a) * r, py = gy0 + Math.sin(a) * r;
@@ -412,13 +412,13 @@ for (let r = 0; r < ROWS.length; r++) {
     }
     d += ` A ${r} ${r} 0 0 1 ${tp(ga)[0]} Z`;
     el('path', { d, fill: '#fff', stroke: INK, 'stroke-width': 1.8 }, svg);
-    el('circle', { cx: gx, cy: gy0, r: 6, fill: 'none', stroke: INK, 'stroke-width': 1 }, svg);
+    el('circle', { cx: gx, cy: gy0, r: 5, fill: 'none', stroke: INK, 'stroke-width': 1 }, svg);
   }
   // central arbor boss (the hand shaft passes through the wall here)
-  el('rect', { x: cx - 26, y: wy - 12, width: 52, height: 12, fill: '#fff', stroke: INK, 'stroke-width': 1.8 }, svg);
-  el('circle', { cx: cx, cy: wy - 18, r: 15, fill: '#fff', stroke: INK, 'stroke-width': 2.2 }, svg);
-  el('circle', { cx: cx, cy: wy - 18, r: 7, fill: 'none', stroke: INK, 'stroke-width': 1.1 }, svg);
-  el('circle', { cx: cx, cy: wy - 18, r: 2.5, fill: INK, stroke: 'none' }, svg);
+  el('rect', { x: cx - 24, y: wy - 12, width: 48, height: 12, fill: '#fff', stroke: INK, 'stroke-width': 1.8 }, svg);
+  el('circle', { cx: cx, cy: wy - 22, r: 13, fill: '#fff', stroke: INK, 'stroke-width': 2.2 }, svg);
+  el('circle', { cx: cx, cy: wy - 22, r: 6, fill: 'none', stroke: INK, 'stroke-width': 1.1 }, svg);
+  el('circle', { cx: cx, cy: wy - 22, r: 2.2, fill: INK, stroke: 'none' }, svg);
 })();
 </script>
 
