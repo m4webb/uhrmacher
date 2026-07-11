@@ -69,7 +69,7 @@ function inCone(col, row) {
   return col >= 4 - dist && col <= 5 + dist;
 }
 // rod corridor on the gear (rows B-D; row A is the catwalk, handled below)
-function isImpact(col, row) { return ((row >= 1 && row <= 3 && col >= 4 && col <= 5) || (row === 1 && col >= 1 && col <= 8)) && inGear(col, row); }
+function isImpact(col, row) { return ((row >= 1 && row <= 3 && col >= 4 && col <= 5) || (row === 1 && col >= 1 && col <= 8) || (row === 2 && [2, 3, 6, 7].includes(col))) && inGear(col, row); }
 function isCuckoo(col, row) { return row >= 4 && row <= 5 && col >= 4 && col <= 5; }
 
 // --- Defs: hatch patterns + grid clip ---
@@ -244,7 +244,7 @@ const LEGEND = [
   { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: 'url(#cuckoo)', stroke: INK, 'stroke-width': 3 }, g),
     label: 'Cuckoo (10×10 ft, Large, restrained on the rod)' },
   { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: 'url(#impact)', stroke: INK, 'stroke-width': 1.5, 'stroke-dasharray': '6 4' }, g),
-    label: 'Impact path: rod corridor + door swing (A2-B9)' },
+    label: 'Impact path: rod corridor + door swing' },
   { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: 'url(#cone)', stroke: INK, 'stroke-width': 1.5, 'stroke-dasharray': '6 4' }, g),
     label: 'Bellows cone (DC 14 CON, on-rounds)' },
   { swatch: g => { el('rect', { x: 0, y: 0, width: 38, height: 19, fill: 'url(#wall)', stroke: INK, 'stroke-width': 1 }, g);
@@ -262,7 +262,7 @@ LEGEND.forEach((item, i) => {
 
 const RULES = [
   'Gear rotates 90° CW at Initiative 20 (lair) — the platform, doors, rod, and perch do NOT rotate',
-  'Emerge/retract: DEX save in the impact path or knocked down; doors slam 180° through rows A-B, tiles 2-9',
+  'Emerge/retract: DEX save in the impact path or knocked down; door swing: A2-B9 + C3-C4 / C7-C8',
   'Row A catwalk = half squares: squeezing (1/2 speed, disadv. on attacks, attacks against them have adv.)',
   'Aperture blocked while the cuckoo is out — ride it in: DC 12 STR (Athletics) as it retracts',
 ];
