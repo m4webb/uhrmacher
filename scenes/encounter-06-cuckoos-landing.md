@@ -48,7 +48,7 @@ Players who beat the cuckoo's initiative can reposition after gear rotation but 
 
 - **Floor:** Single large gear (25 ft radius). Rotates 90° CW at init 20.
 - **Platform (fixed, north edge — does NOT rotate):** row A is a half-depth catwalk (2.5 ft deep) — creatures on it are squeezing (half speed, disadvantage on attacks, attacks against them have advantage). Corner blocks A/B 1-2 and 9-10 are full standing room, level with the gear. Hatch up from the Bellows Chamber at B2; the air riser surfaces at B1 and enters the tower at the A1 half-wall.
-- **Doors:** two 10-ft leaves in the north wall (cols 4-7). They slam outward 180° when the cuckoo deploys — the 8 catwalk tiles A2-A9 are in the swing and join the impact path ([TBD] save/damage).
+- **Doors:** two 10-ft leaves in the north wall (cols 4-7). They slam outward 180° when the cuckoo deploys — the swing tiles (A2-A9 and B2-B9) join the impact path ([TBD] save/damage).
 - **Aperture:** In the north wall behind the doors. The rod extends inward; the cuckoo perches at the gear hub.
 - **Cone direction:** Fixed from center. Rotation shifts who's in the blast zone.
 - **Center hazard:** Anyone in the center when cuckoo emerges → knockdown (DEX save).
