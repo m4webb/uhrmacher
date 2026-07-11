@@ -17,7 +17,7 @@
 
 **Immunities:** Lightning, Poison; Charmed, Exhaustion, Frightened, Paralyzed, Petrified, Poisoned
 **Aversion to Fire:** Fire damage → disadvantage on attacks/checks until end of next turn
-**Berserk:** When bloodied, roll 1d6 at start of turn. On 6, attacks nearest creature. [TBD — does Fritz calm it? Does berserk change the social dynamic?]
+**Berserk:** When bloodied, roll 1d6 at start of its turn; on a 6 it goes berserk — it ignores Fritz's commands and attacks the nearest creature, *including Fritz*. Fritz can end it: he must reach the golem (through the fight) and spend his turn at it with the brass key — it calms on his next command, automatically. The rescue-the-boy beat.
 **Lightning Absorption:** Regains HP equal to lightning damage taken
 **Magic Resistance:** Advantage on saves vs. spells
 **Immutable Form:** Can't be shapeshifted
@@ -32,15 +32,15 @@ Players can end this encounter without killing the golem:
 |----------|----------|-------|
 | Find Fritz | Perception DC 12 | Spot him hiding behind machinery |
 | Persuade Fritz (help the tower) | Persuasion DC 12 | Tell him the Gear will help the tower — true, and he wants that |
-| Deceive Fritz | Deception DC [TBD] | Lie about intentions |
-| Intimidate Fritz | [TBD] | He's a child — this should work but feel bad |
-| Calm the golem directly | [TBD — probably not possible without Fritz] | |
+| Deceive Fritz | Deception DC 14 | Lie about intentions — harder than the truth; his skepticism is his armor |
+| Intimidate Fritz | Auto-success — no roll | Terrifying a child works. But the golem reads Fritz's fear as a threat and goes berserk immediately: intimidation is a trap option |
+| Calm the golem directly | Not possible | Only Fritz (or holding his brass key) commands it — the social pressure points at the boy. Taking the key by force works, and feels like it |
 
 **If Fritz calls off the golem:** It stops immediately and stands down. Fritz watches warily but lets the party work.
 
 **If Fritz learns they want to harm the tower:** Golem fights to the death. Fritz hides and won't call it off.
 
-**If the golem goes berserk:** [TBD — Fritz may lose control. Could attack Fritz too, adding urgency to find the boy.]
+**If the golem goes berserk:** it stops obeying and attacks the nearest creature — including Fritz. Only Fritz with the key, adjacent, spending his turn, can wind it back down. If Fritz is hiding, someone has to get the terrified boy to his rampaging protector.
 
 ---
 
@@ -138,9 +138,8 @@ Puzzle-map approach: the room itself limits how many PCs can face the golem.
 - [x] ~~Lane layout~~ Resolved: Layout v2 above (three lanes, two gear tracks, split back)
 - [x] ~~Environmental triggers~~ Resolved: sliding gears + eight pull-chains (v2)
 - [x] ~~Can the golem pull chains?~~ Resolved: yes — chains are ordinary mechanisms and anyone can pull them, golem included. In practice the golem acts with/for Fritz; a hostile Fritz directing golem chain-pulls is the DM's "maze fights back" dial
-- [ ] What happens to Fritz after the encounter? Does he stay in the tower during Act III? Does he follow the party?
-- [ ] Berserk mechanic — how does it interact with Fritz's control?
-- [ ] Does killing the golem have narrative consequences (Fritz's only protector, the party just destroyed a child's companion)?
+- **Fritz after the encounter — depends on the party:** befriended, he trails them up and watches Act III from the landing hatch (the tower that healed him is at stake); frightened or fought, he hides below with the golem and is found in the epilogue. His presence at the finale mirrors how they treated him
+- **Killing the golem:** no notated consequence — play Fritz's reaction in the moment (it is a child's only protector; let that land however the table earns it)
 
 ---
 
