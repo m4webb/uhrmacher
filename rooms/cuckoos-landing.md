@@ -15,7 +15,7 @@ The top of the tower, open and exposed. The floor is a single massive gear (25 f
 
 ## Battlefield Details
 
-See `adventure-summary.md` Act III and `props/cuckoos_landing_guide.html` for full combat mechanics and battlefield layout (`props/cuckoos_landing_map.html` is the print battle map; `props/cuckoos_landing_overlay.html` is the cut-out platform overlay — 2 sheets, door closed / door open with rod + perch — laid over row A so the gear rotates beneath it).
+See `adventure-summary.md` Act III and `props/cuckoos_landing_guide.html` for full combat mechanics and battlefield layout (`props/cuckoos_landing_map.html` is the print battle map; `props/cuckoos_landing_overlay.html` is the platform overlay: one sheet (half-depth catwalk row A, doors closed) laid over row A so the gear rotates beneath it, plus a set-on-top rod piece whose head is the open doorway and whose perch lands on the gear hub (place on ON cycles, lift on OFF)).
 
 ## Image Prompt
 

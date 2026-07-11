@@ -47,11 +47,13 @@ Players who beat the cuckoo's initiative can reposition after gear rotation but 
 ## Battlefield
 
 - **Floor:** Single large gear (25 ft radius). Rotates 90° CW at init 20.
-- **Aperture:** On the tower wall side. The rod extends inward; the cuckoo occupies the center.
+- **Platform (fixed, north edge — does NOT rotate):** row A is a half-depth catwalk (2.5 ft deep) — creatures on it are squeezing (half speed, disadvantage on attacks, attacks against them have advantage). Corner blocks A/B 1-2 and 9-10 are full standing room, level with the gear. Hatch up from the Bellows Chamber at B2; the air riser surfaces at B1 and enters the tower at the A1 half-wall.
+- **Doors:** two 10-ft leaves in the north wall (cols 4-7). They slam outward 180° when the cuckoo deploys — everything in the two 10-ft swing arcs (most of the platform) is at risk of the slam ([TBD] save/damage).
+- **Aperture:** In the north wall behind the doors. The rod extends inward; the cuckoo perches at the gear hub.
 - **Cone direction:** Fixed from center. Rotation shifts who's in the blast zone.
 - **Center hazard:** Anyone in the center when cuckoo emerges → knockdown (DEX save).
-- **Air pipes:** Terminate around the edges, feeding into the cuckoo mechanism.
-- See `props/cuckoos_landing_guide.html` for visual layout (`props/cuckoos_landing_map.html` is the print battle map; `props/cuckoos_landing_overlay.html` is the cut-out platform overlay — 2 sheets, door closed / door open with rod + perch — laid over row A so the gear rotates beneath it).
+- **Table procedure:** the platform sheet (doors closed) stays laid over row A all fight; the gear map rotates beneath it. On ON cycles set the ROD PIECE on top — its head is the open doorway (covers the closed doors) and its perch lands on the gear hub. Lift it off on OFF cycles.
+- See `props/cuckoos_landing_guide.html` for visual layout (`props/cuckoos_landing_map.html` is the print battle map; `props/cuckoos_landing_overlay.html` is the platform sheet + rod piece).
 
 ---
 
@@ -79,6 +81,7 @@ Players who beat the cuckoo's initiative can reposition after gear rotation but 
 
 - [ ] Full cuckoo custom statblock — attacks on its turn besides the Call? Or is the Call + knockdown + modron waves the entirety of its action?
 - [ ] Knockdown DEX save DC — not specified in adventure summary
+- [ ] Door-slam save/damage (the 180° swing over the platform) — numbers not set
 - [ ] Monodrone/duodrone/tridrone/quadrone 2024 stat blocks needed
 - [ ] What does "cuckoo destroyed" look like mechanically — reduced to 0 HP?
 - [ ] Gear rotation — do flying creatures rotate? (Currently: no for flyers, yes for ground)
