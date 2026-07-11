@@ -26,16 +26,16 @@
 |------|-------|---------|-----|-------|
 | 1 | 1 (ON) | 4 monodrones | Low | Fly 30 ft, not affected by gear rotation. One-shot fodder. |
 | 2 | 2 (ON) | 3 duodrones + 1 tridrone | ~25 | Ground only, rotate with gear. Multi-attack makes them sticky. |
-| 3 | 3 (ON) | 2 tridrones + 2 quadrones | ~38 | Tridrones ground; quadrones fly 30 ft. Shortbows threaten backline. |
+| 3 | 3 (ON) | 2 tridrones + 2 quadrones | ~38 | Tridrones ground; quadrones fly 30 ft. Gears Launchers (320 ft) threaten backline. |
 
-**Key stats (fill from 2024 MM — read out to notate):**
+**Key stats (2024 Monster Manual, via Roll20 compendium):**
 
 | Modron | AC | HP | Speed | Attack |
 |--------|----|----|-------|--------|
-| Monodrone | — | — | fly 30 ft | — |
-| Duodrone | — | — | ground | — |
-| Tridrone | — | — | ground | — |
-| Quadrone | — | — | fly 30 ft | — |
+| Monodrone (CR 1/8) | 15 | 5 | 30 ft, fly 30 ft | Gear +4, 6 (1d8+2) force — melee or ranged 120 ft |
+| Duodrone (CR 1/4) | 15 | 11 | 30 ft | Multiattack ×2: Clockwork Blade +3, 4 (1d6+1) force — melee or ranged 30 ft |
+| Tridrone (CR 1/2) | 15 | 16 | 30 ft | Multiattack ×3: Clockwork Spear +3, 4 (1d6+1) force — melee or ranged |
+| Quadrone (CR 1) | 16 | 22 | 30 ft, fly 30 ft | Multiattack ×4: Slam or Gears Launcher +4, 4 (1d4+2) force — ranged 320 ft |
 
 ---
 
@@ -95,7 +95,6 @@ Primary: the contract, Art. VI §6.3 — players who found and read it in the St
 
 ## Open Questions
 
-- [ ] Fill modron key-stat table from the 2024 MM (user reads out, notate)
 
 ---
 
