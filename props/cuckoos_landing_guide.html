@@ -69,7 +69,7 @@ function inCone(col, row) {
   return col >= 4 - dist && col <= 5 + dist;
 }
 // rod corridor on the gear (rows B-D; row A is the catwalk, handled below)
-function isImpact(col, row) { return row >= 1 && row <= 3 && col >= 4 && col <= 5 && inGear(col, row); }
+function isImpact(col, row) { return ((row >= 1 && row <= 3 && col >= 4 && col <= 5) || (row === 1 && col >= 1 && col <= 8)) && inGear(col, row); }
 function isCuckoo(col, row) { return row >= 4 && row <= 5 && col >= 4 && col <= 5; }
 
 // --- Defs: hatch patterns + grid clip ---
@@ -188,9 +188,13 @@ for (const dx of [-6, 6]) {
 }
 el('rect', { x: 130, y: 132, width: 28, height: 22, rx: 2.5, fill: '#fff', stroke: INK, 'stroke-width': 1.6 });
 
-// --- Impact path on the catwalk: the 8 door-swing tiles A2-A9 ---
+// --- Impact path on the platform: catwalk tiles A2-A9, plus the swing
+//     tiles on the corner blocks (B2/B9; B3-B8 are hatched at gear level) ---
 for (let c = 1; c <= 8; c++) {
   el('rect', { x: PX0 + c * CELL + 1, y: FACE + 1, width: CELL - 2, height: CAT1 - FACE - 2, fill: 'url(#impact)', stroke: 'none' });
+}
+for (const c of [1, 8]) {
+  el('rect', { x: PX0 + c * CELL + 1, y: CAT1 + 1, width: CELL - 2, height: CELL - 2, fill: 'url(#impact)', stroke: 'none' });
 }
 // door swing sweeps (10-ft half-discs from each hinge)
 el('path', { d: `M ${RODX} ${FACE} A ${LEAF} ${LEAF} 0 0 1 ${DX0 - LEAF} ${FACE}`,
@@ -240,7 +244,7 @@ const LEGEND = [
   { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: 'url(#cuckoo)', stroke: INK, 'stroke-width': 3 }, g),
     label: 'Cuckoo (10×10 ft, Large, restrained on the rod)' },
   { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: 'url(#impact)', stroke: INK, 'stroke-width': 1.5, 'stroke-dasharray': '6 4' }, g),
-    label: 'Impact path: rod corridor + door swing (A2-A9)' },
+    label: 'Impact path: rod corridor + door swing (A2-B9)' },
   { swatch: g => el('rect', { x: 0, y: 0, width: 38, height: 38, fill: 'url(#cone)', stroke: INK, 'stroke-width': 1.5, 'stroke-dasharray': '6 4' }, g),
     label: 'Bellows cone (DC 14 CON, on-rounds)' },
   { swatch: g => { el('rect', { x: 0, y: 0, width: 38, height: 19, fill: 'url(#wall)', stroke: INK, 'stroke-width': 1 }, g);
@@ -258,7 +262,7 @@ LEGEND.forEach((item, i) => {
 
 const RULES = [
   'Gear rotates 90° CW at Initiative 20 (lair) — the platform, doors, rod, and perch do NOT rotate',
-  'Emerge/retract: DEX save in the impact path or knocked down; the doors slam 180° through A2-A9 on deploy',
+  'Emerge/retract: DEX save in the impact path or knocked down; doors slam 180° through rows A-B, tiles 2-9',
   'Row A catwalk = half squares: squeezing (1/2 speed, disadv. on attacks, attacks against them have adv.)',
   'Aperture blocked while the cuckoo is out — ride it in: DC 12 STR (Athletics) as it retracts',
 ];
