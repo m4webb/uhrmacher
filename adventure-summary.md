@@ -71,6 +71,8 @@ Players arrive at the village Gasthaus, responding to the Bürgermeister's pest 
 
 **Tower Rooms** *(see `props/tower-topology.html` for movement graph)*
 
+**Battle-map orientation (canon):** the tower's front — front door, clock face, planar aperture — faces the BOTTOM of every battle map; players approach from the bottom. The Bellows Chamber's front wall is the back of the great clock face (motion works protrude at I6-I7); Cuckoo's Landing juts out in front of the face above it, and the cuckoo bursts toward the players.
+
 2. **Clockhall** (ground, front door) — Living quarters + mechanical heart of the tower. Entry point; meet Pendel, receive quest to clear bellows and recover the Gear
 3. **Bellows Chamber** (upper) — Combat encounter; stirges that infested the tower's bellows while it lay dormant (per Art. III §3.2 — fauna nesting in the mechanism). The bellows feed air up through pipes to the cuckoo at the apex, powering its call. Clearing the pests directly enables the cuckoo's breath weapon in Act III. Recover the Gear (the Cross-Planar Regulation Gear, contract §1.2) — the Uhrmacher disconnected it and re-packed it in its original modron shipping crate; the delivery manifest lies on the workbench
 4. **Winding Room** (below) — Install the Gear. Fritz is camped near the installation point with his gear golem protecting him

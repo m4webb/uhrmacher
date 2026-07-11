@@ -17,7 +17,14 @@
 <script>
 const NS = 'http://www.w3.org/2000/svg';
 const svg = document.getElementById('map');
-function el(name, attrs = {}, parent = svg) {
+// Orientation: the tower's FRONT (clock face) is the BOTTOM of the map.
+// All room content is drawn in legacy coords and mirrored top-bottom by
+// this group; coordinate labels and the clock-face hardware are drawn
+// unmirrored, directly on the svg.
+const FLIP = document.createElementNS(NS, 'g');
+FLIP.setAttribute('transform', 'translate(0, 1056) scale(1, -1)');
+svg.appendChild(FLIP);
+function el(name, attrs = {}, parent = FLIP) {
   const n = document.createElementNS(NS, name);
   for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
   parent.appendChild(n);
@@ -370,13 +377,40 @@ el('rect', { x: OX, y: OY, width: W, height: H, fill: 'none', stroke: INK, 'stro
 
 // --- Coordinates ---
 for (let c = 1; c <= COLSN; c++) {
-  const t = el('text', { x: OX + (c - 1) * CELL + CELL / 2, y: OY + H + 28, 'text-anchor': 'middle', 'font-size': 18, fill: INK });
+  const t = el('text', { x: OX + (c - 1) * CELL + CELL / 2, y: OY + H + 28, 'text-anchor': 'middle', 'font-size': 18, fill: INK }, svg);
   t.textContent = String(c);
 }
 for (let r = 0; r < ROWS.length; r++) {
-  const t = el('text', { x: OX - 30, y: OY + r * CELL + CELL / 2 + 6, 'text-anchor': 'middle', 'font-size': 18, fill: INK });
+  const t = el('text', { x: OX - 30, y: OY + r * CELL + CELL / 2 + 6, 'text-anchor': 'middle', 'font-size': 18, fill: INK }, svg);
   t.textContent = ROWS[r];
 }
+
+// --- Back of the clock face: motion works on the front (south) wall ---
+// The great dial is on the exterior of this wall; inside, the hand-arbor
+// comes through with its bracket, bevel gears, and connecting axle.
+(function clockWorks() {
+  const wy = OY + H;                       // front wall line (y 960)
+  const cx = OX + 6 * CELL;                // wall center (x 816)
+  // axle between the bevel gears, twin lines
+  for (const dy of [-3.5, 3.5]) {
+    el('line', { x1: cx - 78, y1: wy - 18 + dy, x2: cx + 78, y2: wy - 18 + dy, stroke: INK, 'stroke-width': 1.2 }, svg);
+  }
+  // bevel gears at each end of the axle (toothed rims against the wall)
+  for (const gx of [cx - 78, cx + 78]) {
+    el('circle', { cx: gx, cy: wy - 18, r: 17, fill: '#fff', stroke: INK, 'stroke-width': 1.8 }, svg);
+    el('circle', { cx: gx, cy: wy - 18, r: 6, fill: 'none', stroke: INK, 'stroke-width': 1 }, svg);
+    for (let i = 0; i < 12; i++) {
+      const a = (i * 30 + 15) * Math.PI / 180;
+      el('line', { x1: gx + 17 * Math.cos(a), y1: wy - 18 + 17 * Math.sin(a),
+                   x2: gx + 22 * Math.cos(a), y2: wy - 18 + 22 * Math.sin(a), stroke: INK, 'stroke-width': 1.6 }, svg);
+    }
+  }
+  // central arbor boss (the hand shaft passes through the wall here)
+  el('rect', { x: cx - 26, y: wy - 12, width: 52, height: 12, fill: '#fff', stroke: INK, 'stroke-width': 1.8 }, svg);
+  el('circle', { cx: cx, cy: wy - 18, r: 15, fill: '#fff', stroke: INK, 'stroke-width': 2.2 }, svg);
+  el('circle', { cx: cx, cy: wy - 18, r: 7, fill: 'none', stroke: INK, 'stroke-width': 1.1 }, svg);
+  el('circle', { cx: cx, cy: wy - 18, r: 2.5, fill: INK, stroke: 'none' }, svg);
+})();
 </script>
 
 </body>
