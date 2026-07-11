@@ -110,7 +110,7 @@ Branches on how the party treated him in Act II:
 
 ## DM Notes
 
-- Initiative: Roll for cuckoo, modrons (one group), and PCs
+- Initiative: Roll for cuckoo, modrons (one group), and PCs; the environment (gear rotation) acts on initiative 20 — the adventure-wide environment slot
 - The cuckoo is primarily an objective/HP sponge — the modron waves are the real combat threat
 - The rotating floor is the key tactical element: it constantly repositions everyone relative to the cone's fixed direction
 - Players who figure out the rotation pattern can predict where the cone will hit and position accordingly

@@ -144,6 +144,12 @@ Puzzle-map approach: the room itself limits how many PCs can face the golem.
 
 ---
 
+## Initiative
+
+One roll for Fritz + the gear golem (they act together); the environment acts on initiative 20 (adventure-wide convention — use it for machinery beats, e.g. a counterweight groaning down after a chain pull).
+
+---
+
 ## DM Notes
 
 - The golem hits hard (17 avg per slam, 34 per round with multiattack) — at level 3 HP pools that's potentially downing a PC in one round

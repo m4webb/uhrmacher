@@ -81,6 +81,7 @@ All stirges dead or driven off. Both bellows worked (ducts blasted clear) and bo
 
 ## DM Notes
 
+- **Initiative:** one roll for all stirges (individuals and swarms act together); the environment acts on initiative 20 (adventure-wide convention — nothing periodic here by default, but flush resolutions and flavor beats land there if needed)
 - Individual stirges go down in one hit — let players feel effective early
 - Swarms are the real threat: B/P/S resistance means martial damage is halved, grapple + necrotic drain is dangerous
 - Casters with AoE or magic damage shine against the swarms
