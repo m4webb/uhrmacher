@@ -7,10 +7,13 @@
 
 ## Enemies
 
-### The Cuckoo (Custom Statblock) — [TBD CR]
+### The Cuckoo (Custom Statblock) — CR 3 (custom objective)
 | AC | HP | Attack | Damage |
 |----|-----|--------|--------|
-| 16 | ~110 | [TBD] | [TBD] |
+| 16 | ~110 | none — see below | — |
+
+**No attack actions.** The cuckoo's entire turn is: emerge/retract + knockdown + modron wave + the Call. It is an objective to destroy, not a duelist — the modron waves and the environment are the threat.
+**Construct:** Immune to poison damage; immune to the poisoned, charmed, frightened, and exhaustion conditions. No damage resistances — its HP and the battlefield are its defense.
 
 **Restrained on the rod:** Attacks against it have advantage. Its attacks have disadvantage.
 **The Cuckoo's Call:** 30 ft cone, DC 14 CON save. Fail: 3d8 thunder + poisoned until end of next turn (cancels restrained advantage). Save: half damage, no poisoned. Once per cycle.
@@ -25,7 +28,14 @@
 | 2 | 2 (ON) | 3 duodrones + 1 tridrone | ~25 | Ground only, rotate with gear. Multi-attack makes them sticky. |
 | 3 | 3 (ON) | 2 tridrones + 2 quadrones | ~38 | Tridrones ground; quadrones fly 30 ft. Shortbows threaten backline. |
 
-[TBD — need 2024 MM stat blocks for monodrone, duodrone, tridrone, quadrone]
+**Key stats (fill from 2024 MM — read out to notate):**
+
+| Modron | AC | HP | Speed | Attack |
+|--------|----|----|-------|--------|
+| Monodrone | — | — | fly 30 ft | — |
+| Duodrone | — | — | ground | — |
+| Tridrone | — | — | ground | — |
+| Quadrone | — | — | fly 30 ft | — |
 
 ---
 
@@ -33,9 +43,9 @@
 
 | Round | Phase | What Happens |
 |-------|-------|--------------|
-| Every | Init 20 | Gear floor rotates 90° CW. All ground creatures/players rotate with it. |
-| 1 (ON) | Cuckoo's turn | Emerges from aperture. Knockdown in impact path (DEX save [TBD DC]). Wave 1 modrons burst out. Cuckoo's Call (cone). |
-| 2 (OFF) | Cuckoo's turn | Retracts. Knockdown in path (DEX save). Hold-on window: DC 12 STR Athletics to ride into Mechanus. |
+| Every | Init 20 | Gear floor rotates 90° CW. Ground creatures rotate with it; flying creatures and the platform do NOT. |
+| 1 (ON) | Cuckoo's turn | Emerges from aperture. Knockdown in impact path (DC 14 DEX). Wave 1 modrons burst out. Cuckoo's Call (cone). |
+| 2 (OFF) | Cuckoo's turn | Retracts. Knockdown in path (DC 14 DEX). Hold-on window: DC 12 STR Athletics to ride into Mechanus. |
 | 3 (ON) | Cuckoo's turn | Emerges again. Knockdown. Wave 2 modrons. Cuckoo's Call. |
 | 4 (OFF) | Cuckoo's turn | Retracts. Knockdown. Hold-on window. |
 | 5 (ON) | Cuckoo's turn | Emerges. Knockdown. Wave 3 modrons. Cuckoo's Call. Last chance. |
@@ -48,10 +58,10 @@ Players who beat the cuckoo's initiative can reposition after gear rotation but 
 
 - **Floor:** Single large gear (25 ft radius). Rotates 90° CW at init 20.
 - **Platform (fixed, north edge — does NOT rotate):** row A is a half-depth catwalk (2.5 ft deep) — creatures on it are squeezing (half speed, disadvantage on attacks, attacks against them have advantage). Corner blocks A/B 1-2 and 9-10 are full standing room, level with the gear. Hatch up from the Bellows Chamber at B2; the air riser surfaces at B1 and enters the tower at the A1 half-wall.
-- **Doors:** two 10-ft leaves in the north wall (cols 4-7). They slam outward 180° when the cuckoo deploys — the swing tiles (A2-A9, B2-B9, C3-C4, C7-C8) join the impact path ([TBD] save/damage).
+- **Doors:** two 10-ft leaves in the north wall (cols 4-7). They slam outward 180° when the cuckoo deploys — the swing tiles (A2-A9, B2-B9, C3-C4, C7-C8) join the impact path. **Door slam: DC 14 DEX; fail = 7 (2d6) bludgeoning and knocked prone, save = half and stay standing.**
 - **Aperture:** In the north wall behind the doors. The rod extends inward; the cuckoo perches at the gear hub.
 - **Cone direction:** Fixed from center. Rotation shifts who's in the blast zone.
-- **Center hazard:** Anyone in the center when cuckoo emerges → knockdown (DEX save).
+- **Center hazard:** Anyone in the center when cuckoo emerges → knockdown (DC 14 DEX).
 - **Table procedure:** the platform sheet (doors closed) stays laid over row A all fight; the gear map rotates beneath it. On ON cycles set the ROD PIECE on top — its head is the open doorway (covers the closed doors) and its perch lands on the gear hub. Lift it off on OFF cycles.
 - See `props/cuckoos_landing_guide.html` for visual layout (`props/cuckoos_landing_map.html` is the print battle map; `props/cuckoos_landing_overlay.html` is the platform sheet + rod piece).
 
@@ -67,27 +77,35 @@ Players who beat the cuckoo's initiative can reposition after gear rotation but 
 
 ---
 
+## Telegraphing the 3-Cycle Rule
+
+Primary: the contract, Art. VI §6.3 — players who found and read it in the Study know the termination clause. Backup (DM's choice by table state): a conflicted Pendel states it during Act III, Linde spells it out if she's in play, or any other DM hint (e.g., a modron announcing "second emergence logged; one remains") — deliver it by the end of cycle 1 if nobody has connected it.
+
+---
+
 ## End Conditions
 
-**Victory:** Cuckoo destroyed before 3 full cycles. Contract null and void (Art. VI §6.3). Aperture closes. Modrons retreat immediately. Broken cuckoo remains.
+**Victory:** Cuckoo destroyed (reduced to 0 HP) before 3 full cycles. Contract null and void (Art. VI §6.3). Aperture closes. Modrons retreat immediately. Broken cuckoo remains.
 
 **Defeat:** 3 cycles complete. Planar anchor established. Conformity permanent.
 
-**Alternate path:** Players defend the cuckoo from hag coven + fey minions. Cuckoo completes 3 cycles. Contract fulfilled.
+**Alternate path (improv — deliberately undesigned):** Players defend the cuckoo from Linde's coven (3 moss women / green hag statblocks) + fey minions (blights, wolves) breaking in over 3 cycles. Cuckoo completes 3 cycles → contract fulfilled. Run from the adventure-summary balance notes: coven spells are the real threat, action economy favors the party 8:3, minions fill the gap.
 
 ---
 
 ## Open Questions
 
-- [ ] Full cuckoo custom statblock — attacks on its turn besides the Call? Or is the Call + knockdown + modron waves the entirety of its action?
-- [ ] Knockdown DEX save DC — not specified in adventure summary
-- [ ] Door-slam save/damage (the 180° swing over the platform) — numbers not set
-- [ ] Monodrone/duodrone/tridrone/quadrone 2024 stat blocks needed
-- [ ] What does "cuckoo destroyed" look like mechanically — reduced to 0 HP?
-- [ ] Gear rotation — do flying creatures rotate? (Currently: no for flyers, yes for ground)
-- [ ] How do players know the 3-cycle rule? Is it obvious? Does someone tell them? Does the contract mention it?
-- [ ] Alternate path encounter (hag coven + fey minions) needs full design if we want it playable
-- [ ] What happens to Pendel during Act III? Does he fight the players? Hesitate? Go fully rogue?
+- [ ] Fill modron key-stat table from the 2024 MM (user reads out, notate)
+
+---
+
+## Pendel During the Fight
+
+Branches on how the party treated him in Act II:
+
+- **Befriended / pushed rogue:** he sides with the party — stands clear of the fight but helps: calls the wave timings ("the next emergence comes NOW"), states the 3-cycle rule if they don't know it, shouts which duct the Call is charging from.
+- **Neutral:** he freezes — torn between the contract and the doubt, he watches, pleads with both sides, and acts only at the very end (DM's choice of which way, based on the fight's final beat).
+- **Antagonized:** he assists the modron waves — directing them, not attacking PCs himself; even hostile, Pendel does not personally fight.
 
 ---
 
