@@ -57,7 +57,7 @@ Puzzle-map approach: the room itself limits how many PCs can face the golem.
   - **Footprint:** 3×3 centered on the berth — it buries the lane cell plus the surrounding bays and lane segments. Sim-verified connectivity-equivalent to the earlier 3×1 slider model (all properties P1-P7b unchanged)
   - **Why pinecones:** real cuckoo clocks use cast-iron pinecone weights on chains — this room was always supposed to be this; and it keeps THE Gear (and its empty cradle) the only gear that matters here
   - **Invariant:** each level always has exactly one lane open. "Sealing" the maze means mismatching the levels, not closing everything
-  - **Eight pull-chains** hang from the ceiling, scattered (never beside their own pinecone): one chain per pinecone per direction — no chain does double duty. Pulling costs an **action**; chains are reusable (they grind or jam with audible flavor when the move is impossible)
+  - **Eight pull-chains** hang from the ceiling, scattered (never beside their own pinecone): one chain per pinecone per direction — no chain does double duty. Symbol convention: the arrow sits on the side the load travels toward (↓I5 lowers I5 from the east pair; I5↓ from the west). Pulling costs an **action**; chains are reusable (they grind or jam with audible flavor when the move is impossible)
   - **Tracing:** a chain's rigging runs up into the works; action + easy Investigation follows it to the pair of weights it works — which berth it lowers, which it raises (back-rank job)
   - **Caught under a descending pinecone:** DC 14 DEX save, dive to an adjacent open square; fail = 7 (2d6) bludgeoning + prone (a wonderful save to narrate) — matches the Act III door-slam peril
   - **Golem:** never damages machinery, so blocked lanes genuinely stop it — it reroutes or waits
@@ -74,16 +74,16 @@ Puzzle-map approach: the room itself limits how many PCs can face the golem.
 ```
       1  2  3  4  5  6  7  8  9
   A   ▓  .  .◎ .  .  ▓  f  .  ▓     backroom 4×3 (cols 2-5) · ◎ cradle on the A/B–3/4 intersection
-  B   ▓  .  .  ⛓  .  ▓  .  .  ▓     B4: ↓E5 ↑E2 · f Fritz's camp (2×2 home, A7–B8, walled off at col 6)
-  C   ▓  .  ⛓  .  .  ▓  ▓  ⛓  ▓     C3: ↓E2 ↑E5 · C8: ↓E8 ↑E5 (Fritz's chain)
+  B   ▓  .  .  ⛓  .  ▓  .  .  ▓     B4: E5↓ ↑E2 · f Fritz's camp (2×2 home, A7–B8, walled off at col 6)
+  C   ▓  .  ⛓  .  .  ▓  ▓  ⛓  ▓     C3: ↓E2 ↑E5 · C8: E8↓ ↑E5 (Fritz's chain)
   D   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
   E   ▓  ◉  ▓  ▓  ◉  ▓  ▓  ◉  ▓     UPPER BERTHS (E2 · E5 · E8) — a weight above each; two of three down
   F   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
-  G   ▓  ⛓  ▓  ▓  |  ⛓  .  Ⓖ  ▓     G2: ↓I2 ↑I5 · G6: ↓I5 ↑I2 (re-arm) · G7 crossing · Ⓖ golem start (G8)
+  G   ▓  ⛓  ▓  ▓  |  ⛓  .  Ⓖ  ▓     G2: ↓I2 ↑I5 · G6: I5↓ ↑I2 (re-arm) · G7 crossing · Ⓖ golem start (G8)
   H   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
   I   ▓  ◉  ▓  ▓  ◉  ▓  ▓  ◉  ▓     LOWER BERTHS (I2 · I5 · I8) — a weight above each; two of three down
   J   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
-  K   ▓  ⛓  .  .  |  ▓  ▓  |  ▓     K2: ↓I8 ↑I5 · K3-K4 crossing
+  K   ▓  ⛓  .  .  |  ▓  ▓  |  ▓     K2: I8↓ ↑I5 · K3-K4 crossing
   L   ▓  ⛓  ▓  ▓  |  ▓  ▓  |  ▓     L2: ↓E5 ↑E8
   M   ▓  .  ⛓  .  .  .  .  .  ▓     M3: ↓I5 ↑I8 · staging (spans cols 2-8)
   N   ▓  ▓  .  .  ▲  .  .  ▓  ▓     ▲ stairs from Clockhall
@@ -94,13 +94,13 @@ Puzzle-map approach: the room itself limits how many PCs can face the golem.
 | Chain | Hangs at | Weights | Effect when it fires |
 |---|---|---|---|
 | G2 | west gallery | ↓I2 ↑I5 | opens lower middle, closes lower west — **first effective pull: traps the puller in the gallery and releases the golem** |
-| G6 | cage crossing, beside the golem's post | ↓I5 ↑I2 | opens lower west, closes lower middle — the re-arm chain; pulling it from inside seals you into the cage |
+| G6 | cage crossing, beside the golem's post | I5↓ ↑I2 | opens lower west, closes lower middle — the re-arm chain; pulling it from inside seals you into the cage |
 | M3 | staging | ↓I5 ↑I8 | opens lower east, closes lower middle |
-| K2 | west low | ↓I8 ↑I5 | opens lower middle, closes lower east |
-| B4 | backroom | ↓E5 ↑E2 | opens upper west, closes upper middle — endgame control, part of the pair's exit route |
+| K2 | west low | I8↓ ↑I5 | opens lower middle, closes lower east |
+| B4 | backroom | E5↓ ↑E2 | opens upper west, closes upper middle — endgame control, part of the pair's exit route |
 | C3 | backroom | ↓E2 ↑E5 | opens upper middle, closes upper west — endgame control |
 | L2 | west low | ↓E5 ↑E8 | opens upper east, closes upper middle |
-| C8 | east approach, Fritz's corner | ↓E8 ↑E5 | opens upper middle, **seals E8 behind the puller** — critical path; Fritz can pull it himself |
+| C8 | east approach, Fritz's corner | E8↓ ↑E5 | opens upper middle, **seals E8 behind the puller** — critical path; Fritz can pull it himself |
 
 **Verified properties** (all machine-checked in `tools/winding_room_sim.py`):
 - Sealed at start; minimum 2 pulls to any route (`G2` → `C8`)

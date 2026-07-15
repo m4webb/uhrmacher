@@ -36,9 +36,9 @@
 
   <h2>PULL-CHAINS (party — 1 action each)</h2>
   <div id="plates"></div>
-  <div class="hint">Chain labels: ↓berth = where a weight descends (that lane closes); the paired berth's
-    weight rises (that lane opens). Blue shading = squares reachable from the entrance; a chain someone
-    can't reach can't be pulled.</div>
+  <div class="hint">Chain labels: the named berth is where a weight descends (that lane closes); the arrow
+    sits on the side the load travels toward — ↓I5 lowers I5 from the east pair, I5↓ from the west.
+    Blue shading = squares reachable from the entrance; a chain someone can't reach can't be pulled.</div>
 
   <div class="hint">Fritz has no control panel — but the C8 chain hangs beside his corner.
     He can pull it himself: sealing himself in, and revealing the way to the cradle.</div>
@@ -132,7 +132,8 @@ const CHAINS = {
   C8: { dn: "E8", up: "E5", desc: "lowers E8, raises E5 (opens upper middle; seals E8 behind you)" },
 };
 function chainLabel(sq) {
-  return "↓" + CHAINS[sq].dn;
+  const c = CHAINS[sq];   // arrow on the side the load travels toward
+  return +c.dn[1] < +c.up[1] ? "↓" + c.dn : c.dn + "↓";
 }
 function chainStatus(sq) {   // ok = load transfers; noop = descending berth already down
   const c = CHAINS[sq];

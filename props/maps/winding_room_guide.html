@@ -49,8 +49,8 @@ for (let c = 2; c <= 5; c++) { base.add("A" + c); base.add("B" + c); }
 const RAIL_ROWS = ["E", "I"];
 // chains: square -> [pairing label, effect summary]
 const CHAINS = {
-  G2: "↓I2", G6: "↓I5", M3: "↓I5", K2: "↓I8",
-  B4: "↓E5", C3: "↓E2", L2: "↓E5", C8: "↓E8",
+  G2: "↓I2", G6: "I5↓", M3: "↓I5", K2: "I8↓",
+  B4: "E5↓", C3: "↓E2", L2: "↓E5", C8: "E8↓",
 };
 function xy(cell) {
   return [OX + (parseInt(cell[1]) - 1) * CELL, OY + ROWS.indexOf(cell[0]) * CELL];
@@ -128,13 +128,13 @@ txt((PX + 1020) / 2, 78, "START: weights down at E2 · E5 · I5 · I8 — sealed
 // Chain table
 const TABLE = [
   ["G2", "↓I2 ↑I5", "opens I5 · closes I2 — FIRST PULL: traps puller in gallery, frees golem"],
-  ["G6", "↓I5 ↑I2", "opens I2 · closes I5 — re-arm chain; pulled inside = sealed in cage"],
+  ["G6", "I5↓ ↑I2", "opens I2 · closes I5 — re-arm chain; pulled inside = sealed in cage"],
   ["M3", "↓I5 ↑I8", "opens I8 · closes I5"],
-  ["K2", "↓I8 ↑I5", "opens I5 · closes I8"],
-  ["B4", "↓E5 ↑E2", "opens E2 · closes E5 — backroom"],
+  ["K2", "I8↓ ↑I5", "opens I5 · closes I8"],
+  ["B4", "E5↓ ↑E2", "opens E2 · closes E5 — backroom"],
   ["C3", "↓E2 ↑E5", "opens E5 · closes E2 — backroom, endgame control"],
   ["L2", "↓E5 ↑E8", "opens E8 · closes E5"],
-  ["C8", "↓E8 ↑E5", "opens E5 · closes E8 — Fritz's chain: seals the puller in his corner"],
+  ["C8", "E8↓ ↑E5", "opens E5 · closes E8 — Fritz's chain: seals the puller in his corner"],
 ];
 let ty = 108;
 txt(PX, ty, "CHAIN", { fill: INK, 'font-size': 11, 'font-weight': 700, 'text-anchor': 'start' });
@@ -163,6 +163,7 @@ const RULES = [
   "Each level always leaves exactly one lane open.",
   "Under a descending pinecone: DC 14 DEX, dive adjacent; fail 2d6 + prone.",
   "Trace a chain (action + easy Investigation) to learn which berths it works.",
+  "Arrow side = travel direction of the load: ↓I5 arrives at I5 from the east, I5↓ from the west.",
   "Golem: starts caged at G8; freed by the first effective pull (G2).",
   "  It never damages machinery - blocked lanes stop it. Anyone may pull chains.",
   "Fritz: home at A7-B8 (door via C8 square). C8 chain = his self-seal reveal.",
