@@ -90,7 +90,7 @@ Primary: the contract, Art. VI §6.3 — players who found and read it in the St
 
 **Defeat:** 3 cycles complete. Planar anchor established. Conformity permanent.
 
-**Alternate path (improv — deliberately undesigned):** Players defend the cuckoo from Linde's coven (3 moss women / green hag statblocks) + fey minions (blights, wolves) breaking in over 3 cycles. Cuckoo completes 3 cycles → contract fulfilled. Run from the adventure-summary balance notes: coven spells are the real threat, action economy favors the party 8:3, minions fill the gap.
+**Alternate path (improv — deliberately undesigned):** Players defend the cuckoo from Linde's coven (3 moss women / green hag statblocks) + fey minions (blights, wolves) breaking in over 3 cycles. Cuckoo completes 3 cycles → contract fulfilled. Run from the adventure-summary balance notes: coven spells are the real threat, action economy favors the party 7:3, minions fill the gap.
 
 ---
 
@@ -113,6 +113,7 @@ Branches on how the party treated him in Act II:
 
 - Initiative: Roll for PCs and the modrons (one group) only; the cuckoo acts with the environment on initiative 20 — the adventure-wide environment slot
 - The cuckoo is primarily an objective/HP sponge — the modron waves are the real combat threat
+- **Pace dial (7 players):** if the cuckoo isn't near half HP by the end of cycle 2 (round 3), quietly drop one quadrone from wave 3; Defensive Lockdown (+2 AC) is the dial in the other direction
 - The rotating floor is the key tactical element: it constantly repositions everyone relative to the cone's fixed direction
 - Players who figure out the rotation pattern can predict where the cone will hit and position accordingly
 - The fight should feel frantic and mechanical — a machine to be dismantled, not a monster to be slain

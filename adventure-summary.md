@@ -2,8 +2,8 @@
 
 ## Adventure Summary
 
-**Type:** One-shot adventure for 8 players
-**Players:** Brother-in-law + 7 coworkers
+**Type:** One-shot adventure for 7 players
+**Players:** Brother-in-law + coworkers
 **Level:** 3
 
 ---
@@ -123,4 +123,4 @@ Players arrive at the village Gasthaus, responding to the Bürgermeister's pest 
 - **Modron reinforcements:** Escalating waves each round, getting heavier as the fight progresses; modrons immediately retreat once the contract is nullified (cuckoo destroyed before 3 cycles complete)
 - **Desired path:** Players fight to defeat the cuckoo before it completes the contract
 - **Alternate ending:** Players protect the modron/cuckoo from the hag coven (3 green hags) + fey minions (blights, wolves, etc.) trying to break in, allowing the contract to complete
-- **Balance note:** Hag coven is hard-to-deadly for 8 level 3 PCs on paper, but action economy favors players 8:3. Fey minions needed to fill the gap. Coven spells (Hold Person etc.) are the real threat at level 3 HP pools.
+- **Balance note:** Hag coven is hard-to-deadly for 7 level 3 PCs on paper, but action economy favors players 7:3. Fey minions needed to fill the gap. Coven spells (Hold Person etc.) are the real threat at level 3 HP pools.

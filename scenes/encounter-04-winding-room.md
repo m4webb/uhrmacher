@@ -1,6 +1,6 @@
 # Encounter — Winding Room
 
-**Difficulty:** Hard by geometry, not by numbers. On paper the golem is Easy for 8 level 3 PCs (900 adjusted XP) — action economy would demolish it in an open room. The map is the difficulty: chokepoint lanes limit engagement to 1-2 PCs at a time, making the golem's ~34 avg DPR a real threat to whoever is exposed. No additional enemies needed.
+**Difficulty:** Hard by geometry, not by numbers. On paper the golem is Easy for 7 level 3 PCs (900 adjusted XP) — action economy would demolish it in an open room. The map is the difficulty: chokepoint lanes limit engagement to 1-2 PCs at a time, making the golem's ~34 avg DPR a real threat to whoever is exposed. No additional enemies needed.
 
 **Target duration:** 2-3 rounds (if combat), shorter if resolved socially
 

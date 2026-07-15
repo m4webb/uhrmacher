@@ -1,6 +1,6 @@
 # Encounter — Bellows Chamber
 
-**Difficulty:** Hard (~2,100 adjusted XP for 8 level 3 PCs)
+**Difficulty:** Hard (~2,100 adjusted XP — exactly the Hard threshold for 7 level 3 PCs)
 **Target duration:** 3 rounds
 
 ---
