@@ -71,8 +71,6 @@ Puzzle-map approach: the room itself limits how many PCs can face the golem.
 
 ## Layout v3 — pinecones (sim-verified — `tools/winding_room_sim.py`, interactive: `tools/winding_room_sim.html`)
 
-*(The sim models the state-equivalent four-traveling-weight machine — its states and pulls map 1:1 onto the six fixed weights.)*
-
 ```
       1  2  3  4  5  6  7  8  9
   A   ▓  .  .◎ .  .  ▓  f  .  ▓     backroom 4×3 (cols 2-5) · ◎ cradle on the A/B–3/4 intersection

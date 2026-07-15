@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
-"""State-space verification for the winding room counterweight puzzle (v2, pull-chains).
+"""State-space verification for the winding room counterweight puzzle (v3, six weights).
 
-Model: four cast-iron PINECONE counterweights (3x3 footprint) at two levels (rows E
-and I); each hangs dropped at its outer lane berth ('out') or the shared middle berth
-('mid'); a pinecone cannot drop where another sits (jam). Chains are reusable, one
-per pinecone per direction, pulling costs an action.
+Model: six cast-iron PINECONE counterweights (3x3 footprint), one hanging above
+each berth (E2/E5/E8 upper, I2/I5/I8 lower). At any moment exactly two per level
+are down — four pinecones on the map, never more. Each pull-chain transfers load
+between two berths of one level: the weight over one berth descends, the weight
+over the other rises. A pull whose descending berth is already down grinds (jam).
+Chains are reusable, one per berth-pair per direction, pulling costs an action.
 
-Party analysis uses an occupancy abstraction (8 players ~ unlimited tokens).
+(State-equivalent to the earlier four-traveling-weight model — states and pulls
+map 1:1, so all previously verified properties carry over unchanged.)
+
+Party analysis uses an occupancy abstraction (7 players ~ unlimited tokens).
 Pair analysis (P7) is an exact two-actor search: Fritz and the golem are two
 ordinary actors — both walk, both pull chains. No slips, no shoves, nothing special.
 
@@ -29,30 +34,23 @@ for c in range(2, 6): base.add(f"A{c}"); base.add(f"B{c}") # backroom 4x3 (cols 
 base |= {"A7", "B7", "A8", "B8"}                           # Fritz's corner (2x2 home)
 START, GOAL, FRITZ, GOLEM = "N5", "A4", "A7", "G8"
 
-LANE_CELL = {
-    "Uw": {"out": "E2", "mid": "E5"}, "Ue": {"out": "E8", "mid": "E5"},
-    "Lw": {"out": "I2", "mid": "I5"}, "Le": {"out": "I8", "mid": "I5"},
-}
-PARTNER = {"Uw": "Ue", "Ue": "Uw", "Lw": "Le", "Le": "Lw"}
-ORDER = ("Uw", "Ue", "Lw", "Le")
-INIT = ("out", "mid", "mid", "out")     # upper open EAST, lower open WEST
-PARADE = ("mid", "out", "mid", "out")   # both levels open WEST (golem-seal config)
+BERTHS = ("E2", "E5", "E8", "I2", "I5", "I8")   # a weight hangs above each
+INIT   = frozenset({"E2", "E5", "I5", "I8"})    # down at start: upper open EAST, lower open WEST
+PARADE = frozenset({"E5", "E8", "I5", "I8"})    # both levels open WEST (golem-seal config)
 
-# --- Current chain arrangement: square -> (gear, direction) ---
+# --- Current chain arrangement: square -> (descends onto, rises from) ---
 CHAINS = {
-    "G2": ("Lw", "out"), "G6": ("Lw", "mid"),
-    "M3": ("Le", "mid"), "K2": ("Le", "out"),
-    "B4": ("Uw", "mid"), "C3": ("Uw", "out"),
-    "L2": ("Ue", "mid"), "C8": ("Ue", "out"),
+    "G2": ("I2", "I5"), "G6": ("I5", "I2"),
+    "M3": ("I5", "I8"), "K2": ("I8", "I5"),
+    "B4": ("E5", "E2"), "C3": ("E2", "E5"),
+    "L2": ("E5", "E8"), "C8": ("E8", "E5"),
 }
 
 def covered(cfg):
-    # Pinecone counterweights: each drops as a 3x3 footprint centered on its
-    # position cell (they hang from winding chains and lower into place).
+    # Each DOWN weight buries a 3x3 footprint centered on its berth.
     cells = set()
-    for g, p in zip(ORDER, cfg):
-        center = LANE_CELL[g][p]
-        r0, c0 = ROWS.index(center[0]), int(center[1])
+    for berth in cfg:
+        r0, c0 = ROWS.index(berth[0]), int(berth[1])
         for dr in (-1, 0, 1):
             for dc in (-1, 0, 1):
                 rr, cc = r0 + dr, c0 + dc
@@ -77,15 +75,12 @@ def closure(cells, w):
             if n not in seen: seen.add(n); q.append(n)
     return frozenset(seen)
 
-def pull(cfg, gear, direction):
-    i = ORDER.index(gear)
-    pos = cfg[i]
-    if direction == "mid":
-        if pos == "mid": return None
-        if cfg[ORDER.index(PARTNER[gear])] == "mid": return None  # jam
-        return cfg[:i] + ("mid",) + cfg[i+1:]
-    if pos == "out": return None
-    return cfg[:i] + ("out",) + cfg[i+1:]
+def pull(cfg, dn, up):
+    # Lower the weight over `dn`, raise the weight over `up`.
+    # Grinds (None) if the descending berth is already down or the rising
+    # berth is already up — the load has nowhere to transfer.
+    if dn in cfg or up not in cfg: return None
+    return frozenset(cfg - {up} | {dn})
 
 # --- Party exploration (occupancy abstraction) ---
 def explore(chains):
@@ -98,9 +93,9 @@ def explore(chains):
         state = q.popleft()
         cfg, occ = state
         succs = []
-        for sq, (g, d) in chains.items():
+        for sq, (dn, up) in chains.items():
             if sq not in occ: continue
-            nc = pull(cfg, g, d)
+            nc = pull(cfg, dn, up)
             if nc is None: continue
             w = walkable(nc)
             nocc = closure(occ, w)
@@ -130,8 +125,8 @@ def explore(chains):
 
 def first_effective(chains):
     occ0 = closure({START}, walkable(INIT))
-    return sorted(sq for sq, (g, d) in chains.items()
-                  if sq in occ0 and pull(INIT, g, d) is not None)
+    return sorted(sq for sq, (dn, up) in chains.items()
+                  if sq in occ0 and pull(INIT, dn, up) is not None)
 
 # --- P7: exact two-actor search. Two ordinary actors: both walk, both pull.
 #     State carries an 'out' flag (set once both stand outside simultaneously)
@@ -171,12 +166,12 @@ def _pair_search(chains, goal_fn, want_path=False):
                 if nc is not None:
                     nw, _ = wm(nc)
                     oth = other
-                    if oth not in nw:  # weight slid onto the other actor: step aside
+                    if oth not in nw:  # weight descended onto the other actor: step aside
                         opts = sorted(neighbors(oth, nw))
                         oth = opts[0] if opts else None
                     if oth is not None:
-                        g, d = chains[me]
-                        moves.append((nc, me, oth, f"{me} pulls {g}->{d}"))
+                        dn, up = chains[me]
+                        moves.append((nc, me, oth, f"{me} pulls (down {dn}, up {up})"))
         for ncfg, na, nb, ev in moves:
             _, nmain = wm(ncfg)
             nout = out or (na in nmain and nb in nmain)
@@ -198,6 +193,14 @@ def pair_roundtrip(chains, want_path=False):
                         lambda cfg, a, b, out: out and cfg == INIT and {a, b} == {FRITZ, GOLEM},
                         want_path)
 
+def chain_pairs(chains):
+    # Chains grouped by the berth-pair they operate (each pair has 2 chains,
+    # one per direction).
+    groups = {}
+    for sq, (dn, up) in chains.items():
+        groups.setdefault(frozenset((dn, up)), []).append(sq)
+    return groups
+
 def evaluate(chains, with_p7=True):
     fe = first_effective(chains)
     exp = explore(chains)
@@ -216,9 +219,9 @@ def evaluate(chains, with_p7=True):
         p7=pair_out(chains) if with_p7 else None,
     )
     res["p6"] = {}
-    for gear in ORDER:
-        sqs = [sq for sq, (g, d) in chains.items() if g == gear]
-        res["p6"][gear] = not all(sq not in closure({START}, wp) for sq in sqs)
+    for pair, sqs in chain_pairs(chains).items():
+        label = "-".join(sorted(pair))
+        res["p6"][label] = not all(sq not in closure({START}, wp) for sq in sqs)
     return res
 
 # --- Report for the current arrangement ---
@@ -235,8 +238,8 @@ print(f"P2 golem starts sealed away from party: {r['p2']} (cage guards chains: {
 print(f"P3 first pull traps the puller: {r['p3']}")
 print(f"P4 first pull releases the golem: {r['p4']}")
 print(f"P5 parade reachable: {r['p5']}; parade seals golem: {r['p5_seal']}")
-for gear, ok in r["p6"].items():
-    print(f"P6 {gear} chains separated: {'ok' if ok else 'VIOLATION'}")
+for label, ok in sorted(r["p6"].items()):
+    print(f"P6 {label} chains separated: {'ok' if ok else 'VIOLATION'}")
 print(f"P7 Fritz+golem walk out in tandem (chains only, no cheats): {r['p7']}")
 if r["p7"]:
     print(f"P7b full round trip (out, home again, maze re-armed to start): {pair_roundtrip(CHAINS)}")
@@ -247,17 +250,16 @@ if r["p7"]:
 #     trap, C8 Fritz self-seal, M3/K2 lower-east pair); the other four move. ---
 if not (r["p7"] and pair_roundtrip(CHAINS)):
     print("\n--- searching chain placements for escape + full round trip ---")
-    FIXED = {"G2": ("Lw", "out"), "C8": ("Ue", "out"),
-             "M3": ("Le", "mid"), "K2": ("Le", "out")}
-    ROLES = [("Lw", "mid"), ("Ue", "mid"), ("Uw", "mid"), ("Uw", "out")]
+    FIXED = {"G2": ("I2", "I5"), "C8": ("E8", "E5"),
+             "M3": ("I5", "I8"), "K2": ("I8", "I5")}
+    ROLES = [("I5", "I2"), ("E5", "E8"), ("E5", "E2"), ("E2", "E5")]
     SPOTS = ["H5", "H8", "G7", "B2", "B4", "C3", "C5", "A8", "L2", "K8", "M7"]
-    GEAR_ROW = {"Uw": "E", "Ue": "E", "Lw": "I", "Le": "I"}
     current_pos = {v: sq for sq, v in CHAINS.items()}
     solutions = []
     for combo in permutations(SPOTS, 4):
-        if any(abs(ord(sq[0]) - ord(GEAR_ROW[role[0]])) < 2
+        if any(abs(ord(sq[0]) - ord(role[0][0])) < 2
                for sq, role in zip(combo, ROLES)):
-            continue  # never right next to its own gear
+            continue  # never right next to the berths it works
         chains = dict(FIXED)
         for sq, role in zip(combo, ROLES):
             chains[sq] = role
@@ -275,7 +277,7 @@ if not (r["p7"] and pair_roundtrip(CHAINS)):
     solutions.sort(key=lambda s: s[0])
     print(f"arrangements satisfying ALL criteria (incl. P7 + full round trip): {len(solutions)}")
     for moved, combo, _ in solutions[:8]:
-        desc = ", ".join(f"{role[0]}->{role[1]}@{sq}" for role, sq in zip(ROLES, combo))
+        desc = ", ".join(f"down {role[0]} up {role[1]} @{sq}" for role, sq in zip(ROLES, combo))
         print(f"  moved {moved} chains: {desc}")
     if solutions:
         best = solutions[0]

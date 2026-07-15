@@ -27,17 +27,18 @@
 <div id="mapwrap"><svg id="map" xmlns="http://www.w3.org/2000/svg" width="430" height="640" viewBox="0 0 430 640"></svg></div>
 
 <div id="panel">
-  <h1>WINDING ROOM — COUNTERWEIGHTS (v2)</h1>
-  <div class="hint">Four massive cast-iron PINECONE counterweights (3×3 squares) hang from winding chains at two
-    levels. Each is dropped at its outer lane or the middle berth. The middle berth is shared — a
-    pinecone cannot drop where another sits. Eight pull-chains hang from the ceiling, scattered around the room (never
-    beside their own weight). Each chain moves ONE weight ONE direction; the reverse is another chain.
+  <h1>WINDING ROOM — COUNTERWEIGHTS (v3, six weights)</h1>
+  <div class="hint">Six massive cast-iron PINECONE counterweights (3×3 squares) hang from winding chains,
+    one above each berth (E2/E5/E8 upper, I2/I5/I8 lower). At any moment exactly two per level are
+    down — four pinecones on the map, never more. Each pull-chain transfers load between two berths:
+    one weight descends, another rises. A pull whose descending berth is already down grinds.
     Pulling costs an action.</div>
 
   <h2>PULL-CHAINS (party — 1 action each)</h2>
   <div id="plates"></div>
-  <div class="hint">Chain labels: weight + direction, e.g. "LW→" slides the lower-west weight toward the
-    middle. Blue shading = squares reachable from the entrance; a chain someone can't reach can't be pulled.</div>
+  <div class="hint">Chain labels: ↓berth = where a weight descends (that lane closes); the paired berth's
+    weight rises (that lane opens). Blue shading = squares reachable from the entrance; a chain someone
+    can't reach can't be pulled.</div>
 
   <div class="hint">Fritz has no control panel — but the C8 chain hangs beside his corner.
     He can pull it himself: sealing himself in, and revealing the way to the cradle.</div>
@@ -71,26 +72,17 @@ for (let c = 2; c <= 5; c++) { base.add("A" + c); base.add("B" + c); }  // backr
 const MARKS = { A7: "f", N5: "▲", G8: "Ⓖ" };  // Ⓖ = golem start · f = Fritz's camp
 const START = "N5", GOAL = "A4";
 
-// --- Counterweights: two per level, sharing the middle bay ---
-// west weight: position 'west' (covers lane col 2) or 'mid' (covers lane col 5)
-// east weight: position 'east' (covers lane col 8) or 'mid' (covers lane col 5)
-const LEVELS = { U: { row: "E", plateRow: "F" }, L: { row: "I", plateRow: "J" } };
-let gears;
+// --- Counterweights: one above each of the six berths; a set tracks which are DOWN ---
+const BERTHS = ["E2", "E5", "E8", "I2", "I5", "I8"];
+let downs;
 function resetState() {
-  gears = { U: { w: "west", e: "mid" },    // upper: east lane open
-            L: { w: "mid",  e: "east" } }; // lower: west lane open
-  log("— reset: upper level open = EAST, lower level open = WEST (sealed overall) —");
+  downs = new Set(["E2", "E5", "I5", "I8"]);   // upper open EAST, lower open WEST
+  log("— reset: weights down at E2 · E5 · I5 · I8 (sealed overall) —");
   render();
 }
 
 function pineCenters() {
-  const out = [];
-  for (const [lv, g] of Object.entries(gears)) {
-    const r0 = ROWS.indexOf(LEVELS[lv].row);
-    out.push({ r0, c0: g.w === "west" ? 2 : 5, label: lv + "W" });
-    out.push({ r0, c0: g.e === "east" ? 8 : 5, label: lv + "E" });
-  }
-  return out;
+  return [...downs].map(b => ({ r0: ROWS.indexOf(b[0]), c0: +b[1], label: b }));
 }
 function coveredCells() {   // pinecones drop as 3x3 footprints
   const cov = new Set();
@@ -118,56 +110,39 @@ function reachable() {
   return seen;
 }
 
-// --- Weight movement (shared-middle jam enforced) ---
-const GNAME = { Uw: "upper-west", Ue: "upper-east", Lw: "lower-west", Le: "lower-east" };
-function slideTo(lv, side, target, who) {
-  const g = gears[lv], name = GNAME[lv + side];
-  const own = side === "w" ? "west" : "east";
-  const cur = g[side], partner = side === "w" ? g.e : g.w;
-  if (target === "mid") {
-    if (cur === "mid") { log(`${who}: grinds — ${name} weight is already in the middle`); return; }
-    if (partner === "mid") { log(`${who}: ${name} pinecone cannot drop — middle berth occupied`); return; }
-    g[side] = "mid";
-    log(`${who}: ${name} pinecone hoisted from ${own.toUpperCase()}, dropped at MIDDLE (${own} lane clears, center blocks)`);
-  } else {
-    if (cur !== "mid") { log(`${who}: grinds — ${name} weight is already at ${own.toUpperCase()}`); return; }
-    g[side] = own;
-    log(`${who}: ${name} pinecone hoisted from MIDDLE, dropped at ${own.toUpperCase()} (center clears, ${own} lane blocks)`);
+// --- Weight transfer: lower one weight, raise its counterpart ---
+function transfer(dn, up, who) {
+  if (downs.has(dn) || !downs.has(up)) {
+    log(`${who}: grinds — the weight over ${dn} is already down`);
+    return;
   }
+  downs.delete(up); downs.add(dn);
+  log(`${who}: the chain pays out — the weight over ${up} rises (lane opens); the weight over ${dn} descends (3×3 closes)`);
 }
 
-// --- Pull-chains: one per weight per direction, scattered (never beside their own weight) ---
+// --- Pull-chains: each transfers load between two berths of one level ---
 const CHAINS = {
-  G2: { lv: "L", side: "w", to: "out", desc: "lower-west weight → WEST (clears lower middle)" },
-  G6: { lv: "L", side: "w", to: "mid", desc: "lower-west weight → MIDDLE (clears lower west lane) — cage crossing, re-arm chain" },
-  M3: { lv: "L", side: "e", to: "mid", desc: "lower-east weight → MIDDLE (clears lower east lane)" },
-  K2: { lv: "L", side: "e", to: "out", desc: "lower-east weight → EAST (clears lower middle)" },
-  B4: { lv: "U", side: "w", to: "mid", desc: "upper-west weight → MIDDLE (clears upper west lane) — backroom" },
-  C3: { lv: "U", side: "w", to: "out", desc: "upper-west weight → WEST (clears upper middle) — backroom" },
-  L2: { lv: "U", side: "e", to: "mid", desc: "upper-east weight → MIDDLE (clears upper east lane)" },
-  C8: { lv: "U", side: "e", to: "out", desc: "upper-east weight → EAST (clears upper middle; seals E8 behind you)" },
+  G2: { dn: "I2", up: "I5", desc: "lowers I2, raises I5 (opens lower middle, closes lower west)" },
+  G6: { dn: "I5", up: "I2", desc: "lowers I5, raises I2 (opens lower west) — cage crossing, re-arm chain" },
+  M3: { dn: "I5", up: "I8", desc: "lowers I5, raises I8 (opens lower east)" },
+  K2: { dn: "I8", up: "I5", desc: "lowers I8, raises I5 (opens lower middle)" },
+  B4: { dn: "E5", up: "E2", desc: "lowers E5, raises E2 (opens upper west) — backroom" },
+  C3: { dn: "E2", up: "E5", desc: "lowers E2, raises E5 (opens upper middle) — backroom" },
+  L2: { dn: "E5", up: "E8", desc: "lowers E5, raises E8 (opens upper east)" },
+  C8: { dn: "E8", up: "E5", desc: "lowers E8, raises E5 (opens upper middle; seals E8 behind you)" },
 };
 function chainLabel(sq) {
+  return "↓" + CHAINS[sq].dn;
+}
+function chainStatus(sq) {   // ok = load transfers; noop = descending berth already down
   const c = CHAINS[sq];
-  const gear = (c.lv === "U" ? "U" : "L") + (c.side === "w" ? "W" : "E");
-  const arrow = c.side === "w" ? (c.to === "mid" ? "→" : "←") : (c.to === "mid" ? "←" : "→");
-  return gear + arrow;
+  return (downs.has(c.dn) || !downs.has(c.up)) ? "noop" : "ok";
 }
-function chainStatus(sq) {   // ok = pull moves the weight; jam = middle occupied; noop = already there
-  const c = CHAINS[sq], g = gears[c.lv];
-  const cur = g[c.side], partner = c.side === "w" ? g.e : g.w;
-  if (c.to === "mid") {
-    if (cur === "mid") return "noop";
-    if (partner === "mid") return "jam";
-    return "ok";
-  }
-  return cur === "mid" ? "ok" : "noop";
-}
-const STATUS_FILL = { ok: "#b9e2b0", jam: "#f0b4b4", noop: "#e2e2e2" };
-const STATUS_TEXT = { ok: "", jam: " — JAMMED (middle occupied)", noop: " — no effect (already there)" };
+const STATUS_FILL = { ok: "#b9e2b0", noop: "#e2e2e2" };
+const STATUS_TEXT = { ok: "", noop: " — grinds (weight already down)" };
 function pull(sq) {
   const c = CHAINS[sq];
-  slideTo(c.lv, c.side, c.to, `chain ${sq} (action)`);
+  transfer(c.dn, c.up, `chain ${sq} (action)`);
   render();
 }
 
@@ -242,18 +217,6 @@ function render() {
     b.style.background = STATUS_FILL[st];
     b.addEventListener("click", () => pull(sq));
     platesEl.appendChild(b);
-  }
-  const golemEl = document.getElementById("golem");
-  golemEl.innerHTML = "";
-  for (const [lv, g] of Object.entries(gears)) {
-    for (const side of ["w", "e"]) {
-      const b = document.createElement("button");
-      const pos = side === "w" ? g.w : g.e;
-      const target = pos === "mid" ? "out" : "mid";
-      b.textContent = `shove ${GNAME[lv + side]} gear (at ${pos.toUpperCase()})`;
-      b.addEventListener("click", () => { slideTo(lv, side, target, "golem (Fritz directs)"); render(); });
-      golemEl.appendChild(b);
-    }
   }
   const st = document.getElementById("status");
   const routeOpen = reach.has(GOAL);
