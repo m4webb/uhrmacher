@@ -8,7 +8,7 @@
 
 ## Read-Aloud
 
-The staircase opens into a wide chamber dominated by two enormous wooden bellows, one on each side — like the lungs of some massive creature. Brass pipes run from the tops of the bellows up through the ceiling. The bellows are choked with debris, dried nesting material, and something else — movement. Small dark shapes cling to the pipes and rafters overhead. Then they notice you.
+The staircase opens into a wide chamber dominated by two enormous wooden bellows, one on each side — like the lungs of some massive creature. Brass pipes run from the tops of the bellows up through the ceiling. The far wall is the back of the great clock face itself — a full storey of dark banded wood, the hands' axle driving through it in a slow and tireless turn, an old workbench pushed up against it. The bellows are choked with debris, dried nesting material, and something else — movement. Small dark shapes cling to the pipes and rafters overhead. Then they notice you.
 
 ---
 
