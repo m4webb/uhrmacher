@@ -12,7 +12,7 @@
 
 - The Kuckucksuhrturm, a clocktower in the Tiefenwald near the town of Freudenfeld, has mysteriously started ticking again
 - The Uhrmacher (clockmaker) is long since dead
-- **Timeline (canon):** Wilhelm's era is 1742 — the Gear arrives, the town improves (Kohler's letter, 14. Martius), the wrongness shows (journal, 19. Aprilis), and he disconnects the Gear (journal, 5. Maius, at half past two in the afternoon — half an hour before his own activation would have struck) all within that year. **Present day is 1804** — the tower has stood dead for some sixty years. Fits Heinrich: he saw the Tickwichtel as a boy of seven and is an old man of 69 now
+- **Timeline (canon):** Wilhelm's era is 1742 — the Gear arrives, the town improves (Kohler's letter, 14. Martius), the wrongness shows (journal, 19. Aprilis), and he disconnects the Gear (journal entry of 6. Maius: disconnected on the 5th at half past two in the afternoon — half an hour before his own activation would have struck) all within that year. **Present day is 1804** — the tower has stood dead for some sixty years. Fits Heinrich: he saw the Tickwichtel as a boy of seven and is an old man of 69 now
 - He had signed a contract with modrons from the Mechanus plane to open a planar anchor through his clock tower
 - In exchange, a gear from Mechanus was connected to the tower to allow it to keep perfect time
 - The Uhrmacher eventually discovered the consequences of the planar connection: it would seep uniformity and conformance into Freudenfeld
