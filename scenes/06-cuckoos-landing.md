@@ -8,7 +8,7 @@
 
 ## Read-Aloud
 
-The hatch swings open onto a narrow platform at the top of the tower. The floor beyond is a single massive bronze gear, its teeth meshing with the walls. On one side, a circular aperture — dark metal rings framing a hole in reality. Through it, cold geometric light. The air hums. The pipes from the bellows below terminate here, angled toward the aperture. Then the aperture flares. Something is coming through.
+The hatch swings open onto a narrow platform at the top of the tower. The floor beyond is a single massive bronze gear, its teeth meshing with the walls — still, and strangely clean, as though someone polishes it. Along the wall beside you stand two great doors, shut fast, taller than any door has a reason to be. The air riser you climbed beside runs through the wall and vanishes behind them, and from the seam between them leaks a thin line of cold, geometric light.
 
 ---
 

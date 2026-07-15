@@ -39,17 +39,23 @@
 
 ---
 
+## Read-Aloud — First Emergence (round 1, machine turn)
+
+> The hour arrives, and the tower answers. The floor wrenches into motion — the whole gear grinding beneath your feet — and before it settles, the great doors detonate, slamming flat against the walls hard enough to ring the platform like a bell. Beyond the doorway, for a single held breath, you see the other side: gears the size of counties turning in a bright and endless nothing, meshing at impossible angles, all of them perfectly in step. Out of the light drives a bird of riveted brass the size of a carriage, thrust out on a telescoping rod, hinged wings flared wide, eyes like two blank dial faces. It shoots out and slams to a halt over the dead center of the floor, the rod still shuddering. Behind it, winged brass spheres pour through the doorway and fan out overhead. The bird's chest swells — and it calls: two colossal tones, high then low, like a cathedral clock striking inside your chest.
+
+*Covers the full round-1 machine turn. Pause after the slam sentence for the door-slam DEX saves (and knockdown in the impact path); the last line is the Call — roll the CON saves there. Time the ascent so the party reaches the landing just before three o'clock — the sequence commences on the hour (contract Art. IV), and each Call sounds one stroke of the hour.*
+
 ## Round Structure
 
 The cuckoo is part of the machine: everything it does happens on **initiative 20**, in this fixed order — **gear rotates 90° CW → cuckoo emerges/retracts (knockdown + door slam) → modron wave releases → the Call fires.** Only the PCs and the modron group roll initiative.
 
 | Round | Initiative 20 — the machine acts |
 |-------|----------------------------------|
-| 1 (ON) | Rotate. Doors slam (DC 14 DEX, 2d6 + prone in swing tiles). Cuckoo emerges — knockdown in impact path (DC 14 DEX). Wave 1 releases. The Call (cone). |
+| 1 (ON) | Rotate. Doors slam (DC 14 DEX, 2d6 + prone in swing tiles). Cuckoo emerges — knockdown in impact path (DC 14 DEX). Wave 1 releases. The Call (cone) — the first stroke of three. |
 | 2 (OFF) | Rotate. Cuckoo retracts — knockdown in path (DC 14 DEX). Hold-on window: DC 12 STR (Athletics) to ride into Mechanus. Doors close. |
-| 3 (ON) | Rotate. Doors slam. Cuckoo emerges — knockdown. Wave 2 releases. The Call. |
+| 3 (ON) | Rotate. Doors slam. Cuckoo emerges — knockdown. Wave 2 releases. The Call — the second stroke. |
 | 4 (OFF) | Rotate. Retracts — knockdown. Hold-on window. Doors close. |
-| 5 (ON) | Rotate. Doors slam. Cuckoo emerges — knockdown. Wave 3 releases. The Call. Last chance. |
+| 5 (ON) | Rotate. Doors slam. Cuckoo emerges — knockdown. Wave 3 releases. The Call — the third stroke completes the anchor. Last chance. |
 
 Rotation is perfectly predictable (90° CW every round) — the counterplay is reading the machine and positioning a round ahead, not winning initiative. Released waves act on the modron group's initiative, so the party gets a beat to react to new arrivals.
 
@@ -80,7 +86,7 @@ Rotation is perfectly predictable (90° CW every round) — the counterplay is r
 
 ## Telegraphing the 3-Cycle Rule
 
-Primary: the contract, Art. VI §6.3 — players who found and read it in the Study know the termination clause. Backup (DM's choice by table state): a conflicted Pendel states it during Act III, Linde spells it out if she's in play, or any other DM hint (e.g., a modron announcing "second emergence logged; one remains") — deliver it by the end of cycle 1 if nobody has connected it.
+Primary: the contract, Art. VI §6.3 — players who found and read it in the Study know the termination clause — and Art. IV the timing: the sequence commences at the striking of three, each cycle one stroke, letting them plan the ascent. Pendel can guide parties who missed it: "Activation at three o'clock. Precisely." Backup (DM's choice by table state): a conflicted Pendel states it during Act III, Linde spells it out if she's in play, or any other DM hint (e.g., a modron announcing "second emergence logged; one remains") — deliver it by the end of cycle 1 if nobody has connected it.
 
 ---
 
@@ -88,7 +94,7 @@ Primary: the contract, Art. VI §6.3 — players who found and read it in the St
 
 **Victory:** Cuckoo destroyed (reduced to 0 HP) before 3 full cycles. Contract null and void (Art. VI §6.3). Aperture closes. Modrons retreat immediately. Broken cuckoo remains.
 
-**Defeat:** 3 cycles complete. Planar anchor established. Conformity permanent.
+**Defeat:** The tower finishes striking three — 3 cycles complete. Planar anchor established. Conformity permanent.
 
 **Alternate path (improv — deliberately undesigned):** Players defend the cuckoo from Linde's coven (3 moss women / green hag statblocks) + fey minions (blights, wolves) breaking in over 3 cycles. Cuckoo completes 3 cycles → contract fulfilled. Run from the adventure-summary balance notes: coven spells are the real threat, action economy favors the party 7:3, minions fill the gap.
 

@@ -42,7 +42,7 @@ You pull yourself through the narrow window into a dusty, forgotten room. A cloc
 
 ## Artifact — The Contract
 
-The full Contract of Planar Accord (physical prop — `props/documents/contract.tex`). Linde has it and knows it matters, but can't read it. Players must earn her trust to get it. Art. VI §6.3 is the key: a failed activation sequence nullifies the contract entirely.
+The full Contract of Planar Accord (physical prop — `props/documents/contract.tex`). Linde has it and knows it matters, but can't read it. Players must earn her trust to get it. Art. VI §6.3 is the key: a failed activation sequence nullifies the contract entirely. Art. IV supplies the timing: the sequence commences at the striking of three — the party can plan their ascent around it.
 
 ---
 
