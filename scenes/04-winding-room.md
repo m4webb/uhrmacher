@@ -51,7 +51,7 @@ Stone steps descend into a long vaulted chamber, and the tower's heartbeat is su
 
 ## Artifact — The Uhrmacher's Journal
 
-In Fritz's camp — a roleplay reward, not a floor pickup: earn his trust and he shares it; fight past him and they may never see it. Later entries in a shaking hand. The Uhrmacher has noticed the changes — conformity, loss of individuality. Regret. Mentions disconnecting the Gear. Opposite tone from the optimistic letter in the Clockhall. Typeset prop: `props/documents/journal-disconnection.html` ("The Disconnection"); optional DM pocket piece `props/documents/journal-something-wrong.html`.
+In Fritz's camp — a roleplay reward, not a floor pickup: earn his trust and he shares it; fight past him and they may never see it. Later entries in a shaking hand. The Uhrmacher has noticed the changes — conformity, loss of individuality. Regret. Mentions disconnecting the Gear. Opposite tone from the optimistic letter in the Clockhall. Hand both journal pages together — *"two entries in particular stand out to you"*: `props/documents/journal-something-wrong.html` (19. Aprilis) and `props/documents/journal-disconnection.html` (6. Maius).
 
 ---
 
