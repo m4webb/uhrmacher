@@ -7,7 +7,7 @@
 
 ## Description
 
-A vaulted underground chamber housing the tower's foundational mechanism — the heavy gear trains, the winding chains and the four colossal cast-iron pinecone counterweights they raise and lower — pinecone weights, as on any cuckoo clock, scaled to the tower, and the empty mounting point where the Cross-Planar Regulation Gear once sat. The Uhrmacher disconnected it here. The mounting cradle is conspicuously vacant, a gap in the otherwise dense machinery. Fritz has made a small camp in a deserted corner at the back of the chamber, walled off from the mounting cradle by machinery — a bedroll, scraps of food, a candle stub. His gear golem roams the service galleries.
+A vaulted underground chamber housing the tower's foundational mechanism — the heavy gear trains, the winding chains and the six colossal cast-iron pinecone counterweights they raise and lower (four down at any moment) — pinecone weights, as on any cuckoo clock, scaled to the tower, and the empty mounting point where the Cross-Planar Regulation Gear once sat. The Uhrmacher disconnected it here. The mounting cradle is conspicuously vacant, a gap in the otherwise dense machinery. Fritz has made a small camp in a deserted corner at the back of the chamber, walled off from the mounting cradle by machinery — a bedroll, scraps of food, a candle stub. His gear golem roams the service galleries.
 
 ## Traversal
 

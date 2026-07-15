@@ -49,8 +49,8 @@ for (let c = 2; c <= 5; c++) { base.add("A" + c); base.add("B" + c); }
 const RAIL_ROWS = ["E", "I"];
 // chains: square -> [pairing label, effect summary]
 const CHAINS = {
-  G2: "LW←", G6: "LW→", M3: "LE←", K2: "LE→",
-  B4: "UW→", C3: "UW←", L2: "UE←", C8: "UE→",
+  G2: "↓I2", G6: "↓I5", M3: "↓I5", K2: "↓I8",
+  B4: "↓E5", C3: "↓E2", L2: "↓E5", C8: "↓E8",
 };
 function xy(cell) {
   return [OX + (parseInt(cell[1]) - 1) * CELL, OY + ROWS.indexOf(cell[0]) * CELL];
@@ -82,10 +82,10 @@ for (const rr of RAIL_ROWS) {
   }
 }
 const PSTART = [
-  { row: "E", c: 2, label: "UW" },   // dropped west
-  { row: "E", c: 5, label: "UE" },   // dropped middle
-  { row: "I", c: 5, label: "LW" },   // dropped middle
-  { row: "I", c: 8, label: "LE" },   // dropped east
+  { row: "E", c: 2, label: "DOWN" },   // dropped west
+  { row: "E", c: 5, label: "DOWN" },   // dropped middle
+  { row: "I", c: 5, label: "DOWN" },   // dropped middle
+  { row: "I", c: 8, label: "DOWN" },   // dropped east
 ];
 for (const ps of PSTART) {
   const cx = OX + (ps.c - 1) * CELL + CELL / 2, cy = OY + ROWS.indexOf(ps.row) * CELL + CELL / 2;
@@ -122,23 +122,23 @@ for (let r = 0; r < ROWS.length; r++) txt(OX - 16, OY + r*CELL + CELL/2 + 3, ROW
 // ============ RIGHT PANEL ============
 const PX = 540;
 txt((PX + 1020) / 2, 52, "WINDING ROOM — DM REFERENCE", { fill: INK, 'font-size': 21, 'font-weight': 700, 'letter-spacing': 2 });
-txt((PX + 1020) / 2, 78, "START: UW west · UE mid · LW mid · LE east — sealed (upper open E, lower open W)",
+txt((PX + 1020) / 2, 78, "START: weights down at E2 · E5 · I5 · I8 — sealed (upper open E, lower open W)",
   { fill: INK, 'font-size': 11.5 });
 
 // Chain table
 const TABLE = [
-  ["G2", "LW←", "opens I5 · closes I2 — FIRST PULL: traps puller in gallery, frees golem"],
-  ["G6", "LW→", "opens I2 · closes I5 — re-arm chain; pulled inside = sealed in cage"],
-  ["M3", "LE←", "opens I8 · closes I5"],
-  ["K2", "LE→", "opens I5 · closes I8"],
-  ["B4", "UW→", "opens E2 · closes E5 — backroom"],
-  ["C3", "UW←", "opens E5 · closes E2 — backroom, endgame control"],
-  ["L2", "UE←", "opens E8 · closes E5"],
-  ["C8", "UE→", "opens E5 · closes E8 — Fritz's chain: seals the puller in his corner"],
+  ["G2", "↓I2 ↑I5", "opens I5 · closes I2 — FIRST PULL: traps puller in gallery, frees golem"],
+  ["G6", "↓I5 ↑I2", "opens I2 · closes I5 — re-arm chain; pulled inside = sealed in cage"],
+  ["M3", "↓I5 ↑I8", "opens I8 · closes I5"],
+  ["K2", "↓I8 ↑I5", "opens I5 · closes I8"],
+  ["B4", "↓E5 ↑E2", "opens E2 · closes E5 — backroom"],
+  ["C3", "↓E2 ↑E5", "opens E5 · closes E2 — backroom, endgame control"],
+  ["L2", "↓E5 ↑E8", "opens E8 · closes E5"],
+  ["C8", "↓E8 ↑E5", "opens E5 · closes E8 — Fritz's chain: seals the puller in his corner"],
 ];
 let ty = 108;
 txt(PX, ty, "CHAIN", { fill: INK, 'font-size': 11, 'font-weight': 700, 'text-anchor': 'start' });
-txt(PX + 68, ty, "PINECONE", { fill: INK, 'font-size': 11, 'font-weight': 700, 'text-anchor': 'start' });
+txt(PX + 68, ty, "WEIGHTS", { fill: INK, 'font-size': 11, 'font-weight': 700, 'text-anchor': 'start' });
 txt(PX + 148, ty, "EFFECT", { fill: INK, 'font-size': 11, 'font-weight': 700, 'text-anchor': 'start' });
 el('line', { x1: PX, y1: ty + 6, x2: 1020, y2: ty + 6, stroke: INK, 'stroke-width': 1 });
 ty += 24;
@@ -158,11 +158,11 @@ el('line', { x1: PX, y1: ty + 6, x2: 1020, y2: ty + 6, stroke: INK, 'stroke-widt
 ty += 22;
 const RULES = [
   "Pulling a chain = 1 action. Chains are reusable; they grind or jam audibly.",
-  "Each PINECONE (3x3 footprint) hangs dropped at its outer lane or the middle",
-  "  berth. The middle berth is shared - one cannot drop where another sits.",
+  "Six PINECONES (3x3 footprints), one hanging above each berth; at any moment",
+  "  two per level are down (four on the map). A pull lowers one, raises another.",
   "Each level always leaves exactly one lane open.",
   "Under a descending pinecone: DC 14 DEX, dive adjacent; fail 2d6 + prone.",
-  "Trace a chain (action + easy Investigation) to learn its pinecone + direction.",
+  "Trace a chain (action + easy Investigation) to learn which berths it works.",
   "Golem: starts caged at G8; freed by the first effective pull (G2).",
   "  It never damages machinery - blocked lanes stop it. Anyone may pull chains.",
   "Fritz: home at A7-B8 (door via C8 square). C8 chain = his self-seal reveal.",

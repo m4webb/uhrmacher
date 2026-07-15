@@ -52,13 +52,13 @@ Puzzle-map approach: the room itself limits how many PCs can face the golem.
 - **Three main lanes** run the length of the room through the machinery, with two static crossings (K3-K4 west↔center, G6-G7 center↔east) — both placed where no pinecone footprint can ever reach them (same safety property as the chains)
 - Lanes are 1 square wide (single file); the golem is Medium and fits in the lanes — it can chase, and only the front PC can engage it in a lane
 - **Main mechanic: pinecone counterweights + pull-chains (decided, v3 — pinecones).**
-  - **Four colossal cast-iron PINECONE counterweights** — the classic cuckoo-clock weight, scaled monstrous, **3×3 squares** each — hang from the winding chains at two levels (rows E and I). Each is dropped at one of two berths: its **outer lane** or the **shared middle**. Pulling a chain hoists it and drops it at the other berth
-  - **The middle berth is shared per level: a pinecone cannot drop where another sits** (the jam rule)
+  - **Six colossal cast-iron PINECONE counterweights** — the classic cuckoo-clock weight, scaled monstrous, **3×3 squares** each — hang from the winding chains, one above each berth (two levels, rows E and I). At any moment exactly two per level are down — **four pinecones on the map, never more**. Pulling a chain transfers the load: one weight descends as another rises
+  - **A pull that would lower a weight already down (or raise one already up) grinds and jams** (the jam rule)
   - **Footprint:** 3×3 centered on the berth — it buries the lane cell plus the surrounding bays and lane segments. Sim-verified connectivity-equivalent to the earlier 3×1 slider model (all properties P1-P7b unchanged)
   - **Why pinecones:** real cuckoo clocks use cast-iron pinecone weights on chains — this room was always supposed to be this; and it keeps THE Gear (and its empty cradle) the only gear that matters here
   - **Invariant:** each level always has exactly one lane open. "Sealing" the maze means mismatching the levels, not closing everything
   - **Eight pull-chains** hang from the ceiling, scattered (never beside their own pinecone): one chain per pinecone per direction — no chain does double duty. Pulling costs an **action**; chains are reusable (they grind or jam with audible flavor when the move is impossible)
-  - **Tracing:** a chain's rigging runs up into the works; action + easy Investigation follows it to its pinecone and direction (back-rank job)
+  - **Tracing:** a chain's rigging runs up into the works; action + easy Investigation follows it to the pair of weights it works — which berth it lowers, which it raises (back-rank job)
   - **Caught under a descending pinecone:** DC 14 DEX save, dive to an adjacent open square; fail = 7 (2d6) bludgeoning + prone (a wonderful save to narrate) — matches the Act III door-slam peril
   - **Golem:** never damages machinery, so blocked lanes genuinely stop it — it reroutes or waits
   - **Only chains move the pinecones, and anyone can pull them** — players, Fritz, the golem. Fritz and the golem are ordinary actors: they walk and they pull. No special traversal for anybody
@@ -71,36 +71,38 @@ Puzzle-map approach: the room itself limits how many PCs can face the golem.
 
 ## Layout v3 — pinecones (sim-verified — `tools/winding_room_sim.py`, interactive: `tools/winding_room_sim.html`)
 
+*(The sim models the state-equivalent four-traveling-weight machine — its states and pulls map 1:1 onto the six fixed weights.)*
+
 ```
       1  2  3  4  5  6  7  8  9
   A   ▓  .  .◎ .  .  ▓  f  .  ▓     backroom 4×3 (cols 2-5) · ◎ cradle on the A/B–3/4 intersection
-  B   ▓  .  .  ⛓  .  ▓  .  .  ▓     B4: UW→mid · f Fritz's camp (2×2 home, A7–B8, walled off at col 6)
-  C   ▓  .  ⛓  .  .  ▓  ▓  ⛓  ▓     C3: UW→west · C8: UE→east (Fritz's chain)
+  B   ▓  .  .  ⛓  .  ▓  .  .  ▓     B4: ↓E5 ↑E2 · f Fritz's camp (2×2 home, A7–B8, walled off at col 6)
+  C   ▓  .  ⛓  .  .  ▓  ▓  ⛓  ▓     C3: ↓E2 ↑E5 · C8: ↓E8 ↑E5 (Fritz's chain)
   D   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
-  E   ▓  ◉  ▓  ▓  ◉  ▓  ▓  ◉  ▓     UPPER BERTHS — pinecone UW drops at E2 or E5 · UE at E8 or E5
+  E   ▓  ◉  ▓  ▓  ◉  ▓  ▓  ◉  ▓     UPPER BERTHS (E2 · E5 · E8) — a weight above each; two of three down
   F   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
-  G   ▓  ⛓  ▓  ▓  |  ⛓  .  Ⓖ  ▓     G2: LW→west · G6: LW→mid (re-arm) · G7 crossing · Ⓖ golem start (G8)
+  G   ▓  ⛓  ▓  ▓  |  ⛓  .  Ⓖ  ▓     G2: ↓I2 ↑I5 · G6: ↓I5 ↑I2 (re-arm) · G7 crossing · Ⓖ golem start (G8)
   H   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
-  I   ▓  ◉  ▓  ▓  ◉  ▓  ▓  ◉  ▓     LOWER BERTHS — pinecone LW drops at I2 or I5 · LE at I8 or I5
+  I   ▓  ◉  ▓  ▓  ◉  ▓  ▓  ◉  ▓     LOWER BERTHS (I2 · I5 · I8) — a weight above each; two of three down
   J   ▓  |  ▓  ▓  |  ▓  ▓  |  ▓
-  K   ▓  ⛓  .  .  |  ▓  ▓  |  ▓     K2: LE→east · K3-K4 crossing
-  L   ▓  ⛓  ▓  ▓  |  ▓  ▓  |  ▓     L2: UE→mid
-  M   ▓  .  ⛓  .  .  .  .  .  ▓     M3: LE→mid · staging (spans cols 2-8)
+  K   ▓  ⛓  .  .  |  ▓  ▓  |  ▓     K2: ↓I8 ↑I5 · K3-K4 crossing
+  L   ▓  ⛓  ▓  ▓  |  ▓  ▓  |  ▓     L2: ↓E5 ↑E8
+  M   ▓  .  ⛓  .  .  .  .  .  ▓     M3: ↓I5 ↑I8 · staging (spans cols 2-8)
   N   ▓  ▓  .  .  ▲  .  .  ▓  ▓     ▲ stairs from Clockhall
 ```
 
-**Start:** UW dropped west (E2 buried), UE dropped middle (E5 buried, E8 open), LW dropped middle (I5 buried, I2 open), LE dropped east (I8 buried). Upper level open = east; lower open = west; no route — sealed. (Footprints are 3×3, but only the berth cells above are connectivity-relevant.)
+**Start:** weights down at E2, E5, I5, I8 (E8 and I2 up). Upper level open = east; lower open = west; no route — sealed. (Footprints are 3×3, but only the berth cells above are connectivity-relevant.)
 
-| Chain | Hangs at | Pulls | Effect when it fires |
+| Chain | Hangs at | Weights | Effect when it fires |
 |---|---|---|---|
-| G2 | west gallery | LW → west | opens lower middle, closes lower west — **first effective pull: traps the puller in the gallery and releases the golem** |
-| G6 | cage crossing, beside the golem's post | LW → middle | opens lower west, closes lower middle — the re-arm chain; pulling it from inside seals you into the cage |
-| M3 | staging | LE → middle | opens lower east, closes lower middle |
-| K2 | west low | LE → east | opens lower middle, closes lower east |
-| B4 | backroom | UW → middle | opens upper west, closes upper middle — endgame control, part of the pair's exit route |
-| C3 | backroom | UW → west | opens upper middle, closes upper west — endgame control |
-| L2 | west low | UE → middle | opens upper east, closes upper middle |
-| C8 | east approach, Fritz's corner | UE → east | opens upper middle, **seals E8 behind the puller** — critical path; Fritz can pull it himself |
+| G2 | west gallery | ↓I2 ↑I5 | opens lower middle, closes lower west — **first effective pull: traps the puller in the gallery and releases the golem** |
+| G6 | cage crossing, beside the golem's post | ↓I5 ↑I2 | opens lower west, closes lower middle — the re-arm chain; pulling it from inside seals you into the cage |
+| M3 | staging | ↓I5 ↑I8 | opens lower east, closes lower middle |
+| K2 | west low | ↓I8 ↑I5 | opens lower middle, closes lower east |
+| B4 | backroom | ↓E5 ↑E2 | opens upper west, closes upper middle — endgame control, part of the pair's exit route |
+| C3 | backroom | ↓E2 ↑E5 | opens upper middle, closes upper west — endgame control |
+| L2 | west low | ↓E5 ↑E8 | opens upper east, closes upper middle |
+| C8 | east approach, Fritz's corner | ↓E8 ↑E5 | opens upper middle, **seals E8 behind the puller** — critical path; Fritz can pull it himself |
 
 **Verified properties** (all machine-checked in `tools/winding_room_sim.py`):
 - Sealed at start; minimum 2 pulls to any route (`G2` → `C8`)
@@ -109,7 +111,7 @@ Puzzle-map approach: the room itself limits how many PCs can face the golem.
 - First pull traps its puller AND releases the golem, simultaneously
 - Tolls: the critical-path pulls cost their pullers position (G2 → the gallery, C8 → Fritz's corner)
 - Golem re-seal exists — the "west parade" victory: both levels open west, party walks past the caged golem
-- Paired-chain separation: no pinecone's two chains can be pocketed by a single seal — no unrecoverable states (0 doomed; 32 recoverable pocket events)
+- Paired-chain separation: no weight-pair's two chains can be pocketed by a single seal — no unrecoverable states (0 doomed; 32 recoverable pocket events)
 - **3×3 pinecone footprints verified connectivity-equivalent** to the slider model; crossings (K3-K4, G6-G7) and all eight chains sit outside every possible footprint
 - **P7/P7b tandem commute with full re-arm:** Fritz + the golem can walk out using only chain pulls (5 pulls: C8, B4, G2, C3, L2) and return home, with the golem's final pull of G6 restoring the exact starting configuration — it seals itself into its cage; no special powers, fully self-consistent fiction
 
