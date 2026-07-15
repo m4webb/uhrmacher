@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Washer Tokens — The Uhrmacher's Folly (letter, 2 pages)</title>
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  svg { display: block; width: 8.5in; height: 11in; page-break-after: always; }
+  text { font-family: 'Liberation Mono', monospace; }
+</style>
+</head>
+<body>
+
+<svg id="p1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 816 1056"></svg>
+<svg id="p2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 816 1056"></svg>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg';
+const INK = '#000';
+function el(name, attrs, parent) {
+  const n = document.createElementNS(NS, name);
+  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  parent.appendChild(n);
+  return n;
+}
+function txt(x, y, str, attrs, parent) {
+  const t = el('text', Object.assign({ x, y, 'text-anchor': 'middle', fill: INK }, attrs), parent);
+  t.textContent = str;
+  return t;
+}
+
+// ---------- icon library (line art, drawn in a unit box ~ +/- 1) ----------
+// Each icon draws into group g, scaled so 1 unit = s px, centered at 0,0.
+function G(parent, cx, cy, s) {
+  return el('g', { transform: `translate(${cx} ${cy}) scale(${s})`,
+                   stroke: INK, fill: 'none', 'stroke-width': 2.2 / s,
+                   'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, parent);
+}
+const ICONS = {
+  stirge(g) {   // body, needle proboscis, two swept wings, legs
+    el('ellipse', { cx: 0, cy: 0.1, rx: 0.34, ry: 0.24 }, g);
+    el('path', { d: 'M 0.28 -0.02 L 0.78 -0.3' }, g);                    // proboscis
+    el('path', { d: 'M -0.05 -0.08 C -0.5 -0.75 -0.95 -0.5 -0.62 -0.05' }, g);  // far wing
+    el('path', { d: 'M 0.02 -0.1 C -0.25 -0.85 -0.8 -0.75 -0.45 -0.12' }, g);   // near wing
+    el('path', { d: 'M -0.15 0.3 L -0.25 0.55 M 0 0.32 L 0 0.58 M 0.15 0.3 L 0.25 0.55' }, g);
+  },
+  swarm(g) {    // three small stirges
+    for (const [dx, dy, sc] of [[-0.35, -0.25, 0.5], [0.35, -0.1, 0.42], [-0.02, 0.32, 0.46]]) {
+      const gg = el('g', { transform: `translate(${dx} ${dy}) scale(${sc})` }, g);
+      el('ellipse', { cx: 0, cy: 0, rx: 0.34, ry: 0.22 }, gg);
+      el('path', { d: 'M 0.28 -0.02 L 0.7 -0.25' }, gg);
+      el('path', { d: 'M 0 -0.1 C -0.3 -0.8 -0.85 -0.6 -0.45 -0.08' }, gg);
+    }
+  },
+  monodrone(g) {  // sphere, one big eye, fan wings
+    el('circle', { cx: 0, cy: 0, r: 0.42 }, g);
+    el('circle', { cx: 0, cy: -0.06, r: 0.15 }, g);
+    el('circle', { cx: 0, cy: -0.06, r: 0.05, fill: INK }, g);
+    for (const sgn of [-1, 1]) {
+      el('path', { d: `M ${0.38*sgn} -0.15 L ${0.85*sgn} -0.5 M ${0.42*sgn} 0 L ${0.95*sgn} -0.18 M ${0.4*sgn} 0.14 L ${0.85*sgn} 0.12` }, g);
+    }
+    el('path', { d: 'M -0.14 0.4 L -0.14 0.62 M 0.14 0.4 L 0.14 0.62' }, g);   // legs
+  },
+  duodrone(g) {   // flat rectangular body, two eyes, two arms
+    el('rect', { x: -0.5, y: -0.32, width: 1.0, height: 0.55, rx: 0.06 }, g);
+    el('circle', { cx: -0.2, cy: -0.08, r: 0.09 }, g);
+    el('circle', { cx: 0.2, cy: -0.08, r: 0.09 }, g);
+    el('path', { d: 'M -0.5 0 L -0.8 0.3 M 0.5 0 L 0.8 0.3' }, g);
+    el('path', { d: 'M -0.18 0.23 L -0.18 0.6 M 0.18 0.23 L 0.18 0.6' }, g);
+  },
+  tridrone(g) {   // inverted pyramid, three eyes, three arms
+    el('path', { d: 'M -0.52 -0.35 L 0.52 -0.35 L 0 0.42 Z' }, g);
+    for (const x of [-0.22, 0, 0.22]) el('circle', { cx: x, cy: -0.18, r: 0.07 }, g);
+    el('path', { d: 'M -0.45 -0.3 L -0.8 -0.05 M 0.45 -0.3 L 0.8 -0.05 M 0 0.42 L 0 0.72' }, g);
+  },
+  quadrone(g) {   // cube, four arms, wings
+    el('rect', { x: -0.38, y: -0.38, width: 0.76, height: 0.76, rx: 0.04 }, g);
+    el('circle', { cx: -0.15, cy: -0.12, r: 0.075 }, g);
+    el('circle', { cx: 0.15, cy: -0.12, r: 0.075 }, g);
+    el('path', { d: 'M -0.38 -0.2 L -0.72 -0.42 M 0.38 -0.2 L 0.72 -0.42 M -0.38 0.15 L -0.72 0.35 M 0.38 0.15 L 0.72 0.35' }, g);
+    el('path', { d: 'M -0.25 -0.4 L -0.5 -0.85 M 0.25 -0.4 L 0.5 -0.85' }, g);  // wings
+    el('path', { d: 'M -0.14 0.38 L -0.14 0.62 M 0.14 0.38 L 0.14 0.62' }, g);
+  },
+  pendel(g) {     // quadrone + clipboard + the weed from the crack
+    ICONS.quadrone(g);
+    el('rect', { x: 0.5, y: 0.18, width: 0.34, height: 0.44, rx: 0.03 }, g);   // clipboard
+    el('path', { d: 'M 0.56 0.3 L 0.78 0.3 M 0.56 0.4 L 0.78 0.4 M 0.56 0.5 L 0.72 0.5' }, g);
+    el('path', { d: 'M -0.3 0.38 L -0.18 0.05' }, g);                           // crack
+    el('path', { d: 'M -0.24 0.2 C -0.5 0.1 -0.52 -0.12 -0.38 -0.2 M -0.24 0.2 C -0.14 0.02 -0.28 -0.08 -0.24 -0.16' }, g); // weed
+  },
+  golem(g) {      // gear-bodied giant, two eyes
+    const teeth = 8, r1 = 0.42, r2 = 0.54;
+    let d = '';
+    for (let i = 0; i < teeth; i++) {
+      const a0 = (i / teeth) * 2 * Math.PI, a1 = ((i + 0.5) / teeth) * 2 * Math.PI;
+      const m = (a0 + a1) / 2;
+      d += `${i ? 'L' : 'M'} ${Math.cos(a0) * r1} ${Math.sin(a0) * r1} `;
+      d += `L ${Math.cos(m - 0.12) * r2} ${Math.sin(m - 0.12) * r2} L ${Math.cos(m + 0.12) * r2} ${Math.sin(m + 0.12) * r2} `;
+      d += `L ${Math.cos(a1) * r1} ${Math.sin(a1) * r1} `;
+    }
+    el('path', { d: d + 'Z' }, g);
+    el('circle', { cx: -0.13, cy: -0.1, r: 0.07, fill: INK }, g);
+    el('circle', { cx: 0.13, cy: -0.1, r: 0.07, fill: INK }, g);
+    el('path', { d: 'M -0.2 0.15 L 0.2 0.15' }, g);
+  },
+  fritz(g) {      // boy: messy hair, defiant brow
+    el('circle', { cx: 0, cy: -0.1, r: 0.34 }, g);
+    el('path', { d: 'M -0.34 -0.2 L -0.44 -0.42 M -0.15 -0.38 L -0.2 -0.6 M 0.05 -0.4 L 0.1 -0.62 M 0.25 -0.32 L 0.38 -0.5' }, g); // hair
+    el('path', { d: 'M -0.18 -0.14 L -0.04 -0.1 M 0.06 -0.1 L 0.2 -0.14' }, g);  // brows
+    el('circle', { cx: -0.11, cy: -0.04, r: 0.03, fill: INK }, g);
+    el('circle', { cx: 0.13, cy: -0.04, r: 0.03, fill: INK }, g);
+    el('path', { d: 'M -0.06 0.14 L 0.08 0.14' }, g);
+    el('path', { d: 'M -0.3 0.55 C -0.2 0.3 0.2 0.3 0.3 0.55' }, g);            // shoulders
+  },
+  linde(g) {      // wild woman: tangled hair with twigs
+    el('circle', { cx: 0, cy: -0.05, r: 0.3 }, g);
+    el('path', { d: 'M -0.28 -0.18 C -0.5 -0.35 -0.45 -0.6 -0.2 -0.62 M 0.28 -0.18 C 0.5 -0.35 0.45 -0.6 0.2 -0.62 M -0.2 -0.62 C -0.05 -0.75 0.05 -0.75 0.2 -0.62' }, g);
+    el('path', { d: 'M -0.42 -0.4 L -0.6 -0.55 M -0.5 -0.48 L -0.62 -0.38 M 0.42 -0.4 L 0.6 -0.55' }, g);  // twigs
+    el('circle', { cx: -0.1, cy: -0.08, r: 0.03, fill: INK }, g);
+    el('circle', { cx: 0.1, cy: -0.08, r: 0.03, fill: INK }, g);
+    el('path', { d: 'M -0.07 0.1 L 0.07 0.1' }, g);
+    el('path', { d: 'M -0.3 0.58 C -0.15 0.32 0.15 0.32 0.3 0.58' }, g);
+  },
+  hag(g) {        // true form: gnarled profile, moss hair, claw
+    el('path', { d: 'M -0.1 -0.45 C -0.42 -0.4 -0.45 0 -0.25 0.12 L -0.32 0.2 L -0.15 0.22 C -0.05 0.35 0.25 0.3 0.3 0.1 C 0.42 -0.15 0.3 -0.45 -0.1 -0.45 Z' }, g);
+    el('path', { d: 'M -0.1 -0.45 L -0.25 -0.68 M 0.05 -0.44 L 0.05 -0.7 M 0.2 -0.4 L 0.38 -0.6 M 0.3 -0.28 L 0.55 -0.4' }, g); // moss strands
+    el('circle', { cx: -0.12, cy: -0.15, r: 0.035, fill: INK }, g);
+    el('path', { d: 'M 0.05 0.45 L 0.2 0.62 M 0.15 0.4 L 0.32 0.55 M 0.25 0.33 L 0.42 0.45' }, g);  // claw
+  },
+  wolf(g) {       // wolf head profile
+    el('path', { d: 'M -0.55 0.1 C -0.3 -0.15 -0.15 -0.3 0.1 -0.32 L 0.18 -0.55 L 0.32 -0.28 C 0.5 -0.22 0.6 -0.05 0.62 0.1 L 0.3 0.18 L 0.05 0.35 C -0.2 0.4 -0.45 0.3 -0.55 0.1 Z' }, g);
+    el('circle', { cx: 0.22, cy: -0.1, r: 0.035, fill: INK }, g);
+    el('path', { d: 'M 0.62 0.1 L 0.45 0.12' }, g);
+  },
+  blight(g) {     // twig blight: branching stick figure
+    el('path', { d: 'M 0 0.6 L 0 0 M 0 0 L -0.35 -0.3 M -0.35 -0.3 L -0.55 -0.25 M -0.35 -0.3 L -0.42 -0.55 M 0 0 L 0.35 -0.32 M 0.35 -0.32 L 0.55 -0.2 M 0.35 -0.32 L 0.3 -0.6 M 0 0.15 L -0.3 0.35 M 0 0.3 L 0.28 0.48' }, g);
+    el('circle', { cx: -0.06, cy: -0.12, r: 0.03, fill: INK }, g);
+    el('circle', { cx: 0.08, cy: -0.12, r: 0.03, fill: INK }, g);
+  },
+  gruber(g) {     // portly, mayoral chain
+    el('circle', { cx: 0, cy: -0.18, r: 0.26 }, g);
+    el('path', { d: 'M -0.4 0.62 C -0.38 0.2 0.38 0.2 0.4 0.62' }, g);
+    el('path', { d: 'M -0.24 0.32 C -0.1 0.5 0.1 0.5 0.24 0.32' }, g);          // chain
+    el('circle', { cx: 0, cy: 0.47, r: 0.05 }, g);
+    el('circle', { cx: -0.09, cy: -0.2, r: 0.03, fill: INK }, g);
+    el('circle', { cx: 0.09, cy: -0.2, r: 0.03, fill: INK }, g);
+    el('path', { d: 'M -0.08 -0.06 C -0.02 0 0.02 0 0.08 -0.06' }, g);
+  },
+  eichenwald(g) { // tight bun, collar
+    el('circle', { cx: 0, cy: -0.08, r: 0.28 }, g);
+    el('circle', { cx: 0, cy: -0.44, r: 0.11 }, g);                              // bun
+    el('circle', { cx: -0.1, cy: -0.1, r: 0.03, fill: INK }, g);
+    el('circle', { cx: 0.1, cy: -0.1, r: 0.03, fill: INK }, g);
+    el('path', { d: 'M -0.07 0.08 L 0.07 0.08' }, g);
+    el('path', { d: 'M -0.28 0.6 C -0.2 0.3 0.2 0.3 0.28 0.6 M -0.1 0.32 L 0 0.42 L 0.1 0.32' }, g);
+  },
+  heinrich(g) {   // pipe and beard
+    el('circle', { cx: 0, cy: -0.12, r: 0.28 }, g);
+    el('path', { d: 'M -0.2 0.05 C -0.15 0.35 0.15 0.35 0.2 0.05' }, g);         // beard
+    el('circle', { cx: -0.1, cy: -0.16, r: 0.03, fill: INK }, g);
+    el('circle', { cx: 0.1, cy: -0.16, r: 0.03, fill: INK }, g);
+    el('path', { d: 'M 0.1 0.02 L 0.38 0.12 M 0.38 0.12 L 0.38 0.22' }, g);      // pipe
+    el('ellipse', { cx: 0.38, cy: 0.26, rx: 0.06, ry: 0.05 }, g);
+    el('path', { d: 'M -0.3 0.6 C -0.2 0.38 0.2 0.38 0.3 0.6' }, g);
+  },
+  cuckoo(g) {     // the brass bird: angular hull, open calling beak, plated wing, dial eye, rivets
+    // hull: faceted, prow-heavy
+    el('path', { d: 'M 0.42 -0.38 L 0.62 -0.2 L 0.66 0.05 L 0.45 0.28 L -0.15 0.36 L -0.55 0.24 L -0.68 0.02 L -0.5 -0.25 L -0.05 -0.4 Z' }, g);
+    // open beak: two straight jaws, calling
+    el('path', { d: 'M 0.6 -0.22 L 0.95 -0.42 L 0.68 -0.14 Z M 0.65 -0.08 L 0.98 -0.02 L 0.66 0.06 Z' }, g);
+    // dial eye with hands
+    el('circle', { cx: 0.38, cy: -0.16, r: 0.1 }, g);
+    el('path', { d: 'M 0.38 -0.16 L 0.38 -0.24 M 0.38 -0.16 L 0.44 -0.13' }, g);
+    // layered wing plates, hinge pin
+    el('path', { d: 'M -0.42 -0.1 L 0.1 -0.22 L 0.22 -0.05 L -0.05 0.12 L -0.35 0.1 Z' }, g);
+    el('path', { d: 'M -0.36 -0.04 L 0.12 -0.14 M -0.3 0.03 L 0.08 -0.05' }, g);
+    el('circle', { cx: -0.38, cy: -0.06, r: 0.035, fill: INK }, g);
+    // rivet seam along the hull
+    for (const [rx, ry] of [[-0.55, 0.18], [-0.32, 0.27], [-0.05, 0.3], [0.22, 0.26], [0.44, 0.18]])
+      el('circle', { cx: rx, cy: ry, r: 0.022, fill: INK }, g);
+    // tail: stacked vanes
+    el('path', { d: 'M -0.66 -0.02 L -0.95 -0.2 M -0.68 0.06 L -0.98 0.02 M -0.64 0.14 L -0.92 0.24' }, g);
+    // sound: two tones leaving the beak
+    el('path', { d: 'M 0.95 -0.28 C 1.02 -0.24 1.02 -0.16 0.95 -0.12', 'stroke-width': 1.6/40 }, g);
+  },
+  blank(g) {      // faint center mark only
+    el('circle', { cx: 0, cy: 0, r: 0.05, 'stroke-width': 1.2 / 40, stroke: '#999' }, g);
+  },
+};
+
+// ---------- token: exact-size cut circle + icon + label ----------
+function token(parent, cx, cy, rIn, kind, label) {
+  el('circle', { cx, cy, r: rIn, fill: '#fff', stroke: INK, 'stroke-width': 1.1 }, parent);  // cut line = washer size
+  const s = label ? rIn * 0.56 : rIn * 0.62;
+  const iconCy = label ? cy - rIn * 0.1 : cy;
+  ICONS[kind](G(parent, cx, iconCy, s));
+  if (label) txt(cx, cy + rIn * 0.7, label, { 'font-size': Math.min(16, Math.max(7.5, rIn * 0.22)), 'letter-spacing': 0.5 }, parent);
+}
+
+// ---------- page 1: 1-inch tokens ----------
+const p1 = document.getElementById('p1');
+el('rect', { x: 0, y: 0, width: 816, height: 1056, fill: '#fff' }, p1);
+txt(408, 46, 'WASHER TOKENS — 1 INCH', { 'font-size': 17, 'font-weight': 700, 'letter-spacing': 3 }, p1);
+txt(408, 64, 'cut on the solid circle · glue to 1-inch washers', { 'font-size': 9.5, fill: '#555' }, p1);
+
+const ONE = [];
+for (let i = 0; i < 6; i++) ONE.push(['stirge', 'STIRGE']);
+for (let i = 0; i < 2; i++) ONE.push(['swarm', 'SWARM']);
+for (let i = 0; i < 4; i++) ONE.push(['monodrone', 'MONO']);
+for (let i = 0; i < 3; i++) ONE.push(['duodrone', 'DUO']);
+for (let i = 0; i < 3; i++) ONE.push(['tridrone', 'TRI']);
+for (let i = 0; i < 2; i++) ONE.push(['quadrone', 'QUAD']);
+ONE.push(['pendel', 'PENDEL']);
+ONE.push(['golem', 'GOLEM']);
+ONE.push(['fritz', 'FRITZ']);
+ONE.push(['linde', 'LINDE']);
+for (let i = 0; i < 3; i++) ONE.push(['hag', 'HAG']);
+for (let i = 0; i < 3; i++) ONE.push(['wolf', 'WOLF']);
+for (let i = 0; i < 3; i++) ONE.push(['blight', 'BLIGHT']);
+ONE.push(['gruber', 'GRÜBER']);
+ONE.push(['eichenwald', 'EICHEN.']);
+ONE.push(['heinrich', 'HEINR.']);
+while (ONE.length < 49) ONE.push(['blank', '']);   // 13 blanks: 7 PCs + improv
+
+const R1 = 48;   // 1 inch diameter = 96 units
+ONE.forEach(([kind, label], i) => {
+  const col = i % 7, row = Math.floor(i / 7);
+  token(p1, 90 + col * 106, 130 + row * 108, R1, kind, label);
+});
+
+// ---------- page 2: 2-inch and 3-inch tokens ----------
+const p2 = document.getElementById('p2');
+el('rect', { x: 0, y: 0, width: 816, height: 1056, fill: '#fff' }, p2);
+txt(408, 46, 'WASHER TOKENS — 2 & 3 INCH', { 'font-size': 17, 'font-weight': 700, 'letter-spacing': 3 }, p2);
+txt(408, 64, 'cut on the solid circle · 3-inch: the cuckoo + one blank · 2-inch: blanks for improv', { 'font-size': 9.5, fill: '#555' }, p2);
+
+const R3 = 144;  // 3 inch
+token(p2, 220, 250, R3, 'cuckoo', 'THE CUCKOO');
+token(p2, 570, 250, R3, 'blank', '');
+
+const R2 = 96;   // 2 inch
+[[150, 560], [390, 560], [630, 560], [270, 790], [510, 790]].forEach(([x, y]) => token(p2, x, y, R2, 'blank', ''));
+
+txt(408, 960, 'pinecones: see winding_room_map page 2 (3-inch)', { 'font-size': 9.5, fill: '#555' }, p2);
+</script>
+
+</body>
+</html>
