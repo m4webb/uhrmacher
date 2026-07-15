@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kuckucksuhrturm — Movement Topology (letter portrait)</title>
+<style>
+  @page { size: 8.5in 11in; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  svg { display: block; width: 8.5in; height: 11in; }
+  text { font-family: 'Liberation Mono', monospace; }
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 816 1056">
+
+  <rect x="0" y="0" width="816" height="1056" fill="#fff"/>
+
+  <!-- Title -->
+  <text x="408" y="64" text-anchor="middle" font-size="18" font-weight="bold" letter-spacing="3">KUCKUCKSUHRTURM — MOVEMENT TOPOLOGY</text>
+  <text x="408" y="84" text-anchor="middle" font-size="10" fill="#555">DM reference — room connections and quest flow · all connections bidirectional</text>
+  <line x1="208" y1="98" x2="608" y2="98" stroke="#000" stroke-width="0.8"/>
+
+  <!-- ===== APEX: Cuckoo's Landing (boss: double border) ===== -->
+  <rect x="90" y="130" width="270" height="100" fill="#fff" stroke="#000" stroke-width="2.5"/>
+  <rect x="94" y="134" width="262" height="92" fill="none" stroke="#000" stroke-width="0.8"/>
+  <text x="104" y="152" font-size="8.5" letter-spacing="1" fill="#555">APEX — CUCKOO DOOR</text>
+  <text x="348" y="152" text-anchor="end" font-size="8.5" font-weight="bold">BOSS</text>
+  <text x="225" y="172" text-anchor="middle" font-size="14" font-weight="bold">CUCKOO'S LANDING</text>
+  <text x="225" y="190" text-anchor="middle" font-size="9.5">Planar aperture — the cuckoo</text>
+  <text x="225" y="203" text-anchor="middle" font-size="9.5">Rotating gear floor; fixed row A</text>
+  <text x="225" y="218" text-anchor="middle" font-size="8" fill="#555">cuckoos_landing_map + overlay / _guide</text>
+
+  <!-- connector: landing <-> bellows -->
+  <line x1="225" y1="230" x2="225" y2="310" stroke="#000" stroke-width="1.2"/>
+  <text x="237" y="264" font-size="9" font-weight="bold">LADDER</text>
+  <text x="237" y="276" font-size="8.5" fill="#333">bellows H5 → landing hatch B2,</text>
+  <text x="237" y="287" font-size="8.5" fill="#333">beside the main air riser</text>
+
+  <!-- ===== UPPER: Bellows Chamber ===== -->
+  <rect x="90" y="310" width="270" height="100" fill="#fff" stroke="#000" stroke-width="1.5"/>
+  <text x="104" y="332" font-size="8.5" letter-spacing="1" fill="#555">UPPER — BELLOWS</text>
+  <text x="348" y="332" text-anchor="end" font-size="8.5" font-weight="bold">COMBAT</text>
+  <text x="225" y="352" text-anchor="middle" font-size="14" font-weight="bold">BELLOWS CHAMBER</text>
+  <text x="225" y="370" text-anchor="middle" font-size="9.5">Stirges; the Gear (crate I4)</text>
+  <text x="225" y="383" text-anchor="middle" font-size="9.5">Air channels power the call</text>
+  <text x="225" y="398" text-anchor="middle" font-size="8" fill="#555">bellows_chamber_map / _guide</text>
+
+  <!-- connector: bellows <-> clockhall -->
+  <line x1="225" y1="410" x2="225" y2="490" stroke="#000" stroke-width="1.2"/>
+  <text x="237" y="444" font-size="9" font-weight="bold">STAIRCASE</text>
+  <text x="237" y="456" font-size="8.5" fill="#333">arrives bellows A6-A7, back wall</text>
+
+  <!-- ===== GROUND: Clockhall ===== -->
+  <rect x="90" y="490" width="270" height="100" fill="#fff" stroke="#000" stroke-width="1.5"/>
+  <text x="104" y="512" font-size="8.5" letter-spacing="1" fill="#555">GROUND — FRONT DOOR</text>
+  <text x="348" y="512" text-anchor="end" font-size="8.5" font-weight="bold">SOCIAL</text>
+  <text x="225" y="532" text-anchor="middle" font-size="14" font-weight="bold">CLOCKHALL</text>
+  <text x="225" y="550" text-anchor="middle" font-size="9.5">Entry — meet Pendel, get quest</text>
+  <text x="225" y="563" text-anchor="middle" font-size="9.5">Quarters + mechanical heart</text>
+  <text x="225" y="578" text-anchor="middle" font-size="8" fill="#555">no battle map</text>
+
+  <!-- connector: clockhall <-> study (hidden door) -->
+  <line x1="360" y1="540" x2="500" y2="540" stroke="#000" stroke-width="1.2" stroke-dasharray="5 3"/>
+  <text x="430" y="528" text-anchor="middle" font-size="9" font-weight="bold">HIDDEN DOOR</text>
+  <text x="430" y="558" text-anchor="middle" font-size="8.5" fill="#333">INV DC 14 (12: walls)</text>
+
+  <!-- ===== GROUND (hidden): Uhrmacher's Study ===== -->
+  <rect x="500" y="490" width="270" height="100" fill="#fff" stroke="#000" stroke-width="1.5" stroke-dasharray="7 4"/>
+  <text x="514" y="512" font-size="8.5" letter-spacing="1" fill="#555">GROUND — CONCEALED</text>
+  <text x="758" y="512" text-anchor="end" font-size="8.5" font-weight="bold">HIDDEN</text>
+  <text x="635" y="532" text-anchor="middle" font-size="14" font-weight="bold">UHRMACHER'S STUDY</text>
+  <text x="635" y="550" text-anchor="middle" font-size="9.5">The contract; Linde</text>
+  <text x="635" y="563" text-anchor="middle" font-size="9.5">Modrons never investigated it</text>
+  <text x="635" y="578" text-anchor="middle" font-size="8" fill="#555">no battle map</text>
+
+  <!-- connector: clockhall <-> winding -->
+  <line x1="225" y1="590" x2="225" y2="670" stroke="#000" stroke-width="1.2"/>
+  <text x="237" y="624" font-size="9" font-weight="bold">STAIRS / TRAPDOOR</text>
+  <text x="237" y="636" font-size="8.5" fill="#333">arrives winding N5</text>
+
+  <!-- connector: study <-> exterior (back window) -->
+  <line x1="635" y1="590" x2="635" y2="670" stroke="#000" stroke-width="1.2" stroke-dasharray="2 3"/>
+  <text x="647" y="618" font-size="9" font-weight="bold">BACK WINDOW</text>
+  <text x="647" y="630" font-size="8.5" fill="#333">alternate entry —</text>
+  <text x="647" y="641" font-size="8.5" fill="#333">scout exterior to find</text>
+
+  <!-- connector: clockhall <-> exterior (front door) -->
+  <polyline points="342,590 342,648 560,648 560,670" fill="none" stroke="#000" stroke-width="1.2" stroke-dasharray="2 3"/>
+  <text x="390" y="630" font-size="9" font-weight="bold">FRONT DOOR</text>
+  <text x="390" y="642" font-size="8.5" fill="#333">Tiefenwald path</text>
+
+  <!-- ===== BELOW: Winding Room ===== -->
+  <rect x="90" y="670" width="270" height="100" fill="#fff" stroke="#000" stroke-width="1.5"/>
+  <text x="104" y="692" font-size="8.5" letter-spacing="1" fill="#555">BELOW — REGULATION GEAR</text>
+  <text x="348" y="692" text-anchor="end" font-size="8.5" font-weight="bold">CBT/SOC</text>
+  <text x="225" y="712" text-anchor="middle" font-size="14" font-weight="bold">WINDING ROOM</text>
+  <text x="225" y="730" text-anchor="middle" font-size="9.5">Fritz + golem; pinecone maze</text>
+  <text x="225" y="743" text-anchor="middle" font-size="9.5">Install the Gear (A/B-3/4)</text>
+  <text x="225" y="758" text-anchor="middle" font-size="8" fill="#555">winding_room_map / _guide</text>
+
+  <!-- ===== EXTERIOR ===== -->
+  <rect x="500" y="670" width="270" height="100" fill="#fff" stroke="#000" stroke-width="1.5" stroke-dasharray="2 3"/>
+  <text x="514" y="692" font-size="8.5" letter-spacing="1" fill="#555">OUTSIDE</text>
+  <text x="758" y="692" text-anchor="end" font-size="8.5" font-weight="bold">EXTERIOR</text>
+  <text x="635" y="712" text-anchor="middle" font-size="14" font-weight="bold">TIEFENWALD CLEARING</text>
+  <text x="635" y="730" text-anchor="middle" font-size="9.5">Path from Freudenfeld (~1 hr)</text>
+  <text x="635" y="743" text-anchor="middle" font-size="9.5">Door at front; window at back</text>
+
+  <!-- Legend -->
+  <line x1="90" y1="810" x2="770" y2="810" stroke="#000" stroke-width="0.8"/>
+  <text x="90" y="830" font-size="9" fill="#333">solid box = room · dashed box = hidden · dotted = exterior connection · grid refs match the battle maps</text>
+
+  <!-- Quest flow -->
+  <text x="90" y="866" font-size="11" font-weight="bold" letter-spacing="2">NATURAL QUEST FLOW</text>
+  <text x="90" y="888" font-size="9.5">1. Front door → Clockhall — meet Pendel, receive quest</text>
+  <text x="90" y="904" font-size="9.5">2. Up → Bellows Chamber — clear stirges, recover the Gear</text>
+  <text x="90" y="920" font-size="9.5">3. Down → Winding Room — Fritz; install the Gear</text>
+  <text x="90" y="936" font-size="9.5">4. Back up → Bellows → ladder → Cuckoo's Landing — boss</text>
+  <text x="90" y="958" font-size="9" fill="#555" font-style="italic">Study findable any time via the hidden door in the Clockhall</text>
+  <text x="90" y="972" font-size="9" fill="#555" font-style="italic">Players who scout the exterior find the study window — contract before Pendel</text>
+
+</svg>
+
+</body>
+</html>

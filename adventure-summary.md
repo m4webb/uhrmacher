@@ -69,7 +69,7 @@ Players arrive at the village Gasthaus, responding to the Bürgermeister's pest 
 
 1. **The Gasthaus** — Meet Bürgermeister (back room), Frau Eichenwald (alone, troubled), Heinrich (corner, folklore). Act I.
 
-**Tower Rooms** *(see `props/maps/tower-topology.html` for movement graph)*
+**Tower Rooms** *(see `props/maps/tower_topology.html` for movement graph)*
 
 **Battle-map orientation (canon):** the tower's front — front door, clock face, planar aperture — faces the BOTTOM of every battle map; players approach from the bottom. The Bellows Chamber's front wall is the back of the great clock face (motion works protrude at I6-I7); Cuckoo's Landing juts out in front of the face above it, and the cuckoo bursts toward the players.
 
