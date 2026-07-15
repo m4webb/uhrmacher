@@ -48,5 +48,5 @@ See `scenes/encounter-03-bellows.md`
 
 ## Map Pair
 
-- Print battle map: `props/bellows_chamber_map.html` (17×11 in, 1 in = 5 ft)
-- DM reference: `props/bellows_chamber_guide.html` (letter landscape)
+- Print battle map: `props/maps/bellows_chamber_map.html` (17×11 in, 1 in = 5 ft)
+- DM reference: `props/maps/bellows_chamber_guide.html` (letter landscape)

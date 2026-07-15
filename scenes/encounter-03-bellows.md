@@ -69,7 +69,7 @@
 - Each duct drops an **uncapped service stub** to head height (F3 west, F10 east) — fallen caps lie on the floor nearby; the swarms nest in the pipes and are flushed out the stubs when the bellows are worked
 - **The ladder to Cuckoo's Landing stands on the right side of H5, just east of the manifold and tight to the front wall** — the party climbs the tower's windpipe right behind the clock face, emerging at the landing hatch beside the aperture (matches the riser-west / hatch-east arrangement on the platform overlay)
 - **Wave-1 stirges start perched on the overhead ducts** — hanging above the middle of the room, they drop onto the party from directly overhead
-- Map pair: `props/bellows_chamber_map.html` (print) / `props/bellows_chamber_guide.html` (DM)
+- Map pair: `props/maps/bellows_chamber_map.html` (print) / `props/maps/bellows_chamber_guide.html` (DM)
 
 ---
 

@@ -64,7 +64,7 @@ Rotation is perfectly predictable (90° CW every round) — the counterplay is r
 - **Cone direction:** Fixed from center. Rotation shifts who's in the blast zone.
 - **Center hazard:** Anyone in the center when cuckoo emerges → knockdown (DC 14 DEX).
 - **Table procedure:** the platform sheet (doors closed) stays laid over row A all fight; the gear map rotates beneath it. On ON cycles set the ROD PIECE on top — its head is the open doorway (covers the closed doors) and its perch lands on the gear hub. Lift it off on OFF cycles.
-- See `props/cuckoos_landing_guide.html` for visual layout (`props/cuckoos_landing_map.html` is the print battle map; `props/cuckoos_landing_overlay.html` is the platform sheet + rod piece).
+- See `props/maps/cuckoos_landing_guide.html` for visual layout (`props/maps/cuckoos_landing_map.html` is the print battle map; `props/maps/cuckoos_landing_overlay.html` is the platform sheet + rod piece).
 
 ---
 

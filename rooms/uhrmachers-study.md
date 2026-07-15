@@ -16,7 +16,7 @@ A small, dusty room untouched since the Uhrmacher's death. Cluttered writing des
 
 ## Artifact — The Contract
 
-The full Contract of Planar Accord (physical prop — `props/contract.tex`). The most critical document in the adventure. Reveals the legal framework, the activation sequence, the termination clauses. Art. VI §6.3 is the key — a failed activation sequence nullifies the contract entirely.
+The full Contract of Planar Accord (physical prop — `props/documents/contract.tex`). The most critical document in the adventure. Reveals the legal framework, the activation sequence, the termination clauses. Art. VI §6.3 is the key — a failed activation sequence nullifies the contract entirely.
 
 ## Image Prompt
 

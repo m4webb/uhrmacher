@@ -36,5 +36,5 @@ The Gear's original packing manifest on the old workbench against the front wall
 
 ## Map Pair
 
-- Print battle map: `props/bellows_chamber_map.html` (17×11 in, 1 in = 5 ft)
-- DM reference: `props/bellows_chamber_guide.html` (letter landscape)
+- Print battle map: `props/maps/bellows_chamber_map.html` (17×11 in, 1 in = 5 ft)
+- DM reference: `props/maps/bellows_chamber_guide.html` (letter landscape)
