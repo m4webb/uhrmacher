@@ -21,6 +21,14 @@ Stone steps descend into a long vaulted chamber, and the tower's heartbeat is su
 | **Fritz** | His walled-off corner home (A7-B8, fed by the east lane) | Defiant first, not scared. Fiercely independent. Waiting for respect. |
 | **Gear Golem** (flesh golem statblock) | Caged in the mid-band (G8) — released by the first effective chain pull | Hostile — attacks on Fritz's standing orders. |
 
+**When Fritz is found (Perception DC 12):**
+
+> Wedged behind the machinery is a boy — eleven, maybe, scrappy and thin, dirty from living rough, in patched clothes a size too big. He doesn't flinch and he doesn't run. Under the messy dark hair, a pair of bright eyes glares out at you with pure defiance: whatever you're here for, the look says, he was here first.
+
+**When the golem is released (first effective chain pull):**
+
+> The counterweights shift somewhere in the dark, and something answers them — footsteps, heavy enough to feel through the floor. Out of the machinery steps a figure of interlocking brass cogs and clock springs, eight feet of it, amber light burning where eyes should be. It does not roar. It walks, patient as a pendulum, and puts itself between you and the deeper room.
+
 ### Fritz — Knows / Will Share / Won't Share
 
 - **Knows:** He's been living here since his leg started working again. The tower makes him better. The golem protects him. He controls it with a brass winding key he found. He found the old clockmaker's journal in the works and has tried to read it — but he can't read well, and has only understood pieces.

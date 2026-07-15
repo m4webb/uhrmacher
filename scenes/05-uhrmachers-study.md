@@ -24,6 +24,8 @@ You pull yourself through the narrow window into a dusty, forgotten room. A cloc
 
 ### Linde — Knows / Will Share / Won't Share
 
+*Up close:* No human sits like this. She squats on the desk like something perched on a rock, bare feet gripping the edge, dirt to the ankles. The dress looks grown rather than sewn, and there are wildflowers dying in her tangled hair. Her eyes are doing arithmetic on you.
+
 - **Knows:** The tower is killing the forest, the "little metal ones" are dangerous, the old clockmaker tried to stop it. She knows the document on the desk is important but can't read it — won't admit this.
 - **Will share freely:** That the metal ones are dangerous, that the forest is dying because of the tower. She has a document she knows is important but won't hand it over yet.
 - **Will share if she trusts the party:** She wants the tower destroyed. The clockmaker tried to stop it and failed. The modrons won't stop — she's tried sabotage and they just repair it. Force alone won't work. Hands over the contract. She'll help if they act against the modrons.
