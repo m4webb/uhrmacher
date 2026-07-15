@@ -24,7 +24,9 @@ The front door opens onto the remains of a life: a cold hearth, a narrow cot, a 
 
 ### Pendel — Knows / Will Share / Won't Share
 
-*On a closer look:* The bronze is old and weathered. A hairline crack runs down one side of its body, and growing out of the crack — unmistakably — is a small green weed. Pendel does not appear to know it is there.
+**On a closer look:**
+
+> The bronze is old and weathered. A hairline crack runs down one side of its body, and growing out of the crack — unmistakably — is a small green weed. Pendel does not appear to know it is there.
 
 - **Knows:** The contract, the Gear, the activation sequence, the vermin problem in the bellows, the full modron plan
 - **Will share freely:** The job (clear the bellows, recover the Gear), directions upstairs, that the Gear needs to be installed below

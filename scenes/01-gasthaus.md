@@ -22,7 +22,9 @@ The Gasthaus is low-ceilinged and wood-paneled, warm from a Kachelofen in the co
 
 ### Grüber — Knows / Will Share / Won't Share
 
-*First impression (at his table):* Up close he is enormous — broad, well-fed, filling his whole end of the table — but the face wins: bright, beaming, genuinely delighted to see you. The mayoral chain is polished to a shine. His eyes keep working the room even while he grips your hand.
+**First impression (at his table):**
+
+> Up close he is enormous — broad, well-fed, filling his whole end of the table — but the face wins: bright, beaming, genuinely delighted to see you. The mayoral chain is polished to a shine. His eyes keep working the room even while he grips your hand.
 
 - **Knows:** Tower is ticking again, Tickwichtel are back, vermin are interfering with their work, the town is improving
 - **Will share freely:** The job details (clear vermin from a structure in the Tiefenwald), the pay (25gp/head), directions to the tower, lodging for the night
@@ -31,7 +33,9 @@ The Gasthaus is low-ceilinged and wood-paneled, warm from a Kachelofen in the co
 
 ### Eichenwald — Knows / Will Share / Won't Share
 
-*First impression (when approached):* She sits very straight even alone — a teacher's posture. Proud, a little gaunt, dressed with careful modesty. The drink in front of her is untouched, and up close you can see she isn't tired: she is working on a problem she cannot solve.
+**First impression (when approached):**
+
+> She sits very straight even alone — a teacher's posture. Proud, a little gaunt, dressed with careful modesty. The drink in front of her is untouched, and up close you can see she isn't tired: she is working on a problem she cannot solve.
 
 - **Will share if approached:** Her students are losing curiosity and imagination — stories bland, pictures prosaic, no silly outbursts. She blames the Tickwichtel — believes the legend that they murdered the Uhrmacher, and now they're "poisoning" the children. Fritz has stopped attending class — she doesn't know where he's gone. She's tried talking to parents but they see nothing wrong with "good behaviour."
 - **Won't share (can't articulate):** What's actually causing it — she suspects the tower but has no proof
@@ -39,7 +43,9 @@ The Gasthaus is low-ceilinged and wood-paneled, warm from a Kachelofen in the co
 
 ### Heinrich — Knows / Will Share / Won't Share
 
-*First impression (when approached):* Sinewy and hunched from a lifetime of axe-work, with huge calloused hands wrapped around his tankard — and the kindest old smile in the room. He is mid-story before you've finished sitting down.
+**First impression (when approached):**
+
+> Sinewy and hunched from a lifetime of axe-work, with huge calloused hands wrapped around his tankard — and the kindest old smile in the room. He is mid-story before you've finished sitting down.
 
 - **Will share freely (loves to talk):** Saw a Tickwichtel in the woods as a boy of seven — it barely noticed him, but the memory shaped his life. Excited they're back — he's a celebrity again, people care about his stories. But also carries unease from childhood: things "weren't right" back then, and something tragic happened. Believes the Uhrmacher froze himself in time when the ticking stopped.
 - **Unreliable details:** Thinks the Tickwichtel gave the Uhrmacher magical powers and could control time. Emotional truth is there; facts are not.
