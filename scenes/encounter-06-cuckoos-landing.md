@@ -34,7 +34,7 @@
 |--------|----|----|-------|--------|
 | Monodrone (CR 1/8) | 15 | 5 | 30 ft, fly 30 ft | Gear +4, 6 (1d8+2) force — melee or ranged 120 ft |
 | Duodrone (CR 1/4) | 15 | 11 | 30 ft | Multiattack ×2: Clockwork Blade +3, 4 (1d6+1) force — melee or ranged 30 ft |
-| Tridrone (CR 1/2) | 15 | 16 | 30 ft | Multiattack ×3: Clockwork Spear +3, 4 (1d6+1) force — melee or ranged |
+| Tridrone (CR 1/2) | 15 | 16 | 30 ft | Multiattack ×3: Clockwork Spear +3, 4 (1d6+1) force — melee or ranged 120 ft |
 | Quadrone (CR 1) | 16 | 22 | 30 ft, fly 30 ft | Multiattack ×4: Slam or Gears Launcher +4, 4 (1d4+2) force — ranged 320 ft |
 
 ---
