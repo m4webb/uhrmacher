@@ -66,7 +66,7 @@ Rotation is perfectly predictable (90° CW every round) — the counterplay is r
 - **Floor:** Single large gear (25 ft radius). Rotates 90° CW at init 20.
 - **Platform (fixed, north edge — does NOT rotate):** row A is a half-depth catwalk (2.5 ft deep) — creatures on it are squeezing (half speed, disadvantage on attacks, attacks against them have advantage). Corner blocks A/B 1-2 and 9-10 are full standing room, level with the gear. Hatch up from the Bellows Chamber at B2; the air riser surfaces at B1 and enters the tower at the A1 half-wall.
 - **Doors:** two 10-ft leaves in the north wall (cols 4-7). They slam outward 180° when the cuckoo deploys — the swing tiles (A2-A9, B2-B9, C3-C4, C7-C8) join the impact path. **Door slam: DC 14 DEX; fail = 7 (2d6) bludgeoning and knocked prone, save = half and stay standing.**
-- **Aperture:** In the north wall behind the doors. The rod extends inward; the cuckoo perches at the gear hub.
+- **Aperture:** In the north wall behind the doors. The rod extends inward; the cuckoo perches at the gear hub — **Large (2×2), centered on the hub intersection**.
 - **Cone direction:** Fixed from center. Rotation shifts who's in the blast zone.
 - **Center hazard:** Anyone in the center when cuckoo emerges → knockdown (DC 14 DEX).
 - **Table procedure:** the platform sheet (doors closed) stays laid over row A all fight; the gear map rotates beneath it. On ON cycles set the ROD PIECE on top — its head is the open doorway (covers the closed doors) and its perch lands on the gear hub. Lift it off on OFF cycles.

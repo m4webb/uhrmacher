@@ -233,14 +233,15 @@ ONE.forEach(([kind, label], i) => {
 const p2 = document.getElementById('p2');
 el('rect', { x: 0, y: 0, width: 816, height: 1056, fill: '#fff' }, p2);
 txt(408, 46, 'WASHER TOKENS — 2 & 3 INCH', { 'font-size': 17, 'font-weight': 700, 'letter-spacing': 3 }, p2);
-txt(408, 64, 'cut on the solid circle · 3-inch: the cuckoo + one blank · 2-inch: blanks for improv', { 'font-size': 9.5, fill: '#555' }, p2);
-
-const R3 = 144;  // 3 inch
-token(p2, 220, 250, R3, 'cuckoo', 'THE CUCKOO');
-token(p2, 570, 250, R3, 'blank', '');
+txt(408, 64, 'cut on the solid circle · 2-inch: the cuckoo (Large, 2x2 on the hub) + blanks · 3-inch: blanks', { 'font-size': 9.5, fill: '#555' }, p2);
 
 const R2 = 96;   // 2 inch
-[[150, 560], [390, 560], [630, 560], [270, 790], [510, 790]].forEach(([x, y]) => token(p2, x, y, R2, 'blank', ''));
+token(p2, 170, 230, R2, 'cuckoo', 'THE CUCKOO');
+[[410, 230], [650, 230], [170, 470], [410, 470], [650, 470]].forEach(([x, y]) => token(p2, x, y, R2, 'blank', ''));
+
+const R3 = 144;  // 3 inch
+token(p2, 220, 800, R3, 'blank', '');
+token(p2, 570, 800, R3, 'blank', '');
 
 txt(408, 960, 'pinecones: see winding_room_map page 2 (3-inch)', { 'font-size': 9.5, fill: '#555' }, p2);
 </script>
