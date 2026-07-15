@@ -17,10 +17,10 @@
 \usepackage{microtype}
 \usepackage[hidelinks, colorlinks=true, linkcolor=accent]{hyperref}
 
-% --- Colors ---
-\definecolor{accent}{RGB}{120, 80, 40}
-\definecolor{lightbg}{RGB}{245, 240, 230}
-\definecolor{rulecol}{RGB}{180, 160, 130}
+% --- Colors (black & white for cheap printing) ---
+\definecolor{accent}{RGB}{0, 0, 0}
+\definecolor{lightbg}{RGB}{255, 255, 255}
+\definecolor{rulecol}{RGB}{110, 110, 110}
 
 % --- Compact spacing ---
 \setlength{\parskip}{3pt}
@@ -115,6 +115,16 @@
 \bottomrule
 \end{tabularx}
 \renewcommand{\arraystretch}{1.0}
+
+\vspace{10pt}
+{\large\bfseries\scshape Table Conventions}\\[-2pt]
+\textcolor{rulecol}{\rule{\textwidth}{0.6pt}}
+\begin{itemize}
+\item \textbf{Initiative:} PCs roll individually; each encounter's creatures roll as one group (stirges / Fritz + golem / modrons). The \textbf{environment acts on initiative 20}, lair-style --- in Act III the cuckoo itself is part of the machine turn.
+\item \textbf{Battle maps:} the tower's front (front door, clock face, planar aperture) is the \textbf{bottom edge} of every map; players approach from the bottom.
+\item \textbf{Timeline:} Wilhelm's era is 1742; the present day is 1804 --- the tower stood dead for some sixty years.
+\item \textbf{Map sets:} print map + DM guide per combat room; Cuckoo's Landing adds the platform overlay sheet and the set-on-top rod piece.
+\end{itemize}
 
 \newpage
 
@@ -252,8 +262,8 @@ Slight hesitations. A name it chose for itself. A tiny weed growing from a crack
 \item \textbf{Back window:} Players who scout the exterior before entering can spot a window on the back of the tower --- leads directly into the Uhrmacher's Study, bypassing the Clockhall entirely
 \end{itemize}
 
-\section*{Artifact --- Letter to a Friend}
-On the workbench, partially buried under modron work orders. An optimistic letter from the Uhrmacher, early in the tower's operation. Pride in the tower's precision, excitement about the Gear, warm words about Freudenfeld thriving. No hint of doubt.
+\section*{Artifact --- Letter from Kohler}
+On the workbench, partially buried under modron work orders --- which is why it's still here. A warm, teasing letter TO the Uhrmacher from his old friend Kohler (dated 1742), replying to Wilhelm's proud reports: the town thriving, the tower keeping perfect time. Kohler affectionately waves away Wilhelm's first small worry (the woodcarver's identical chairs). No doubt anywhere --- the players don't hear Wilhelm's own voice until the journal. Typeset prop.
 
 \section*{Connections}
 \begin{itemize}
@@ -286,20 +296,21 @@ The staircase opens into a wide chamber dominated by two enormous wooden bellows
 
 \section*{Secrets}
 \begin{itemize}
-\item Each bellows has a swarm of stirges nesting inside --- they burst out when players clear or open the bellows
-\item The Gear (Cross-Planar Regulation Gear, contract \S1.2) is wedged behind one of the bellows --- visible once the area is cleared
-\item A maintenance alcove near one bellows contains the Uhrmacher's journal
+\item Both ducts have uncapped service stubs (west F3, east F10; Perception DC 15, or spot the fallen caps on the floor nearby) --- the stirges moved into the duct system through them
+\item The two swarms nest IN THE PIPES: working a bellows blasts its duct and flushes a swarm out of that side's stub. Restoring the air = work both bellows + re-cap both stubs
+\item The Gear (Cross-Planar Regulation Gear, contract \S1.2) is re-packed in its original modron shipping crate (I4) --- the Uhrmacher boxed it when he disconnected it
+\item The delivery manifest lies on the workbench (I8--I9) against the front wall --- the back of the great clock face, its motion works protruding beside the bench. The manifest matches the crate
 \end{itemize}
 
-\section*{Artifact --- The Uhrmacher's Journal}
-Wedged into a maintenance alcove near one of the bellows. Later entries in a shaking hand. The Uhrmacher has noticed the changes --- conformity, loss of individuality. Regret. Mentions disconnecting the Gear. Opposite tone from the optimistic letter in the Clockhall.
+\section*{Artifact --- Delivery Manifest}
+On the workbench, among the tools. The original packing manifest from the Modron Collective (contract Art.\ II \S2.1): modron bureaucratic language, Mechanus serial numbers, planar specifications --- first concrete evidence the tower is connected to another plane. References an installation manual (enough to install the Gear without Pendel). Wilhelm's handwritten margin notes. Typeset prop.
 
 \columnbreak
 
 \section*{Connections}
 \begin{itemize}
 \item \textbf{Down:} Staircase to the Clockhall
-\item \textbf{Up:} Narrow passage alongside the air pipes to Cuckoo's Landing (steep climb)
+\item \textbf{Up:} Ladder at H5, beside the main air riser, right behind the clock face --- emerges at the landing hatch above
 \end{itemize}
 
 \section*{Transition}
@@ -359,24 +370,31 @@ AC & HP & Speed & Atk & Dmg \\
 \toprule
 \textbf{Trigger} & \textbf{Enemies} \\
 \midrule
-On entry & 6 stirges (scattered on pipes/rafters) \\
-First bellows opened & 1 swarm erupts from inside \\
-Second bellows opened & 1 swarm erupts from inside \\
+On entry & 6 stirges (perched on the overhead ducts) \\
+First bellows worked (action) & 1 swarm flushed out that duct's stub (west F3 / east F10) \\
+Second bellows worked & The second swarm, out the other stub \\
 \bottomrule
 \end{tabularx}
+
+\vspace{4pt}
+
+\textbf{The stubs (key mechanic):} each duct has an uncapped service stub (F3 west, F10 east; fallen caps on the floor beside them). The swarms nest in the pipes --- working a bellows is how the party flushes them: \textit{they control when the swarms come.} Restore the air channels: work BOTH bellows + re-cap BOTH stubs.
 
 \columnbreak
 
 \section*{Environment}
 \begin{itemize}
-\item \textbf{Two bellows} (one each side) --- large wooden structures, climbable, half cover behind them
-\item \textbf{Brass pipes} --- run up through ceiling, climbable but narrow
-\item \textbf{Maintenance alcove} --- nook between one bellows and the wall (journal here)
-\item \textbf{Debris/nesting} --- difficult terrain in patches around the bellows
+\item \textbf{Two bellows} (east/west walls, 2$\times$4 each) --- impassable, climbable, half cover behind
+\item \textbf{Overhead ducts} (dashed on the map) --- run from each bellows to the central manifold (G/H--4/5 corner); main riser climbs behind the clock face
+\item \textbf{Workbench} (I8--I9, manifest) and \textbf{modron crate} (I4, the Gear inside) on the front wall; clock-face motion works at I6--I7
+\item \textbf{Junk field} --- all 41 hatched squares on the DM guide are difficult terrain
 \end{itemize}
 
 \section*{End Condition}
-All stirges dead or driven off. Both bellows must be cleared to restore the air channels.
+All stirges dead or driven off. Both bellows worked + both stubs re-capped --- the air channels are restored (enables the cuckoo's Call in Act III).
+
+\section*{Initiative}
+One roll for all stirges; environment acts on initiative 20.
 
 \section*{DM Notes}
 \begin{itemize}
@@ -385,6 +403,7 @@ All stirges dead or driven off. Both bellows must be cleared to restore the air 
 \item Casters with AoE or magic damage shine against the swarms
 \item If too easy: a few surviving stirges re-emerge from crevices
 \item If too hard: a swarm at half HP scatters and flees up the pipes
+\item Map set: \texttt{bellows\_chamber\_map} (print) / \texttt{bellows\_chamber\_guide} (DM)
 \end{itemize}
 
 \end{multicols}
@@ -402,14 +421,16 @@ All stirges dead or driven off. Both bellows must be cleared to restore the air 
 \section*{Read-Aloud}
 \begin{readaloud}
 \itshape
-Stone steps descend into a vaulted underground chamber. Heavy iron and brass gear trains line the walls, connected by thick axles and drive chains. In the center of the room, a circular mounting cradle sits conspicuously empty --- a gap in the machinery, like a missing tooth. Near the cradle you notice a thin bedroll, a wooden crate used as a table, a candle stub, and a child's leg brace lying discarded on the floor. Someone lives here. Then a massive shape steps out from behind the gears --- a hulking figure of interlocking brass cogs and clock springs, its amber eyes glowing. It puts itself between you and the camp.
+Stone steps descend into a long vaulted chamber, and the tower's heartbeat is suddenly all around you. Heavy iron and brass gear trains wall off the dark in every direction; the only ways forward are three narrow service lanes threading between the machines. Chains hang from the ceiling gloom, and above them hang shapes the size of oxcarts --- colossal cast-iron pinecones, swaying almost imperceptibly with each tick. Listen closely, and the tick is\ldots\ not quite right. A hair early, then a hair late. Somewhere deeper in the works, something heavy shifts its weight.
 \end{readaloud}
+
+\textit{The cradle, the camp, and the golem are not visible from the entrance --- the maze reveals them. The golem is caged in the mid-band until the first effective chain pull; the camp is in Fritz's walled-off corner.}
 
 \section*{NPCs at a Glance}
 
-\npc{Fritz}{hiding behind machinery}{Defiant first, not scared. Fiercely independent. Waiting for respect.}
+\npc{Fritz}{his walled-off corner home (A7--B8)}{Defiant first, not scared. Fiercely independent. Waiting for respect.}
 
-\npc{Gear Golem}{blocking the mounting cradle}{Hostile --- attacks on Fritz's standing orders.}
+\npc{Gear Golem}{caged in the mid-band (G8), released by the first effective chain pull}{Hostile --- attacks on Fritz's standing orders.}
 
 \section*{Fritz}
 \subsection*{Will Share if Calmed}
@@ -418,9 +439,10 @@ Stone steps descend into a vaulted underground chamber. Heavy iron and brass gea
 \item The tower makes him better --- his leg was useless before
 \item The golem protects him
 \item He doesn't want anyone to take the tower from him
+\item The journal --- he'll show it (or hand it over) once treated with respect
 \end{itemize}
 \subsection*{Doesn't Know}
-What the Gear does, what the modrons are planning, the contract, the long-term consequences.
+What the Gear does, what the modrons are planning, the contract, the long-term consequences --- the journal's warnings went over his head.
 \subsection*{Key Line}
 \textit{``I could barely walk before. Now I can run. You're not taking that from me.''}
 
@@ -432,20 +454,43 @@ What the Gear does, what the modrons are planning, the contract, the long-term c
 \item Fritz controls the golem with a brass winding key he found --- taking it is possible but feels like a betrayal
 \item Fritz doesn't know the Gear needs to be installed here --- players can persuade him (Persuasion DC 12) or deceive him. Treat him as an equal; patronising him makes him dig in.
 \item If players tell Fritz they want to harm the tower, the golem fights to the death
-\item The discarded leg brace tells the story before the players meet Fritz
-\item The gear receipt (packing manifest) is filed near the mounting cradle
+\item The discarded leg brace lies by the east approach (near C8, outside his corner) --- tells the story before the players meet him
+\item Fritz has the Uhrmacher's journal --- he found it in the works and has tried to read it, but he can't read well and hasn't fully understood it
 \end{itemize}
 
-\section*{Artifact --- Gear Receipt}
-The original packing manifest from the Modron Collective (contract Art.\ II \S2.1). Modron bureaucratic language, Mechanus serial numbers, planar specifications. First concrete evidence the tower is connected to another plane. References an installation manual.
+\section*{Artifact --- The Uhrmacher's Journal}
+In Fritz's camp --- a roleplay reward, not a floor pickup: earn his trust and he shares it; fight past him and they may never see it. Later entries in a shaking hand: the Uhrmacher has noticed the changes --- conformity, loss of individuality. Regret. Mentions disconnecting the Gear. Opposite tone from Kohler's optimistic letter in the Clockhall. Typeset prop (\texttt{journal-disconnection}; DM pocket piece \texttt{journal-something-wrong}).
 
 \section*{Connections}
 \begin{itemize}
 \item \textbf{Up:} Stairs to the Clockhall
 \end{itemize}
 
+\section*{The Installation}
+\textit{Play it as a triumph that feels wonderful and is terrible.}
+
+\subsection*{The seating (as they work)}
+\begin{readaloud}
+\itshape
+The Gear is heavier than anything its size has a right to be. It settles into the cradle like it was poured there, and the clamps close over its rim on their own --- four soft clicks, like a door being locked politely. For a moment, nothing. Then the small idle gears beside the cradle lean in and mesh, and the tower's drive takes up the Gear's weight. It begins to turn --- one slow, enormous revolution, dragging the whole room's machinery with it.
+\end{readaloud}
+
+\subsection*{The snap}
+\begin{readaloud}
+\itshape
+You've been hearing the tower's tick for hours --- you'd stopped noticing it. You notice it now, because mid-swing, it corrects. Not gradually. Between one tick and the next, every wheel in the building shivers into phase, a thousand slightly-staggered beats collapsing into one. TICK. The silence between the beats goes absolute --- no rattle, no chatter, no mechanical slop anywhere in the tower. Just the beat, and the waiting. Somewhere under the floor, something begins to hum in perfect fifths with the ticking. Your own heartbeat feels suddenly unpunctual.
+\end{readaloud}
+
+\subsection*{Follow-on beats}
+\begin{itemize}
+\item Candle flames burn straight up; dust settles into faint parallel ridges; everyone exhaled at the same moment
+\item \textbf{Jump the conformity escalation a full beat immediately.} The manifest's fine print already disclaimed effects ``in the vicinity of the Gear'' --- if a player rereads it here, reward the horror
+\item Pendel, if present: visible, profound \textit{relief} --- the first genuinely emotional thing the party sees a modron do
+\item The one line to keep: \textbf{nothing sounds broken anymore --- and that's the most frightening sound the tower has made yet}
+\end{itemize}
+
 \section*{Transition}
-Gear is installed in the mounting cradle. The tower mechanism engages --- a deep vibration, gears meshing, the sound of the clock accelerating. The activation sequence has begun. Players need to get to the apex.
+The Gear is installed; the Activation Sequence has begun. The tower is in perfect time and the connection is completing. Players need to get to the apex.
 
 \section*{Encounter}
 See next page.
@@ -458,7 +503,7 @@ See next page.
 %  ENCOUNTER 4 — WINDING ROOM
 % ============================================================
 
-\phantomsection\label{sec:enc-gearroom}\sceneheader{Encounter --- Winding Room}{Act II}{Combat / Social}{[TBD] / Flesh Golem CR 5}
+\phantomsection\label{sec:enc-gearroom}\sceneheader{Encounter --- Winding Room}{Act II}{Combat / Social}{Hard by geometry / Golem CR 5}
 
 \begin{multicols}{2}
 
@@ -474,9 +519,10 @@ AC & HP & Speed & Atk & Dmg & Save \\
 
 \vspace{4pt}
 
+\textbf{Start position:} G8 (east mid-band) --- caged behind the counterweights, released by the first effective chain pull\\
 \textbf{Immune:} Lightning, Poison; Charmed, Exhaustion, Frightened, Paralyzed, Petrified, Poisoned\\
 \textbf{Aversion to Fire:} Fire damage $\rightarrow$ disadvantage on attacks/checks until end of next turn\\
-\textbf{Berserk:} When bloodied, roll 1d6 at start of turn. On 6, attacks nearest creature. [TBD --- Fritz interaction?]\\
+\textbf{Berserk:} When bloodied, roll 1d6 at start of its turn; on a 6 it goes berserk --- ignores Fritz's commands and attacks the nearest creature, \textit{including Fritz}. Only Fritz can end it: reach the golem, spend his turn at it with the brass key --- it calms on his next command, automatically. The rescue-the-boy beat.\\
 \textbf{Lightning Absorption:} Regains HP equal to lightning damage taken\\
 \textbf{Magic Resistance:} Advantage on saves vs.\ spells\\
 \textbf{Immutable Form:} Can't be shapeshifted
@@ -488,10 +534,10 @@ AC & HP & Speed & Atk & Dmg & Save \\
 \textbf{Approach} & \textbf{DC} \\
 \midrule
 Find Fritz & Perception 12 \\
-Persuade Fritz (help the tower) & Persuasion 12 \\
-Deceive Fritz & Deception [TBD] \\
-Intimidate Fritz & [TBD --- works but feels bad] \\
-Calm golem directly & [TBD --- likely impossible] \\
+Persuade Fritz (help the tower) & Persuasion 12 --- true, and he wants that \\
+Deceive Fritz & Deception 14 --- his skepticism is his armor \\
+Intimidate Fritz & Auto-success, no roll --- but the golem reads his fear as a threat and goes berserk immediately. A trap option. \\
+Calm golem directly & Not possible --- only Fritz (or holding his brass key) commands it \\
 \bottomrule
 \end{tabularx}
 
@@ -501,16 +547,37 @@ Calm golem directly & [TBD --- likely impossible] \\
 
 \textbf{Fritz learns they want to harm the tower:} Golem fights to the death. Fritz hides and won't call it off.
 
+\textbf{Golem goes berserk:} It stops obeying and attacks the nearest creature --- including Fritz. If Fritz is hiding, someone has to get the terrified boy to his rampaging protector.
+
 \columnbreak
 
-\section*{Environment}
+\section*{The Maze --- Pinecones \& Chains}
 \begin{itemize}
-\item \textbf{Mounting cradle} --- empty circular frame at center, where the Gear installs
-\item \textbf{Heavy gear trains} --- line the walls, provide cover, climbable
-\item \textbf{Fritz's camp} --- bedroll, crate, candle stub near the cradle
-\item \textbf{Weight chains} --- hang from ceiling [TBD --- swing? drop?]
-\item \textbf{Low ceiling, vaulted} --- underground, echoing
+\item \textbf{Room:} 9$\times$14 squares; three single-file lanes through dense machinery; crossings at K3--K4 and G6--G7. No ranged sightlines except along open lanes.
+\item \textbf{Mounting cradle} in the 4$\times$3 backroom (cols 2--5), centered on the A/B--3/4 intersection; \textbf{Fritz's camp} is the walled-off 2$\times$2 nook at A7--B8
+\item \textbf{Four colossal cast-iron pinecone counterweights} (3$\times$3 each) hang at two levels (rows E and I); each drops at its outer lane or the shared middle --- a pinecone cannot drop where another sits. Each level always has exactly one lane open.
+\item \textbf{Eight pull-chains}, never beside their own pinecone. Pulling costs an \textbf{action}; impossible moves grind or jam audibly. Tracing a chain to its pinecone: action + easy Investigation.
+\item \textbf{Caught under a descending pinecone:} DEX save, dive to an adjacent open square; fail = 1d6 bludgeoning + prone
+\item \textbf{The golem never damages machinery} --- blocked lanes genuinely stop it. Anyone can pull chains: players, Fritz, the golem.
 \end{itemize}
+
+\begin{tabularx}{\columnwidth}{@{}llX@{}}
+\toprule
+\textbf{Chain} & \textbf{Pulls} & \textbf{Effect} \\
+\midrule
+G2 & LW$\to$west & opens lower mid --- \textbf{first effective pull: traps the puller, releases the golem} \\
+G6 & LW$\to$mid & the re-arm chain, beside the golem's cage \\
+M3 & LE$\to$mid & opens lower east \\
+K2 & LE$\to$east & opens lower middle \\
+B4 & UW$\to$mid & backroom endgame control \\
+C3 & UW$\to$west & backroom endgame control \\
+L2 & UE$\to$mid & opens upper east \\
+C8 & UE$\to$east & opens upper middle, \textbf{seals the puller in Fritz's corner} --- Fritz can pull it himself: the social path's payoff \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+Start: sealed --- upper level open east, lower open west, no route through. Minimum two pulls to any route (G2 $\to$ C8). The ``west parade'' victory exists: both levels open west, party walks past the caged golem. Full layout: \texttt{scenes/encounter-04-winding-room.md} + DM guide map.
 
 \section*{End Conditions}
 \begin{enumerate}
@@ -519,21 +586,20 @@ Calm golem directly & [TBD --- likely impossible] \\
 \item \textbf{Gear installed} --- clicks into the mounting cradle regardless of how Fritz/golem were handled
 \end{enumerate}
 
+\section*{Initiative}
+One roll for Fritz + the golem (they act together); environment acts on initiative 20 (machinery beats, e.g.\ a counterweight groaning down after a pull).
+
+\section*{Fritz Afterward}
+Depends on the party: befriended, he trails them up and watches Act III from the landing hatch; frightened or fought, he hides below with the golem and is found in the epilogue. \textbf{Killing the golem:} no notated consequence --- play Fritz's reaction in the moment; it is a child's only protector.
+
 \section*{DM Notes}
 \begin{itemize}
-\item Golem hits hard (17 avg per slam, 34 per round) --- can down a level 3 PC in one round
+\item On paper the golem is Easy for 8 level-3 PCs --- the map is the difficulty: single-file lanes limit engagement to 1--2 PCs while it deals {\texttildelow}34 avg per round (17 per slam --- can down a level-3 PC in one round)
 \item AC 9 means players almost never miss --- encounter is HP attrition
-\item Magic Resistance and immunities shut down some caster strategies
-\item Fire is the key weakness --- disadvantage on everything
-\item The real design intent: multiple valid solutions (fight, talk, sneak). Pure combat is the least interesting path.
-\end{itemize}
-
-\section*{Open Questions}
-\begin{itemize}
-\item Is CR 5 solo vs.\ 8 PCs the right balance, or does it need supplementary enemies?
-\item Berserk mechanic --- does Fritz lose control?
-\item What happens to Fritz after? Stays in tower during Act III?
-\item Does killing the golem have narrative consequences?
+\item Magic Resistance and immunities shut down some caster strategies; fire is the key weakness (disadvantage on everything)
+\item Players not facing the golem work the maze: tracing chains, relaying positions, climbing through the works
+\item Multiple valid solutions (fight, talk, sneak) --- pure combat is the least interesting path
+\item Map set: \texttt{winding\_room\_map} (print),\\ \texttt{winding\_room\_guide} (DM)
 \end{itemize}
 
 \end{multicols}
@@ -614,19 +680,20 @@ Players now understand the full stakes. They must install the Gear (if they have
 \section*{Read-Aloud}
 \begin{readaloud}
 \itshape
-The narrow passage opens into the top of the tower. The floor is a single massive bronze gear, its teeth meshing with the walls. On one side, a circular aperture --- dark metal rings framing a hole in reality. Through it, cold geometric light. The air hums. The pipes from the bellows below terminate here, angled toward the aperture. Then the aperture flares. Something is coming through.
+The hatch swings open onto a narrow platform at the top of the tower. The floor beyond is a single massive bronze gear, its teeth meshing with the walls. On one side, a circular aperture --- dark metal rings framing a hole in reality. Through it, cold geometric light. The air hums. The pipes from the bellows below terminate here, angled toward the aperture. Then the aperture flares. Something is coming through.
 \end{readaloud}
 
 \section*{Secrets}
 \begin{itemize}
-\item The gear floor rotates 90\textdegree{} clockwise at initiative count 20 every round --- players standing on it move with it
+\item The gear floor rotates 90\textdegree{} clockwise at initiative count 20 every round --- creatures standing on it move with it; the platform, doors, rod, and flyers do not
+\item The fixed platform hugs the front wall: row A is a half-depth catwalk (squeezing), with full corner blocks at each end; the closed 10-ft doors conceal the planar aperture
 \item The cuckoo's cone fires in a fixed direction from center --- rotation shifts who's in the blast zone
 \item Players can attempt to ride the cuckoo back into Mechanus when it retracts (DC 12 STR Athletics)
 \end{itemize}
 
 \section*{Connections}
 \begin{itemize}
-\item \textbf{Down:} Narrow passage to the Bellows Chamber
+\item \textbf{Down:} Hatch at B2, ladder down beside the main air riser to the Bellows Chamber
 \end{itemize}
 
 \section*{Victory}
@@ -653,90 +720,112 @@ See next page.
 
 \begin{multicols}{2}
 
-\section*{The Cuckoo --- [TBD CR]}
+\section*{The Cuckoo --- CR 3 (custom objective)}
 
-\begin{tabularx}{\columnwidth}{@{}XXXX@{}}
+\begin{tabularx}{\columnwidth}{@{}XXX@{}}
 \toprule
-AC & HP & Attack & Damage \\
+AC & HP & Attack \\
 \midrule
-16 & {\texttildelow}110 & [TBD] & [TBD] \\
+16 & {\texttildelow}110 & none --- see below \\
 \bottomrule
 \end{tabularx}
 
 \vspace{4pt}
 
-\textbf{Restrained on the rod:} Attacks against it have advantage. Its attacks have disadvantage.\\
+\textbf{No attack actions.} Its entire turn is: emerge/retract + knockdown + modron wave + the Call. An objective to destroy, not a duelist --- the waves and the battlefield are the threat.\\
+\textbf{Construct:} Immune to poison damage; immune to the poisoned, charmed, frightened, and exhaustion conditions. No damage resistances --- its HP and the battlefield are its defense.\\
+\textbf{Restrained on the rod:} Attacks against it have advantage.\\
 \textbf{The Cuckoo's Call:} 30 ft cone, DC 14 CON save. Fail: 3d8 thunder + poisoned until end of next turn (cancels restrained advantage). Save: half, no poisoned. Once per cycle.\\
 \textbf{Emergency Venting:} Once, below half HP. 10 ft radius, DC 14 DEX save. Fail: 3d6 fire. Save: half. Melee punishment.\\
 \textbf{Defensive Lockdown (optional):} AC +2 if going down too fast.
 
-\section*{Modron Reinforcements}
+\section*{Modron Waves}
 
 \begin{tabularx}{\columnwidth}{@{}clX@{}}
 \toprule
 \textbf{Cycle} & \textbf{DPR} & \textbf{Enemies} \\
 \midrule
-1 & Low & 4 monodrones (fly 30 ft, fodder) \\
-2 & {\texttildelow}25 & 3 duodrones + 1 tridrone (ground) \\
-3 & {\texttildelow}38 & 2 tridrones + 2 quadrones (fly) \\
+1 (ON) & {\texttildelow}26 & 4 monodrones --- fly 30 ft; one-shot fodder (5 HP), but 2024 Gear attacks bite: real alpha-turn pressure \\
+2 (ON) & {\texttildelow}25 & 3 duodrones + 1 tridrone --- ground only, rotate with the gear; multiattack makes them sticky \\
+3 (ON) & {\texttildelow}38 & 2 tridrones (ground) + 2 quadrones (fly) --- Gears Launchers (320 ft) threaten the backline \\
 \bottomrule
 \end{tabularx}
 
 \vspace{4pt}
 
-[TBD --- need 2024 MM stat blocks for monodrone, duodrone, tridrone, quadrone]
+\textbf{Modron key stats (2024 MM):}
 
-\section*{Round Structure}
-
-\begin{tabularx}{\columnwidth}{@{}cX@{}}
+\begin{tabularx}{\columnwidth}{@{}lccX@{}}
 \toprule
-\textbf{Rnd} & \textbf{What Happens} \\
+& \textbf{AC} & \textbf{HP} & \textbf{Attack} \\
 \midrule
-All & Init 20: gear rotates 90\textdegree{} CW. Ground creatures rotate with it. \\
-1 (ON) & Emerges. Knockdown (DEX save [TBD]). Wave 1. Cuckoo's Call. \\
-2 (OFF) & Retracts. Knockdown. Hold-on window: DC 12 STR Athletics to ride into Mechanus. \\
-3 (ON) & Emerges. Knockdown. Wave 2. Cuckoo's Call. \\
-4 (OFF) & Retracts. Knockdown. Hold-on window. \\
-5 (ON) & Emerges. Knockdown. Wave 3. Cuckoo's Call. Last chance. \\
+Monodrone & 15 & 5 & Gear +4, 6 (1d8+2) force --- melee or 120 ft; fly 30 \\
+Duodrone & 15 & 11 & $\times$2: Blade +3, 4 (1d6+1) force --- melee or 30 ft \\
+Tridrone & 15 & 16 & $\times$3: Spear +3, 4 (1d6+1) force \\
+Quadrone & 16 & 22 & $\times$4: Slam/Launcher +4, 4 (1d4+2) force --- 320 ft; fly 30 \\
 \bottomrule
 \end{tabularx}
+
+\section*{Round Structure --- the Machine Turn}
+
+Everything the machine does happens on \textbf{initiative 20}, in this fixed order: \textbf{gear rotates 90\textdegree{} CW $\to$ cuckoo emerges/retracts (knockdown + door slam) $\to$ modron wave releases $\to$ the Call fires.} Only the PCs and the modron group roll initiative.
+
+\begin{tabularx}{\columnwidth}{@{}lX@{}}
+\toprule
+\textbf{Rnd} & \textbf{Initiative 20} \\
+\midrule
+1 (ON) & Rotate. Doors slam (swing tiles). Emerges --- knockdown (DC 14 DEX). Wave 1. The Call. \\
+2 (OFF) & Rotate. Retracts --- knockdown. Hold-on window (DC 12 STR to ride in). Doors close. \\
+3 (ON) & Rotate. Doors slam. Emerges --- knockdown. Wave 2. The Call. \\
+4 (OFF) & Rotate. Retracts --- knockdown. Hold-on window. Doors close. \\
+5 (ON) & Rotate. Doors slam. Emerges --- knockdown. Wave 3. The Call. Last chance. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{4pt}
+Rotation is perfectly predictable --- the counterplay is reading the machine and positioning a round ahead, not winning initiative. Released waves act on the modron group's initiative, so the party gets a beat to react.
 
 \columnbreak
 
 \section*{Battlefield}
 \begin{itemize}
-\item \textbf{Floor:} Single large gear (25 ft radius). Rotates 90\textdegree{} CW at init 20.
-\item \textbf{Aperture:} On the tower wall side. Rod extends inward; cuckoo occupies the center.
-\item \textbf{Cone direction:} Fixed from center. Rotation shifts who's in the blast zone.
-\item \textbf{Center hazard:} Anyone in center when cuckoo emerges $\rightarrow$ knockdown (DEX save).
-\item \textbf{Air pipes:} Terminate around the edges, feeding into the cuckoo mechanism.
+\item \textbf{Floor:} single large gear (25 ft radius), rotates 90\textdegree{} CW at init 20
+\item \textbf{Platform (fixed, does NOT rotate):} row A is a half-depth catwalk --- squeezing (half speed, disadvantage on attacks, attacks against you have advantage); corner blocks A/B 1--2 and 9--10 are full standing room. Hatch up from the Bellows Chamber at B2; air riser at B1.
+\item \textbf{Doors:} two 10-ft leaves; they slam outward 180\textdegree{} when the cuckoo deploys. Swing tiles (A2--A9, B2--B9, C3--C4, C7--C8): \textbf{DC 14 DEX; fail = 7 (2d6) bludgeoning + prone, save = half and stay standing}
+\item \textbf{Cone direction:} fixed from center --- rotation shifts who's in the blast zone
+\item \textbf{Center hazard:} anyone at center when the cuckoo emerges $\to$ knockdown (DC 14 DEX)
+\item \textbf{Table procedure:} the platform sheet (doors closed) stays over row A all fight; the gear map rotates beneath it. ON cycles: set the rod piece on top --- its head is the open doorway, its perch lands on the hub. OFF: lift it off.
 \end{itemize}
 
 \section*{Riding into Mechanus}
 \begin{itemize}
-\item Players in melee range grab on as cuckoo retracts: DC 12 STR (Athletics)
-\item Door blocked while cuckoo is extended --- this is the only way through
-\item On Mechanus: DC 14 WIS save at start of each turn or lose action (move/bonus still available)
-\item Ride back out on next cycle
-\item If cuckoo dies while inside: door closes, party must figure out retrieval
+\item Grab on as it retracts: DC 12 STR (Athletics). The doorway is blocked while the cuckoo is extended --- this is the only way through.
+\item On Mechanus: DC 14 WIS save at start of each turn or lose action (move/bonus fine)
+\item Ride back out next cycle. If the cuckoo dies while they're inside: door closes; the party must figure out retrieval.
 \end{itemize}
+
+\section*{Telegraphing the 3-Cycle Rule}
+Primary: the contract, Art.\ VI \S6.3 --- players who read it know the termination clause. Backup (DM's choice): a conflicted Pendel states it, Linde spells it out, or a modron announces ``second emergence logged; one remains.'' Deliver it by the end of cycle 1 if nobody has connected it.
+
+\section*{Pendel During the Fight}
+\begin{itemize}
+\item \textbf{Befriended / pushed rogue:} sides with the party --- stands clear but calls wave timings, states the 3-cycle rule, shouts where the Call is charging
+\item \textbf{Neutral:} freezes --- torn, pleads with both sides, acts only at the very end (DM's choice)
+\item \textbf{Antagonized:} assists the modron waves --- directing them, never attacking PCs himself
+\end{itemize}
+
+\section*{End Conditions}
+\textbf{Victory:} cuckoo at 0 HP before 3 full cycles. Contract null and void (\S6.3). Aperture closes; modrons retreat immediately.\\
+\textbf{Defeat:} 3 cycles complete. Planar anchor established. Conformity permanent.\\
+\textbf{Alternate path (improv --- deliberately undesigned):} party defends the cuckoo from Linde's coven (3 green hags) + fey minions over 3 cycles. Coven spells are the real threat; action economy favors the party 8:3.
 
 \section*{DM Notes}
 \begin{itemize}
-\item The cuckoo is primarily an objective/HP sponge --- modron waves are the real combat threat
-\item The rotating floor is the key tactical element: constantly repositions everyone relative to the cone
-\item Players who figure out the rotation pattern can predict and avoid the blast zone
-\item The fight should feel frantic and mechanical --- a machine to be dismantled, not a monster to be slain
-\end{itemize}
-
-\section*{Open Questions}
-\begin{itemize}
-\item Full cuckoo statblock --- attacks besides the Call?
-\item Knockdown DEX save DC?
-\item 2024 modron stat blocks needed
-\item How do players learn the 3-cycle rule?
-\item What happens to Pendel during Act III?
-\item Alternate path (hag coven) needs full design
+\item Initiative: PCs + one modron group roll; the cuckoo acts with the environment on 20
+\item The cuckoo is an objective/HP sponge --- the modron waves are the real combat threat
+\item The rotating floor constantly repositions everyone relative to the fixed cone; players who read the pattern can position a round ahead
+\item Frantic and mechanical --- a machine to be dismantled, not a monster to be slain
+\item Map set: \texttt{cuckoos\_landing\_map} + overlay sheet + rod piece (print) / \texttt{cuckoos\_landing\_guide} (DM)
 \end{itemize}
 
 \end{multicols}
@@ -936,6 +1025,9 @@ Scrappy, thin, dirty from living rough. Messy dark hair, bright defiant eyes. Pa
 \section*{The Leg}
 The tower's ticking has been ``regulating'' his leg --- he doesn't understand why, but it works now. For the first time in his life. He didn't lose something and get it back --- he gained something he never had. The discarded brace near the bedroll tells the whole story before the players even meet him. He believes the tower is responsible and doesn't think the ticking will stop. If he thought it would, he'd be afraid.
 
+\section*{The Journal}
+Fritz found the old clockmaker's journal in the works and has tried to read it --- but he can't read well, and has only understood pieces. The warnings went over his head. He'll show it (or hand it over) once treated with respect --- a roleplay reward, not a floor pickup.
+
 \section*{Psychology}
 Fritz is fiercely independent, deeply creative, a lover of books, quick to engage and challenge, a deep thinker, and a lover of adventure. The tower has given the most adventurous kid in the village working legs for the first time, and now he's camped out in an underground winding room living out the adventure he's always dreamed of. He's not hiding. He's thriving.
 
@@ -974,7 +1066,7 @@ His mother is worried and doesn't know where he is. Frau Eichenwald has noticed 
 \begin{multicols}{2}
 
 \section*{Identity}
-Green hag, several hundred years old. Medium-aged for a fey creature. Old enough that the tower 70 years ago is a recent memory, not ancient history. She watched the Uhrmacher build it, watched the effects on the forest, watched it go dormant. Now it's happening again. She is one of three sisters --- a coven. Elke and Briar are biding their time in the deep forest. Linde is acting on her own initiative but has kept them informed.
+Green hag, several hundred years old. Medium-aged for a fey creature. Old enough that the tower sixty years ago is a recent memory, not ancient history. She watched the Uhrmacher build it, watched the effects on the forest, watched it go dormant. Now it's happening again. She is one of three sisters --- a coven. Elke and Briar are biding their time in the deep forest. Linde is acting on her own initiative but has kept them informed.
 
 \section*{Appearance --- Disguised}
 A quirky young woman with an unmistakably wild quality. Tangled hair with twigs and wildflowers. A dress that looks grown rather than sewn. Barefoot, dirt on her feet. Sharp, curious eyes. When the party finds her, she is squatting on the desk --- ignoring the chair entirely. No human sits like that. Everything about her posture says \textit{animal perched on a rock}, not \textit{woman sitting in a study}.
@@ -1025,7 +1117,7 @@ The main thing she provides is the contract itself --- she has it and knows it's
 \begin{multicols}{2}
 
 \section*{Identity}
-The clockmaker who built the Kuckucksuhrturm. Dead for roughly 70 years when the adventure begins. Never married, lived alone. Left no family. His real name is largely forgotten --- the village knows him simply as the Uhrmacher.
+The clockmaker who built the Kuckucksuhrturm. He vanished in 1742; the present is 1804 --- gone some sixty years when the adventure begins. Never married, lived alone. Left no family. His real name is largely forgotten --- the village knows him simply as the Uhrmacher.
 
 \section*{The Man}
 Wilhelm Zeiger was a kind soul, intensely dedicated to his craft. Soft-spoken, always gentle when he interacted with people, but fundamentally solitary. He became well known regionally and was widely considered a master clockmaker at a young age. His workshop evolved over time --- he wanted more room and more isolation, and moved deeper into the Tiefenwald. The workshop ultimately became the tower, driven by two needs: his pursuit of perfect timekeeping, and the practical need for a reference clock.
@@ -1042,7 +1134,7 @@ It was gradual. He noticed changes in the forest first --- curious. Then similar
 There is a tragic irony here: the most precise man in the region might not have recognised precision being imposed on him. How would he tell the difference?
 
 \section*{The End}
-When he decided to act, he removed the Cross-Planar Regulation Gear himself and hid it in the bellows chamber. Then he disappeared. He left on his own terms. What he did with the rest of his life is unknown.
+When he decided to act, he removed the Cross-Planar Regulation Gear himself and re-packed it in its original modron shipping crate in the bellows chamber. Then he disappeared. He left on his own terms. What he did with the rest of his life is unknown.
 
 Nobody knows the truth of his departure. The tower went silent. The Tickwichtel stopped appearing. The forest slowly recovered. Freudenfeld was left with a dormant tower in the woods and a legend that grew stranger with every generation.
 
