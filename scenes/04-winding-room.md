@@ -8,7 +8,7 @@
 
 ## Read-Aloud (entry)
 
-Stone steps descend into a long vaulted chamber, and the tower's heartbeat is suddenly all around you. Heavy iron and brass gear trains wall off the dark in every direction; the only ways forward are three narrow service lanes threading between the machines. Chains hang from the ceiling gloom, and above them hang shapes the size of oxcarts — colossal cast-iron pinecones, swaying almost imperceptibly with each tick. Listen closely, and the tick is... not quite right. A hair early, then a hair late. Somewhere deeper in the works, something heavy shifts its weight.
+Stone steps descend into a long vaulted chamber, and the tower's heartbeat is suddenly all around you. Heavy iron and brass gear trains wall off the dark in every direction; the only ways forward are three narrow service lanes threading between the machines. Chains hang from the ceiling gloom, and shapes the size of oxcarts hang with them — colossal cast-iron pinecones, some lowered to the floor where they sit blocking the lanes outright. Somewhere deeper in the works, something heavy shifts its weight.
 
 *(The cradle, the camp, and the golem are not visible from the entrance — the maze reveals them. The golem is caged in the mid-band until the first effective chain pull; the camp is in Fritz's walled-off corner.)*
 
