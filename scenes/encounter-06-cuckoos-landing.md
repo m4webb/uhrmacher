@@ -92,7 +92,7 @@ Primary: the contract, Art. VI §6.3 — players who found and read it in the St
 
 ## End Conditions
 
-**Victory:** Cuckoo destroyed (reduced to 0 HP) before 3 full cycles. Contract null and void (Art. VI §6.3). Aperture closes. Modrons retreat immediately. Broken cuckoo remains.
+**Victory:** Cuckoo destroyed (reduced to 0 HP) before 3 full cycles. Contract null and void (Art. VI §6.3). Aperture closes; **the tower stops ticking** (investigating why: the Gear has cracked cleanly in two in its cradle). The modrons on this plane stand down and gather to Pendel. Broken cuckoo remains. See `scenes/07-epilogue.md`.
 
 **Defeat:** The tower finishes striking three — 3 cycles complete. Planar anchor established. Conformity permanent.
 

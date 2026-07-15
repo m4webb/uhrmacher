@@ -29,7 +29,7 @@ The hatch swings open onto a narrow platform at the top of the tower. The floor 
 
 ## Transition
 
-**Victory:** Cuckoo destroyed before completing 3 cycles. Contract null and void (Art. VI §6.3). Aperture closes. Modrons immediately retreat. The broken cuckoo remains.
+**Victory:** Cuckoo destroyed before completing 3 cycles. Contract null and void (Art. VI §6.3). Aperture closes; the tower stops ticking — the Gear has cracked cleanly in two. The modrons on this plane gather to Pendel. The broken cuckoo remains.
 
 **Defeat:** Cuckoo completes 3 cycles. Planar anchor established. Connection to Mechanus permanent. Conformity spreads.
 
