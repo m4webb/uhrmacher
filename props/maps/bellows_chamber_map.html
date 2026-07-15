@@ -206,7 +206,7 @@ function jugs(cx, cy) {
 plank(316, 612, 115, 14); plank(320, 632, 104, -9); plank(330, 598, 100, 4);
 junkGear(370, 610, 20, 8, 10);
 jugs(468, 628);
-// stub corner: nest below the open stub, near the fallen cap (D3)
+// stub corner: nest below the open stub, near the fallen cap (pre-mirror D3; displays at F3)
 nestHeap(506, 448, 26, 3);
 // broken crate + spilled plank (D4)
 crate(576, 430, 54, -7); plank(614, 462, 70, 38);   // broken crate, lid plank slid off
@@ -345,13 +345,13 @@ dashedPipe([[ebx + 8 + 176 * 0.3, eby + 40], [ebx + 8 + 176 * 0.3, 168], [1152, 
 // long ago and lies on the floor below; drawn subtly, for careful eyes)
 dashedPipe([[480, 324], [480, 396]]);
 el('ellipse', { cx: 480, cy: 400, rx: 6.5, ry: 2.6, fill: 'none', stroke: INK, 'stroke-width': 1.2 });
-// the fallen cap, lying on the floor of D3
+// the fallen cap, lying on the floor (pre-mirror D3; displays at F3)
 el('circle', { cx: 462, cy: 430, r: 9, fill: '#fff', stroke: INK, 'stroke-width': 1.6 });
 el('circle', { cx: 462, cy: 430, r: 5, fill: 'none', stroke: INK, 'stroke-width': 0.9 });
 // pressure gauge on the east duct
 el('circle', { cx: 1152, cy: 300, r: 9.5, fill: '#fff', stroke: INK, 'stroke-width': 1.5 });
 el('line', { x1: 1152, y1: 300, x2: 1146, y2: 293, stroke: INK, 'stroke-width': 1.2 });
-// central manifold, centered on the B/C-4/5 grid intersection (624, 288)
+// central manifold, centered on the B/C-4/5 pre-mirror intersection (624, 288; displays at G/H-4/5)
 el('rect', { x: 596, y: 260, width: 56, height: 56, rx: 8, fill: '#fff', stroke: INK, 'stroke-width': 2.2 });
 el('circle', { cx: 624, cy: 288, r: 14, fill: '#fff', stroke: INK, 'stroke-width': 2.2 });
 el('circle', { cx: 624, cy: 288, r: 7, fill: 'none', stroke: INK, 'stroke-width': 1.1 });

@@ -35,7 +35,7 @@ The Gasthaus is low-ceilinged and wood-paneled, warm from a Kachelofen in the co
 
 ### Heinrich — Knows / Will Share / Won't Share
 
-- **Will share freely (loves to talk):** Saw a Tickwichtel in the woods as a boy of six or seven — it barely noticed him, but the memory shaped his life. Excited they're back — he's a celebrity again, people care about his stories. But also carries unease from childhood: things "weren't right" back then, and something tragic happened. Believes the Uhrmacher froze himself in time when the ticking stopped.
+- **Will share freely (loves to talk):** Saw a Tickwichtel in the woods as a boy of seven — it barely noticed him, but the memory shaped his life. Excited they're back — he's a celebrity again, people care about his stories. But also carries unease from childhood: things "weren't right" back then, and something tragic happened. Believes the Uhrmacher froze himself in time when the ticking stopped.
 - **Unreliable details:** Thinks the Tickwichtel gave the Uhrmacher magical powers and could control time. Emotional truth is there; facts are not.
 - **Key line:** *"I was six, maybe seven. It was no bigger than my hand, all brass and little legs, clicking away. It didn't even look at me."*
 

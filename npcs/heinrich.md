@@ -8,4 +8,4 @@
 
 ## Portrait Prompt
 
-> An old, weathered German woodcutter in his 70s or 80s, lean and gnarled from a lifetime of outdoor work. Deep wrinkles, bright eyes, a broad easy smile. Large calloused hands wrapped around a beer stein. Wearing a worn linen shirt and a battered leather vest. A woodcutter's hand axe leans against the wall beside him. Background of a warm, dim tavern interior — wood paneling, a tile stove glowing in the corner. [Append meta-prompt from portrait-style-guide.md]
+> An old, weathered German woodcutter in his late 60s, lean and gnarled from a lifetime of outdoor work. Deep wrinkles, bright eyes, a broad easy smile. Large calloused hands wrapped around a beer stein. Wearing a worn linen shirt and a battered leather vest. A woodcutter's hand axe leans against the wall beside him. Background of a warm, dim tavern interior — wood paneling, a tile stove glowing in the corner. [Append meta-prompt from portrait-style-guide.md]

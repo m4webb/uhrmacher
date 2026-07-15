@@ -13,7 +13,7 @@
 | 16 | ~110 | none — see below | — |
 
 **No attack actions.** The cuckoo's entire turn is: emerge/retract + knockdown + modron wave + the Call. It is an objective to destroy, not a duelist — the modron waves and the environment are the threat.
-**Construct:** Immune to poison damage; immune to the poisoned, charmed, frightened, and exhaustion conditions. No damage resistances — its HP and the battlefield are its defense.
+**Construct:** Immune to poison and psychic damage; immune to the poisoned, charmed, frightened, exhaustion, paralyzed, and petrified conditions. No damage resistances — its HP and the battlefield are its defense.
 
 **Restrained on the rod:** Attacks against it have advantage. Its attacks have disadvantage.
 **The Cuckoo's Call:** 30 ft cone, DC 14 CON save. Fail: 3d8 thunder + poisoned until end of next turn (cancels restrained advantage). Save: half damage, no poisoned. Once per cycle.
