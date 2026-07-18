@@ -260,3 +260,13 @@ aged oak boards. Dark fairy-tale illustration style inspired by the Black Forest
 Germany. Rich, moody palette of deep greens, warm amber, and shadow. Painterly with visible
 brushwork, slightly stylized but not cartoonish. Warm candlelight. No hands, no people.
 ```
+
+## `images/trinket-moosbund.png` — Der Moosbund
+
+```
+A fist-sized knot of vivid living green moss, dense and soft, faintly glowing with life,
+sitting incongruously among brass clockwork gears. Single object study on a dark background.
+Dark fairy-tale illustration style inspired by the Black Forest region of Germany. Rich,
+moody palette of deep greens, warm amber, and shadow. Painterly with visible brushwork,
+slightly stylized but not cartoonish. Warm candlelight. No hands, no people.
+```
