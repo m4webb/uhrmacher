@@ -7,6 +7,8 @@
   @font-face { font-family: 'EBGaramond'; src: url('documents/ebgaramond-regular.ttf'); }
   @font-face { font-family: 'EBGaramond'; src: url('documents/ebgaramond-bold.ttf'); font-weight: bold; }
   @page { size: 11in 8.5in; margin: 0; }
+  @page vert { size: 8.5in 11in; margin: 0; }
+  .page.vert { page: vert; width: 8.5in; height: 11in; }
   html, body { margin: 0; padding: 0; background: #fff; }
   .page {
     width: 11in; height: 8.5in;
@@ -56,7 +58,7 @@
   <div class="caption"><div class="rule"></div><div class="name">The Gasthaus</div></div>
 </div>
 
-<div class="page">
+<div class="page vert">
   <div class="plate"><img src="../images/clocktower2.png"></div>
   <div class="caption"><div class="rule"></div><div class="name">The Kuckucksuhrturm</div></div>
 </div>
