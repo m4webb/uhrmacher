@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Creature Book — The Uhrmacher's Folly (letter landscape, one per page)</title>
+<style>
+  @font-face { font-family: 'EBGaramond'; src: url('documents/ebgaramond-regular.ttf'); }
+  @font-face { font-family: 'EBGaramond'; src: url('documents/ebgaramond-bold.ttf'); font-weight: bold; }
+  @page { size: 11in 8.5in; margin: 0; }
+  @page vert { size: 8.5in 11in; margin: 0; }
+  .page.vert { page: vert; width: 8.5in; height: 11in; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  .page {
+    width: 11in; height: 8.5in;
+    page-break-after: always;
+    display: flex; flex-direction: column; align-items: center;
+    box-sizing: border-box; padding: 0.4in 0.45in 0.35in;
+  }
+  .plate {
+    flex: 1 1 auto; min-height: 0;
+    display: flex; align-items: center; justify-content: center;
+    width: 100%;
+  }
+  .plate img {
+    max-width: 100%; max-height: 100%;
+    border: 3px solid #2b2016;
+    outline: 1px solid #2b2016; outline-offset: 6px;
+    box-sizing: border-box;
+  }
+  .caption {
+    flex: 0 0 auto;
+    padding-top: 0.22in;
+    text-align: center;
+    font-family: 'EBGaramond', serif;
+  }
+  .rule {
+    width: 2.2in; height: 0;
+    border-top: 1px solid #2b2016;
+    margin: 0 auto 0.12in;
+    position: relative;
+  }
+  .rule::after {
+    content: ''; position: absolute; left: 50%; top: -3.5px;
+    width: 7px; height: 7px;
+    background: #2b2016;
+    transform: translateX(-50%) rotate(45deg);
+  }
+  .name {
+    font-weight: bold; font-size: 34pt; letter-spacing: 0.12em;
+    color: #2b2016; text-transform: uppercase; line-height: 1; white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="plate"><img src="../images/stirges.png"></div>
+  <div class="caption"><div class="rule"></div><div class="name">The Stirges</div></div>
+</div>
+
+<div class="page vert">
+  <div class="plate"><img src="../images/wachter.png"></div>
+  <div class="caption"><div class="rule"></div><div class="name">Der Wächter</div></div>
+</div>
+
+<div class="page">
+  <div class="plate"><img src="../images/modrons.png"></div>
+  <div class="caption"><div class="rule"></div><div class="name">The Tickwichtel</div></div>
+</div>
+
+</body>
+</html>
