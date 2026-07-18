@@ -187,13 +187,17 @@ pipes and rafters. No humans visible.
 ## The Modrons (Tickwichtel)
 
 ```
-A work detail of small clockwork creatures from a plane of pure law, tending the exposed
-brass gears of a clock tower's mechanism. Spherical bronze monodrones the size of hand
-drums, each with a single large round eye and small fan-like mechanical wings, scrub moss
-and pale fungus from gear teeth with wire brushes. Among them, one rectangular two-eyed
-duodrone and one pyramid-shaped three-eyed tridrone carry tools in perfect step. Their
-bodies are riveted bronze and brass, geometric and precise, with short jointed limbs —
-diligent, orderly, and just slightly unsettling in their perfect coordination. Dark
+A work detail of small clockwork creatures from a plane of pure law, cleaning the mechanism
+of a clock tower. The foreground holds one single enormous brass gear wheel, perfectly
+circular, with large evenly spaced machine-cut teeth — crisp, exact, new-milled clockwork
+geometry. Spherical bronze monodrones the size of hand drums, each with a single large round
+eye and small fan-like mechanical wings, scrub moss and pale fungus from the great wheel's
+teeth with wire brushes. Among them, one rectangular two-eyed duodrone and one pyramid-shaped
+three-eyed tridrone carry tools in perfect step. Their bodies are riveted bronze and brass,
+geometric and precise, with short jointed limbs — diligent, orderly, and just slightly
+unsettling in their perfect coordination. All other machinery falls away into deep soft
+shadow behind them, dark and indistinct; the creatures and the one great wheel are in sharp
+focus. Dark
 fairy-tale illustration style inspired by the Black Forest region of Germany. Rich, moody
 palette of deep greens, warm amber, and shadow. Painterly with visible brushwork, slightly
 stylized but not cartoonish. Evokes Brothers Grimm storybook art crossed with classic D&D
