@@ -90,22 +90,20 @@ creatures visible.
 ## Scene 4 — The Winding Room
 
 ```
-An underground vaulted chamber beneath a clock tower, the foundation of the mechanism. Heavy
-iron and brass gear trains line the walls, connected by thick axles and drive chains. At the
-far end of the long chamber, a prominent empty mounting cradle — a circular frame with
-locking clamps, clearly designed to hold a large gear that is now absent. The gap in the
-machinery is conspicuous, like a missing tooth. Weight chains hang from the ceiling into the
-mechanical works, and colossal cast-iron pinecone counterweights hang among the machinery,
-lowered into circular floor berths. A small, makeshift camp is tucked into a deserted
-corner, separated from the mounting cradle by dense machinery — a thin bedroll, a wooden
-crate used as a table, a candle stub, a dog-eared journal. The chamber is cold, damp, and
-echoing. Dark fairy-tale illustration style inspired by the Black Forest region of Germany.
+A cramped underground maze of clockwork beneath a clock tower — not an open room but a
+narrow service lane, barely shoulder-width, threading between solid walls of heavy iron and
+brass gear trains that rise floor to ceiling and press in on both sides. The view looks
+straight down the tight corridor: machinery walls left and right, thick axles and drive
+chains crossing overhead, and the lane ahead blocked by a colossal cast-iron pinecone
+counterweight lowered on its chain, filling the passage side to side. Through one slim gap
+in the machines, a glimpse of a small empty circular mounting cradle somewhere deeper in,
+and the faint warm light of a candle from an unseen corner. The chamber is cold, damp, and
+claustrophobic — passages built for creatures smaller than people. Dark fairy-tale illustration style inspired by the Black Forest region of Germany.
 Rich, moody palette of deep greens, warm amber, and shadow. Painterly with visible
 brushwork, slightly stylized but not cartoonish. Evokes Brothers Grimm storybook art crossed
 with classic D&D fantasy interiors. Warm candlelight or dim atmospheric light.
-Period-appropriate architecture and details suggesting 18th-19th century rural Germany. Wide
-environmental framing showing the full room, slightly elevated perspective as if viewed from
-the doorway. No characters or creatures visible.
+Period-appropriate architecture and details suggesting 18th-19th century rural Germany. Eye-level
+framing looking straight down one narrow lane between the machines. No characters or creatures visible.
 ```
 
 ## Scene 5 — The Uhrmacher's Study
