@@ -342,3 +342,31 @@ fairy-tale illustration style inspired by the Black Forest region of Germany. Ri
 palette of deep greens, warm amber, and shadow. Painterly with visible brushwork, slightly
 stylized but not cartoonish. Warm candlelight. No hands, no people.
 ```
+
+---
+
+# Document Conversion (B&W typeset → aged artifact)
+
+Input: the 300-DPI PNGs from `render/handouts/`. Keep denoise/strength low (0.3–0.45) and
+proof every output against the source text — especially the handwriting fonts.
+
+```
+Restyle this document image into an aged 18th-century paper artifact while preserving the
+text exactly. Keep every word, letterform, line break, and margin precisely as in the
+source — do not add, remove, reword, redraw, or reflow any text; the writing must remain
+perfectly legible. Change only the material: turn the white background into old laid paper
+with visible fiber texture, warmly toned like weak tea, with light foxing spots, softly
+darkened worn edges, and one or two faint fold creases. Turn the pure black ink into aged
+iron-gall ink — very dark warm brown-black, with the slightest bleed into the paper fibers.
+Subtle candlelight-warm tonal variation across the page. No illustrations, no seals, no
+stamps, no new marks over or near the text. The result should look like a well-preserved
+sixty-year-old document, photographed flat.
+```
+
+Swap the last sentence per document:
+
+- **Letter:** Folded twice for travel: two soft horizontal creases, slight wear where the folds cross.
+- **Journals:** A page from a working journal: one minor ink smudge near a margin, a thumb-worn lower corner.
+- **Manifest:** An official shipping document, crisp despite its age; one faded circular bureaucratic ink stamp in an empty margin corner, well away from all text.
+- **Pest ad:** A public notice that hung outdoors: tack holes at the corners, one small edge tear, weather-toned.
+- **Contract:** Unnaturally well preserved — perfectly flat, evenly aged, the ink immaculate; paper that time touched but nothing else dared.
