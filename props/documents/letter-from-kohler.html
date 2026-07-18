@@ -11,36 +11,36 @@
     display: flex; justify-content: center; align-items: center; min-height: 100vh;
   }
   .page {
-    width: 8.5in; height: 11in; background: #f4e8c1;
+    width: 8.5in; height: 11in; background: #ffffff;
     background-image:
-      radial-gradient(ellipse at 20% 80%, rgba(139,90,43,0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 20%, rgba(139,90,43,0.05) 0%, transparent 50%);
+      radial-gradient(ellipse at 20% 80%, rgba(0,0,0,0) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(0,0,0,0) 0%, transparent 50%);
     padding: 0.75in 1.1in 0.75in 1.1in; box-sizing: border-box;
     position: relative; box-shadow: 3px 3px 15px rgba(0,0,0,0.4); overflow: hidden;
   }
   .page::before {
     content: ''; position: absolute; inset: 0;
-    box-shadow: inset 0 0 50px rgba(139,90,43,0.2); pointer-events: none;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0); pointer-events: none;
   }
   .date {
-    font-family: 'Dancing Script', cursive; font-size: 18px; color: #4a3520;
+    font-family: 'Dancing Script', cursive; font-size: 18px; color: #000000;
     text-align: right; margin-bottom: 22px; opacity: 0.8;
   }
   .body {
     font-family: 'Dancing Script', cursive; font-size: 22px; line-height: 33px;
-    color: #2a1a0a; position: relative; z-index: 1;
+    color: #000000; position: relative; z-index: 1;
   }
   .body p { margin: 0 0 22px 0; text-indent: 2em; }
   .body p:first-child { text-indent: 0; }
-  .body p:nth-child(odd) { color: #2a1a0a; }
-  .body p:nth-child(even) { color: #3a2510; }
+  .body p:nth-child(odd) { color: #000000; }
+  .body p:nth-child(even) { color: #000000; }
   .closing {
-    font-family: 'Dancing Script', cursive; font-size: 21px; color: #2a1a0a;
+    font-family: 'Dancing Script', cursive; font-size: 21px; color: #000000;
     margin-top: 24px; line-height: 33px;
   }
   .blot {
     position: absolute; width: 6px; height: 7px;
-    background: rgba(42,26,10,0.12); border-radius: 50%;
+    background: rgba(0,0,0,0.12); border-radius: 50%;
     bottom: 3.5in; right: 2.2in;
   }
   @media print { body { background: none; } .page { box-shadow: none; margin: 0; } }
