@@ -68,11 +68,13 @@ creatures visible.
 The upper chamber of a clock tower, dominated by two enormous wooden bellows the size of
 wagons, one on each side. Built like giant lungs — hinged wooden frames with cracked leather
 membranes, connected to brass whistles and thick pipes that run upward through the ceiling.
-The bellows are choked with years of neglect — cobwebs thick as curtains, debris, dried
-organic matter clogging the air channels. A sturdy workbench stands against the front wall —
-the back of the great clock face, where a hand arbor and bevel gears protrude from the
-wall — scattered with abandoned tools and a creased paper manifest; nearby sits an
-unnaturally square wooden shipping crate. Ducts meander overhead from both bellows to a
+The ceiling is flat and heavy-beamed — another floor lies above; no sloped roof, no attic
+rafters. The bellows are choked with years of neglect — cobwebs thick as curtains, debris,
+dried organic matter clogging the air channels. One entire wall is the back of the great
+clock face itself: a huge full-storey disc of dark banded wood filling the wall from floor
+to ceiling, its giant hand arbor and bevel gears protruding into the room. A sturdy
+workbench stands beneath it, scattered with abandoned tools and a creased paper manifest;
+nearby sits an unnaturally square wooden shipping crate. Ducts meander overhead from both bellows to a
 central manifold, from which the main air riser climbs through the ceiling; a wooden ladder
 stands beside it. Decades of workshop junk lie strewn across the floor. The room feels
 organic and mechanical at once — a ribcage of wood and brass. Dark fairy-tale illustration
