@@ -188,16 +188,16 @@ pipes and rafters. No humans visible.
 
 ```
 A work detail of small clockwork creatures from a plane of pure law, cleaning the mechanism
-of a clock tower. The foreground holds one single enormous brass gear wheel, perfectly
-circular, with large evenly spaced machine-cut teeth — crisp, exact, new-milled clockwork
-geometry. Spherical bronze monodrones the size of hand drums, each with a single large round
-eye and small fan-like mechanical wings, scrub moss and pale fungus from the great wheel's
-teeth with wire brushes. Among them, one rectangular two-eyed duodrone and one pyramid-shaped
-three-eyed tridrone carry tools in perfect step. Their bodies are riveted bronze and brass,
-geometric and precise, with short jointed limbs — diligent, orderly, and just slightly
-unsettling in their perfect coordination. All other machinery falls away into deep soft
-shadow behind them, dark and indistinct; the creatures and the one great wheel are in sharp
-focus. Dark
+of a clock tower. They work against the flat polished face of a wheel so enormous that its
+rim lies far beyond the edges of the frame — from here it is simply a gently curving wall of
+riveted, banded brass, seamed with bolted plates. No gear teeth are visible anywhere.
+Spherical bronze monodrones the size of hand drums, each with a single large round eye and
+small fan-like mechanical wings, scrub moss and pale fungus from the brass seams with wire
+brushes. Among them, one rectangular two-eyed duodrone and one pyramid-shaped three-eyed
+tridrone carry tools in perfect step. Their bodies are riveted bronze and brass, geometric
+and precise, with short jointed limbs — diligent, orderly, and just slightly unsettling in
+their perfect coordination. Everything beyond the brass wall falls away into deep soft
+shadow; the creatures are in sharp focus. Dark
 fairy-tale illustration style inspired by the Black Forest region of Germany. Rich, moody
 palette of deep greens, warm amber, and shadow. Painterly with visible brushwork, slightly
 stylized but not cartoonish. Evokes Brothers Grimm storybook art crossed with classic D&D
