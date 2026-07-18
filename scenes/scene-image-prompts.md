@@ -204,27 +204,59 @@ detail among the gears. No humans visible.
 
 # Trinket Images
 
-Object studies, square aspect (they sit in a 4.6-inch square frame on the handouts).
-Save as `images/trinket-stimmgabel.png`, `trinket-watch.png`, `trinket-oil.png`,
-`trinket-kuken.png`, `trinket-sprungfeder.png`.
+Object studies, square aspect (they sit in square frames on the trinket cards).
+Save as the filename above each block, then re-export `render/handouts/trinkets.pdf`.
 
-Shared style tail for all five:
+## `images/trinket-stimmgabel.png` — Die Stimmgabel
 
 ```
-Single object study on a dark background, resting on aged oak boards. Dark fairy-tale
-illustration style inspired by the Black Forest region of Germany. Rich, moody palette of
-deep greens, warm amber, and shadow. Painterly with visible brushwork, slightly stylized but
-not cartoonish. Warm candlelight. No hands, no people.
+A large two-pronged tuning fork of polished otherworldly brass, geometric and precise, a
+serial number stamped along the handle, a faint golden resonance shimmering between the
+prongs. Single object study on a dark background, resting on aged oak boards. Dark
+fairy-tale illustration style inspired by the Black Forest region of Germany. Rich, moody
+palette of deep greens, warm amber, and shadow. Painterly with visible brushwork, slightly
+stylized but not cartoonish. Warm candlelight. No hands, no people.
 ```
 
-- **Stimmgabel:** `A large two-pronged tuning fork of polished otherworldly brass, geometric and
-  precise, a serial number stamped along the handle, faint golden resonance shimmering
-  between the prongs.` + tail
-- **Watch:** `An antique open-faced pocket watch of warm brass, hand-engraved case, its dial
-  slightly odd — the hands a hair out of place — on a worn leather strap.` + tail
-- **Oil:** `A small stoppered apothecary vial of amber clock oil, wax seal stamped with a
-  gear insignia, a paper label with faded German handwriting reading Grade 3.` + tail
-- **Küken:** `A tiny hand-carved wooden cuckoo bird automaton, palm-sized, with folded brass
-  wings, a small winding key in its side, endearing and earnest.` + tail
-- **Sprungfeder:** `A powerful coiled steel mainspring mounted in a brass boot-heel housing
-  with leather straps, workshop-made, slightly battered.` + tail
+## `images/trinket-watch.png` — The Unpunctual Watch
+
+```
+An antique open-faced pocket watch of warm engraved brass, its dial subtly odd — the hands
+sitting a hair out of true — with a worn leather strap coiled beside it. Single object study
+on a dark background, resting on aged oak boards. Dark fairy-tale illustration style
+inspired by the Black Forest region of Germany. Rich, moody palette of deep greens, warm
+amber, and shadow. Painterly with visible brushwork, slightly stylized but not cartoonish.
+Warm candlelight. No hands, no people.
+```
+
+## `images/trinket-oil.png` — Uhrmacheröl
+
+```
+A small stoppered apothecary vial of amber clock oil, sealed with wax stamped with a gear
+insignia, a paper label with faded German handwriting. Single object study on a dark
+background, resting on aged oak boards. Dark fairy-tale illustration style inspired by the
+Black Forest region of Germany. Rich, moody palette of deep greens, warm amber, and shadow.
+Painterly with visible brushwork, slightly stylized but not cartoonish. Warm candlelight.
+No hands, no people.
+```
+
+## `images/trinket-kuken.png` — Das Küken
+
+```
+A tiny hand-carved wooden cuckoo bird automaton, palm-sized, with small folded brass wings
+and a little winding key in its side, endearing and earnest. Single object study on a dark
+background, resting on aged oak boards. Dark fairy-tale illustration style inspired by the
+Black Forest region of Germany. Rich, moody palette of deep greens, warm amber, and shadow.
+Painterly with visible brushwork, slightly stylized but not cartoonish. Warm candlelight.
+No hands, no people.
+```
+
+## `images/trinket-sprungfeder.png` — Die Sprungfeder
+
+```
+A powerful coiled steel mainspring mounted in a brass boot-heel housing with leather straps,
+workshop-made and slightly battered. Single object study on a dark background, resting on
+aged oak boards. Dark fairy-tale illustration style inspired by the Black Forest region of
+Germany. Rich, moody palette of deep greens, warm amber, and shadow. Painterly with visible
+brushwork, slightly stylized but not cartoonish. Warm candlelight. No hands, no people.
+```
