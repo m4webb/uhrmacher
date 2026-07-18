@@ -315,3 +315,25 @@ region of Germany. Rich, moody palette of deep greens, warm amber, and shadow. P
 with visible brushwork, slightly stylized but not cartoonish. Warm candlelight. No hands,
 no people.
 ```
+
+## `images/trinket-doppelpfeife.png` — Die Doppelpfeife
+
+```
+Two elegant silver-and-brass organ pipes of slightly different lengths, bound side by side
+like a double flute, dented and soot-marked from a wreck, beautiful workmanship beneath the
+damage. Single object study on a dark background, resting on aged oak boards. Dark
+fairy-tale illustration style inspired by the Black Forest region of Germany. Rich, moody
+palette of deep greens, warm amber, and shadow. Painterly with visible brushwork, slightly
+stylized but not cartoonish. Warm candlelight. No hands, no people.
+```
+
+## `images/trinket-messingfedern.png` — Die Messingfedern
+
+```
+A spread fan of long hinged brass feathers, metal flight plates from a mechanical wing,
+every feather perfectly identical, gleaming untarnished gold-brass with rivet hinges at the
+quills. Single object study on a dark background, resting on aged oak boards. Dark
+fairy-tale illustration style inspired by the Black Forest region of Germany. Rich, moody
+palette of deep greens, warm amber, and shadow. Painterly with visible brushwork, slightly
+stylized but not cartoonish. Warm candlelight. No hands, no people.
+```

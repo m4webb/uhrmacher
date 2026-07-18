@@ -1,6 +1,6 @@
 # Trinkets — Unique Treasures
 
-Ten items, placed by the DM whenever exploration earns them. Player handouts:
+Twelve items, placed by the DM whenever exploration earns them. Player handouts:
 `render/handouts/trinkets.pdf` (one page each, image frames wired to
 `images/trinket-*.png` — re-export after generating images).
 
@@ -16,3 +16,5 @@ Ten items, placed by the DM whenever exploration earns them. Player handouts:
 | **Das Feinwerkzeug** (masterwork tools) | Pure loot — 50 gp | Clockhall workbench |
 | **Kirschwasser, 1741** | Pure loot — 30 gp | Clockhall, the living corner by the hearth |
 | **Die Schnitzfiguren** (carved figures) | Pure loot — 20 gp; players may recognize young Heinrich, Eichenwald, Grüber | Study shelf |
+| **Die Doppelpfeife** (the cuckoo's voice) | Pure loot — 150 gp | Salvage from the broken cuckoo (epilogue) |
+| **Die Messingfedern** (brass wing-feathers) | Pure loot — 100 gp | Salvage from the broken cuckoo (epilogue) |
