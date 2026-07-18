@@ -270,3 +270,48 @@ Dark fairy-tale illustration style inspired by the Black Forest region of German
 moody palette of deep greens, warm amber, and shadow. Painterly with visible brushwork,
 slightly stylized but not cartoonish. Warm candlelight. No hands, no people.
 ```
+
+## `images/trinket-minutenzeiger.png` — Der Minutenzeiger
+
+```
+A dagger made from the slender black minute hand of a large clock, ground to a fine edge,
+set in a plain walnut grip with a brass ferrule. Elegant, thin, and slightly wrong as a
+weapon. Single object study on a dark background, resting on aged oak boards. Dark
+fairy-tale illustration style inspired by the Black Forest region of Germany. Rich, moody
+palette of deep greens, warm amber, and shadow. Painterly with visible brushwork, slightly
+stylized but not cartoonish. Warm candlelight. No hands, no people.
+```
+
+## `images/trinket-feinwerkzeug.png` — Das Feinwerkzeug
+
+```
+An open rosewood case of masterwork clockmaker's tools — fine silver-chased screwdrivers,
+tweezers, files and calipers, each resting in its fitted bed of dark velvet, immaculately
+ordered. Single object study on a dark background, resting on aged oak boards. Dark
+fairy-tale illustration style inspired by the Black Forest region of Germany. Rich, moody
+palette of deep greens, warm amber, and shadow. Painterly with visible brushwork, slightly
+stylized but not cartoonish. Warm candlelight. No hands, no people.
+```
+
+## `images/trinket-kirschwasser.png` — Kirschwasser, 1741
+
+```
+An old bottle of clear cherry brandy with a wax-sealed cork and a faded handwritten paper
+label, a fine layer of dust on the shoulders of the glass. Single object study on a dark
+background, resting on aged oak boards. Dark fairy-tale illustration style inspired by the
+Black Forest region of Germany. Rich, moody palette of deep greens, warm amber, and shadow.
+Painterly with visible brushwork, slightly stylized but not cartoonish. Warm candlelight.
+No hands, no people.
+```
+
+## `images/trinket-schnitzfiguren.png` — Die Schnitzfiguren
+
+```
+A small wooden box holding hand-carved linden-wood figurines of villagers in 18th-century
+rural German dress — a beaming heavyset man, a seated woman with a book, a small boy with
+an axe — unpainted, finely whittled, dusty. Single object study on a dark background,
+resting on aged oak boards. Dark fairy-tale illustration style inspired by the Black Forest
+region of Germany. Rich, moody palette of deep greens, warm amber, and shadow. Painterly
+with visible brushwork, slightly stylized but not cartoonish. Warm candlelight. No hands,
+no people.
+```
