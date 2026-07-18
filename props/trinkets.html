@@ -13,9 +13,10 @@
     width: 11in; height: 8.5in; box-sizing: border-box;
     padding: 0.3in;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 3.09in);   /* 4:5 cards, matching the 1122x1402 generations */
     grid-template-rows: 1fr 1fr;
     gap: 0.18in;
+    justify-content: center;
   }
   .card {
     border: 1.5px solid #2b2016;
