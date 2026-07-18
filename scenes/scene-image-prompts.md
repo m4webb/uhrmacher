@@ -127,20 +127,21 @@ perspective as if viewed from the doorway. No characters or creatures visible.
 ## Scene 6 — Cuckoo's Landing
 
 ```
-The apex of a clock tower, open to the sky. The entire floor is a single enormous bronze
-gear, its teeth meshing with the surrounding walls, polished and strangely clean. Along the
-front wall runs a narrow fixed platform — a half-depth catwalk with a wooden hatch at one
-end, where a brass air riser emerges from below and runs through the wall. In the front wall
-stand two great closed doors, far taller than any door has a reason to be, and from the seam
-between them leaks a thin line of cold, pale, geometric light — the only light source that
-isn't natural. The walls are bare clockwork: exposed gears, ratchets, and structural beams.
-The room feels like the inside of a machine, not a building, holding its breath. Dark
+The open-air landing at the very top of a towering cuckoo clock tower, high above a dark
+pine forest that stretches to the horizon far below. The platform floor is a single enormous
+bronze gear, polished and strangely clean, its teeth ringing the open edge — no railing
+beyond them, only sky and the drop. On one side rises the tower's carved timber crown: a
+wall holding two great closed doors, far taller than any door has a reason to be, with a
+thin line of cold, pale, geometric light leaking from the seam between them — the only light
+that isn't sky. A wooden hatch opens in a narrow board catwalk along the base of that wall,
+where a brass air pipe emerges from below and runs into the timber. Wind, height, and held
+breath: a stage waiting for something to step onto it. Dark
 fairy-tale illustration style inspired by the Black Forest region of Germany. Rich, moody
 palette of deep greens, warm amber, and shadow. Painterly with visible brushwork, slightly
 stylized but not cartoonish. Evokes Brothers Grimm storybook art crossed with classic D&D
-fantasy interiors. Dim atmospheric light. Period-appropriate architecture and details
-suggesting 18th-19th century rural Germany. Wide environmental framing showing the full
-room, slightly elevated perspective as if viewed from the hatch. No characters or creatures
+fantasy landscapes. Dim atmospheric light. Period-appropriate architecture and details
+suggesting 18th-19th century rural Germany. Wide framing from the platform,
+the forest horizon visible beyond the gear's edge. No characters or creatures
 visible.
 ```
 
